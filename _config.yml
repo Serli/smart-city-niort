@@ -17,7 +17,7 @@ title: Smart City Niort
 email: contact@serli.com
 description: Quelques données intéressantes pour la ville de Niort !
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://formation.serli.com/smart-city-niort" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: SerliFr
 github_username:  Serli
 
