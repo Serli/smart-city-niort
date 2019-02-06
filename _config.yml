@@ -17,24 +17,9 @@ title: Smart City Niort
 email: contact@serli.com
 description: Quelques données intéressantes pour la ville de Niort !
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://formation.serli.com/smart-city-niort" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: SerliFr
 github_username:  Serli
 
 # Build settings
 markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-feed
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
