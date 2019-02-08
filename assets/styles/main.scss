@@ -12,9 +12,6 @@ body {
 main {
   flex: 1 0 auto;
 }
-
-#main-container {
-  margin-bottom: 60px;
-}
+.absolute { position: absolute;z-index:999999999;}
 
 @import "materialize";
