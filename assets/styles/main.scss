@@ -1,6 +1,7 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+#  Only the main Sass file needs front matter  (  the dashes are enough  )
 ---
+
 @charset "utf-8";
 
 body {
@@ -11,7 +12,85 @@ body {
 
 main {
   flex: 1 0 auto;
+  z-index: 0;
 }
-.absolute { position: absolute;z-index:999999999;}
+
+.absolute {
+  position: absolute;
+  z-index: 1;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  z-index: 1;
+
+
+
+}
+
+.navbar {
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  transition: 0.3s;
+  min-width: 100%;
+
+  i , a {
+
+    color: #dee0e6;
+    padding: 8px 15px;
+    text-align: center;
+
+    &:hover, &:active {
+
+      background-color: #12a5d4;
+      background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+    }
+
+  }
+
+
+}
+.active {
+  background-color: #12a5d4;
+  background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.navbarUnder {
+  min-height: 50px;
+  z-index: 2 ;
+}
+
+
+
+.navbarOn {
+  height: 0px;
+  z-index: 0 ;
+
+}
+
+.navbarOn .closebtn {
+  position: absolute;
+  bottom: 0;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
 
 @import "materialize";
