@@ -1,5 +1,3 @@
-console.log("Hello");
-
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems, {});
@@ -54,10 +52,16 @@ function clickCatego() {
 function clickCritere() {
 
     if (this.className.includes("active")) {
+
+        map.removeLayer(tabLayer[0])
         this.className = this.className.replace(" active", "");
 
+
     } else {
+        map.addLayer(tabLayer[0]);
         this.className += " active";
+
+
     }
 }
 

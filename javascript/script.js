@@ -1,4 +1,5 @@
 
+
 function init() {
 
     var lat = 46.3239455;
@@ -8,8 +9,8 @@ function init() {
     var corner1 = L.latLng(46.231153027822046, -0.6389236450195312);
     var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
     var maxBounds = L.latLngBounds(corner1, corner2);
-    var map = L.map('map', {
-        center: [lat, lng], 
+    map = L.map('map', {
+        center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds
@@ -22,15 +23,35 @@ function init() {
         maxZoom: 19
     });
     mainLayer.addTo(map)
+
+    layers();
+
+    // L.control.layers(
+    //     {
+    //         'Main': mainLayer
+    //     },
+    //     {
+    //         "<img src='my-layer-icon' /> <span class='my-layer-item'>Transport</span>": groupLayer,
+    //         'Cycle': cycle,
+    //         'Cycle Parking': cycleParking,
+    //         'Parking': parking,
+    //     }
+    // ).addTo(map);
+
+
+}
+
+
+async function  layers() {
+
     // Public Transport
-    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png',{
+    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
         maxZoom: 22,
     })
 
-    
-
     var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'})
+
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'})
 
@@ -40,17 +61,9 @@ function init() {
 
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
-    L.control.layers(
-        {
-            'Main': mainLayer
-        },
-        {
-            'Transport': groupLayer,
-            'Cycle': cycle,
-            'Cycle Parking': cycleParking,
-            'Parking': parking,
-        }
-        ).addTo(map)
-
-
+    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer];
+    console.log("tab : ", tabLayer)
 }
+
+
+
