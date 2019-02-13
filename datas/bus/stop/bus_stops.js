@@ -154,26 +154,6 @@ const busStops = {
     {
       "type": "Feature",
       "properties": {
-        "@id": "node/656180890",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Iris",
-        "route_ref": "2",
-        "public_transport": "platform",
-        "shelter": "yes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4913489,
-          46.3014752
-        ]
-      },
-      "id": "node/656180890"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "@id": "node/677330955",
         "bus": "yes",
         "highway": "bus_stop",
@@ -208,25 +188,6 @@ const busStops = {
         ]
       },
       "id": "node/677330956"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/677330957",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pontreau",
-        "route_ref": "2",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4587052,
-          46.3332715
-        ]
-      },
-      "id": "node/677330957"
     },
     {
       "type": "Feature",
@@ -434,26 +395,6 @@ const busStops = {
         ]
       },
       "id": "node/772691055"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/772692821",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Brémaudière",
-        "route_ref": "2",
-        "public_transport": "platform",
-        "wheelchair": "limited"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4561555,
-          46.3319957
-        ]
-      },
-      "id": "node/772692821"
     },
     {
       "type": "Feature",
@@ -1990,43 +1931,6 @@ const busStops = {
         ]
       },
       "id": "node/2426883728"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/2428670910",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "route_ref": "2",
-        "name": "La Mude",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4881325,
-          46.3051998
-        ]
-      },
-      "id": "node/2428670910"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/2428670911",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "La Mude",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4883974,
-          46.305223
-        ]
-      },
-      "id": "node/2428670911"
     },
     {
       "type": "Feature",
@@ -4134,25 +4038,6 @@ const busStops = {
     {
       "type": "Feature",
       "properties": {
-        "@id": "node/4291198692",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Venise Verte",
-
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4845627,
-          46.3162478
-        ]
-      },
-      "id": "node/4291198692"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "@id": "node/4291226991",
         "bus": "yes",
         "highway": "bus_stop",
@@ -4185,26 +4070,6 @@ const busStops = {
         ]
       },
       "id": "node/4291232691"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/4291268889",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Venise Verte",
-        "route_ref": "2",
-        "operator": "SEMTAN",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4861368,
-          46.3167974
-        ]
-      },
-      "id": "node/4291268889"
     },
     {
       "type": "Feature",
@@ -4319,43 +4184,6 @@ const busStops = {
     {
       "type": "Feature",
       "properties": {
-        "@id": "node/4291296291",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pied de Fond",
-        "route_ref": "2",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485597,
-          46.307263
-        ]
-      },
-      "id": "node/4291296291"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/4291297290",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Henri Sellier",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4794653,
-          46.3117131
-        ]
-      },
-      "id": "node/4291297290"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "@id": "node/4291347593",
         "bus": "yes",
         "highway": "bus_stop",
@@ -4428,25 +4256,6 @@ const busStops = {
         ]
       },
       "id": "node/4291357290"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/4291358189",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pied de Fond",
-        "route_ref": "2",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4851954,
-          46.3071961
-        ]
-      },
-      "id": "node/4291358189"
     },
     {
       "type": "Feature",
@@ -7050,195 +6859,6 @@ const busStops = {
         "@id": "node/6019535859",
         "bus": "yes",
         "highway": "bus_stop",
-        "name": "Bois Chamaillard",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.496513,
-          46.300589,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Bois Chamaillard",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.496513,
-          46.300589,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pied de fond",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485436,
-          46.306798,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pied de fond",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485474,
-          46.306746,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Macif",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485436,
-          46.306798,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Macif",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.480033,
-          46.309172,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pôle Emploi",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.478359,
-          46.304938,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pôle Emploi",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.478452,
-          46.304976,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Henri Sellier",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.479316,
-          46.311564,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
         "name": "Henri Sellier",
         "network": "TAN",
         "public_transport": "stop_position",
@@ -7306,7 +6926,7 @@ const busStops = {
         "network": "TAN",
         "public_transport": "stop_position",
         "ref": "4",
-        "route_ref": "2"
+        "route_ref": "2, 6"
       },
       "geometry": {
         "type": "Point",
@@ -7327,7 +6947,7 @@ const busStops = {
         "network": "TAN",
         "public_transport": "stop_position",
         "ref": "4",
-        "route_ref": "2"
+        "route_ref": "2, 6, 8"
       },
       "geometry": {
         "type": "Point",
@@ -7348,7 +6968,7 @@ const busStops = {
         "network": "TAN",
         "public_transport": "stop_position",
         "ref": "4",
-        "route_ref": "2"
+        "route_ref": "2, 6, 8"
       },
       "geometry": {
         "type": "Point",
@@ -7397,69 +7017,6 @@ const busStops = {
         "coordinates": [
           -0.441640,
           46.337682,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Justices",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.440526,
-          46.341297,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Justices",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.440601,
-          46.341405,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "CAF",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.439369,
-          46.344396, -0.439369,
         ]
       },
       "id": "node/6019535854"
@@ -9350,27 +8907,6 @@ const busStops = {
         "coordinates": [
           -0.446118,
           46.333112,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "Terminus",
-        "name": "Bessines Ébaupin",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.493854,
-          46.298828,
         ]
       },
       "id": "node/6019535854"
