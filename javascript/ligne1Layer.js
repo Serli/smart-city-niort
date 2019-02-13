@@ -7,7 +7,7 @@ function TrajetLine1Bis() {
         var line = L.polyline(latlngs, {
             opacity: 1,
             dashArray: "2 12",
-            color: "red",
+            color: "#e40613",
             weight: 6,
         });
         return line;
@@ -24,7 +24,7 @@ function TrajetLine1Bis2() {
         var line = L.polyline(latlngs, {
             opacity: 1,
             dashArray: "2 12",
-            color: "red",
+            color: "#e40613",
             weight: 6,
         });
         return line;
@@ -40,7 +40,7 @@ function TrajetLine1() {
 
         var line = L.polyline(latlngs, {
             opacity: 1,
-            color: "red",
+            color: "#e40613",
             weight: 6,
         });
         return line;
