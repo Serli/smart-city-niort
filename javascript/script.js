@@ -1,5 +1,3 @@
-
-
 function init() {
 
     var lat = 46.3239455;
@@ -42,7 +40,7 @@ function init() {
 }
 
 
-async function  layers() {
+function layers() {
 
     // Public Transport
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
@@ -61,8 +59,31 @@ async function  layers() {
 
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
-    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer];
-    console.log("tab : ", tabLayer)
+    //tabLayer = [cycle, cycleParking, stopBus, parking, groupLayer];
+
+    tabLayer = new Array();
+    tabLayer["Vélo"] = cycle ;
+    tabLayer["Bus"] = groupLayer ;
+
+
+
+
+
+    // tabLayer = {
+    //     "active": true,
+    //     "transport": [
+    //         cycle,
+    //         groupLayer,
+    //     ],
+    //
+    //     "parking": [
+    //         parking,
+    //         cycleParking,
+    //     ],
+    //
+    //
+    // }
+    //console.log("tab : ", tabLayer)
 }
 
 

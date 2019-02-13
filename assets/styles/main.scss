@@ -47,13 +47,15 @@ footer {
   overflow-x: auto;
   align-items: center;
   transition: 0.3s;
-  min-width: 100%;
+
 
   i , a {
 
     color: #dee0e6;
     padding: 8px 15px;
     text-align: center;
+
+
 
     &:hover, &:active {
 
@@ -63,6 +65,20 @@ footer {
       -webkit-text-fill-color: transparent;
 
     }
+
+    &:first-child {
+      margin-left: auto;
+
+
+    }
+
+    &:last-child {
+
+      margin-right: auto;
+
+
+    }
+
 
   }
 
@@ -97,6 +113,14 @@ footer {
 .leaflet-control-layers {
   left: 5px;
   top: 50px;
+}
+
+.visible {
+  height:50px;
+}
+
+.hidden {
+  height:0px;
 }
 
 
