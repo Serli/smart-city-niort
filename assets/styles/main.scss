@@ -15,6 +15,74 @@ main {
   z-index: 0;
 }
 
+#navbar3 {
+  position: absolute;
+  bottom: 100px;
+  z-index: 999;
+  //background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+
+  #button-navbar3 {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -15px;
+    z-index: 9999999;
+    right: 5px;
+    padding: 0;
+    border-radius: 20px;
+    visibility: hidden;
+  }
+
+  .carousel {
+    height: 100%;
+
+    .carousel-item {
+      visibility: visible;
+      width: 157px;
+      max-height: 144px;
+      background-color: #fff;
+      border-radius: 10px;
+
+      .fond {
+        height: 50%;
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        -moz-box-shadow: 0px 10px 5px -5px #656565;
+        -webkit-box-shadow: 0px 10px 5px -5px #656565;
+        -o-box-shadow: 0px 10px 5px -5px #656565;
+        box-shadow: 0px 10px 5px -5px #656565;
+        filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+
+        .degrade {
+          height: 100%;
+          background-image: linear-gradient(to bottom, rgba(245,246,246,0.3) 0%, rgba(184,186,198,0.9) 100%);
+        }
+      }
+
+      .infos {
+        display: flex;
+        height: 50%;
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+
+        .type {
+          width: 50%;
+          height: 100%;
+          border-bottom-left-radius: inherit;
+          border-right: 2px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .horaires {
+          width: 50%; height: 100%;
+          border-bottom-right-radius: inherit;
+          border-left: 2px solid rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+}
+
 .navTop {
 
   a {
@@ -68,17 +136,17 @@ footer {
 
 
 }
-.active {
-  background-color: #12a5d4;
-  background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 
 .navbarUnder {
   min-height: 50px;
   z-index: 2 ;
+  .active {
+    background-color: #12a5d4;
+    background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 

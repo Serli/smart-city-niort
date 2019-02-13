@@ -1,10 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems, {});
-    var element = document.querySelectorAll('.carousel');
-    M.Carousel.init(element, {
-        shift: 50
-    });
 });
 
 document.getElementById("button-navbar3").addEventListener("click", function () {
@@ -68,16 +64,23 @@ function clickCatego() {
 
 
 function clickCritere() {
+    var element = document.querySelectorAll('.carousel');
 
     if (this.className.includes("active")) {
 
         map.removeLayer(tabLayer[0])
         this.className = this.className.replace(" active", "");
-
+        document.getElementById('button-navbar3').style.visibility = "hidden";
+        document.getElementById('navbar3').style.height = "0px";
 
     } else {
         map.addLayer(tabLayer[0]);
         this.className += " active";
+        document.getElementById('navbar3').style.height = "164px";
+        document.getElementById('button-navbar3').style.visibility = "visible";
+        M.Carousel.init(element, {
+            shift: 50,
+        });
 
 
     }
