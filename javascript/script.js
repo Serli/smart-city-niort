@@ -105,6 +105,44 @@ function init() {
             }
         });
 
+    var ligne4 = L.geoJSON(BusStopLigne4,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function(feature,latlng){
+                var arret;
+                if(feature.properties.name !== undefined){
+                    var marker = L.marker(latlng);
+                    arret = feature.properties.name;
+                    let ligne = feature.properties.route_ref;
+                    marker.bindPopup(
+                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                        + '<h4>'+arret+'</h4>'
+                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
+    var ligne5 = L.geoJSON(BusStopLigne5,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function(feature,latlng){
+                var arret;
+                if(feature.properties.name !== undefined){
+                    var marker = L.marker(latlng);
+                    arret = feature.properties.name;
+                    let ligne = feature.properties.route_ref;
+                    marker.bindPopup(
+                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                        + '<h4>'+arret+'</h4>'
+                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
     var stopBus = L.geoJSON(busStops, 
         {
             attribution: '&copy; OpenStreetMap',
@@ -134,6 +172,10 @@ function init() {
 
     var groupLayerLigne3 = L.layerGroup([ligne3, TrajetLine3()]);
 
+    var groupLayerLigne4 = L.layerGroup([ligne4, TrajetLine4(), TrajetLine4Pissardent(), TrajetLine4Moulin()]);
+
+    var groupLayerLigne5 = L.layerGroup([ligne5, TrajetLine5(), TrajetLine5Chauray() ,TrajetLine5Zodiac()]);
+
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
     L.control.layers(
@@ -147,6 +189,8 @@ function init() {
             'Ligne 1': groupLayerLigne1,
             'Ligne 2' : groupLayerLigne2,
             'Ligne 3' : groupLayerLigne3,
+            'Ligne 4' : groupLayerLigne4,
+            'Ligne 5' : groupLayerLigne5,
             'Cycle': cycle,
             'Cycle Parking': cycleParking,
             'Parking': parking,
