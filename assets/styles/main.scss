@@ -1,18 +1,19 @@
 ---
 #  Only the main Sass file needs front matter  (  the dashes are enough  )
 ---
-
 @charset "utf-8";
 
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  align-items: center;
 }
 
 main {
   flex: 1 0 auto;
   z-index: 0;
+  width: 100%;
 }
 
 .navTop {
@@ -32,29 +33,40 @@ main {
   z-index: 1;
 }
 
-footer {
+.footer {
   display: flex;
-  justify-content: flex-end;
-  height: 100%;
+  flex-direction: column;
+  align-items: center;
   z-index: 1;
+  margin: 0 auto;
+  max-width: 70vw;
+  bottom: 0;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  box-sizing: border-box;
+
 
 
 
 }
 
 .navbar {
+  position:relative;
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
   align-items: center;
   transition: 0.3s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 
-
-  i , a {
+  i, a {
 
     color: #dee0e6;
-    padding: 8px 15px;
+    padding: 8px 8px;
     text-align: center;
-
 
 
     &:hover, &:active {
@@ -84,6 +96,7 @@ footer {
 
 
 }
+
 .active {
   background-color: #12a5d4;
   background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
@@ -94,14 +107,14 @@ footer {
 
 .navbarUnder {
   min-height: 50px;
-  z-index: 2 ;
+  z-index: 2;
 }
-
 
 
 .navbarOn {
   height: 0px;
-  z-index: 0 ;
+  z-index: 0;
+  max-width: 90%;
 
 }
 
@@ -116,13 +129,30 @@ footer {
 }
 
 .visible {
-  height:50px;
+  height: 50px;
 }
 
 .hidden {
-  height:0px;
+  height: 0px;
 }
 
+.moreGradientLeft {
+  background-image: linear-gradient(to right, white, transparent);
+  width: 25px;
+  height: 100%;
+  position: absolute;
+  left:0;
+  box-sizing: border-box;
+}
+
+.moreGradientRight {
+  background-image: linear-gradient(to left, white , transparent);
+  width: 25px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  box-sizing: border-box;
+}
 
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -134,5 +164,17 @@ footer {
     font-size: 18px;
   }
 }
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-width: 640px) {
+
+  .footer {
+    max-width: 100vw;
+  }
+  .navbarOn {
+    max-width: 100vw;
+  }
+}
+
 
 @import "materialize";

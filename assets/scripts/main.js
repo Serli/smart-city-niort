@@ -67,48 +67,26 @@ function clickCatego() {
         //if la navbarCritere en question comporte des critères activé
         if (currentNavbarCritereActive.length > 0) {
 
-            //if il y a qu'une catégorie d'activé
-            if (categosActive.length === 1) {
+            console.log(navbaronVisible.length)
+            if (navbaronVisible.length === 0) {
+                openNav(this.id)
+            } else {
+                for (var i = 0; i < navbaronVisible.length; i++) {
+                    //si il y a + d'une categorie activé et la navbarCritere en question comporte des critères activé
+                    // et que la navbarCritere ouverte actuellement correspond a la catégorie actuelle
 
-                //on desactive tout les critères
-                console.log("currentNavbarCritereActive.length: ", currentNavbarCritereActive.length)
-                while (currentNavbarCritereActive.length) {
-                    currentNavbarCritereActive[0].classList.remove("active");
-                }
-
-                //si les critère sont tous désactiver , on ferme la navbar
-                if (criteresActive.length === 0) {
-                    closeNav(this.id);
-                    this.className = this.className.replace(" active", "");
-                }
-            } else
-            //il y a + d'une categorie activé et la navbarCritere en question comporte des critères activé
-            {
-
-                console.log(navbaronVisible.length)
-                if (navbaronVisible.length === 0 ){
-                    openNav(this.id)
-                } else {
-                    for (var i = 0; i < navbaronVisible.length; i++) {
-                        //si il y a + d'une categorie activé et la navbarCritere en question comporte des critères activé
-                        // et que la navbarCritere ouverte actuellement correspond a la catégorie actuelle
-
-                        if (navbaronVisible[i].className.includes(this.id)) {
-                            closeNav(this.id);
-                        } else if (navbaronVisible.length > 0)
-                        // if il y a plusieurs navBarOn de visible
-                        {
-                            closeAllNav();
-                            openNav(this.id)
-                        }
-
+                    if (navbaronVisible[i].className.includes(this.id)) {
+                        closeNav(this.id);
+                    } else if (navbaronVisible.length > 0)
+                    // if il y a plusieurs navBarOn de visible
+                    {
+                        closeAllNav();
+                        openNav(this.id)
                     }
+
                 }
-
-
-
-
             }
+
 
         } else
         // la navbarCritere en question comporte aucun critères activé
