@@ -3,21 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Sidenav.init(elems, {});
 });
 
-document.getElementById("button-navbar3").addEventListener("click", function () {
-    var elem = document.getElementById('carousel');
-    if(elem.style.display === "none") {
-        document.getElementById("navbar3").style.height = "164px";
-        elem.style.display = "block";
-    }
-    else {
-        elem.style.display = "none";
-        document.getElementById("navbar3").style.height = "30px";
-    }
-});
-
-
-
-
 let categos = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("fas");
 
 for (var i = 0; i < categos.length; i++) {
@@ -64,23 +49,15 @@ function clickCatego() {
 
 
 function clickCritere() {
-    var element = document.querySelectorAll('.carousel');
 
     if (this.className.includes("active")) {
 
-        map.removeLayer(tabLayer[0])
+        map.removeLayer(tabLayer[0]);
         this.className = this.className.replace(" active", "");
-        document.getElementById('button-navbar3').style.visibility = "hidden";
-        document.getElementById('navbar3').style.height = "0px";
 
     } else {
         map.addLayer(tabLayer[0]);
         this.className += " active";
-        document.getElementById('navbar3').style.height = "164px";
-        document.getElementById('button-navbar3').style.visibility = "visible";
-        M.Carousel.init(element, {
-            shift: 50,
-        });
 
 
     }

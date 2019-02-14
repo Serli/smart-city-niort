@@ -22,7 +22,7 @@ function init() {
         minZoom: 1,
         maxZoom: 19
     });
-    mainLayer.addTo(map)
+    mainLayer.addTo(map);
 
     layers();
 
@@ -48,21 +48,31 @@ async function  layers() {
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
         maxZoom: 22,
-    })
+    });
 
-    var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'})
+    var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'});
 
 
-    var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'})
+    var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
 
-    var stopBus = L.geoJSON(busStops, {attribution: '&copy; OpenStreetMap'})
+    var stopBus = L.geoJSON(busStops, {attribution: '&copy; OpenStreetMap'});
 
-    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'})
+    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
-    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer];
-    console.log("tab : ", tabLayer)
+    var defibrillateur = L.geoJSON(defibrillator, {attribution: '&copy; OpenStreetMap'});
+
+    var pharmacie = L.geoJSON(pharmacy, {attribution: '&copy; OpenStreetMap'});
+
+    var medecin = L.geoJSON(doctors, {attribution: '&copy; OpenStreetMap'});
+
+    var hopital = L.geoJSON(hospital, {attribution: '&copy; OpenStreetMap'});
+
+    var groupLayerSante = L.layerGroup([medecin, hopital]);
+
+    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer, defibrillateur, pharmacie, groupLayerSante];
+    console.log("tab : ", tabLayer);
 }
 
 
