@@ -143,6 +143,25 @@ function init() {
             }
         });
 
+    var ligne6 = L.geoJSON(BusStopLigne6,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function(feature,latlng){
+                var arret;
+                if(feature.properties.name !== undefined){
+                    var marker = L.marker(latlng);
+                    arret = feature.properties.name;
+                    let ligne = feature.properties.route_ref;
+                    marker.bindPopup(
+                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                        + '<h4>'+arret+'</h4>'
+                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
     var stopBus = L.geoJSON(busStops, 
         {
             attribution: '&copy; OpenStreetMap',
@@ -176,6 +195,8 @@ function init() {
 
     var groupLayerLigne5 = L.layerGroup([ligne5, TrajetLine5(), TrajetLine5Chauray() ,TrajetLine5Zodiac()]);
 
+    var groupLayerLigne6 = L.layerGroup([ligne6, TrajetLine6SaintLiguaire(), TrajetLine6()]);
+
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
     L.control.layers(
@@ -191,6 +212,7 @@ function init() {
             'Ligne 3' : groupLayerLigne3,
             'Ligne 4' : groupLayerLigne4,
             'Ligne 5' : groupLayerLigne5,
+            'Ligne 6' : groupLayerLigne6,
             'Cycle': cycle,
             'Cycle Parking': cycleParking,
             'Parking': parking,
