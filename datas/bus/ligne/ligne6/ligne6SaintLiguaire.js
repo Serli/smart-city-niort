@@ -9,7 +9,7 @@ const TrajetLigne6SaintLiguaire = {
             "properties": {
                 "@id": "way/40370756",
                 "highway": "Ligne de Bus",
-                "name": "Ligne 6",
+                "name": "Ligne 5",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
             },
             "geometry": {
@@ -189,7 +189,7 @@ const TrajetLigne6SaintLiguaire = {
             "properties": {
                 "@id": "way/40370756",
                 "highway": "Ligne de Bus",
-                "name": "Ligne 6",
+                "name": "Ligne 5",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
             },
             "geometry": {

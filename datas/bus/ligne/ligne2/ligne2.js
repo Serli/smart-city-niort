@@ -567,6 +567,7 @@ const TrajetLigne2 = {
                         -0.465711,
                         46.320929,
                     ],
+                    // Début partie commune ligne 7
                     [
                         -0.465596,
                         46.320919,
@@ -663,6 +664,7 @@ const TrajetLigne2 = {
                         -0.458530,
                         46.324114,
                     ],
+                    // Fin partie commune ligne 7
                     [
                         -0.458257,
                         46.324348,

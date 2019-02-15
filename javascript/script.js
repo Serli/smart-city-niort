@@ -162,6 +162,25 @@ function init() {
             }
         });
 
+    var ligne7 = L.geoJSON(BusStopLigne7,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function(feature,latlng){
+                var arret;
+                if(feature.properties.name !== undefined){
+                    var marker = L.marker(latlng);
+                    arret = feature.properties.name;
+                    let ligne = feature.properties.route_ref;
+                    marker.bindPopup(
+                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                        + '<h4>'+arret+'</h4>'
+                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
     var stopBus = L.geoJSON(busStops, 
         {
             attribution: '&copy; OpenStreetMap',
@@ -195,7 +214,9 @@ function init() {
 
     var groupLayerLigne5 = L.layerGroup([ligne5, TrajetLine5(), TrajetLine5Chauray() ,TrajetLine5Zodiac()]);
 
-    var groupLayerLigne6 = L.layerGroup([ligne6, TrajetLine6SaintLiguaire(), TrajetLine6()]);
+    var groupLayerLigne6 = L.layerGroup([ligne6, TrajetLine6SaintLiguaire(), TrajetLine6(), TrajetLine6JeanZay()]);
+
+    var groupLayerLigne7 = L.layerGroup([ligne7, TrajetLine7()]);
 
     var groupLayer = L.layerGroup([transportLayer, stopBus]);
 
@@ -213,6 +234,7 @@ function init() {
             'Ligne 4' : groupLayerLigne4,
             'Ligne 5' : groupLayerLigne5,
             'Ligne 6' : groupLayerLigne6,
+            'Ligne 7' : groupLayerLigne7,
             'Cycle': cycle,
             'Cycle Parking': cycleParking,
             'Parking': parking,
