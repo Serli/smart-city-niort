@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(elems, {});
 });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(elems,  {enterDelay: 600} );
+});
+
+
 // nombre d'icone categorie
 let categos = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("fas");
 

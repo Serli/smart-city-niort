@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
+
 }
 
 main {
@@ -154,6 +155,21 @@ main {
   box-sizing: border-box;
 }
 
+.categotext{
+  font-size: 10px;
+  padding:5px 0 0 0;
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+
+body .material-tooltip{
+
+  color: #dee0e6;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 0px #cfcfcf;
+
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
