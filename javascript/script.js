@@ -42,7 +42,24 @@ function init() {
 }
 
 
-async function  layers() {
+async function layers() {
+
+     var groupLayerData = L.layerGroup();
+    var groupLayerEntraide = L.layerGroup();
+
+    transiscopeDatas.map(data => {
+        if(data.categories.length !== 0 &&
+            ((data.location.lat >= 46.231153027822046 && data.location.lon >= -0.6389236450195312) &&
+                (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
+            if(data.categories[0].id === 33) {
+                L.marker([data.location.lat, data.location.lon], { title: data.title}).addTo(groupLayerData);
+            }
+
+            if(data.categories[0].id === 21) {
+                L.marker([data.location.lat, data.location.lon], { title: data.title}).addTo(groupLayerEntraide);
+            }
+        }
+    });
 
     // Public Transport
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
@@ -71,8 +88,7 @@ async function  layers() {
 
     var groupLayerSante = L.layerGroup([medecin, hopital]);
 
-    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer, defibrillateur, pharmacie, groupLayerSante];
-    console.log("tab : ", tabLayer);
+    tabLayer = await [cycle, cycleParking, stopBus, parking, groupLayer, defibrillateur, pharmacie, groupLayerSante, groupLayerData, groupLayerEntraide];
 }
 
 
