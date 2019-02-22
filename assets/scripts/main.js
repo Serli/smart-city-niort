@@ -52,11 +52,11 @@ function clickCritere() {
 
     if (this.className.includes("active")) {
 
-        map.removeLayer(tabLayer[0]);
+        map.removeLayer(tabLayer[6]);
         this.className = this.className.replace(" active", "");
 
     } else {
-        map.addLayer(tabLayer[0]);
+        map.addLayer(tabLayer[6]);
         this.className += " active";
 
 

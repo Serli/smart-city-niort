@@ -8,13 +8,14 @@
           content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{ site.url }}/assets/leaflet-1.4.0/leaflet.css"/>
+    <link rel="stylesheet" href="{{ site.url }}/assets/style.css"/>
     <link rel="stylesheet" href="{{ site.url }}/assets/styles/main.css">
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
 
-    <link rel="stylesheet" href="{{ site.url }}/assets/leaflet-1.4.0/leaflet.css"/>
-    <link rel="stylesheet" href="{{ site.url }}/assets/style.css"/>
+
     <script src="{{ site.url }}/assets/leaflet-1.4.0/leaflet.js"></script>
 
     <script src="{{ site.url }}/datas/niort_cycleway.js"></script>
