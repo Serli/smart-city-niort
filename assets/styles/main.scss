@@ -5,6 +5,7 @@
 
 body {
   min-height: 100vh;
+  min-width: 100vw;
 
 }
 
@@ -30,37 +31,95 @@ main {
 
 .absolute {
   position: absolute;
-  z-index: 1;
+  z-index: 401;
 }
 
 .footer {
   display: flex;
-  flex-direction: row;
-  //flex-flow:row;
   align-items: center;
-  //margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0;
+
+
+}
+
+
+.footerLeft {
+
+  flex-direction: row;
   top: 50%;
   transform: translateY(-50%);
   left:0;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
-  box-sizing: border-box;
-  padding: 0;
-  z-index: 400;
+
+  .navbar {
+    flex-direction: column;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  .navbarUnder {
+    order:-1;
+  }
+
+  .navbarOn {
+    width: 0px;
+
+  }
+
+  .visible {
+    width: 100%;
+  }
+
 
 
 }
 
+.footerBottom {
+
+  flex-direction: column;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom:0;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+
+
+
+  .navbar {
+    flex-direction: row;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    max-width: 100vw;
+  }
+
+  .navbarOn {
+    height: 0px;
+
+  }
+
+  .visible {
+    height: 100%;
+  }
+
+
+
+
+
+}
+
+
+
+
+
 .navbar {
   position:relative;
   display: flex;
-  flex-direction: column;
   overflow-x: auto;
   overflow-y: auto;
   align-items: center;
   transition: 0.3s;
-  border-bottom-right-radius: 2px;
-  border-top-right-radius: 2px;
   flex-shrink: 0;
   i, a {
 
@@ -98,17 +157,9 @@ main {
   min-width: 50px;
   max-height: 100vh;
   z-index: 2;
-  order:-1;
 }
 
 
-.navbarOn {
-  height: 0px;
-  width: 0px;
-  z-index: 0;
-  max-width: 90%;
-
-}
 
 .navbarOn .closebtn {
   position: absolute;
@@ -120,14 +171,8 @@ main {
   top: 50px;
 }
 
-.visible {
-  height: 100%;
-  width: 100%;
-}
 
-.hidden {
-  height: 0px;
-}
+
 
 .moreGradientLeft {
   background-image: linear-gradient(to right, white, transparent);

@@ -149,7 +149,18 @@ function closeAllNav() {
 document.getElementsByClassName("toggle")[0].onclick = clickToggle;
 
 function clickToggle() {
-    document.getElementsByClassName("footer")[0].classList.add("footerLeft");
+
+    if (document.getElementsByClassName("footer")[0].className.includes("footerBottom")){
+
+        document.getElementsByClassName("footer")[0].classList.add("footerLeft");
+        document.getElementsByClassName("footer")[0].classList.remove("footerBottom");
+
+    } else {
+        document.getElementsByClassName("footer")[0].classList.add("footerBottom");
+        document.getElementsByClassName("footer")[0].classList.remove("footerLeft");
+    }
+
+
 
 }
 
