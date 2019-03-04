@@ -39,8 +39,7 @@ main {
   align-items: center;
   box-sizing: border-box;
   padding: 0;
-
-
+  transition: 0.3s;
 }
 
 
@@ -73,6 +72,24 @@ main {
   }
 
 
+  .moreGradientLeft {
+    background-image: linear-gradient(to bottom, white, transparent);
+    height: 25px;
+    width: 100%;
+    position: absolute;
+    top:0;
+    box-sizing: border-box;
+  }
+
+  .moreGradientRight {
+    background-image: linear-gradient(to top, white , transparent);
+    height: 25px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+  }
+
 
 }
 
@@ -102,6 +119,26 @@ main {
   .visible {
     height: 100%;
   }
+
+
+  .moreGradientLeft {
+    background-image: linear-gradient(to right, white, transparent);
+    width: 25px;
+    height: 100%;
+    position: absolute;
+    left:0;
+    box-sizing: border-box;
+  }
+
+  .moreGradientRight {
+    background-image: linear-gradient(to left, white , transparent);
+    width: 25px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    box-sizing: border-box;
+  }
+
 
 
 
@@ -167,30 +204,12 @@ main {
 }
 
 .leaflet-control-layers {
-  left: 5px;
+  left: 20px;
   top: 50px;
 }
 
 
 
-
-.moreGradientLeft {
-  background-image: linear-gradient(to right, white, transparent);
-  width: 25px;
-  height: 100%;
-  position: absolute;
-  left:0;
-  box-sizing: border-box;
-}
-
-.moreGradientRight {
-  background-image: linear-gradient(to left, white , transparent);
-  width: 25px;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  box-sizing: border-box;
-}
 
 .categotext{
   font-size: 10px;
@@ -200,10 +219,18 @@ main {
 
 .toggle {
   position: absolute;
-  bottom: 0;
-  left: 20px;
+  bottom: 40px;
+  left: 50px;
   z-index: 400;
 }
+
+
+.leaflet-control-zoom {
+  left: 50px;
+  top: 5px;
+}
+
+
 
 body .material-tooltip{
 

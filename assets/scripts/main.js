@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.tooltipped');
-    M.Tooltip.init(elems,  {enterDelay: 600} );
+    M.Tooltip.init(elems, {enterDelay: 600});
 });
 
 // nombre d'icone categorie
@@ -43,16 +43,19 @@ function clickCatego() {
 
     //criteresActive = document.getElementsByClassName("navbarOn")[0].getElementsByClassName("active");
 
-    //compte toute les catégorie activé
+    // toute les catégorie activé
     categosActive = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("active");
 
-    // nombre de navbarOn/NavbarCritere visible
+    // navbarOn/NavbarCritere visible
     navbaronVisible = document.getElementsByClassName("visible ");
 
     idCategorie = this.id;
 
     // list des critères activé de la categorie actuelle
     currentNavbarCritereActive = document.getElementsByClassName(idCategorie)[0].getElementsByClassName("active")
+
+
+
 
     //if current est deja active
     if (this.className.includes("active")) {
@@ -90,12 +93,28 @@ function clickCatego() {
 
 
     } else {
+        for (var i = 0; i < categosActive.length; i++) {
+
+            var catego = categosActive[i]
+
+
+            var navbarOnAvecClassCategoId = document.getElementsByClassName(catego.id);
+            var nrbActive = navbarOnAvecClassCategoId[0].getElementsByClassName("active").length
+
+            // si il y a pas de critere active dans cette nabarOn, alors on desactive la categorie
+            if(nrbActive === 0) {
+                closeAllNav();
+                catego.classList.remove("active");
+
+            }
+
+        }
+
         if (categosActive.length > 0) {
             closeAllNav();
         }
 
         this.className += " active";
-
         openNav(this.id);
     }
 }
@@ -109,7 +128,7 @@ function clickCritere() {
         this.classList.remove("active");
         map.removeLayer(tabLayer[this.innerHTML.replace(/ /g, "")])
 
-        console.log("teste parent : ", this.parentElement.className)
+
 
 
     } else {
@@ -117,8 +136,6 @@ function clickCritere() {
 
         this.className += " active";
         map.addLayer(tabLayer[this.innerHTML.replace(/ /g, "")]);
-
-        console.log("teste parent : ", this.parentElement.className)
 
 
     }
@@ -137,7 +154,6 @@ function closeNav(categorie) {
 }
 
 function closeAllNav() {
-    console.log("close all")
 
     while (document.getElementsByClassName("visible").length > 0) {
         document.getElementsByClassName("visible")[0].classList.remove("visible");
@@ -145,12 +161,12 @@ function closeAllNav() {
 
 }
 
-// nombre d'icone categorie
+// changer la nav bar de place : left - bottom
 document.getElementsByClassName("toggle")[0].onclick = clickToggle;
 
 function clickToggle() {
 
-    if (document.getElementsByClassName("footer")[0].className.includes("footerBottom")){
+    if (document.getElementsByClassName("footer")[0].className.includes("footerBottom")) {
 
         document.getElementsByClassName("footer")[0].classList.add("footerLeft");
         document.getElementsByClassName("footer")[0].classList.remove("footerBottom");
@@ -161,6 +177,10 @@ function clickToggle() {
     }
 
 
-
 }
+
+
+// changer la nav bar de place : left - bottom
+document.getElementsByTagName("main")[0].onclick = closeAllNav;
+
 
