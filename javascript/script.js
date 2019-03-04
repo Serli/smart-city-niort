@@ -1,3 +1,49 @@
+const ligne = [{
+        id: "1",
+        trajet: [TrajetLine1Bis(), TrajetLine1Bis2(), TrajetLine1()],
+        name: "Ligne 1"
+    },
+    {
+        id: "2",
+        trajet: [TrajetLine2Alt(), TrajetLine2(), TrajetLine2Bis()],
+        name: "Ligne 2"
+    },
+    {
+        id: "3",
+        trajet: [TrajetLine3()],
+        name: "Ligne 3"
+    },
+    {
+        id: "4",
+        trajet: [TrajetLine4(), TrajetLine4Pissardent(), TrajetLine4Moulin()],
+        name: "Ligne 4"
+    },
+    {
+        id: "5",
+        trajet: [TrajetLine5(), TrajetLine5Chauray(), TrajetLine5Zodiac()],
+        name: "Ligne 5"
+    },
+    {
+        id: "6",
+        trajet: [TrajetLine6SaintLiguaire(), TrajetLine6(), TrajetLine6JeanZay()],
+        name: "Ligne 6"
+    },
+    {
+        id: "7",
+        trajet: [TrajetLine7()],
+        name: "Ligne 7"
+    },
+    {
+        id: "8",
+        trajet: [TrajetLine8()],
+        name: "Ligne 8"
+    },
+    {
+        id: "9",
+        trajet: [TrajetLine9(), TrajetLine9Alt()],
+        name: "Ligne 9"
+    },
+];
 
 function init() {
 
@@ -9,7 +55,7 @@ function init() {
     var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
     var maxBounds = L.latLngBounds(corner1, corner2);
     var map = L.map('map', {
-        center: [lat, lng], 
+        center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds
@@ -23,7 +69,7 @@ function init() {
     });
     mainLayer.addTo(map)
     // Public Transport
-    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png',{
+    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
         maxZoom: 19,
     });
@@ -39,8 +85,8 @@ function init() {
 
     var customIconBus = L.icon({
         iconUrl: './assets/images/icon1.png',
-        iconSize: [32,32],
-        iconAnchor: [16,32],
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
         popupAnchor: [0, -32]
     });
 
@@ -48,177 +94,47 @@ function init() {
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
 
-    var ligne1 = L.geoJSON(BusStopLigne1,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
+    let mesLigne = ligne.map((ligne) => {
+        let busStopLigne = busStops.features.filter((arret) => {
+            return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
         });
-
-    var ligne2 = L.geoJSON(BusStopLigne2,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
+        return {
+            trace: L.geoJSON(busStopLigne,
+                {
+                    attribution: '&copy; OpenStreetMap',
+                    pointToLayer: function (feature, latlng) {
+                        var arret;
+                        if (feature.properties.name !== undefined) {
+                            var marker = L.marker(latlng);
+                            arret = feature.properties.name;
+                            let ligne = feature.properties.route_ref;
+                            marker.bindPopup(
+                                '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                                + '<h4>' + arret + '</h4>'
+                                + '<p>' + "Ligne de bus : " + ligne + '</p>'
+                            );
+                            return marker;
+                        }
+                    }
                 }
-            }
-        });
-
-    var ligne3 = L.geoJSON(BusStopLigne3,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
-
-    var ligne4 = L.geoJSON(BusStopLigne4,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
-
-    var ligne5 = L.geoJSON(BusStopLigne5,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
-
-    var ligne6 = L.geoJSON(BusStopLigne6,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
-
-    var ligne7 = L.geoJSON(BusStopLigne7,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
-
-    var stopBus = L.geoJSON(busStops, 
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function(feature,latlng){
-                var arret;
-                if(feature.properties.name !== undefined){
-                    var marker = L.marker(latlng);
-                    arret = feature.properties.name;
-                    let ligne = feature.properties.route_ref;
-                    marker.bindPopup(
-                        '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                        + '<h4>'+arret+'</h4>'
-                        + '<p>'+"Ligne de bus : "+ligne+'</p>'
-                    );
-                    return marker;
-                }
-            }
-        });
+            ),
+            name: ligne.name,
+            trajet: ligne.trajet
+        }
+    });
 
     var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
-    var groupLayerLigne1 = L.layerGroup([ligne1, TrajetLine1Bis(), TrajetLine1Bis2(), TrajetLine1()]);
+    var groupLayer = L.layerGroup([transportLayer]);
 
-    var groupLayerLigne2 = L.layerGroup([ligne2, TrajetLine2Alt(), TrajetLine2(), TrajetLine2Bis()]);
 
-    var groupLayerLigne3 = L.layerGroup([ligne3, TrajetLine3()]);
+    let mesTrace = {};
 
-    var groupLayerLigne4 = L.layerGroup([ligne4, TrajetLine4(), TrajetLine4Pissardent(), TrajetLine4Moulin()]);
-
-    var groupLayerLigne5 = L.layerGroup([ligne5, TrajetLine5(), TrajetLine5Chauray() ,TrajetLine5Zodiac()]);
-
-    var groupLayerLigne6 = L.layerGroup([ligne6, TrajetLine6SaintLiguaire(), TrajetLine6(), TrajetLine6JeanZay()]);
-
-    var groupLayerLigne7 = L.layerGroup([ligne7, TrajetLine7()]);
-
-    var groupLayer = L.layerGroup([transportLayer, stopBus]);
+    mesLigne.forEach((ligne) => {
+        mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+    });
 
     L.control.layers(
         {
@@ -228,19 +144,14 @@ function init() {
         },
         {
             'Transport': groupLayer,
-            'Ligne 1': groupLayerLigne1,
-            'Ligne 2' : groupLayerLigne2,
-            'Ligne 3' : groupLayerLigne3,
-            'Ligne 4' : groupLayerLigne4,
-            'Ligne 5' : groupLayerLigne5,
-            'Ligne 6' : groupLayerLigne6,
-            'Ligne 7' : groupLayerLigne7,
+            ...mesTrace,
             'Cycle': cycle,
             'Cycle Parking': cycleParking,
             'Parking': parking,
             'Cinema': cinemas,
         }
-        ).addTo(map)
+
+    ).addTo(map)
 
 
 }

@@ -7,23 +7,6733 @@ const busStops = {
     {
       "type": "Feature",
       "properties": {
-        "@id": "node/457611652",
+        "@id": "node/6019535859",
         "bus": "yes",
         "highway": "bus_stop",
-        "name": "Marchoux",
+        "name": "Braille",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.471661,
+          46.314169,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Allende",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.471919,
+          46.314323,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Renon",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.468547,
+          46.313766,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Renon",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.468266,
+          46.313610,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Turgot",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.408303,
+          46.335674,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Turgot",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.408467,
+          46.335623,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Colbert",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.407117,
+          46.337221,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Colbert",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.407217,
+          46.337263,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Gutemberg",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.404316,
+          46.336715,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Gutemberg",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.404551,
+          46.336943,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Condorcet",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.400477,
+          46.339565,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Condorcet",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.400655,
+          46.339505,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Arago",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.397313,
+          46.338132,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Arago",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.396766,
+          46.338130,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Colonnes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.392890,
+          46.338925,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Colonnes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.392604,
+          46.338864,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Ampère",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.387736,
+          46.338711,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Ampère",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.388171,
+          46.338759,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Centre Commercial",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.383714,
+          46.339486,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Centre Commercial",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.383175,
+          46.339457,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Guy Lussac",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.381082,
+          46.341637,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Guy Lussac",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.381247,
+          46.341510,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698327",
+        "bench": "no",
+        "covered": "no",
+        "highway": "Terminus",
+        "name": "Trévins",
+        "network": "TAN",
+        "route_ref":"1",
+        "operator": "Communauté d’Agglomération du Niortais",
         "public_transport": "platform",
-        "route_ref": "A",
         "shelter": "no"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -0.8051262,
-          46.4715643
+          -0.3756897,
+          46.3469093
         ]
       },
-      "id": "node/457611652"
+      "id": "node/3744698327"
     },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "Terminus",
+        "name": "Trévins",
+        "network": "TAN",
+        "route_ref":"1",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3755103,
+          46.3469017
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698017",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Versaines",
+        "network": "TAN",
+        "route_ref":"1Bis",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3779943,
+          46.353498
+        ]
+      },
+      "id": "node/3744698017"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698019",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Versaines",
+        "network": "TAN",
+        "route_ref":"1Bis",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.378159,
+          46.3532328
+        ]
+      },
+      "id": "node/3744698019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698022",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Pasteur",
+        "network": "TAN",
+        "route_ref":"1Bis",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3776596,
+          46.3509188
+        ]
+      },
+      "id": "node/3744698022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698024",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Pasteur",
+        "network": "TAN",
+        "route_ref":"1Bis",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3775895,
+          46.3510072
+        ]
+      },
+      "id": "node/3744698024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698002",
+        "bench": "no",
+        "covered": "no",
+        "highway": "Terminus",
+        "name": "Parpin",
+        "network": "TAN",
+        "route_ref":"1Bis, 5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3718819,
+          46.3618153
+        ]
+      },
+      "id": "node/3744698002"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698003",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "Terminus",
+        "name": "Parpin",
+        "network": "TAN",
+        "route_ref":"1Bis, 5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3720344,
+          46.3618588
+        ]
+      },
+      "id": "node/3744698003"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "Terminus",
+        "name": "Bessines Montamisé",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.502412,
+          46.297745,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Gravée",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.517118,
+          46.295213,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Gravée",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.517064,
+          46.295345,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Potence",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.526926,
+          46.292163,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Potence",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.528033,
+          46.292138,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Jean Richard",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.533134,
+          46.296257,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Jean Richard",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.533012,
+          46.296223,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Breuil Marais",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.527171,
+          46.298839,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Breuil Marais",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.527385,
+          46.298917,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bessines Mairie",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.516103,
+          46.301679,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bessines Mairie",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.516201,
+          46.301752,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Guibert",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.510341,
+          46.302066,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Guibert",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.510322,
+          46.301968,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Taillées",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.499687,
+          46.300569,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744698329",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Taillées",
+        "network": "TAN",
+        "route_ref":"2 Alt",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.500055,
+          46.300678,
+        ]
+      },
+      "id": "node/3744698329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Bessines Ébaupin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.493854,
+          46.298828,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/656180890",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Iris",
+        "route_ref": "2",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4913489,
+          46.3014752
+        ]
+      },
+      "id": "node/656180890"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bois Chamaillard",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.496513,
+          46.300589,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bois Chamaillard",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.496513,
+          46.300589,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2428670910",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "route_ref": "2",
+        "name": "La Mude",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4881325,
+          46.3051998
+        ]
+      },
+      "id": "node/2428670910"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2428670911",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "route_ref": "2",
+        "name": "La Mude",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4883974,
+          46.305223
+        ]
+      },
+      "id": "node/2428670911"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291296291",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pied de Fond",
+        "route_ref": "2",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.485597,
+          46.307263
+        ]
+      },
+      "id": "node/4291296291"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291358189",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pied de Fond",
+        "route_ref": "2",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4851954,
+          46.3071961
+        ]
+      },
+      "id": "node/4291358189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pied de fond",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.485436,
+          46.306798,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pied de fond",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.485474,
+          46.306746,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pôle Emploi",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.478359,
+          46.304938,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pôle Emploi",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.478452,
+          46.304976,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Macif",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.485436,
+          46.306798,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Macif",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.480033,
+          46.309172,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291297290",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Henri Sellier",
+        "route_ref": "2",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4794653,
+          46.3117131
+        ]
+      },
+      "id": "node/4291297290"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Henri Sellier",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.479316,
+          46.311564,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291198692",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lycée Venise Verte",
+        "route_ref":"2",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4845627,
+          46.3162478
+        ]
+      },
+      "id": "node/4291198692"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291268889",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lycée Venise Verte",
+        "route_ref": "2",
+        "operator": "SEMTAN",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4861368,
+          46.3167974
+        ]
+      },
+      "id": "node/4291268889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "d'Agescy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458038,
+          46.326962,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "d'Agescy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458130,
+          46.327241,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772694050",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Strasbourg",
+        "route_ref": "2",
+        "public_transport": "platform",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4579215,
+          46.3293269
+        ]
+      },
+      "id": "node/772694050"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772692821",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Brémaudière",
+        "route_ref": "2",
+        "public_transport": "platform",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4561555,
+          46.3319957
+        ]
+      },
+      "id": "node/772692821"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/677330957",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pontreau",
+        "route_ref": "2",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4587052,
+          46.3332715
+        ]
+      },
+      "id": "node/677330957"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Justices",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.440526,
+          46.341297,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Justices",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.440601,
+          46.341405,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "CAF",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.439369,
+          46.344396, -0.439369,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408554",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Belin",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4818723,
+          46.3301086
+        ]
+      },
+      "id": "node/1119408554"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408557",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Belin",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4817399,
+          46.3300426
+        ]
+      },
+      "id": "node/1119408557"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408563",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Carpentier",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4829253,
+          46.3281659
+        ]
+      },
+      "id": "node/1119408563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408591",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Carpentier",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4828984,
+          46.3282538
+        ]
+      },
+      "id": "node/1119408591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408542",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Tour Chabot",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4846146,
+          46.3262216
+        ]
+      },
+      "id": "node/1119408542"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1119408574",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Tour Chabot",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4843803,
+          46.3265261
+        ]
+      },
+      "id": "node/1119408574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744617565",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Equarts",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4747376,
+          46.3223482
+        ]
+      },
+      "id": "node/3744617565"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744617566",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Equarts",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4746662,
+          46.3223205
+        ]
+      },
+      "id": "node/3744617566"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744617561",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bas Sablonnier",
+        "route_ref":"3",
+        "network": "TAN",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4709979,
+          46.3228537
+        ]
+      },
+      "id": "node/3744617561"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3744617563",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bas Sablonnier",
+        "network": "TAN",
+        "route_ref":"3",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4712253,
+          46.3227574
+        ]
+      },
+      "id": "node/3744617563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Musée",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454365,
+          46.321272,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Musée",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454214,
+          46.321091,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Puyrajoux",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.449631,
+          46.319324,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Puyrajoux",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.450390,
+          46.319532,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Ferdinand Buisson",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.447189,
+          46.318200,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Ferdinand Buisson",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446670,
+          46.318102,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lasseron",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.442204,
+          46.317880,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lasseron",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.442314,
+          46.317789,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Valentin Haüy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.438141,
+          46.317971,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lycée Paul Guérin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.441072,
+          46.315396,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Perrin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.437680,
+          46.314102,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Perrin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.437634,
+          46.314163,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Turpin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.437680,
+          46.314102,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Turpin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.437634,
+          46.314163,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Poincaré",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.437680,
+          46.314102,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Poincaré",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.433854,
+          46.316060,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief Joly",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.430824,
+          46.314588,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief Joly",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.430157,
+          46.314466,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782226854",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Vallée Guyot",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4279472,
+          46.3171053
+        ]
+      },
+      "id": "node/3782226854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782226855",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Vallée Guyot",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4280653,
+          46.3171852
+        ]
+      },
+      "id": "node/3782226855"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782238377",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bellevue",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4241729,
+          46.3172099
+        ]
+      },
+      "id": "node/3782238377"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782238378",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bellevue",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4244235,
+          46.3173305
+        ]
+      },
+      "id": "node/3782238378"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782238380",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Limoges",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4131142,
+          46.3174478
+        ]
+      },
+      "id": "node/3782238380"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3782238381",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Limoges",
+        "route_ref": "3",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.413674,
+          46.3176506
+        ]
+      },
+      "id": "node/3782238381"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Aérodrome",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.408541,
+          46.317945,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Aérodrome",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.408889,
+          46.317801,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pe Darwin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.406895,
+          46.316697,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pe Darwin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.406987,
+          46.316725,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Acclameur",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.410601,
+          46.315483,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Acclameur",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.410434,
+          46.315423,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Terre de Sport",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.415501,
+          46.315171,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Sainte-Pezenne",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.473139,
+          46.348159,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Dixième",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.476965,
+          46.348194,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Dixième",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.476678,
+          46.348136,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Glaie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.479458,
+          46.347258,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Glaie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.476678,
+          46.348136,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Coulonges",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477910,
+          46.345014,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Coulonges",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477832,
+          46.344596,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Gymnase",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.476827,
+          46.342406,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Gymnase",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.476879,
+          46.342223,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Espace Ouest",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.487764,
+          46.342042,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Espace Ouest",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.487958,
+          46.342032,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Nantes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.487615,
+          46.340431,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Nantes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.487553,
+          46.340302,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint-Hubert",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.481318,
+          46.338255,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint-Hubert",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.481567,
+          46.338236,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Verrerie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477012,
+          46.336775,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Verrerie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477171,
+          46.336718,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Recouvrance",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.474520,
+          46.335925,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Recouvrance",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.474209,
+          46.335696,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Réaumur",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.455376,
+          46.313274,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Réaumur",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.455972,
+          46.313549,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Réaumur",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.407621,
+          46.289519,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535858",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Inkermann",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "531",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4536035,
+          46.3145563
+        ]
+      },
+      "id": "node/6019535858"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Inkermann",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "532",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4536598,
+          46.3148107
+        ]
+      },
+      "id": "node/6019535859"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Brioux",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.451450,
+          46.315392,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Brioux",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.452281,
+          46.315755,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Paix",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.448806,
+          46.313267,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Paix",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.448667,
+          46.313067,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "cité",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446094,
+          46.312284,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Baudelaire",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.441719,
+          46.307169,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Baudelaire",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.441939,
+          46.307242,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Sources",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.438000,
+          46.304215,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Sources",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.438405,
+          46.304346,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Maison Neuve",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.431679,
+          46.300182,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Maison Neuve",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.431710,
+          46.300032,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief Chevalier",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.427791,
+          46.298718,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief Chevalier",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.427803,
+          46.298535,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pissardant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.425980,
+          46.301233,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pissardant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446340,
+          46.312039,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint-Lambin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.423079,
+          46.299864,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.423966,
+          46.297154,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.424488,
+          46.297285,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief St Maurice",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.426866,
+          46.295040,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fief St Maurice",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.426673,
+          46.295067,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Salle Omnisports",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.424073,
+          46.292984,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Salle Omnisports",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.424171,
+          46.292725,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pointe du Moulin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.420254,
+          46.294956,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pointe du Moulin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.420424,
+          46.294895,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moulin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.419262,
+          46.294484,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Levant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.419765,
+          46.294820,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Levant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.422774,
+          46.299681,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Levant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.415629,
+          46.293178,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Levant",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.415094,
+          46.292870,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jamine",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.409464,
+          46.290797,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jamine",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.409785,
+          46.290975,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Plantes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.407220,
+          46.289773,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Alouette",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.416867,
+          46.291328,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pierrière",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.413702,
+          46.287860,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pierrière",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.414089,
+          46.288054,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Cassin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4, 25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.414126,
+          46.286778,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Aiffres - Mairie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "4, 25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.416081,
+          46.285896,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Chaintre Brûlée",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.473008,
+          46.351669,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Verte Vallée",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477752,
+          46.350370,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Verte Vallée",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477046,
+          46.350446,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Clos Royal",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.479484,
+          46.350338,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Clos Royal",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.479904,
+          46.350450,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Louis Merle",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.481770,
+          46.348406,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Louis Merle",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.481954,
+          46.348123,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Telouze",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.482984,
+          46.346989,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Telouze",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.483173,
+          46.346940,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002872",
+        "bench": "no",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bréguet",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4326301,
+          46.325691
+        ]
+      },
+      "id": "node/3742002872"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002873",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Bréguet",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4338202,
+          46.3260592
+        ]
+      },
+      "id": "node/3742002873"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002875",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Fleurelle",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.428684,
+          46.3252958
+        ]
+      },
+      "id": "node/3742002875"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002874",
+        "bench": "no",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Fleurelle",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4292334,
+          46.3254676
+        ]
+      },
+      "id": "node/3742002874"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002876",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Sableau",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4253745,
+          46.3246238
+        ]
+      },
+      "id": "node/3742002876"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002877",
+        "bench": "no",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Souché",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4243582,
+          46.3265397
+        ]
+      },
+      "id": "node/3742002877"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002878",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Souché",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4239018,
+          46.3265604
+        ]
+      },
+      "id": "node/3742002878"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002879",
+        "bench": "no",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Buzarderie",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4188198,
+          46.3274169
+        ]
+      },
+      "id": "node/3742002879"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002880",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Buzarderie",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4184165,
+          46.3279787
+        ]
+      },
+      "id": "node/3742002880"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002881",
+        "bench": "no",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Nardouzans",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4169744,
+          46.328968
+        ]
+      },
+      "id": "node/3742002881"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742002882",
+        "bench": "yes",
+        "bus": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Nardouzans",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4171768,
+          46.3287082
+        ]
+      },
+      "id": "node/3742002882"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "MAAF",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.406772,
+          46.340775,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "MAAF",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.407477,
+          46.340970,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200938",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Zodiac",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4163228,
+          46.3416414
+        ]
+      },
+      "id": "node/3746200938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200940",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Zodiac",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4157424,
+          46.3419136
+        ]
+      },
+      "id": "node/3746200940"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200934",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Château Musset",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.402083,
+          46.3462404
+        ]
+      },
+      "id": "node/3746200934"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200936",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Château Musset",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4031785,
+          46.3461405
+        ]
+      },
+      "id": "node/3746200936"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Chaban",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.402209,
+          46.344663,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Chaban",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.402418,
+          46.344660,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200521",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Combes",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3980298,
+          46.3458856
+        ]
+      },
+      "id": "node/3746200521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3746200522",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Combes",
+        "network": "TAN",
+        "route_ref": "5",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3970105,
+          46.3460197
+        ]
+      },
+      "id": "node/3746200522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Grand Puits",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.386519,
+          46.352745,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Grand Puits",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.386700,
+          46.352581,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tilleuls",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.387838,
+          46.354803,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tilleuls",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.388004,
+          46.354738,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fraignes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.387932,
+          46.357770,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Fraignes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.387547,
+          46.357980,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Centre Aquatique",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.384210,
+          46.358685,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Centre Aquatique",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.383944,
+          46.358518,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Arandelles",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.380327,
+          46.357074,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Arandelles",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.380533,
+          46.357078,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bourg-Neuf",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.372168,
+          46.362480,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bourg-Neuf",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.372378,
+          46.362562,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Conciergerie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.365895,
+          46.359599,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bateliers",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.362484,
+          46.361718,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bicêtre",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.361580,
+          46.364057,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Deffends",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.363882,
+          46.364049,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Château Driguet",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.377297,
+          46.366069,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Château Driguet",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "5Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.377363,
+          46.366302,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Saint Liguaires - ITEP",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6Bis",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.512065,
+          46.337277,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tiffardière",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.520578,
+          46.330820,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tiffardière",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6Bis",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.520784,
+          46.330727,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Boutinets",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6Bis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.525270,
+          46.324258,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/559987539",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "8 Mai",
+        "operator": "TAN",
+        "route_ref": "6Bis",
+        "public_transport": "platform",
+        "shelter": "no",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5148648,
+          46.3272799
+        ]
+      },
+      "id": "node/559987539"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/559987543",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "8 Mai",
+        "route_ref": "6Bis",
+        "operator": "TAN",
+        "public_transport": "platform",
+        "shelter": "no",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5149657,
+          46.3273957
+        ]
+      },
+      "id": "node/559987543"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/610931892",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Saint-Liguaire",
+        "operator": "TAN",
+        "public_transport": "platform",
+        "shelter": "no",
+        "wheelchair": "yes",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5124261,
+          46.3251473
+        ]
+      },
+      "id": "node/610931892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/610931893",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint-Liguaire",
+        "operator": "TAN",
+        "public_transport": "platform",
+        "shelter": "no",
+        "route_ref": "6Bis",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5125816,
+          46.3257658
+        ]
+      },
+      "id": "node/610931893"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Halte",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.513524,
+          46.321358,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Halte",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.513687,
+          46.321344,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1332472737",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Levée de Sevreau",
+        "operator": "TAN",
+        "public_transport": "platform",
+        "shelter": "yes",
+        "route_ref": "6",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5151185,
+          46.3193219
+        ]
+      },
+      "id": "node/1332472737"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/842292277",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Garenne",
+        "public_transport": "platform",
+        "route_ref": "6",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5105616,
+          46.3211955
+        ]
+      },
+      "id": "node/842292277"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/842292399",
+        "bench": "no",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Garenne",
+        "public_transport": "platform",
+        "route_ref": "6",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5110403,
+          46.3218342
+        ]
+      },
+      "id": "node/842292399"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Marais",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.506309,
+          46.317983,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Marais",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.506029,
+          46.317656,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Espérance",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.501487,
+          46.316032,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Espérance",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.501323,
+          46.315965,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Venise Verte",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.494614,
+          46.317575,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Venise Verte",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.494431,
+          46.317499,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Patinoire",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.488311,
+          46.318856,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Patinoire",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.488454,
+          46.318929,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "d'Agescy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458038,
+          46.326962,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "d'Agescy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458130,
+          46.327241,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772694050",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Strasbourg",
+        "route_ref": "2",
+        "public_transport": "platform",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4579215,
+          46.3293269
+        ]
+      },
+      "id": "node/772694050"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Burgonce",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454114,
+          46.329467,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Burgonce",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454103,
+          46.329404,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Normandie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.448429,
+          46.329160,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Normandie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.447642,
+          46.329025,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Largeau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446819,
+          46.331070,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Largeau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446985,
+          46.330815,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Sablières",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446242,
+          46.333199,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Sablières",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.446118,
+          46.333112,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2453231241",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bazin",
+        "operator": "Les TAN",
+        "route_ref": "6",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4503115,
+          46.3337654
+        ]
+      },
+      "id": "node/2453231241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772691055",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Curie",
+        "route_ref": "6",
+        "public_transport": "platform",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4528571,
+          46.3347723
+        ]
+      },
+      "id": "node/772691055"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/835972196",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Herse",
+        "route_ref": "6",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4485951,
+          46.3400141
+        ]
+      },
+      "id": "node/835972196"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/835972199",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Herse",
+        "route_ref": "6",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4481555,
+          46.3395943
+        ]
+      },
+      "id": "node/835972199"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tardy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477302,
+          46.311610,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tardy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.477139,
+          46.311407,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Broche",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.474903,
+          46.310615,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Broche",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.474212,
+          46.310125,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Thomasserie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.470282,
+          46.308044,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Thomasserie",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.470739,
+          46.307949,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Mansart",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.466946,
+          46.308109,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Mansart",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.467876,
+          46.308022,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Moulin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.466269,
+          46.310373,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Moulin",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.466249,
+          46.310216,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint Flo",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465571,
+          46.312663,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Saint Flo",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465745,
+          46.312194,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bersat",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465585,
+          46.316401,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bersat",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465706,
+          46.316023,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Jaurès",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465559,
+          46.319129,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jean Jaurès",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465673,
+          46.319671,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Alain",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.457937,
+          46.311021,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Alain",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458193,
+          46.310964,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Camus",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454893,
+          46.310771,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Camus",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.454829,
+          46.310679,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Plaines",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.452556,
+          46.310171,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Plaines",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.452647,
+          46.310126,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Charmes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.449496,
+          46.309129,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Charmes",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.450402,
+          46.309550,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Nerval",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.440894,
+          46.307839,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Nerval",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.441108,
+          46.307912,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Stendhal",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.435495,
+          46.309031,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Stendhal",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.436009,
+          46.309076,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Chantelauze",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.439542,
+          46.311900,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Chantelauze",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.439576,
+          46.311818,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bergson",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.444093,
+          46.313551,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bergson",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.444148,
+          46.313488,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Valentin Haüy",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.441617,
+          46.318321,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742684674",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Villechanoux",
+        "network": "TAN",
+        "route_ref": "7",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4363506,
+          46.3220534
+        ]
+      },
+      "id": "node/3742684674"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742684675",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Villechanoux",
+        "network": "TAN",
+        "route_ref": "7",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4363828,
+          46.3219784
+        ]
+      },
+      "id": "node/3742684675"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742684676",
+        "bench": "no",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Plaisance",
+        "network": "TAN",
+        "route_ref": "7",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4390015,
+          46.3238878
+        ]
+      },
+      "id": "node/3742684676"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3742684677",
+        "bench": "yes",
+        "covered": "no",
+        "highway": "bus_stop",
+        "name": "Plaisance",
+        "network": "TAN",
+        "route_ref": "7",
+        "operator": "Communauté d’Agglomération du Niortais",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4387007,
+          46.3236189
+        ]
+      },
+      "id": "node/3742684677"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "Terminus",
+        "name": "Surimeau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.460809,
+          46.359851,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bas Surimeau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.463915,
+          46.359078,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bas Surimeau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.463594,
+          46.358942,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moulin d'Ane",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.457978,
+          46.357110,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moulin d'Ane",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.458050,
+          46.357219,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Château Menu",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.453373,
+          46.355289,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Château Menu",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.453461,
+          46.355411,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Petit Vigneau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.456138,
+          46.349427,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Petit Vigneau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.456360,
+          46.349410,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1094946030",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "route_ref": "8",
+        "name": "Bel Air",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4617739,
+          46.3454793
+        ]
+      },
+      "id": "node/1094946030"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1094946103",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "route_ref": "8",
+        "name": "Bel Air",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4619087,
+          46.3451056
+        ]
+      },
+      "id": "node/1094946103"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Follereau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.463479,
+          46.342862,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Follereau",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.463748,
+          46.342577,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/836378515",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tourterelles",
+        "route_ref": "8",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4596979,
+          46.3427645
+        ]
+      },
+      "id": "node/836378515"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/836378519",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Tourterelles",
+        "route_ref": "8",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4594377,
+          46.3427217
+        ]
+      },
+      "id": "node/836378519"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/835969153",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moindreau",
+        "route_ref": "6",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4557692,
+          46.3388925
+        ]
+      },
+      "id": "node/835969153"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/677330955",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Coubertin",
+        "route_ref": "2, 8",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4570751,
+          46.3351059
+        ]
+      },
+      "id": "node/677330955"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772663332",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Brizeaux",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4367907,
+          46.3397239
+        ]
+      },
+      "id": "node/772663332"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/772663332",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Brizeaux",
+        "public_transport": "platform"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4367907,
+          46.3397239
+        ]
+      },
+      "id": "node/772663332"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moulin à Vent",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.434271,
+          46.338290,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Moulin à Vent",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.434723,
+          46.338574,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Vanelles",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.430934,
+          46.337566,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6019535859",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Vanelles",
+        "network": "TAN",
+        "public_transport": "stop_position",
+        "ref": "4",
+        "route_ref": "8",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.430169,
+          46.337365,
+        ]
+      },
+      "id": "node/6019535854"
+    },
+
     {
       "type": "Feature",
       "properties": {
@@ -101,42 +6811,6 @@ const busStops = {
         ]
       },
       "id": "node/677330956"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/772663332",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Brizeaux",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4367907,
-          46.3397239
-        ]
-      },
-      "id": "node/772663332"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/772663332",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Brizeaux",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4367907,
-          46.3397239
-        ]
-      },
-      "id": "node/772663332"
     },
     {
       "type": "Feature",
@@ -284,7 +6958,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.453514,
-          46.335004,
+          46.335004
         ]
       },
       "id": "node/772691055"
@@ -304,7 +6978,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.453490,
-          46.334862,
+          46.334862
         ]
       },
       "id": "node/772691055"
@@ -348,44 +7022,7 @@ const busStops = {
       },
       "id": "node/772694050"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/835948019",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moindreau",
-        "route_ref": "6",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4559414,
-          46.338952
-        ]
-      },
-      "id": "node/835948019"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/835969153",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moindreau",
-        "route_ref": "6",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4557692,
-          46.3388925
-        ]
-      },
-      "id": "node/835969153"
-    },
+
     {
       "type": "Feature",
       "properties": {
@@ -440,7 +7077,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.441205,
-          46.315763,
+          46.315763
         ]
       },
       "id": "node/6019535854"
@@ -482,42 +7119,6 @@ const busStops = {
         ]
       },
       "id": "node/835972206"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/836378515",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Tourterelles",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4596979,
-          46.3427645
-        ]
-      },
-      "id": "node/836378515"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/836378519",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Tourterelles",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4594377,
-          46.3427217
-        ]
-      },
-      "id": "node/836378519"
     },
     {
       "type": "Feature",
@@ -607,42 +7208,6 @@ const busStops = {
         ]
       },
       "id": "node/943363834"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/1094946030",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Bel Air",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4617739,
-          46.3454793
-        ]
-      },
-      "id": "node/1094946030"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/1094946103",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Bel Air",
-        "public_transport": "platform"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4619087,
-          46.3451056
-        ]
-      },
-      "id": "node/1094946103"
     },
     {
       "type": "Feature",
@@ -3329,7 +9894,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.455185,
-          46.319260,
+          46.319260
         ]
       },
       "id": "node/4291358989"
@@ -3346,7 +9911,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.455444,
-          46.319261,
+          46.319261
         ]
       },
       "id": "node/4354437500"
@@ -3642,7 +10207,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.445865,
-          46.310919,
+          46.310919
         ]
       },
       "id": "node/6019535854"
@@ -3663,7 +10228,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.445711,
-          46.310665,
+          46.310665
         ]
       },
       "id": "node/6019535854"
@@ -3684,7 +10249,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.452281,
-          46.315755,
+          46.315755
         ]
       },
       "id": "node/6019535854"
@@ -3705,7 +10270,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.459970,
-          46.322967,
+          46.322967
         ]
       },
       "id": "node/6019535854"
@@ -3726,7 +10291,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.441443,
-          46.320089,
+          46.320089
         ]
       },
       "id": "node/6019535854"
@@ -3747,7 +10312,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.441763,
-          46.320184,
+          46.320184
         ]
       },
       "id": "node/6019535854"
@@ -3768,7 +10333,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.437379,
-          46.319870,
+          46.319870
         ]
       },
       "id": "node/6019535854"
@@ -3789,7 +10354,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.436981,
-          46.319704,
+          46.319704
         ]
       },
       "id": "node/6019535854"
@@ -3810,7 +10375,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438141,
-          46.317971,
+          46.317971
         ]
       },
       "id": "node/6019535854"
@@ -3831,7 +10396,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438779,
-          46.317710,
+          46.317710
         ]
       },
       "id": "node/6019535854"
@@ -3852,7 +10417,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.443392,
-          46.314649,
+          46.314649
         ]
       },
       "id": "node/6019535854"
@@ -3873,7 +10438,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.481310,
-          46.315085,
+          46.315085
         ]
       },
       "id": "node/6019535854"
@@ -3894,7 +10459,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.481181,
-          46.315118,
+          46.315118
         ]
       },
       "id": "node/6019535854"
@@ -3915,7 +10480,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.479512,
-          46.311630,
+          46.311630
         ]
       },
       "id": "node/6019535854"
@@ -3936,7 +10501,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.458038,
-          46.326962,
+          46.326962
         ]
       },
       "id": "node/6019535854"
@@ -3957,7 +10522,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.458130,
-          46.327241,
+          46.327241
         ]
       },
       "id": "node/6019535854"
@@ -3978,7 +10543,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.459329,
-          46.329523,
+          46.329523
         ]
       },
       "id": "node/6019535854"
@@ -3999,7 +10564,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.450176,
-          46.336535,
+          46.336535
         ]
       },
       "id": "node/6019535854"
@@ -4020,7 +10585,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.449839,
-          46.336798,
+          46.336798
         ]
       },
       "id": "node/6019535854"
@@ -4041,7 +10606,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.441897,
-          46.337773,
+          46.337773
         ]
       },
       "id": "node/6019535854"
@@ -4062,7 +10627,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.441640,
-          46.337682,
+          46.337682
         ]
       },
       "id": "node/6019535854"
@@ -4083,7 +10648,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.486387,
-          46.326686,
+          46.326686
         ]
       },
       "id": "node/6019535854"
@@ -4104,7 +10669,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.486118,
-          46.326213,
+          46.326213
         ]
       },
       "id": "node/6019535854"
@@ -4125,7 +10690,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438889,
-          46.331262,
+          46.331262
         ]
       },
       "id": "node/6019535854"
@@ -4146,7 +10711,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438277,
-          46.331380,
+          46.331380
         ]
       },
       "id": "node/6019535854"
@@ -4167,7 +10732,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.414500,
-          46.333858,
+          46.333858
         ]
       },
       "id": "node/6019535854"
@@ -4188,7 +10753,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.415322,
-          46.333196,
+          46.333196
         ]
       },
       "id": "node/6019535854"
@@ -4209,7 +10774,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.411808,
-          46.337286,
+          46.337286
         ]
       },
       "id": "node/6019535854"
@@ -4230,7 +10795,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438596,
-          46.326545,
+          46.326545
         ]
       },
       "id": "node/6019535854"
@@ -4251,7 +10816,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.438489,
-          46.326463,
+          46.326463
         ]
       },
       "id": "node/6019535854"
@@ -4272,7 +10837,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.468252,
-          46.325525,
+          46.325525
         ]
       },
       "id": "node/6019535854"
@@ -4293,7 +10858,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.468299,
-          46.325228,
+          46.325228
         ]
       },
       "id": "node/6019535854"
@@ -4314,7 +10879,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.469150,
-          46.327802,
+          46.327802
         ]
       },
       "id": "node/6019535854"
@@ -4335,7 +10900,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.469312,
-          46.327813,
+          46.327813
         ]
       },
       "id": "node/6019535854"
@@ -4356,7 +10921,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.469740,
-          46.329254,
+          46.329254
         ]
       },
       "id": "node/6019535854"
@@ -4377,7 +10942,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.469830,
-          46.329159,
+          46.329159
         ]
       },
       "id": "node/6019535854"
@@ -4398,7 +10963,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.471694,
-          46.333993,
+          46.333993
         ]
       },
       "id": "node/6019535854"
@@ -4419,7 +10984,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.471818,
-          46.333837,
+          46.333837
         ]
       },
       "id": "node/6019535854"
@@ -4440,7 +11005,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.472895,
-          46.336232,
+          46.336232
         ]
       },
       "id": "node/6019535854"
@@ -4461,7 +11026,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.472993,
-          46.335939,
+          46.335939
         ]
       },
       "id": "node/6019535854"
@@ -4482,7 +11047,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.477758,
-          46.341932,
+          46.341932
         ]
       },
       "id": "node/6019535854"
@@ -4503,7 +11068,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.477574,
-          46.341863,
+          46.341863
         ]
       },
       "id": "node/6019535854"
@@ -4524,7 +11089,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.480574,
-          46.342324,
+          46.342324
         ]
       },
       "id": "node/6019535854"
@@ -4545,7 +11110,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.480925,
-          46.342360,
+          46.342360
         ]
       },
       "id": "node/6019535854"
@@ -4566,7 +11131,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.483812,
-          46.343424,
+          46.343424
         ]
       },
       "id": "node/6019535854"
@@ -4587,7 +11152,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.483672,
-          46.343303,
+          46.343303
         ]
       },
       "id": "node/6019535854"
@@ -4608,7 +11173,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.513524,
-          46.321358,
+          46.321358
         ]
       },
       "id": "node/6019535854"
@@ -4629,7 +11194,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.513687,
-          46.321344,
+          46.321344
         ]
       },
       "id": "node/6019535854"
@@ -4650,7 +11215,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.480080,
-          46.317815,
+          46.317815
         ]
       },
       "id": "node/6019535854"
@@ -4671,7 +11236,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.480307,
-          46.317667,
+          46.317667
         ]
       },
       "id": "node/6019535854"
@@ -4692,7 +11257,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.479736,
-          46.319295,
+          46.319295
         ]
       },
       "id": "node/6019535854"
@@ -4713,7 +11278,7 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.454114,
-          46.329467,
+          46.329467
         ]
       },
       "id": "node/6019535854"
@@ -4734,325 +11299,52 @@ const busStops = {
         "type": "Point",
         "coordinates": [
           -0.454103,
-          46.329404,
+          46.329404
         ]
       },
       "id": "node/6019535854"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "Terminus",
-        "name": "Surimeau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
+      {
+          "type": "Feature",
+          "properties": {
+              "@id": "node/6019535859",
+              "bus": "yes",
+              "highway": "bus_stop",
+              "name": "Burgonce",
+              "network": "TAN",
+              "public_transport": "stop_position",
+              "ref": "4",
+              "route_ref": "6",
+          },
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  -0.454114,
+                  46.329467
+              ]
+          },
+          "id": "node/6019535854"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.460809,
-          46.359851,
-        ]
+      {
+          "type": "Feature",
+          "properties": {
+              "@id": "node/6019535859",
+              "bus": "yes",
+              "highway": "bus_stop",
+              "name": "Burgonce",
+              "network": "TAN",
+              "public_transport": "stop_position",
+              "ref": "4",
+              "route_ref": "6"
+          },
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  -0.454103,
+                  46.329404
+              ]
+          },
+          "id": "node/6019535854"
       },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Bas Surimeau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.463915,
-          46.359078,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Bas Surimeau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.463594,
-          46.358942,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moulin d'Ane",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.457978,
-          46.357110,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moulin d'Ane",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.458050,
-          46.357219,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Château Menu",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.453373,
-          46.355289,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Château Menu",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.453461,
-          46.355411,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Petit Vigneau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.456138,
-          46.349427,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Petit Vigneau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.456360,
-          46.349410,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Follereau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.463479,
-          46.342862,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Follereau",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.463748,
-          46.342577,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moulin à Vent",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.434271,
-          46.338290,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Moulin à Vent",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.434723,
-          46.338574,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Vanelles",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.430934,
-          46.337566,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Vanelles",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "8",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.430169,
-          46.337365,
-        ]
-      },
-      "id": "node/6019535854"
-    },
   ]
 };
