@@ -35,8 +35,8 @@ main {
 
 .footer {
   display: flex;
-  //flex-direction: row;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  //flex-flow:row;
   align-items: center;
   //margin: 0 auto;
   top: 50%;
@@ -49,8 +49,6 @@ main {
   z-index: 400;
 
 
-
-
 }
 
 .navbar {
@@ -58,11 +56,12 @@ main {
   display: flex;
   flex-direction: column;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   align-items: center;
   transition: 0.3s;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
+  flex-shrink: 0;
   i, a {
 
     color: #dee0e6;
@@ -97,7 +96,9 @@ main {
 .navbarUnder {
   min-height: 50px;
   min-width: 50px;
+  max-height: 100vh;
   z-index: 2;
+  order:-1;
 }
 
 
@@ -152,6 +153,12 @@ main {
   font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 
+.toggle {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  z-index: 400;
+}
 
 body .material-tooltip{
 
