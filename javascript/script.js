@@ -1,11 +1,11 @@
 const ligne = [{
         id: "1",
-        trajet: [TrajetLine1Bis(), TrajetLine1Bis2(), TrajetLine1()],
+        trajet: [TrajetLine1()],
         name: "Ligne 1"
     },
     {
         id: "2",
-        trajet: [TrajetLine2Alt(), TrajetLine2(), TrajetLine2Bis()],
+        trajet: [TrajetLine2()],
         name: "Ligne 2"
     },
     {
@@ -15,17 +15,17 @@ const ligne = [{
     },
     {
         id: "4",
-        trajet: [TrajetLine4(), TrajetLine4Pissardent(), TrajetLine4Moulin()],
+        trajet: [TrajetLine4()],
         name: "Ligne 4"
     },
     {
         id: "5",
-        trajet: [TrajetLine5(), TrajetLine5Chauray(), TrajetLine5Zodiac()],
+        trajet: [TrajetLine5()],
         name: "Ligne 5"
     },
     {
         id: "6",
-        trajet: [TrajetLine6SaintLiguaire(), TrajetLine6(), TrajetLine6JeanZay()],
+        trajet: [TrajetLine6()],
         name: "Ligne 6"
     },
     {
@@ -40,7 +40,7 @@ const ligne = [{
     },
     {
         id: "9",
-        trajet: [TrajetLine9(), TrajetLine9Alt()],
+        trajet: [TrajetLine9()],
         name: "Ligne 9"
     },
 ];
@@ -60,9 +60,9 @@ function init() {
         minZoom: zoomLevel,
         maxBounds
     });
-    //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+        name: "Wikimedia",
         attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
         minZoom: 1,
         maxZoom: 19
@@ -83,13 +83,6 @@ function init() {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
 
-    var customIconBus = L.icon({
-        iconUrl: './assets/images/icon1.png',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
-    });
-
     var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'});
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
@@ -105,13 +98,20 @@ function init() {
                     pointToLayer: function (feature, latlng) {
                         var arret;
                         if (feature.properties.name !== undefined) {
-                            var marker = L.marker(latlng);
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
+                            let color = colorMarker(ligne);
+                            let busMarker = L.AwesomeMarkers.icon({
+                                prefix: 'fa',
+                                icon: 'bus',
+                                iconColor: 'white',
+                                markerColor: color
+                            });
+                            let marker = L.marker(latlng, {icon: busMarker});
                             marker.bindPopup(
                                 '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
                                 + '<h4>' + arret + '</h4>'
-                                + '<p>' + "Ligne de bus : " + ligne + '</p>'
+                                + logo(ligne).join(" ")
                             );
                             return marker;
                         }
@@ -127,6 +127,8 @@ function init() {
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
+    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
+
     var groupLayer = L.layerGroup([transportLayer]);
 
 
@@ -134,6 +136,28 @@ function init() {
 
     mesLigne.forEach((ligne) => {
         mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+    });
+
+    map.on('move', function(){
+       // console.log(map.getBounds());
+    });
+
+    map.on('zoomend', function() {
+        // console.log(map.getBounds());
+        // if (map.getZoom() <10){
+        //     if (map.hasLayer(marker)) {
+        //         map.removeLayer(marker);
+        //     } else {
+        //         console.log("no point layer active");
+        //     }
+        // }
+        // if (map.getZoom() >= 10){
+        //     if (map.hasLayer(marker)){
+        //         console.log("layer already added");
+        //     } else {
+        //         map.addLayer(marker);
+        //     }
+        // }
     });
 
     L.control.layers(
@@ -149,9 +173,97 @@ function init() {
             'Cycle Parking': cycleParking,
             'Parking': parking,
             'Cinema': cinemas,
+            'Recyclage': recyclage,
         }
 
-    ).addTo(map)
+    ).addTo(map);
 
+    map.eachLayer(function(layer) {
+        console.log(layer);
+        if(layer instanceof L.marker) {
+            console.log(L.marker.name);
+            console.log("Marker [" + layer.options.title + "]");
+        }
+        if(layer.options && layer.options.pane === "markerPane") {
+            console.log("Marker [" + layer.options.title + "]");
+        }
+    });
+}
 
+function colorMarker(ligne){
+    let color = "";
+    switch (ligne) {
+        case "1":
+            color = 'red';
+            return color;
+        case "1Bis":
+            color = 'red';
+            return color;
+        case "2":
+            color = 'darkgreen';
+            return color;
+        case "2 Alt":
+            color = 'darkgreen';
+            return color;
+        case "3":
+            color = 'cadetblue';
+            return color;
+        case "4":
+            color = 'purple';
+            return color;
+        case "4Bis":
+            color = 'purple';
+            return color;
+        case "5":
+            color = 'blue';
+            return color;
+        case "5Bis":
+            color = 'blue';
+            return color;
+        case "6":
+            color = 'green';
+            return color;
+        case "6Bis":
+            color = 'green';
+            return color;
+        case "7":
+            color = 'darkpurple';
+            return color;
+        case "8":
+            color = 'purple';
+            return color;
+        case "8Bis":
+            color = 'purple';
+            return color;
+        case "9":
+            color = "orange";
+            return color;
+        default:
+            color = 'black';
+            return color;
+    }
+}
+
+function logo(arret){
+    let lignesDeBus = [];
+    if (arret.includes("1")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>');
+    } if (arret.includes("2")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>');
+    } if (arret.includes("3")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>');
+    } if (arret.includes("4")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne4.png" class="logoLigne"/>');
+    } if (arret.includes("5")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne5.png" class="logoLigne"/>');
+    } if (arret.includes("6")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne6.png" class="logoLigne"/>');
+    } if (arret.includes("7")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne7.png" class="logoLigne"/>');
+    } if (arret.includes("8")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne8.png" class="logoLigne"/>');
+    } if (arret.includes("9")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
+    }
+    return lignesDeBus;
 }

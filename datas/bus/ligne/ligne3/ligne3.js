@@ -9,7 +9,7 @@ const TrajetLigne3 = {
             "properties": {
                 "@id": "way/40370756",
                 "highway": "Ligne de Bus",
-                "name": "Ligne 1",
+                "name": "Ligne 3",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
             },
             "geometry": {

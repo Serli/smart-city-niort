@@ -3642,7 +3642,7 @@ const busStops = {
         "network": "TAN",
         "public_transport": "stop_position",
         "ref": "4",
-        "route_ref": "4, 25"
+        "route_ref": "4"
       },
       "geometry": {
         "type": "Point",
@@ -3663,7 +3663,7 @@ const busStops = {
         "network": "TAN",
         "public_transport": "stop_position",
         "ref": "4",
-        "route_ref": "4, 25"
+        "route_ref": "4"
       },
       "geometry": {
         "type": "Point",
@@ -6582,7 +6582,7 @@ const busStops = {
         "bus": "yes",
         "highway": "bus_stop",
         "name": "Moindreau",
-        "route_ref": "6",
+        "route_ref": "8",
         "public_transport": "platform"
       },
       "geometry": {
