@@ -1,3 +1,50 @@
+const ligne = [{
+        id: "1",
+        trajet: [TrajetLine1()],
+        name: "Ligne 1"
+    },
+    {
+        id: "2",
+        trajet: [TrajetLine2()],
+        name: "Ligne 2"
+    },
+    {
+        id: "3",
+        trajet: [TrajetLine3()],
+        name: "Ligne 3"
+    },
+    {
+        id: "4",
+        trajet: [TrajetLine4()],
+        name: "Ligne 4"
+    },
+    {
+        id: "5",
+        trajet: [TrajetLine5()],
+        name: "Ligne 5"
+    },
+    {
+        id: "6",
+        trajet: [TrajetLine6()],
+        name: "Ligne 6"
+    },
+    {
+        id: "7",
+        trajet: [TrajetLine7()],
+        name: "Ligne 7"
+    },
+    {
+        id: "8",
+        trajet: [TrajetLine8()],
+        name: "Ligne 8"
+    },
+    {
+        id: "9",
+        trajet: [TrajetLine9()],
+        name: "Ligne 9"
+    },
+];
+
 function init() {
 
     var lat = 46.3239455;
@@ -21,72 +68,208 @@ function init() {
     //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+        name: "Wikimedia",
         attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
         minZoom: 1,
         maxZoom: 19
     });
     mainLayer.addTo(map)
-
-    layers();
-
-    // L.control.layers(
-    //     {
-    //         'Main': mainLayer
-    //     },
-    //     {
-    //         "<img src='my-layer-icon' /> <span class='my-layer-item'>Transport</span>": groupLayer,
-    //         'Cycle': cycle,
-    //         'Cycle Parking': cycleParking,
-    //         'Parking': parking,
-    //     }
-    // ).addTo(map);
-
-
-}
-
-
-function layers() {
-
     // Public Transport
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
-        maxZoom: 22,
-    })
+        maxZoom: 19,
+    });
 
-    var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'})
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        maxZoom: 16
+    });
 
+    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+
+    var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'});
+
+    var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
+
+    let mesLigne = ligne.map((ligne) => {
+        let busStopLigne = busStops.features.filter((arret) => {
+            return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
+        });
+        return {
+            trace: L.geoJSON(busStopLigne,
+                {
+                    attribution: '&copy; OpenStreetMap',
+                    pointToLayer: function (feature, latlng) {
+                        var arret;
+                        if (feature.properties.name !== undefined) {
+                            arret = feature.properties.name;
+                            let ligne = feature.properties.route_ref;
+                            let color = colorMarker(ligne);
+                            let busMarker = L.AwesomeMarkers.icon({
+                                prefix: 'fa',
+                                icon: 'bus',
+                                iconColor: 'white',
+                                markerColor: color
+                            });
+                            let marker = L.marker(latlng, {icon: busMarker});
+                            marker.bindPopup(
+                                '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                                + '<h4>' + arret + '</h4>'
+                                + logo(ligne).join(" ")
+                            );
+                            return marker;
+                        }
+                    }
+                }
+            ),
+            name: ligne.name,
+            trajet: ligne.trajet
+        }
+    });
+
+    var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'})
 
-    var stopBus = L.geoJSON(busStops, {attribution: '&copy; OpenStreetMap'})
+    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
-    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'})
-
-    var groupLayer = L.layerGroup([transportLayer, stopBus]);
-
-    //tabLayer = [cycle, cycleParking, stopBus, parking, groupLayer];
-
-    tabLayer = new Array();
-    tabLayer["Vélo"] = cycle;
-    tabLayer["Bus"] = groupLayer;
+    var groupLayer = L.layerGroup([transportLayer]);
 
 
-    // tabLayer = {
-    //     "active": true,
-    //     "transport": [
-    //         cycle,
-    //         groupLayer,
-    //     ],
-    //
-    //     "parking": [
-    //         parking,
-    //         cycleParking,
-    //     ],
-    //
-    //
-    // }
-    //console.log("tab : ", tabLayer)
+    let mesTrace = {};
+
+    mesLigne.forEach((ligne) => {
+        mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+    });
+
+    map.on('move', function(){
+       // console.log(map.getBounds());
+    });
+
+    map.on('zoomend', function() {
+        // console.log(map.getBounds());
+        // if (map.getZoom() <10){
+        //     if (map.hasLayer(marker)) {
+        //         map.removeLayer(marker);
+        //     } else {
+        //         console.log("no point layer active");
+        //     }
+        // }
+        // if (map.getZoom() >= 10){
+        //     if (map.hasLayer(marker)){
+        //         console.log("layer already added");
+        //     } else {
+        //         map.addLayer(marker);
+        //     }
+        // }
+    });
+
+    L.control.layers(
+        {
+            'Main': mainLayer,
+            'Satellite': Esri_WorldImagery,
+            'Gris': Esri_WorldGrayCanvas,
+        },
+        {
+            'Transport': groupLayer,
+            ...mesTrace,
+            'Cycle': cycle,
+            'Cycle Parking': cycleParking,
+            'Parking': parking,
+            'Cinema': cinemas,
+            'Recyclage': recyclage,
+        }
+
+    ).addTo(map);
+
+    map.eachLayer(function(layer) {
+        console.log(layer);
+        if(layer instanceof L.marker) {
+            console.log(L.marker.name);
+            console.log("Marker [" + layer.options.title + "]");
+        }
+        if(layer.options && layer.options.pane === "markerPane") {
+            console.log("Marker [" + layer.options.title + "]");
+        }
+    });
 }
 
+function colorMarker(ligne){
+    let color = "";
+    switch (ligne) {
+        case "1":
+            color = 'red';
+            return color;
+        case "1Bis":
+            color = 'red';
+            return color;
+        case "2":
+            color = 'darkgreen';
+            return color;
+        case "2 Alt":
+            color = 'darkgreen';
+            return color;
+        case "3":
+            color = 'cadetblue';
+            return color;
+        case "4":
+            color = 'purple';
+            return color;
+        case "4Bis":
+            color = 'purple';
+            return color;
+        case "5":
+            color = 'blue';
+            return color;
+        case "5Bis":
+            color = 'blue';
+            return color;
+        case "6":
+            color = 'green';
+            return color;
+        case "6Bis":
+            color = 'green';
+            return color;
+        case "7":
+            color = 'darkpurple';
+            return color;
+        case "8":
+            color = 'purple';
+            return color;
+        case "8Bis":
+            color = 'purple';
+            return color;
+        case "9":
+            color = "orange";
+            return color;
+        default:
+            color = 'black';
+            return color;
+    }
+}
 
-
+function logo(arret){
+    let lignesDeBus = [];
+    if (arret.includes("1")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>');
+    } if (arret.includes("2")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>');
+    } if (arret.includes("3")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>');
+    } if (arret.includes("4")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne4.png" class="logoLigne"/>');
+    } if (arret.includes("5")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne5.png" class="logoLigne"/>');
+    } if (arret.includes("6")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne6.png" class="logoLigne"/>');
+    } if (arret.includes("7")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne7.png" class="logoLigne"/>');
+    } if (arret.includes("8")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne8.png" class="logoLigne"/>');
+    } if (arret.includes("9")){
+        lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
+    }
+    return lignesDeBus;
+}
