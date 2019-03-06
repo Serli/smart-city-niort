@@ -11,8 +11,13 @@ function init() {
         center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
-        maxBounds
+        maxBounds,
+        attributionControl: false,
     });
+    L.control.attribution({position: 'topright'}).addTo(map);
+    // map.zoomControl.setPosition('topright');
+
+
     //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
@@ -62,11 +67,8 @@ function layers() {
     //tabLayer = [cycle, cycleParking, stopBus, parking, groupLayer];
 
     tabLayer = new Array();
-    tabLayer["Vélo"] = cycle ;
-    tabLayer["Bus"] = groupLayer ;
-
-
-
+    tabLayer["Vélo"] = cycle;
+    tabLayer["Bus"] = groupLayer;
 
 
     // tabLayer = {

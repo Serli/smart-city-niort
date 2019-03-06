@@ -55,10 +55,9 @@ function clickCatego() {
     currentNavbarCritereActive = document.getElementsByClassName(idCategorie)[0].getElementsByClassName("active")
 
 
-
-
     //if current est deja active
     if (this.className.includes("active")) {
+
 
         //if la navbarCritere en question comporte des critères activé
         if (currentNavbarCritereActive.length > 0) {
@@ -93,29 +92,33 @@ function clickCatego() {
 
 
     } else {
-        for (var i = 0; i < categosActive.length; i++) {
 
-            var catego = categosActive[i]
-
-
-            var navbarOnAvecClassCategoId = document.getElementsByClassName(catego.id);
-            var nrbActive = navbarOnAvecClassCategoId[0].getElementsByClassName("active").length
-
-            // si il y a pas de critere active dans cette nabarOn, alors on desactive la categorie
-            if(nrbActive === 0) {
-                closeAllNav();
-                catego.classList.remove("active");
-
-            }
-
-        }
 
         if (categosActive.length > 0) {
             closeAllNav();
         }
-
         this.className += " active";
         openNav(this.id);
+    }
+}
+
+function verifCategoActive() {
+
+    // toute les catégorie activé
+    categosActive = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("active");
+
+    for (var i = 0; i < categosActive.length; i++) {
+
+        var catego = categosActive[i]
+
+        var navbarOnAvecClassCategoId = document.getElementsByClassName(catego.id);
+        var nrbActive = navbarOnAvecClassCategoId[0].getElementsByClassName("active").length
+
+        // si il y a pas de critere active dans cette nabarOn, alors on desactive la categorie
+        if (nrbActive === 0) {
+            catego.classList.remove("active");
+
+        }
     }
 }
 
@@ -127,8 +130,6 @@ function clickCritere() {
         // je desactive le bouton
         this.classList.remove("active");
         map.removeLayer(tabLayer[this.innerHTML.replace(/ /g, "")])
-
-
 
 
     } else {
@@ -157,30 +158,71 @@ function closeAllNav() {
 
     while (document.getElementsByClassName("visible").length > 0) {
         document.getElementsByClassName("visible")[0].classList.remove("visible");
+        verifCategoActive()
+
     }
 
 }
 
 // changer la nav bar de place : left - bottom
-document.getElementsByClassName("toggle")[0].onclick = clickToggle;
+document.getElementsByClassName("toggle")[0].onclick = clickTogglePosition;
 
-function clickToggle() {
+function clickTogglePosition() {
 
-    if (document.getElementsByClassName("footer")[0].className.includes("footerBottom")) {
+    if (document.getElementsByClassName("containNavbar")[0].className.includes("footerBottom")) {
 
-        document.getElementsByClassName("footer")[0].classList.add("footerLeft");
-        document.getElementsByClassName("footer")[0].classList.remove("footerBottom");
+
+        document.getElementsByClassName("containNavbar")[0].classList.remove("footerBottom");
+        document.getElementsByClassName("containNavbar")[0].classList.add("footerLeft");
+
+        document.getElementsByClassName("footer")[0].classList.remove("footerB");
+        document.getElementsByClassName("footer")[0].classList.add("footerL");
+
 
     } else {
-        document.getElementsByClassName("footer")[0].classList.add("footerBottom");
-        document.getElementsByClassName("footer")[0].classList.remove("footerLeft");
+
+        document.getElementsByClassName("containNavbar")[0].classList.remove("footerLeft");
+        document.getElementsByClassName("containNavbar")[0].classList.add("footerBottom");
+
+        document.getElementsByClassName("footer")[0].classList.remove("footerL");
+        document.getElementsByClassName("footer")[0].classList.add("footerB");
+
+
     }
 
 
 }
 
 
-// changer la nav bar de place : left - bottom
+// on cliquez sur la map ça ferme les critere mais pas les categories
 document.getElementsByTagName("main")[0].onclick = closeAllNav;
+
+
+// cacher ou afficher la navbarUnder = navbar principal des categories
+document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
+
+function clickToggleFooter() {
+
+
+    verifCategoActive()
+
+    if (document.getElementsByClassName("containNavbar")[0].className.includes("show")) {
+
+        closeAllNav();
+        document.getElementsByClassName("containNavbar")[0].classList.remove("show");
+        document.getElementsByClassName("navbarUnder")[0].classList.remove("show");
+
+        document.getElementsByClassName("fa-angle-double-down")[0].classList.add("angleUp");
+
+
+    } else {
+        document.getElementsByClassName("containNavbar")[0].classList.add("show");
+        document.getElementsByClassName("navbarUnder")[0].classList.add("show");
+        document.getElementsByClassName("fa-angle-double-down")[0].classList.remove("angleUp");
+
+    }
+
+
+}
 
 
