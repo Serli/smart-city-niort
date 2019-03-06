@@ -54,12 +54,18 @@ function init() {
     var corner1 = L.latLng(46.231153027822046, -0.6389236450195312);
     var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
     var maxBounds = L.latLngBounds(corner1, corner2);
-    var map = L.map('map', {
+    map = L.map('map', {
         center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
-        maxBounds
+        maxBounds,
+        attributionControl: false,
     });
+    L.control.attribution({position: 'topright'}).addTo(map);
+    // map.zoomControl.setPosition('topright');
+
+
+    //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
         name: "Wikimedia",
@@ -125,7 +131,7 @@ function init() {
 
     var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
-    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
+    var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'})
 
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
