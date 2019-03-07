@@ -54,12 +54,18 @@ function init() {
     var corner1 = L.latLng(46.231153027822046, -0.6389236450195312);
     var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
     var maxBounds = L.latLngBounds(corner1, corner2);
-    var map = L.map('map', {
+    map = L.map('map', {
         center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
-        maxBounds
+        maxBounds,
+        attributionControl: false,
     });
+    L.control.attribution({position: 'topright'}).addTo(map);
+    // map.zoomControl.setPosition('topright');
+
+
+    //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
         name: "Wikimedia",
@@ -68,24 +74,77 @@ function init() {
         maxZoom: 19
     });
     mainLayer.addTo(map)
-    // Public Transport
-    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
-        maxZoom: 19,
-    });
 
+
+
+    // carte
     var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
     });
 
+    // carte sattelite
     var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
 
+
+
+
+    layers();
+
+
+    // L.control.layers(
+    //     {
+    //         'Main': mainLayer,
+    //         'Satellite': Esri_WorldImagery,
+    //         'Gris': Esri_WorldGrayCanvas,
+    //     },
+    //     {
+    //         'Transport': groupLayer,
+    //         ...mesTrace,
+    //         'Cycle': cycle,
+    //         'Cycle Parking': cycleParking,
+    //         'Parking': parking,
+    //         //'Cinema': cinemas,
+    //         'Recyclage': recyclage,
+    //     }
+    // ).addTo(map);
+
+}
+
+
+function layers() {
+
+
+    // Public Transport carte
+    var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
+        maxZoom: 19,
+    });
+
+
     var cycle = L.geoJSON(cycleways, {attribution: '&copy; OpenStreetMap'});
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
+
+
+    //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
+
+    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
+
+    var groupLayer = L.layerGroup([transportLayer]);
+
+
+    var stopBus = L.geoJSON(busStops, {attribution: '&copy; OpenStreetMap'})
+
+    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'})
+
+    var groupLayer = L.layerGroup([transportLayer, stopBus]);
+
+    //tabLayer = [cycle, cycleParking, stopBus, parking, groupLayer];
+
+
 
     const coord = [];
     var mcg = L.markerClusterGroup().addTo(map);
@@ -172,48 +231,22 @@ function init() {
 
     let mesTrace = {};
 
-    mesLigne.forEach((ligne) => {
-        mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-    });
+    tabLayer = new Array();
+    tabLayer["Vélo"] = cycle;
+    tabLayer["Bus"] = groupLayer
 
-    L.control.layers(
-        {
-            'Main': mainLayer,
-            'Satellite': Esri_WorldImagery,
-            'Gris': Esri_WorldGrayCanvas,
-        },
-        {
-            'Transport': groupLayer,
-            ...mesTrace,
-            'Tracer': Tracer,
-            'Cycle': cycle,
-            'Cycle Parking': cycleParking,
-            'Parking': parking,
-            'Cinema': cinemas,
-            'Recyclage': recyclage,
-        }
+    mesLigne.forEach((ligne) => {
+
+       // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+
 
     ).addTo(map);
 
-    map.eachLayer(function (layer) {
-        if (layer instanceof L.marker){
-            console.log("Test");
-            //Do marker specific actions here
-        }
     });
-    // map.eachLayer(function(layer) {
-    //     console.log(layer);
-    //     if(layer instanceof L.marker) {
-    //         console.log(L.marker.name);
-    //         console.log("Marker [" + layer.options.title + "]");
-    //     }
-    //     if(layer.options && layer.options.pane === "markerPane") {
-    //         console.log("Marker [" + layer.options.title + "]");
-    //     }
-    // });
 }
 
-function colorMarker(ligne){
+function colorMarker(ligne) {
     let color = "";
     switch (ligne) {
         case "1":
@@ -270,25 +303,33 @@ function colorMarker(ligne){
     }
 }
 
-function logo(arret){
+function logo(arret) {
     let lignesDeBus = [];
-    if (arret.includes("1")){
+    if (arret.includes("1")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>');
-    } if (arret.includes("2")){
+    }
+    if (arret.includes("2")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>');
-    } if (arret.includes("3")){
+    }
+    if (arret.includes("3")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>');
-    } if (arret.includes("4")){
+    }
+    if (arret.includes("4")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne4.png" class="logoLigne"/>');
-    } if (arret.includes("5")){
+    }
+    if (arret.includes("5")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne5.png" class="logoLigne"/>');
-    } if (arret.includes("6")){
+    }
+    if (arret.includes("6")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne6.png" class="logoLigne"/>');
-    } if (arret.includes("7")){
+    }
+    if (arret.includes("7")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne7.png" class="logoLigne"/>');
-    } if (arret.includes("8")){
+    }
+    if (arret.includes("8")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne8.png" class="logoLigne"/>');
-    } if (arret.includes("9")){
+    }
+    if (arret.includes("9")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
     }
     return lignesDeBus;
