@@ -125,7 +125,14 @@ function verifCategoActive() {
 
 function clickCritere() {
 
-    console.log(map)
+    console.log(map);
+
+    map.eachLayer(function(layer) {
+        console.log("Layer : ",layer);
+        if(layer.options && layer.options.pane === "markerPane") {
+            console.log("Marker [" + layer.options.title + "]");
+        }
+    });
 
     var nameCritere = this.innerHTML;
     console.log("nameCritere :" , nameCritere );

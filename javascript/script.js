@@ -1,8 +1,8 @@
 const ligne = [{
-    id: "1",
-    trajet: [TrajetLine1()],
-    name: "Ligne 1"
-},
+        id: "1",
+        trajet: [TrajetLine1()],
+        name: "Ligne 1"
+    },
     {
         id: "2",
         trajet: [TrajetLine2()],
@@ -166,7 +166,13 @@ function layers() {
                                 iconColor: 'white',
                                 markerColor: color
                             });
-                            let marker = L.marker(latlng, {icon: busMarker});
+                            let marker = L.marker(
+                                latlng,
+                                {
+                                    icon: busMarker,
+                                    title: arret
+                                }
+                                );
                             marker.bindPopup(
                                 '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
                                 + '<h4>' + arret + '</h4>'
@@ -197,13 +203,6 @@ function layers() {
 
 
     });
-
-    ;
-
-
-
-
-
 }
 
 
