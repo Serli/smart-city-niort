@@ -112,12 +112,13 @@ body {
       border-bottom-right-radius: 2px;
       border-top-right-radius: 2px;
 
+
       &.navbarUnder {
         max-height: 90vh;
         z-index: 2;
         order: -1;
         max-width: 0;
-
+        transition: 0.3s;
 
         &.show {
           max-width: 300px;
@@ -137,6 +138,8 @@ body {
       max-width: 0px;
       overflow-x: hidden;
     }
+
+
 
     .visible {
       max-width: 100%;
@@ -224,7 +227,7 @@ body {
 
       &.navbarUnder {
         max-width: 90vw;
-
+        transition: 0.3s;
         z-index: 2;
         max-height: 0;
 
@@ -271,7 +274,6 @@ body {
   overflow-x: auto;
   overflow-y: auto;
   align-items: center;
-  transition: 0.3s;
   flex-shrink: 0;
 
 
@@ -314,11 +316,9 @@ body {
   bottom: 0;
 }
 
-.leaflet-control-layers {
-  left: 80px;
-  top: 50px;
+.transition {
+  transition: 0.3s;
 }
-
 
 
 
@@ -328,21 +328,24 @@ body {
 }
 
 .toggle {
-  position: absolute;
-  top: 70px;
-  right: 10px;
-  z-index: 405;
-  background-color: #12a5d4;
-  background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+  i{
+    color : #12a5d4;
+    padding: 5px;
+  }
+}
+
+.leaflet-control-container{
+
+  i {
+    transition: 0.3s;
+  }
+  .angleUp{
+    transform: rotate(-90deg);
+  }
 }
 
 
-.leaflet-control-zoom {
-  left: 50px;
-  top: 5px;
-}
 
 
 body .material-tooltip {
@@ -433,7 +436,7 @@ $min_width: 320px;
 $max_width: 1200px;
 $min_font: 16px;
 $min_font_catego: 13px;
-$max_font: 20px;
+$max_font: 17px;
 
 html  body {
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -455,12 +458,11 @@ html  body {
 .checkBoxAll {
   margin: 2px;
   padding:7px;
-  background-color: #12a5d4;
-  background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
 
 }
+
+
 
 
 @import "materialize";

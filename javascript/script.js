@@ -59,7 +59,7 @@ function init() {
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
-        attributionControl: false,
+
     });
     L.control.attribution({position: 'topright'}).addTo(map);
     // map.zoomControl.setPosition('topright');
@@ -89,27 +89,43 @@ function init() {
     });
 
 
+    L.control.layers(
+        {
+            'Main': mainLayer,
+            'Satellite': Esri_WorldImagery,
+            'Gris': Esri_WorldGrayCanvas,
+        }
+    ).addTo(map);
 
 
     layers();
 
 
-    // L.control.layers(
-    //     {
-    //         'Main': mainLayer,
-    //         'Satellite': Esri_WorldImagery,
-    //         'Gris': Esri_WorldGrayCanvas,
-    //     },
-    //     {
-    //         'Transport': groupLayer,
-    //         ...mesTrace,
-    //         'Cycle': cycle,
-    //         'Cycle Parking': cycleParking,
-    //         'Parking': parking,
-    //         //'Cinema': cinemas,
-    //         'Recyclage': recyclage,
-    //     }
-    // ).addTo(map);
+    var customControlToggle =  L.Control.extend({
+
+        options: {
+            position: 'topright'
+        },
+
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
+
+            container.style.backgroundColor = 'white';
+            container.style.backgroundSize = "30px 30px";
+
+            container.innerHTML = '<i class="fa fa-arrow-left fa-2x"></i>';
+
+            container.onclick = function(){
+                clickTogglePosition();
+            }
+
+            return container;
+        }
+    });
+
+    map.addControl(new customControlToggle());
+
+
 
 }
 
