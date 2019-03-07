@@ -452,5 +452,15 @@ html  body {
   justify-content: space-between;
 }
 
+.checkBoxAll {
+  margin: 2px;
+  padding:7px;
+  background-color: #12a5d4;
+  background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
 
 @import "materialize";

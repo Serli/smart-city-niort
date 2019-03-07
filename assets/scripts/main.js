@@ -125,18 +125,25 @@ function verifCategoActive() {
 
 function clickCritere() {
 
+    console.log(map)
+
+    var nameCritere = this.innerHTML;
+    console.log("nameCritere :" , nameCritere );
 
     if (this.className.includes("active")) {
+
         // je desactive le bouton
         this.classList.remove("active");
-        map.removeLayer(tabLayer[this.innerHTML.replace(/ /g, "")])
+        //je remove le layer
+        map.removeLayer(tabLayer[nameCritere])
 
 
     } else {
         // j'active le bouton
-
         this.className += " active";
-        map.addLayer(tabLayer[this.innerHTML.replace(/ /g, "")]);
+        //j'ajoute le layer
+
+        map.addLayer(tabLayer[nameCritere]);
 
 
     }

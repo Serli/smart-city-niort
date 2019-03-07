@@ -7,23 +7,51 @@
     <meta name="description"
           content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
+    <!-- *******  CSS   ***********  -->
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ site.url }}/assets/styles/main.css">
+    <link rel="stylesheet" href="{{ site.url }}/assets/leaflet-1.4.0/leaflet.css"/>
+    <link rel="stylesheet" href="{{ site.url }}/assets/style.css"/>
+    <link rel="stylesheet" href="{{ site.url }}/assets/leaflet.awesome-markers.css">
+
+
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
-
-    <link rel="stylesheet" href="{{ site.url }}/assets/leaflet-1.4.0/leaflet.css"/>
-    <link rel="stylesheet" href="{{ site.url }}/assets/style.css"/>
     <script src="{{ site.url }}/assets/leaflet-1.4.0/leaflet.js"></script>
+
+
+    <!-- *******  DATAS   ***********  -->
 
     <script src="{{ site.url }}/datas/niort_cycleway.js"></script>
     <script src="{{ site.url }}/datas/bicycle_parking.js"></script>
     <script src="{{ site.url }}/datas/parking.js"></script>
     <script src="{{ site.url }}/datas/recycling.js"></script>
-    <script src="{{ site.url }}/datas/bus_stops.js"></script>
+    <script src="{{ site.url }}/datas/bus/stop/bus_stops.js"></script>
+
+    <script src="{{ site.url }}/datas/bus/ligne/ligne1/ligne1.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne2/ligne2.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne3/ligne3.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne4/ligne4.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne5/ligne5.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne6/ligne6.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne7/ligne7.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne8/ligne8.js"></script>
+    <script src="{{ site.url }}/datas/bus/ligne/ligne9/ligne9.js"></script>
+
+
+
+
+    <!-- *******  JS   ***********  -->
+    <script src="{{ site.url }}/assets/scripts/leaflet.awesome-markers.js"></script>
+    <script src="{{ site.url }}/javascript/require.js"></script>
+    <script src="{{ site.url }}/javascript/layer/ligneLayer.js"></script>
     <script src="{{ site.url }}/javascript/script.js" ></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
