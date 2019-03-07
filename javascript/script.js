@@ -87,6 +87,9 @@ function init() {
 
     var cycleParking = L.geoJSON(bicycleParkings, {attribution: '&copy; OpenStreetMap'});
 
+    const coord = [];
+    var mcg = L.markerClusterGroup().addTo(map);
+
     let mesLigne = ligne.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
             return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
@@ -100,6 +103,7 @@ function init() {
                         if (feature.properties.name !== undefined) {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
+
                             let color = colorMarker(ligne);
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
@@ -107,10 +111,41 @@ function init() {
                                 iconColor: 'white',
                                 markerColor: color
                             });
+
+                            let coordArret = [...feature.geometry.coordinates];
+
+                            // if (coord.length === 0){
+                            //     coord.push(latlng);
+                            //     // console.log(coord);
+                            // } else {
+                            //     let found = coord.findIndex((coordonnees)=>{
+                            //         return coordonnees.lat === coordArret[1] && coordonnees.lng === coordArret[0]
+                            //     });
+                            //     if(found < 0){
+                            //         coord.push(latlng);
+                            //
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         return marker;
+                            //     } else {
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         marker.addTo(mcg);
+                            //     }
+                            // }
+
                             let marker = L.marker(latlng, {icon: busMarker});
                             marker.bindPopup(
                                 '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                                + '<h4>' + arret + '</h4>'
+                                + '<h6>' + arret + '</h6>'
                                 + logo(ligne).join(" ")
                             );
                             return marker;
@@ -123,6 +158,8 @@ function init() {
         }
     });
 
+    // map.addLayer(mcg);
+
     var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
@@ -131,33 +168,12 @@ function init() {
 
     var groupLayer = L.layerGroup([transportLayer]);
 
+    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
     let mesTrace = {};
 
     mesLigne.forEach((ligne) => {
         mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-    });
-
-    map.on('move', function(){
-       // console.log(map.getBounds());
-    });
-
-    map.on('zoomend', function() {
-        // console.log(map.getBounds());
-        // if (map.getZoom() <10){
-        //     if (map.hasLayer(marker)) {
-        //         map.removeLayer(marker);
-        //     } else {
-        //         console.log("no point layer active");
-        //     }
-        // }
-        // if (map.getZoom() >= 10){
-        //     if (map.hasLayer(marker)){
-        //         console.log("layer already added");
-        //     } else {
-        //         map.addLayer(marker);
-        //     }
-        // }
     });
 
     L.control.layers(
@@ -169,6 +185,7 @@ function init() {
         {
             'Transport': groupLayer,
             ...mesTrace,
+            'Tracer': Tracer,
             'Cycle': cycle,
             'Cycle Parking': cycleParking,
             'Parking': parking,
@@ -178,16 +195,22 @@ function init() {
 
     ).addTo(map);
 
-    map.eachLayer(function(layer) {
-        console.log(layer);
-        if(layer instanceof L.marker) {
-            console.log(L.marker.name);
-            console.log("Marker [" + layer.options.title + "]");
-        }
-        if(layer.options && layer.options.pane === "markerPane") {
-            console.log("Marker [" + layer.options.title + "]");
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.marker){
+            console.log("Test");
+            //Do marker specific actions here
         }
     });
+    // map.eachLayer(function(layer) {
+    //     console.log(layer);
+    //     if(layer instanceof L.marker) {
+    //         console.log(L.marker.name);
+    //         console.log("Marker [" + layer.options.title + "]");
+    //     }
+    //     if(layer.options && layer.options.pane === "markerPane") {
+    //         console.log("Marker [" + layer.options.title + "]");
+    //     }
+    // });
 }
 
 function colorMarker(ligne){
@@ -203,6 +226,9 @@ function colorMarker(ligne){
             color = 'darkgreen';
             return color;
         case "2 Alt":
+            color = 'darkgreen';
+            return color;
+        case "2Bis":
             color = 'darkgreen';
             return color;
         case "3":
