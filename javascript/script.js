@@ -147,7 +147,7 @@ function layers() {
 
 
     const coord = [];
-    var mcg = L.markerClusterGroup().addTo(map);
+    // var mcg = L.markerClusterGroup().addTo(map);
 
     let mesLigne = ligne.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
@@ -201,7 +201,12 @@ function layers() {
                             //     }
                             // }
 
-                            let marker = L.marker(latlng, {icon: busMarker});
+                            let marker = L.marker(
+                                latlng,
+                                {
+                                    icon: busMarker,
+                                    title: arret
+                                });
                             marker.bindPopup(
                                 '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
                                 + '<h6>' + arret + '</h6>'
@@ -219,7 +224,7 @@ function layers() {
 
     // map.addLayer(mcg);
 
-    var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
+    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
@@ -236,14 +241,12 @@ function layers() {
     tabLayer["Bus"] = groupLayer
 
     mesLigne.forEach((ligne) => {
-
        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
         tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-
-
-    ).addTo(map);
-
     });
+
+    tabLayer["Bus"] = Tracer;
+
 }
 
 function colorMarker(ligne) {

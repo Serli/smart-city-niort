@@ -8,7 +8,7 @@ function tracer(Color, T, ligneDeBus){
             opacity: 1,
             dashArray: "2 12",
             color: Color,
-            weight: 6,
+            weight: 3,
         });
         line.bindPopup(
             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
@@ -19,7 +19,7 @@ function tracer(Color, T, ligneDeBus){
         var line = L.polyline(latlngs, {
             opacity: 1,
             color: Color,
-            weight: 6,
+            weight: 3,
         });
         line.bindPopup(
             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
