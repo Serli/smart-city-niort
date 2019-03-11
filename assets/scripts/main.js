@@ -127,7 +127,6 @@ let markerArret = [];
 function clickCritere() {
 
     var nameCritere = this.innerHTML;
-    // console.log("nameCritere :" , nameCritere );
 
     if (this.className.includes("active")) {
 
@@ -139,10 +138,11 @@ function clickCritere() {
     } else {
 
         // j'active le bouton
-        this.className += " active";
-        //j'ajoute le layer
+        this.classList.add("active")
 
-        map.addLayer(tabLayer[nameCritere]);
+        if (nameCritere != null) {
+            map.addLayer(tabLayer[nameCritere]);
+        }
 
         map.eachLayer(function(layer) {
             console.log(layer);
@@ -192,31 +192,61 @@ function closeAllNav() {
 }
 
 // changer la nav bar de place : left - bottom
-document.getElementsByClassName("toggle")[0].onclick = clickTogglePosition;
+// document.getElementsByClassName("toggle")[0].onclick = clickTogglePosition;
 
 function clickTogglePosition() {
+
 
     if (document.getElementsByClassName("containNavbar")[0].className.includes("footerBottom")) {
 
 
-        document.getElementsByClassName("containNavbar")[0].classList.remove("footerBottom");
-        document.getElementsByClassName("containNavbar")[0].classList.add("footerLeft");
+        for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
+            document.getElementsByClassName("navbarOn")[i].classList.remove("transition");
+        }
 
-        document.getElementsByClassName("footer")[0].classList.remove("footerB");
+
+        document.getElementsByClassName("containNavbar")[0].classList.add("footerLeft");
+        document.getElementsByClassName("containNavbar")[0].classList.remove("footerBottom");
+
+
         document.getElementsByClassName("footer")[0].classList.add("footerL");
+        document.getElementsByClassName("footer")[0].classList.remove("footerB");
+
+
+        document.getElementsByClassName("fa-arrow-left")[0].classList.add("angleUp");
+
+        setTimeout(function () {
+            for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
+                document.getElementsByClassName("navbarOn")[i].classList.add("transition");
+            }
+
+        }, 350);
 
 
     } else {
 
-        document.getElementsByClassName("containNavbar")[0].classList.remove("footerLeft");
+
+        for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
+            document.getElementsByClassName("navbarOn")[i].classList.remove("transition");
+        }
+
         document.getElementsByClassName("containNavbar")[0].classList.add("footerBottom");
+        document.getElementsByClassName("containNavbar")[0].classList.remove("footerLeft");
 
-        document.getElementsByClassName("footer")[0].classList.remove("footerL");
+
         document.getElementsByClassName("footer")[0].classList.add("footerB");
+        document.getElementsByClassName("footer")[0].classList.remove("footerL");
 
+        document.getElementsByClassName("fa-arrow-left")[0].classList.remove("angleUp");
+
+        setTimeout(function () {
+            for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
+                document.getElementsByClassName("navbarOn")[i].classList.add("transition");
+            }
+
+        }, 350);
 
     }
-
 
 }
 
@@ -229,7 +259,6 @@ document.getElementsByTagName("main")[0].onclick = closeAllNav;
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
 function clickToggleFooter() {
-
 
     verifCategoActive()
 
@@ -251,5 +280,4 @@ function clickToggleFooter() {
 
 
 }
-
 
