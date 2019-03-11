@@ -1160,48 +1160,6 @@ const busStops = {
         "@id": "node/6019535859",
         "bus": "yes",
         "highway": "bus_stop",
-        "name": "Pied de fond",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485436,
-          46.306798,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
-        "name": "Pied de fond",
-        "network": "TAN",
-        "public_transport": "stop_position",
-        "ref": "4",
-        "route_ref": "2Bis"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.485474,
-          46.306746,
-        ]
-      },
-      "id": "node/6019535854"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6019535859",
-        "bus": "yes",
-        "highway": "bus_stop",
         "name": "Pôle Emploi",
         "network": "TAN",
         "public_transport": "stop_position",
@@ -1278,7 +1236,7 @@ const busStops = {
           46.309172,
         ]
       },
-      "id": "node/6019535854"
+      "id": "node/6019534854"
     },
     {
       "type": "Feature",
@@ -7480,7 +7438,7 @@ const busStops = {
         "highway": "bus_stop",
         "name": "Saint-Jean",
         "network": "TAN",
-        "route_ref": "2, 3, 4, 6, 7",
+        "route_ref": "2, 3, 4, 5, 6, 7",
         "operator": "Communauté d’Agglomération du Niortais",
         "public_transport": "platform",
         "shelter": "yes"

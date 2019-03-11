@@ -122,11 +122,11 @@ function verifCategoActive() {
     }
 }
 
+let markerArret = [];
 
 function clickCritere() {
 
-    var nameCritere = this.id;
-    console.log("nameCritere :", nameCritere);
+    var nameCritere = this.innerHTML;
 
     if (this.className.includes("active")) {
 
@@ -134,9 +134,9 @@ function clickCritere() {
         this.classList.remove("active");
         //je remove le layer
         map.removeLayer(tabLayer[nameCritere])
-
-
+        markerArret = [];
     } else {
+
         // j'active le bouton
         this.classList.add("active")
 
@@ -144,6 +144,27 @@ function clickCritere() {
             map.addLayer(tabLayer[nameCritere]);
         }
 
+        map.eachLayer(function(layer) {
+            console.log(layer);
+            if(layer.options && layer.options.pane === "markerPane") {
+                map.removeLayer(layer);
+                if (markerArret.length === 0){
+                    markerArret.push(layer);
+                } else {
+                    let found = markerArret.findIndex((coordonnees)=>{
+                        return coordonnees._latlng.lat === layer._latlng.lat && coordonnees._latlng.lng === layer._latlng.lng
+                    });
+                    console.log(found);
+                    if(found <= 0){
+                        markerArret.push(layer);
+                    }
+                }
+            }
+        });
+
+        markerArret.forEach((arret) => {
+            map.addLayer(arret);
+        });
 
     }
 }
