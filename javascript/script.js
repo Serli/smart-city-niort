@@ -1,8 +1,8 @@
 const ligne = [{
-    id: "1",
-    trajet: [TrajetLine1()],
-    name: "Ligne 1"
-},
+        id: "1",
+        trajet: [TrajetLine1()],
+        name: "Ligne 1"
+    },
     {
         id: "2",
         trajet: [TrajetLine2()],
@@ -146,6 +146,9 @@ function layers() {
 
 
 
+    const coord = [];
+    // var mcg = L.markerClusterGroup().addTo(map);
+
     let mesLigne = ligne.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
             return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
@@ -159,6 +162,7 @@ function layers() {
                         if (feature.properties.name !== undefined) {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
+
                             let color = colorMarker(ligne);
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
@@ -166,10 +170,46 @@ function layers() {
                                 iconColor: 'white',
                                 markerColor: color
                             });
-                            let marker = L.marker(latlng, {icon: busMarker});
+
+                            let coordArret = [...feature.geometry.coordinates];
+
+                            // if (coord.length === 0){
+                            //     coord.push(latlng);
+                            //     // console.log(coord);
+                            // } else {
+                            //     let found = coord.findIndex((coordonnees)=>{
+                            //         return coordonnees.lat === coordArret[1] && coordonnees.lng === coordArret[0]
+                            //     });
+                            //     if(found < 0){
+                            //         coord.push(latlng);
+                            //
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         return marker;
+                            //     } else {
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         marker.addTo(mcg);
+                            //     }
+                            // }
+
+                            let marker = L.marker(
+                                latlng,
+                                {
+                                    icon: busMarker,
+                                    title: arret
+                                });
                             marker.bindPopup(
                                 '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                                + '<h4>' + arret + '</h4>'
+                                + '<h6>' + arret + '</h6>'
                                 + logo(ligne).join(" ")
                             );
                             return marker;
@@ -182,6 +222,17 @@ function layers() {
         }
     });
 
+    // map.addLayer(mcg);
+
+    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
+
+    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
+
+    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
+
+    var groupLayer = L.layerGroup([transportLayer]);
+
+    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
     let mesTrace = {};
 
@@ -190,22 +241,13 @@ function layers() {
     tabLayer["Bus"] = groupLayer
 
     mesLigne.forEach((ligne) => {
-
        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
         tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-
-
-
     });
 
-    ;
-
-
-
-
+    tabLayer["Bus"] = Tracer;
 
 }
-
 
 function colorMarker(ligne) {
     let color = "";
@@ -220,6 +262,9 @@ function colorMarker(ligne) {
             color = 'darkgreen';
             return color;
         case "2 Alt":
+            color = 'darkgreen';
+            return color;
+        case "2Bis":
             color = 'darkgreen';
             return color;
         case "3":
