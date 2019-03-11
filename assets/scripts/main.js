@@ -125,8 +125,8 @@ function verifCategoActive() {
 
 function clickCritere() {
 
-    var nameCritere = this.innerHTML;
-    console.log("nameCritere :" , nameCritere );
+    var nameCritere = this.id;
+    console.log("nameCritere :", nameCritere);
 
     if (this.className.includes("active")) {
 
@@ -138,10 +138,11 @@ function clickCritere() {
 
     } else {
         // j'active le bouton
-        this.classList.add("active");
-        //j'ajoute le layer
+        this.classList.add("active")
 
-        map.addLayer(tabLayer[nameCritere]);
+        if (nameCritere != null) {
+            map.addLayer(tabLayer[nameCritere]);
+        }
 
 
     }
@@ -178,11 +179,9 @@ function clickTogglePosition() {
     if (document.getElementsByClassName("containNavbar")[0].className.includes("footerBottom")) {
 
 
-
-        for( i=0 ; i <  document.getElementsByClassName("navbarOn").length; i++ ){
+        for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
             document.getElementsByClassName("navbarOn")[i].classList.remove("transition");
         }
-
 
 
         document.getElementsByClassName("containNavbar")[0].classList.add("footerLeft");
@@ -195,19 +194,18 @@ function clickTogglePosition() {
 
         document.getElementsByClassName("fa-arrow-left")[0].classList.add("angleUp");
 
-        setTimeout(function() {
-            for( i=0 ; i <  document.getElementsByClassName("navbarOn").length; i++ ){
+        setTimeout(function () {
+            for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
                 document.getElementsByClassName("navbarOn")[i].classList.add("transition");
             }
 
         }, 350);
 
 
-
     } else {
 
 
-        for( i=0 ; i <  document.getElementsByClassName("navbarOn").length; i++ ){
+        for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
             document.getElementsByClassName("navbarOn")[i].classList.remove("transition");
         }
 
@@ -220,17 +218,14 @@ function clickTogglePosition() {
 
         document.getElementsByClassName("fa-arrow-left")[0].classList.remove("angleUp");
 
-        setTimeout(function() {
-            for( i=0 ; i <  document.getElementsByClassName("navbarOn").length; i++ ){
+        setTimeout(function () {
+            for (i = 0; i < document.getElementsByClassName("navbarOn").length; i++) {
                 document.getElementsByClassName("navbarOn")[i].classList.add("transition");
             }
 
         }, 350);
 
-
-
     }
-
 
 }
 
@@ -243,7 +238,6 @@ document.getElementsByTagName("main")[0].onclick = closeAllNav;
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
 function clickToggleFooter() {
-
 
     verifCategoActive()
 
