@@ -162,14 +162,13 @@ function layers() {
                 if (feature.properties.building === 'yes') {
 
                     couvert = "<p> Parking couvert </p>"
-                }
-                ;
-                let color = "#f19200";
+                };
+                //let color = "#f19200";
                 let cycleMarker = L.AwesomeMarkers.icon({
                     prefix: 'fa',
                     icon: 'bicycle ',
                     iconColor: 'white',
-                    markerColor: "cadetblue"
+                    markerColor: "lightred"
                 });
                 let marker = L.marker(latlng, {icon: cycleMarker});
                 marker.bindPopup(
@@ -286,7 +285,7 @@ function parkingVoitu(param) {
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: "cadetblue"
+                        markerColor: "beige"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     marker.bindPopup(
