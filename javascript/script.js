@@ -153,7 +153,7 @@ function layers() {
                 }
                 ;
                 var couvert = "";
-                //console.log("retertere" ,feature.properties.building )
+
                 if (feature.properties.building === 'yes') {
 
                     couvert = "<p> Parking couvert </p>"
@@ -306,9 +306,6 @@ function parkingVoitu(param) {
                 } else if (param === "couvert") {
                     return feature.properties.building !== undefined;
                 } else if (param === "covoit") {
-                    // if (feature.properties.covoiturage !== undefined) {
-                    //     console.log("cocucocuc")
-                    // }
                     return feature.properties.covoiturage !== undefined;
                 } else {
                     return true;

@@ -128,31 +128,28 @@ function clickCritere() {
 
     var nameCritere = this.id;
 
+    // critere actuellement actif
     if (this.className.includes("active")) {
 
 
-        if (nameCritere === "ParkingVoiture") {
+        if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
 
-            let filtreShowActives = document.getElementsByClassName("parking")[0].getElementsByClassName("filtreShow active")
+            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active")
 
             if (filtreShowActives.length > 0) {
 
                 while (filtreShowActives.length > 0) {
 
-                    var index = document.getElementsByClassName("parking")[0].getElementsByClassName("filtreShow active")[0]
+                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0]
                     console.log("index :", index.id)
                     map.removeLayer(tabLayer[index.id])
                     index.classList.remove("active")
 
                 }
-                map.addLayer(tabLayer["ParkingVoiture"])
+                map.addLayer(tabLayer[this.id])
             } else {
 
-                let filterCriteres = document.getElementsByClassName("filtreShow");
-                while (filterCriteres.length > 0) {
-                    document.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
-                    document.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
-                }
+                hideFilter(this)
                 this.classList.remove("active");
                 //je remove le layer
                 map.removeLayer(tabLayer[nameCritere])
@@ -160,7 +157,7 @@ function clickCritere() {
             }
 
 
-        } else{
+        } else {
 
             /* ********   Générique  **********  */
             // je desactive le bouton
@@ -181,10 +178,9 @@ function clickCritere() {
         }
 
 
+        // critere actuellement non - actif
     } else {
 
-
-        /* ********   Spécial critere parking voiture  **********  */
 
         /* ********   Spécial critere parking voiture  **********  */
         if (nameCritere === "ParkingGratuit" || nameCritere === "ParkingCouvert" || nameCritere === "ParkingCovoiturage") {
@@ -193,13 +189,8 @@ function clickCritere() {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
 
-        } else if (nameCritere === "ParkingVoiture") {
-            let filter = document.getElementsByClassName("filterHide");
-            console.log("filter :", filter.length);
-            while (document.getElementsByClassName("filterHide").length > 0) {
-                document.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
-                document.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
-            }
+        } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
+            showFilter(this)
         }
 
         /* ********   Générique  **********  */
@@ -208,12 +199,13 @@ function clickCritere() {
         this.classList.add("active")
 
         if (nameCritere != null) {
-            console.log("nameCritere :", nameCritere)
             map.addLayer(tabLayer[nameCritere]);
-            console.log(tabLayer[nameCritere])
         }
 
-        if (this.parentElement.className.includes("transport")){
+        // categorie transport
+        if (this.parentElement.className.includes("transport")) {
+
+            //fonction pour verifier s'il y a deja un arret / marker a cet endroit
             map.eachLayer(function (layer) {
                 if (layer.options && layer.options.pane === "markerPane") {
                     map.removeLayer(layer);
@@ -236,6 +228,24 @@ function clickCritere() {
         }
 
 
+    }
+}
+
+function showFilter(thiss) {
+    let filter = thiss.parentNode.getElementsByClassName("filterHide");
+    console.log("filter :", filter.length);
+    while (filter.length > 0) {
+        thiss.parentElement.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
+        thiss.parentElement.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
+    }
+}
+
+function hideFilter(thiss) {
+
+    let filter = thiss.parentNode.getElementsByClassName("filtreShow");
+    while (filter.length > 0) {
+        thiss.parentElement.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
+        thiss.parentElement.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
     }
 }
 
