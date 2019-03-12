@@ -210,13 +210,13 @@ function clickCritere() {
         map.eachLayer(function(layer) {
             if(layer.options && layer.options.pane === "markerPane") {
                 map.removeLayer(layer);
-                if (markerArret.length === 0){
+                if (markerArret.length === 0) {
                     markerArret.push(layer);
                 } else {
-                    let found = markerArret.findIndex((coordonnees)=>{
+                    let found = markerArret.findIndex((coordonnees) => {
                         return coordonnees._latlng.lat === layer._latlng.lat && coordonnees._latlng.lng === layer._latlng.lng
                     });
-                    if(found <= 0){
+                    if (found <= 0) {
                         markerArret.push(layer);
                     }
                 }
@@ -226,7 +226,6 @@ function clickCritere() {
         markerArret.forEach((arret) => {
             map.addLayer(arret);
         });
-
     }
 }
 

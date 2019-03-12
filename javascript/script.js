@@ -394,7 +394,6 @@ function layers() {
     });
 
     tabLayer["Bus"] = Tracer;
-
 }
 
 
