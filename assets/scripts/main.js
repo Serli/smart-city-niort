@@ -93,7 +93,6 @@ function clickCatego() {
 
     } else {
 
-
         if (categosActive.length > 0) {
             closeAllNav();
         }
@@ -191,10 +190,10 @@ function clickCritere() {
 
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
+            markerArret = [];
         }
 
         /* ********   Générique  **********  */
-
         // j'active le bouton
         this.classList.add("active")
 
@@ -272,8 +271,6 @@ function closeAllNav() {
 }
 
 // changer la nav bar de place : left - bottom
-// document.getElementsByClassName("toggle")[0].onclick = clickTogglePosition;
-
 function clickTogglePosition() {
 
 
