@@ -62,6 +62,7 @@ function clickCatego() {
         //if la navbarCritere en question comporte des critères activé
         if (currentNavbarCritereActive.length > 0) {
 
+            console.log(navbaronVisible.length)
             if (navbaronVisible.length === 0) {
                 openNav(this.id)
             } else {
@@ -91,7 +92,6 @@ function clickCatego() {
 
 
     } else {
-
 
         if (categosActive.length > 0) {
             closeAllNav();
@@ -127,105 +127,124 @@ function clickCritere() {
 
     var nameCritere = this.id;
 
+    // critere actuellement actif
     if (this.className.includes("active")) {
 
-        /* ********   Spécial critere parking voiture  **********  */
-        if (nameCritere === "ParkingGratuit") {
 
-            let parkingV = document.getElementById("ParkingVoiture");
-            let parkingC = document.getElementById("ParkingCouvert");
-            if (parkingV.className.includes("active") && parkingC.className.includes("active") != true) {
-                map.addLayer(tabLayer["ParkingVoiture"])
+        if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
+
+            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active")
+
+            if (filtreShowActives.length > 0) {
+
+                while (filtreShowActives.length > 0) {
+
+                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0]
+                    console.log("index :", index.id)
+                    map.removeLayer(tabLayer[index.id])
+                    index.classList.remove("active")
+
+                }
+                map.addLayer(tabLayer[this.id])
+            } else {
+
+                hideFilter(this)
+                this.classList.remove("active");
+                //je remove le layer
+                map.removeLayer(tabLayer[nameCritere])
+
             }
 
-        } else if (nameCritere === "ParkingCouvert") {
-            let parkingV = document.getElementById("ParkingVoiture");
-            let parkingG = document.getElementById("ParkingGratuit");
-            if (parkingV.className.includes("active") && parkingG.className.includes("active") != true) {
-                map.addLayer(tabLayer["ParkingVoiture"])
+
+        } else {
+
+            /* ********   Générique  **********  */
+            // je desactive le bouton
+            this.classList.remove("active");
+            //je remove le layer
+            map.removeLayer(tabLayer[nameCritere])
+            markerArret = [];
+
+
+            /* ********   Spécial critere parking voiture  **********  */
+            if (nameCritere === "ParkingGratuit" || nameCritere === "ParkingCouvert" || nameCritere === "ParkingCovoiturage") {
+
+                if (document.getElementsByClassName("filtreShow active").length === 0 && document.getElementById("ParkingVoiture").className.includes("active")) {
+                    map.addLayer(tabLayer["ParkingVoiture"])
+                }
+
             }
         }
-        if (nameCritere === "ParkingVoiture") {
-            let parkingG = document.getElementById("ParkingGratuit");
-            if (parkingG.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingGratuit"]);
-                parkingG.classList.remove("active")
-            }
-
-            let parkingC = document.getElementById("ParkingCouvert");
-            if (parkingC.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingCouvert"]);
-                parkingC.classList.remove("active")
-            }
-
-            let filter = document.getElementsByClassName("filtreShow");
-            while (document.getElementsByClassName("filtreShow").length > 0) {
-                document.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
-                document.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
-            }
-        }
 
 
-        /* ********   Générique  **********  */
-        // je desactive le bouton
-        this.classList.remove("active");
-        //je remove le layer
-        map.removeLayer(tabLayer[nameCritere]);
-        markerArret = [];
+        // critere actuellement non - actif
     } else {
 
 
         /* ********   Spécial critere parking voiture  **********  */
+        if (nameCritere === "ParkingGratuit" || nameCritere === "ParkingCouvert" || nameCritere === "ParkingCovoiturage") {
 
-        if (nameCritere === "ParkingGratuit") {
-
-            let parkingV = document.getElementById("ParkingVoiture");
-            if (parkingV.className.includes("active")) {
+            if (document.getElementById("ParkingVoiture").className.includes("active")) {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
 
-        } else if (nameCritere === "ParkingCouvert") {
-            let parkingV = document.getElementById("ParkingVoiture");
-            if (parkingV.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingVoiture"])
-            }
-        } else if (nameCritere === "ParkingVoiture") {
-            let filter = document.getElementsByClassName("filterHide");
-            while (document.getElementsByClassName("filterHide").length > 0) {
-                document.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
-                document.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
-            }
+        } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
+            showFilter(this)
+            markerArret = [];
         }
 
-
         /* ********   Générique  **********  */
-
         // j'active le bouton
-        this.classList.add("active");
+        this.classList.add("active")
 
         if (nameCritere != null) {
             map.addLayer(tabLayer[nameCritere]);
         }
 
-        map.eachLayer(function(layer) {
-            if(layer.options && layer.options.pane === "markerPane") {
-                map.removeLayer(layer);
-                if (markerArret.length === 0) {
-                    markerArret.push(layer);
-                } else {
-                    let found = markerArret.findIndex((coordonnees) => {
-                        return coordonnees._latlng.lat === layer._latlng.lat && coordonnees._latlng.lng === layer._latlng.lng
-                    });
-                    if (found <= 0) {
+        // categorie transport
+        if (this.parentElement.className.includes("transport")) {
+
+            //fonction pour verifier s'il y a deja un arret / marker a cet endroit
+            map.eachLayer(function (layer) {
+                if (layer.options && layer.options.pane === "markerPane") {
+                    map.removeLayer(layer);
+                    if (markerArret.length === 0) {
                         markerArret.push(layer);
+                    } else {
+                        let found = markerArret.findIndex((coordonnees) => {
+                            return coordonnees._latlng.lat === layer._latlng.lat && coordonnees._latlng.lng === layer._latlng.lng
+                        });
+                        if (found <= 0) {
+                            markerArret.push(layer);
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        markerArret.forEach((arret) => {
-            map.addLayer(arret);
-        });
+            markerArret.forEach((arret) => {
+                map.addLayer(arret);
+            });
+        }
+
+
+    }
+}
+
+function showFilter(thiss) {
+    let filter = thiss.parentNode.getElementsByClassName("filterHide");
+    console.log("filter :", filter.length);
+    while (filter.length > 0) {
+        thiss.parentElement.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
+        thiss.parentElement.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
+    }
+}
+
+function hideFilter(thiss) {
+
+    let filter = thiss.parentNode.getElementsByClassName("filtreShow");
+    while (filter.length > 0) {
+        thiss.parentElement.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
+        thiss.parentElement.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
     }
 }
 
@@ -252,8 +271,6 @@ function closeAllNav() {
 }
 
 // changer la nav bar de place : left - bottom
-// document.getElementsByClassName("toggle")[0].onclick = clickTogglePosition;
-
 function clickTogglePosition() {
 
 
