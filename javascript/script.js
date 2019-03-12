@@ -292,11 +292,18 @@ function layers() {
 
     tabLayer = new Array();
     tabLayer["Velo"] = cycle;
-    tabLayer["Bus"] = groupLayer;
     tabLayer["ParkingVoiture"] = parkingVoitureSimple;
     tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
     tabLayer["ParkingVelo"] = cycleParking;
+
+    mesLigne.forEach((ligne) => {
+        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+    });
+
+    tabLayer["Bus"] = Tracer;
+
 
 }
 
@@ -374,17 +381,10 @@ function parkingVoitu(param) {
             }
 
         }
-        )
-    ;
+        );
+  
 
     return parkingVoiture;
-  
-    mesLigne.forEach((ligne) => {
-       // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-    });
-
-    tabLayer["Bus"] = Tracer;
 }
 
 function polystyle(param) {
