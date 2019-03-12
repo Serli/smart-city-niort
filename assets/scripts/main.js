@@ -62,7 +62,6 @@ function clickCatego() {
         //if la navbarCritere en question comporte des critères activé
         if (currentNavbarCritereActive.length > 0) {
 
-            console.log(navbaronVisible.length)
             if (navbaronVisible.length === 0) {
                 openNav(this.id)
             } else {
@@ -149,13 +148,13 @@ function clickCritere() {
         if (nameCritere === "ParkingVoiture") {
             let parkingG = document.getElementById("ParkingGratuit");
             if (parkingG.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingGratuit"])
+                map.removeLayer(tabLayer["ParkingGratuit"]);
                 parkingG.classList.remove("active")
             }
 
             let parkingC = document.getElementById("ParkingCouvert");
             if (parkingC.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingCouvert"])
+                map.removeLayer(tabLayer["ParkingCouvert"]);
                 parkingC.classList.remove("active")
             }
 
@@ -171,7 +170,7 @@ function clickCritere() {
         // je desactive le bouton
         this.classList.remove("active");
         //je remove le layer
-        map.removeLayer(tabLayer[nameCritere])
+        map.removeLayer(tabLayer[nameCritere]);
         markerArret = [];
     } else {
 
@@ -192,7 +191,6 @@ function clickCritere() {
             }
         } else if (nameCritere === "ParkingVoiture") {
             let filter = document.getElementsByClassName("filterHide");
-            console.log("filter :", filter.length);
             while (document.getElementsByClassName("filterHide").length > 0) {
                 document.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
                 document.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
@@ -203,15 +201,14 @@ function clickCritere() {
         /* ********   Générique  **********  */
 
         // j'active le bouton
-        this.classList.add("active")
+        this.classList.add("active");
 
         if (nameCritere != null) {
             map.addLayer(tabLayer[nameCritere]);
         }
 
-
-        map.eachLayer(function (layer) {
-            if (layer.options && layer.options.pane === "markerPane") {
+        map.eachLayer(function(layer) {
+            if(layer.options && layer.options.pane === "markerPane") {
                 map.removeLayer(layer);
                 if (markerArret.length === 0) {
                     markerArret.push(layer);
