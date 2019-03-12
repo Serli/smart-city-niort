@@ -19,6 +19,11 @@ body {
 #containMap {
   width: 100vw;
   height: 100vh;
+
+  .awesome-marker-icon-cadetblue {
+
+
+  }
 }
 
 .navTop {
@@ -483,6 +488,25 @@ html  body {
 
 
 }
+
+.critere{
+  transition: 0.3s;
+
+  &.filterHide {
+    display: none;
+    max-width: 0;
+    max-height: 0;
+
+  }
+
+  &.filterShow {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+}
+
 
 
 
