@@ -288,7 +288,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'user-friends',
                         iconColor: 'white',
-                        markerColor: 'darkpink'
+                        markerColor: 'lightred'
                     });
 
                     let marker = L.marker(
@@ -317,7 +317,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'graduation-cap',
                         iconColor: 'white',
-                        markerColor: 'blue'
+                        markerColor: 'lightred'
                     });
 
                     let marker = L.marker(
@@ -346,7 +346,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'shopping-basket',
                         iconColor: 'white',
-                        markerColor: 'blue'
+                        markerColor: 'lightred'
                     });
 
                     let marker = L.marker(
