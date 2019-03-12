@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: en }}">
+
+{% include head.html %}
+
+{{ script }}
+
+<body onload="init()">
+
+{% include header.html %}
+
+
+    {{ content }}
+
+{% include barFilter.html %}
+
+{% include scripts.html %}
+</body>
+
+</html>
