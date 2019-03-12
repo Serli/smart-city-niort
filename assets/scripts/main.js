@@ -148,18 +148,17 @@ function clickCritere() {
         if (nameCritere === "ParkingVoiture") {
             let parkingG = document.getElementById("ParkingGratuit");
             if (parkingG.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingGratuit"])
+                map.removeLayer(tabLayer["ParkingGratuit"]);
                 parkingG.classList.remove("active")
             }
 
             let parkingC = document.getElementById("ParkingCouvert");
             if (parkingC.className.includes("active")) {
-                map.removeLayer(tabLayer["ParkingCouvert"])
+                map.removeLayer(tabLayer["ParkingCouvert"]);
                 parkingC.classList.remove("active")
             }
 
             let filter = document.getElementsByClassName("filtreShow");
-            console.log("filter :", filter.length);
             while (document.getElementsByClassName("filtreShow").length > 0) {
                 document.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
                 document.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
@@ -192,7 +191,6 @@ function clickCritere() {
             }
         } else if (nameCritere === "ParkingVoiture") {
             let filter = document.getElementsByClassName("filterHide");
-            console.log("filter :", filter.length);
             while (document.getElementsByClassName("filterHide").length > 0) {
                 document.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
                 document.getElementsByClassName("filterHide")[0].classList.remove("filterHide");

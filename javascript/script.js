@@ -227,36 +227,6 @@ function layers() {
                                 markerColor: color
                             });
 
-                            let coordArret = [...feature.geometry.coordinates];
-
-                            // if (coord.length === 0){
-                            //     coord.push(latlng);
-                            //     // console.log(coord);
-                            // } else {
-                            //     let found = coord.findIndex((coordonnees)=>{
-                            //         return coordonnees.lat === coordArret[1] && coordonnees.lng === coordArret[0]
-                            //     });
-                            //     if(found < 0){
-                            //         coord.push(latlng);
-                            //
-                            //         let marker = L.marker(latlng, {icon: busMarker});
-                            //         marker.bindPopup(
-                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                            //             + '<h6>' + arret + '</h6>'
-                            //             + logo(ligne).join(" ")
-                            //         );
-                            //         return marker;
-                            //     } else {
-                            //         let marker = L.marker(latlng, {icon: busMarker});
-                            //         marker.bindPopup(
-                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                            //             + '<h6>' + arret + '</h6>'
-                            //             + logo(ligne).join(" ")
-                            //         );
-                            //         marker.addTo(mcg);
-                            //     }
-                            // }
-
                             let marker = L.marker(
                                 latlng,
                                 {
@@ -399,23 +369,20 @@ function layers() {
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
-    // var testRepairCafe = L.geoJSON(repairCafe, {attribution: '&copy; OpenStreetMap'});
 
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     var groupLayer = L.layerGroup([transportLayer]);
 
-    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()]);
+    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
     tabLayer = new Array();
     tabLayer["Velo"] = cycle;
     tabLayer["Bus"] = groupLayer;
     tabLayer["RepairCafe"] = testRepairCafe;
     tabLayer["Coworking"] = espaceCoworking;
-    tabLayer["Coopérative"] = cooperativeActiviter;
+    tabLayer["Cooperative"] = cooperativeActiviter;
     tabLayer["association"] = economieSolidaire;
-   // tabLayer["ParkingVoiture"] = parkingVoitureSimple;
-    // tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingVoiture"] = parkingVoitureSimple;
     tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
@@ -504,7 +471,7 @@ function parkingVoitu(param) {
             }
 
         }
-    });
+        );
 
     return parkingVoiture;
 }
