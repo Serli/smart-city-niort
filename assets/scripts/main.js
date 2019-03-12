@@ -211,7 +211,6 @@ function clickCritere() {
         }
 
         map.eachLayer(function(layer) {
-            console.log(layer);
             if(layer.options && layer.options.pane === "markerPane") {
                 map.removeLayer(layer);
                 if (markerArret.length === 0){
@@ -220,7 +219,6 @@ function clickCritere() {
                     let found = markerArret.findIndex((coordonnees)=>{
                         return coordonnees._latlng.lat === layer._latlng.lat && coordonnees._latlng.lng === layer._latlng.lng
                     });
-                    console.log(found);
                     if(found <= 0){
                         markerArret.push(layer);
                     }

@@ -227,36 +227,6 @@ function layers() {
                                 markerColor: color
                             });
 
-                            let coordArret = [...feature.geometry.coordinates];
-
-                            // if (coord.length === 0){
-                            //     coord.push(latlng);
-                            //     // console.log(coord);
-                            // } else {
-                            //     let found = coord.findIndex((coordonnees)=>{
-                            //         return coordonnees.lat === coordArret[1] && coordonnees.lng === coordArret[0]
-                            //     });
-                            //     if(found < 0){
-                            //         coord.push(latlng);
-                            //
-                            //         let marker = L.marker(latlng, {icon: busMarker});
-                            //         marker.bindPopup(
-                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                            //             + '<h6>' + arret + '</h6>'
-                            //             + logo(ligne).join(" ")
-                            //         );
-                            //         return marker;
-                            //     } else {
-                            //         let marker = L.marker(latlng, {icon: busMarker});
-                            //         marker.bindPopup(
-                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                            //             + '<h6>' + arret + '</h6>'
-                            //             + logo(ligne).join(" ")
-                            //         );
-                            //         marker.addTo(mcg);
-                            //     }
-                            // }
-
                             let marker = L.marker(
                                 latlng,
                                 {
@@ -278,10 +248,6 @@ function layers() {
         }
     });
 
-    // map.addLayer(mcg);
-
-    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
@@ -297,6 +263,12 @@ function layers() {
     tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
     tabLayer["ParkingVelo"] = cycleParking;
+    mesLigne.forEach((ligne) => {
+        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+    });
+
+    tabLayer["Bus"] = Tracer;
 
 }
 
@@ -378,13 +350,6 @@ function parkingVoitu(param) {
     ;
 
     return parkingVoiture;
-  
-    mesLigne.forEach((ligne) => {
-       // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-    });
-
-    tabLayer["Bus"] = Tracer;
 }
 
 function polystyle(param) {
