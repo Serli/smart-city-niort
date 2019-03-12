@@ -138,20 +138,23 @@ function layers() {
     });
 
 
-    var cycle = L.geoJSON(cycleways, {id: 'cycleways', attribution: '&copy; OpenStreetMap'});
+    var cycle = L.geoJSON(cycleways, {id: 'cycleways', attribution: '&copy; OpenStreetMap', style: polystyle()});
 
     var cycleParking = L.geoJSON(bicycleParkings,
         {
+            // onEachFeature: function (feature, layer) {
+            //     var bounds = layer.getBounds();
+            //     map.fitBounds(bounds);
+            // },
+
+            style: polystyle(),
 
             attribution: '&copy; OpenStreetMap',
-            filter: function(feature, layer) {
-                return feature.properties.show_on_map;
-            },
             pointToLayer: function (feature, latlng) {
-                console.log("all properties" ,feature )
+
                 var capacity = "";
                 if (feature.properties.capacity !== undefined) {
-                    capacity = "<p> Capacité :" + feature.properties.capacity+ '</p>'
+                    capacity = "<p> Capacité :" + feature.properties.capacity + '</p>'
                 }
                 ;
                 var couvert = "";
@@ -160,16 +163,16 @@ function layers() {
 
                     couvert = "<p> Parking couvert </p>"
                 };
-                let color = "#f19200";
+                //let color = "#f19200";
                 let cycleMarker = L.AwesomeMarkers.icon({
                     prefix: 'fa',
                     icon: 'bicycle ',
                     iconColor: 'white',
-                    markerColor: color
+                    markerColor: "lightred"
                 });
                 let marker = L.marker(latlng, {icon: cycleMarker});
                 marker.bindPopup(
-                     capacity  + couvert
+                    capacity + couvert
                 );
                 return marker;
 
@@ -189,8 +192,8 @@ function layers() {
 
     //var parkingVoiture = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'})
 
-   // var parkingVoitureSimple = parkingVoitu();
-   // var parkingVoitureGratuit = parkingVoitu("gratuit");
+    var parkingVoitureSimple = parkingVoitu();
+    var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
 
 
@@ -223,6 +226,36 @@ function layers() {
                                 iconColor: 'white',
                                 markerColor: color
                             });
+
+                            let coordArret = [...feature.geometry.coordinates];
+
+                            // if (coord.length === 0){
+                            //     coord.push(latlng);
+                            //     // console.log(coord);
+                            // } else {
+                            //     let found = coord.findIndex((coordonnees)=>{
+                            //         return coordonnees.lat === coordArret[1] && coordonnees.lng === coordArret[0]
+                            //     });
+                            //     if(found < 0){
+                            //         coord.push(latlng);
+                            //
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         return marker;
+                            //     } else {
+                            //         let marker = L.marker(latlng, {icon: busMarker});
+                            //         marker.bindPopup(
+                            //             '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
+                            //             + '<h6>' + arret + '</h6>'
+                            //             + logo(ligne).join(" ")
+                            //         );
+                            //         marker.addTo(mcg);
+                            //     }
+                            // }
 
                             let marker = L.marker(
                                 latlng,
@@ -383,6 +416,8 @@ function layers() {
     tabLayer["association"] = economieSolidaire;
    // tabLayer["ParkingVoiture"] = parkingVoitureSimple;
     // tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
+    tabLayer["ParkingVoiture"] = parkingVoitureSimple;
+    tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
     tabLayer["ParkingVelo"] = cycleParking;
 
@@ -399,17 +434,33 @@ function layers() {
 function parkingVoitu(param) {
 
     var parkingVoiture = L.geoJSON(parkings, {
-        attribution: '&copy; OpenStreetMap',
-        pointToLayer: function (feature, latlng) {
-            if (param === "gratuit") {
-                if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
+            attribution: '&copy; OpenStreetMap',
+            style: polystyle(param),
+            filter: function (feature, layer) {
+                if (param === "gratuit") {
+                    if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
+                        return true;
+                    }
+
+                } else if (param === "couvert") {
+                    return feature.properties.building !== undefined;
+                } else {
+                    return true;
+                }
+
+
+            },
+            pointToLayer: function (feature, latlng) {
+
+                if (param === "gratuit") {
+                    //console.log("feature.properties.fee :", feature.properties.fee)
                     var name = feature.properties.name;
                     let color = "green";
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: color
+                        markerColor: "beige"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     marker.bindPopup(
@@ -417,9 +468,8 @@ function parkingVoitu(param) {
                     );
                     return marker;
 
-                }
-            } else if (param === "couvert") {
-                if (feature.properties.building !== undefined) {
+                } else if (param === "couvert") {
+                    //console.log("feature.properties.building :", feature.properties.building)
 
                     var name = feature.properties.name;
                     let color = "blue";
@@ -427,7 +477,7 @@ function parkingVoitu(param) {
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: color
+                        markerColor: "cadetblue"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     marker.bindPopup(
@@ -436,13 +486,14 @@ function parkingVoitu(param) {
                     return marker;
                     // }
                 } else {
+                    //console.log("feature.properties.name :", feature.properties.name)
                     var name = feature.properties.name;
                     let color = "black";
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: color
+                        markerColor: "cadetblue"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     marker.bindPopup(
@@ -451,10 +502,32 @@ function parkingVoitu(param) {
                     return marker;
                 }
             }
+
         }
     });
 
     return parkingVoiture;
+}
+
+function polystyle(param) {
+    if (param === "gratuit") {
+        return {
+            fillColor: '#12d9c9',
+            weight: 3,
+            opacity: 1,
+            color: '#12d9c9',  //Outline color
+            fillOpacity: 0.4
+        };
+    } else {
+        return {
+            fillColor: '#12a5d4',
+            weight: 3,
+            opacity: 1,
+            color: '#12a5d4',  //Outline color
+            fillOpacity: 0.4
+        };
+    }
+
 }
 
 function colorMarker(ligne) {

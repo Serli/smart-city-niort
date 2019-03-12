@@ -129,12 +129,78 @@ function clickCritere() {
 
     if (this.className.includes("active")) {
 
+        /* ********   Spécial critere parking voiture  **********  */
+        if (nameCritere === "ParkingGratuit") {
+
+            let parkingV = document.getElementById("ParkingVoiture");
+            let parkingC = document.getElementById("ParkingCouvert");
+            if (parkingV.className.includes("active") && parkingC.className.includes("active") != true) {
+                map.addLayer(tabLayer["ParkingVoiture"])
+            }
+
+        } else if (nameCritere === "ParkingCouvert") {
+            let parkingV = document.getElementById("ParkingVoiture");
+            let parkingG = document.getElementById("ParkingGratuit");
+            if (parkingV.className.includes("active") && parkingG.className.includes("active") != true) {
+                map.addLayer(tabLayer["ParkingVoiture"])
+            }
+        }
+        if (nameCritere === "ParkingVoiture") {
+            let parkingG = document.getElementById("ParkingGratuit");
+            if (parkingG.className.includes("active")) {
+                map.removeLayer(tabLayer["ParkingGratuit"])
+                parkingG.classList.remove("active")
+            }
+
+            let parkingC = document.getElementById("ParkingCouvert");
+            if (parkingC.className.includes("active")) {
+                map.removeLayer(tabLayer["ParkingCouvert"])
+                parkingC.classList.remove("active")
+            }
+
+            let filter = document.getElementsByClassName("filtreShow");
+            console.log("filter :", filter.length);
+            while (document.getElementsByClassName("filtreShow").length > 0) {
+                document.getElementsByClassName("filtreShow")[0].classList.add("filterHide");
+                document.getElementsByClassName("filtreShow")[0].classList.remove("filtreShow");
+            }
+        }
+
+
+        /* ********   Générique  **********  */
         // je desactive le bouton
         this.classList.remove("active");
         //je remove le layer
         map.removeLayer(tabLayer[nameCritere]);
         markerArret = [];
     } else {
+
+
+        /* ********   Spécial critere parking voiture  **********  */
+
+        if (nameCritere === "ParkingGratuit") {
+
+            let parkingV = document.getElementById("ParkingVoiture");
+            if (parkingV.className.includes("active")) {
+                map.removeLayer(tabLayer["ParkingVoiture"])
+            }
+
+        } else if (nameCritere === "ParkingCouvert") {
+            let parkingV = document.getElementById("ParkingVoiture");
+            if (parkingV.className.includes("active")) {
+                map.removeLayer(tabLayer["ParkingVoiture"])
+            }
+        } else if (nameCritere === "ParkingVoiture") {
+            let filter = document.getElementsByClassName("filterHide");
+            console.log("filter :", filter.length);
+            while (document.getElementsByClassName("filterHide").length > 0) {
+                document.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
+                document.getElementsByClassName("filterHide")[0].classList.remove("filterHide");
+            }
+        }
+
+
+        /* ********   Générique  **********  */
 
         // j'active le bouton
         this.classList.add("active");
