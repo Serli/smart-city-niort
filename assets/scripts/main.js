@@ -62,7 +62,6 @@ function clickCatego() {
         //if la navbarCritere en question comporte des critères activé
         if (currentNavbarCritereActive.length > 0) {
 
-            console.log(navbaronVisible.length)
             if (navbaronVisible.length === 0) {
                 openNav(this.id)
             } else {
@@ -152,7 +151,6 @@ function clickCritere() {
                 this.classList.remove("active");
                 //je remove le layer
                 map.removeLayer(tabLayer[nameCritere])
-
             }
 
 
@@ -178,6 +176,7 @@ function clickCritere() {
 
 
         // critere actuellement non - actif
+
     } else {
 
 
@@ -188,18 +187,21 @@ function clickCritere() {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
 
+
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
             markerArret = [];
+
         }
 
         /* ********   Générique  **********  */
         // j'active le bouton
-        this.classList.add("active")
+        this.classList.add("active");
 
         if (nameCritere != null) {
             map.addLayer(tabLayer[nameCritere]);
         }
+
 
         // categorie transport
         if (this.parentElement.className.includes("transport")) {
@@ -209,6 +211,7 @@ function clickCritere() {
                 if (layer.options && layer.options.pane === "markerPane") {
                     map.removeLayer(layer);
                     if (markerArret.length === 0) {
+
                         markerArret.push(layer);
                     } else {
                         let found = markerArret.findIndex((coordonnees) => {
