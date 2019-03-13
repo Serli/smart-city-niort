@@ -438,7 +438,6 @@ function layers() {
                         if (feature.properties.name !== undefined) {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
-
                             let color = colorMarker(ligne);
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
