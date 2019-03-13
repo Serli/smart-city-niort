@@ -139,9 +139,10 @@ function clickCritere() {
                 while (filtreShowActives.length > 0) {
 
                     var index = this.parentNode.getElementsByClassName("filtreShow active")[0]
-                    console.log("index :", index.id)
-                    map.removeLayer(tabLayer[index.id])
-                    index.classList.remove("active")
+                    console.log("index :", index.id);
+                    map.removeLayer(tabLayer[index.id]);
+                    index.classList.remove("active");
+                    markerArret = [];
 
                 }
                 map.addLayer(tabLayer[this.id])
@@ -151,6 +152,7 @@ function clickCritere() {
                 this.classList.remove("active");
                 //je remove le layer
                 map.removeLayer(tabLayer[nameCritere])
+                markerArret = [];
             }
 
 
