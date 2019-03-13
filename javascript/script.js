@@ -127,6 +127,80 @@ function init() {
 
 }
 
+function markerPopup(feature) {
+    const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+    let dateDebut = "";
+    let dateFin = "";
+    let ouverture = "";
+    let today = new Date();
+    const {opening_hours, amenity, name} = feature.properties;
+    if (opening_hours && amenity === 'pharmacy') {
+
+        let split = [];
+        if (opening_hours.indexOf(';') > 0) {
+            split = opening_hours.split(';');
+        } else if (opening_hours.indexOf(',') > 0) {
+            split = opening_hours.split(',');
+        }else{
+            split= [opening_hours];
+        }
+        split.forEach(plage => {
+            let number = plage.search(/ ([0_9]+)/);
+            let days = plage.substring(0, number);
+            let dateDay = days.split("-");
+            let horaire = plage.substring(number, plage.length);
+            let plageHoraire = horaire.split("/");
+
+            //console.log(days.trim().startsWith(day[today.getDay()-1])+"/"+ days.trim().startsWith(day[today.getDay()-1], 3)+"/" +(dateDay[1] && today.getDay()-1 >= day.indexOf(dateDay[0].trim()) && today.getDay()-1 <= day.indexOf(dateDay[1].trim())));
+
+            if(days.trim().startsWith(day[today.getDay()-1]) ||
+                days.trim().startsWith(day[today.getDay()-1], 3) ||
+                (dateDay[1] && (today.getDay()-1 >= day.indexOf(dateDay[0].trim()) && today.getDay()-1 <= day.indexOf(dateDay[1].trim())))) {
+
+                plageHoraire.forEach((h) => {
+                    let strings = h.split("-");
+                    dateDebut = strings[0];
+                    dateFin = strings[1];
+                    let dateD = new Date();
+                    let hours = Number(dateDebut.split(":")[0]);
+                    let minutes = Number(dateDebut.split(":")[1]);
+                    dateD.setHours(hours);
+                    dateD.setMinutes(minutes);
+
+
+                    let dateF = new Date();
+                    let hoursF = Number(dateFin.split(":")[0]);
+                    let minutesF = Number(dateFin.split(":")[1]);
+                    dateF.setHours(hoursF);
+                    dateF.setMinutes(minutesF);
+
+
+                    if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
+                        ouverture = "Ouvert";
+                    }
+                    else {
+                        ouverture = "Fermé";
+                    }
+                });
+            }
+        });
+    }
+
+    if(dateDebut !== "" && dateFin !== "") {
+        return (
+            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
+            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
+            '<label>'+ ouverture + dateDebut + "-" + dateFin +'</label></div>'
+        );
+    }
+    else {
+        return (
+            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
+            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
+            '<label>Horaires Inconnues</label></div>'
+        );
+    }
+}
 
 function layers() {
 
@@ -181,9 +255,164 @@ function layers() {
         }
     );
 
+    var MagasinBio = L.layerGroup();
+
+    transiscopeDatas.map(data => {
+        if (data.categories.length !== 0 &&
+            ((data.location.lat >= 46.231153027822046 && data.location.lon >= -0.6389236450195312) &&
+                (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
+            if (data.categories[0].id === 33) {
+                let description = "inconnue";
+                let Marker = L.AwesomeMarkers.icon({
+                                prefix: 'fa',
+                                icon: 'utensils',
+                                iconColor: 'white',
+                                markerColor: 'lightred'
+                            });
+                            let markerBio = L.marker(
+                                [data.location.lat, data.location.lon],
+                                {
+                                    title: data.title,
+                                    icon: Marker
+                                }
+                            );
+                            if (data.description !== undefined){
+                                description = data.description;
+                            }
+                            markerBio.bindPopup(
+                                '<h6>' + data.title + '</h6>' +
+                                '<h8>Adresse : '+ data.address.street + '</h8><br>' +
+                                '<h8>Description : '+ description + '</h8>'
+                            ).addTo(MagasinBio);
+            }
+        }
+    });
+
+    var defibrillateur = L.geoJSON(defibrillator,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                if (feature.properties.emergency !== undefined) {
+                    let nom = "Défibrillateur";
+                    let repairMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'medkit',
+                        iconColor: 'white',
+                        markerColor: 'lightred'
+                    });
+
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: repairMarker,
+                            title: nom
+                        });
+                    marker.bindPopup(
+                        '<h6>' + nom + '</h6>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
+    var pharmacie = L.geoJSON(pharmacy, {
+        attribution: '&copy; OpenStreetMap',
+        pointToLayer: function (feature, latlng) {
+            let pharmacieMarker = L.AwesomeMarkers.icon({
+                prefix: 'fa',
+                icon: 'comment-medical',
+                iconColor: 'white',
+                markerColor: 'lightred'
+            });
+
+            let marker = L.marker(
+                latlng,
+                {
+                    icon: pharmacieMarker,
+                });
+            return marker;
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(
+                markerPopup(feature)
+            );
+        }
+    });
+
+    var medecin = L.geoJSON(doctors,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                if (feature.properties.name !== undefined) {
+                    let nom = feature.properties.name;
+                    let telephone = "inconnue";
+                    let adresse = "inconnue";
+
+                    if (feature.properties.phone !== undefined){
+                        telephone = feature.properties.phone;
+                    }
+                    if (feature.properties.adresse !== undefined){
+                        adresse = feature.properties.adresse;
+                    }
+                    let doctorsMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'user-md',
+                        iconColor: 'white',
+                        markerColor: 'lightred'
+                    });
+
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: doctorsMarker,
+                            title: nom
+                        });
+                    marker.bindPopup(
+                        '<h6>' + nom + '</h6>' +
+                        '<h8>Téléphone : ' + telephone +'</h8><br>' +
+                        '<h8>Adresse : ' + adresse +'</h8>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
+    var hopital = L.geoJSON(hospital, {
+        attribution: '&copy; OpenStreetMap',
+        onEachFeature: function (feature, layer) {
+            if (feature.properties.name !== undefined){
+                let nom = feature.properties.name;
+                let phone = "inconnue";
+                let mail = "inconnue";
+                if (feature.properties.phone !== undefined){
+                    phone = feature.properties.phone;
+                }
+                if (feature.properties.email !== undefined){
+                    mail = feature.properties.email;
+                }
+                layer.bindPopup(
+                    '<h6>' + nom + '</h6>'
+                    + '<h8>Téléphone : '+ phone +'</h8><br>'
+                    + '<h8>Mail : '+ mail +'</h8>'
+                );
+            }
+        }
+    });
+
+    var marcher = L.geoJSON(marketplace, {
+        attribution: '&copy; OpenStreetMap',
+        onEachFeature: function (feature, layer) {
+            if (feature.properties.name !== undefined){
+                let nom = feature.properties.name;
+                layer.bindPopup(
+                    '<h6>' + nom + '</h6>'
+                );
+            }
+        }
+    });
+
+    //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
-
-
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
@@ -374,6 +603,12 @@ function layers() {
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
     tabLayer["ParkingCovoiturage"] = parkingCovoit;
     tabLayer["ParkingVelo"] = cycleParking;
+    tabLayer["Defibrilateur"] = defibrillateur;
+    tabLayer["Pharmacie"] = pharmacie;
+    tabLayer["Médecin"] = medecin;
+    tabLayer["Hopital"] = hopital;
+    tabLayer["Marché"] = marcher;
+    tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
 
     mesLigne.forEach((ligne) => {
