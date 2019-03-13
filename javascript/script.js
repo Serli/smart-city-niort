@@ -362,7 +362,6 @@ function layers() {
 
     tabLayer = new Array();
     tabLayer["Velo"] = cycle;
-    tabLayer["Bus"] = groupLayer;
     tabLayer["RepairCafe"] = testRepairCafe;
     tabLayer["Coworking"] = espaceCoworking;
     tabLayer["Cooperative"] = cooperativeActiviter;
