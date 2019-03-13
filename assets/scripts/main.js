@@ -234,7 +234,6 @@ function clickCritere() {
 
 function showFilter(thiss) {
     let filter = thiss.parentNode.getElementsByClassName("filterHide");
-    console.log("filter :", filter.length);
     while (filter.length > 0) {
         thiss.parentElement.getElementsByClassName("filterHide")[0].classList.add("filtreShow");
         thiss.parentElement.getElementsByClassName("filterHide")[0].classList.remove("filterHide");

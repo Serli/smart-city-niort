@@ -141,8 +141,8 @@ function markerPopup(feature) {
             split = opening_hours.split(';');
         } else if (opening_hours.indexOf(',') > 0) {
             split = opening_hours.split(',');
-        }else{
-            split= [opening_hours];
+        } else {
+            split = [opening_hours];
         }
         split.forEach(plage => {
             let number = plage.search(/ ([0_9]+)/);
@@ -153,9 +153,9 @@ function markerPopup(feature) {
 
             //console.log(days.trim().startsWith(day[today.getDay()-1])+"/"+ days.trim().startsWith(day[today.getDay()-1], 3)+"/" +(dateDay[1] && today.getDay()-1 >= day.indexOf(dateDay[0].trim()) && today.getDay()-1 <= day.indexOf(dateDay[1].trim())));
 
-            if(days.trim().startsWith(day[today.getDay()-1]) ||
-                days.trim().startsWith(day[today.getDay()-1], 3) ||
-                (dateDay[1] && (today.getDay()-1 >= day.indexOf(dateDay[0].trim()) && today.getDay()-1 <= day.indexOf(dateDay[1].trim())))) {
+            if (days.trim().startsWith(day[today.getDay() - 1]) ||
+                days.trim().startsWith(day[today.getDay() - 1], 3) ||
+                (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
 
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
@@ -177,8 +177,7 @@ function markerPopup(feature) {
 
                     if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
                         ouverture = "Ouvert";
-                    }
-                    else {
+                    } else {
                         ouverture = "Fermé";
                     }
                 });
@@ -186,14 +185,13 @@ function markerPopup(feature) {
         });
     }
 
-    if(dateDebut !== "" && dateFin !== "") {
+    if (dateDebut !== "" && dateFin !== "") {
         return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>'+ ouverture + dateDebut + "-" + dateFin +'</label></div>'
+            '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div>'
         );
-    }
-    else {
+    } else {
         return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
@@ -222,16 +220,16 @@ function layers() {
                 let capacityParking = "";
                 let couvert = ""
                 if (feature.properties.name !== undefined) {
-                    nameParking = '<p>' + feature.properties.name + '</p>'
+                    nameParking = '<h6>' + feature.properties.name + '</h6>'
                 }
                 if (feature.properties.capacity !== undefined) {
-                    capacityParking = '<p> Capacité : ' + feature.properties.capacity + '</p>'
+                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8> <br>'
                 }
-                if (feature.properties.building === 'yes' || feature.properties.covered ==='yes') {
+                if (feature.properties.building === 'yes' || feature.properties.covered === 'yes') {
 
-                    couvert = "<p> Parking couvert </p>"
+                    couvert = "<h8> Parking couvert </h8>"
                 }
-                if(nameParking != "" || capacityParking != "" || couvert != "" )
+                if (nameParking != "" || capacityParking != "" || couvert != "")
                     layer.bindPopup(
                         nameParking + capacityParking + couvert
                     );
@@ -262,28 +260,29 @@ function layers() {
             ((data.location.lat >= 46.231153027822046 && data.location.lon >= -0.6389236450195312) &&
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
-                let description = "inconnue";
+                let description = "";
                 let Marker = L.AwesomeMarkers.icon({
-                                prefix: 'fa',
-                                icon: 'utensils',
-                                iconColor: 'white',
-                                markerColor: 'lightred'
-                            });
-                            let markerBio = L.marker(
-                                [data.location.lat, data.location.lon],
-                                {
-                                    title: data.title,
-                                    icon: Marker
-                                }
-                            );
-                            if (data.description !== undefined){
-                                description = data.description;
-                            }
-                            markerBio.bindPopup(
-                                '<h6>' + data.title + '</h6>' +
-                                '<h8>Adresse : '+ data.address.street + '</h8><br>' +
-                                '<h8>Description : '+ description + '</h8>'
-                            ).addTo(MagasinBio);
+                    prefix: 'fa',
+                    icon: 'apple-alt',
+                    iconColor: 'white',
+                    markerColor: 'lightred'
+                });
+                let markerBio = L.marker(
+                    [data.location.lat, data.location.lon],
+                    {
+                        title: data.title,
+                        icon: Marker
+                    }
+                );
+                if (data.description !== undefined) {
+                    description = '<h8>Description : ' + data.description + '</h8>'
+                }
+                markerBio.bindPopup(
+                    '<h6>' + data.title + '</h6>' +
+                    '<h8>Adresse : ' + data.address.street + '</h8><br>' +
+                    description
+
+                ).addTo(MagasinBio);
             }
         }
     });
@@ -322,7 +321,7 @@ function layers() {
                 prefix: 'fa',
                 icon: 'comment-medical',
                 iconColor: 'white',
-                markerColor: 'lightred'
+                markerColor: 'beige'
             });
 
             let marker = L.marker(
@@ -348,17 +347,17 @@ function layers() {
                     let telephone = "inconnue";
                     let adresse = "inconnue";
 
-                    if (feature.properties.phone !== undefined){
+                    if (feature.properties.phone !== undefined) {
                         telephone = feature.properties.phone;
                     }
-                    if (feature.properties.adresse !== undefined){
+                    if (feature.properties.adresse !== undefined) {
                         adresse = feature.properties.adresse;
                     }
                     let doctorsMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'user-md',
                         iconColor: 'white',
-                        markerColor: 'lightred'
+                        markerColor: 'purple'
                     });
 
                     let marker = L.marker(
@@ -369,8 +368,8 @@ function layers() {
                         });
                     marker.bindPopup(
                         '<h6>' + nom + '</h6>' +
-                        '<h8>Téléphone : ' + telephone +'</h8><br>' +
-                        '<h8>Adresse : ' + adresse +'</h8>'
+                        '<h8>Téléphone : ' + telephone + '</h8><br>' +
+                        '<h8>Adresse : ' + adresse + '</h8>'
                     );
                     return marker;
                 }
@@ -379,30 +378,34 @@ function layers() {
 
     var hopital = L.geoJSON(hospital, {
         attribution: '&copy; OpenStreetMap',
+        style: polystyle(),
+
         onEachFeature: function (feature, layer) {
-            if (feature.properties.name !== undefined){
-                let nom = feature.properties.name;
-                let phone = "inconnue";
-                let mail = "inconnue";
-                if (feature.properties.phone !== undefined){
-                    phone = feature.properties.phone;
-                }
-                if (feature.properties.email !== undefined){
-                    mail = feature.properties.email;
-                }
-                layer.bindPopup(
-                    '<h6>' + nom + '</h6>'
-                    + '<h8>Téléphone : '+ phone +'</h8><br>'
-                    + '<h8>Mail : '+ mail +'</h8>'
-                );
+            let nom = "";
+            let phone = "";
+            let mail = "";
+            if (feature.properties.name !== undefined) {
+                nom = '<h6>' + feature.properties.name + '</h6>'
             }
+            if (feature.properties.phone !== undefined) {
+                phone = '<h8>Téléphone : ' + feature.properties.phone + '</h8> <br>'
+            }
+            if (feature.properties.email !== undefined) {
+                mail = '<h8>Mail : ' + feature.properties.email + '</h8>'
+            }
+
+            if (nom != "" || phone != "" || mail != "")
+                layer.bindPopup(
+                    nom + phone + mail
+                );
         }
     });
 
     var marcher = L.geoJSON(marketplace, {
+        style: polystyle(),
         attribution: '&copy; OpenStreetMap',
         onEachFeature: function (feature, layer) {
-            if (feature.properties.name !== undefined){
+            if (feature.properties.name !== undefined) {
                 let nom = feature.properties.name;
                 layer.bindPopup(
                     '<h6>' + nom + '</h6>'
@@ -627,15 +630,15 @@ function parkingVoitu(param) {
                 let nameParking = "";
                 let capacityParking = "";
                 if (feature.properties.name !== undefined) {
-                    nameParking = '<p>' + feature.properties.name + '</p>'
+                    nameParking = '<h6>' + feature.properties.name + '</h6>'
                 }
                 if (feature.properties.capacity !== undefined) {
-                    capacityParking = '<p> Capacité : ' + feature.properties.capacity + '</p>'
+                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8>'
                 }
-                if(nameParking != "" || capacityParking != ""  )
-                layer.bindPopup(
-                    nameParking + capacityParking
-                );
+                if (nameParking != "" || capacityParking != "")
+                    layer.bindPopup(
+                        nameParking + capacityParking
+                    );
             },
             filter: function (feature, layer) {
 
