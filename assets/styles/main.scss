@@ -1,6 +1,7 @@
 ---
 #  Only the main Sass file needs front matter  (  the dashes are enough  )
 ---
+
 @charset "utf-8";
 
 
@@ -10,8 +11,8 @@
 }
 
 body {
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100%;
+  min-width: 100%;
   //overflow-x: hidden;
   //overflow-y: hidden;
 }
@@ -38,6 +39,7 @@ body {
     -webkit-text-fill-color: transparent;
     font-weight: bold;
     font-family: "LEIXO";
+    margin: 10px 0;
   }
 
 }
@@ -62,14 +64,15 @@ body {
 
   display: flex;
   flex-direction: column;
-  top: 45%;
-  transform: translateY(-45%);
+  top: 70%;
+  transform: translateY(-70%);
   left: 0;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
   flex-wrap: nowrap;
-  max-height: 100vh;
+  max-height: 80vh;
   max-width: 100vw;
+  height: 100%;
 
   .btnHide {
     max-height: 10vh;
@@ -82,7 +85,6 @@ body {
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
     align-self: flex-start;
-
 
 
     i, a {
@@ -112,7 +114,8 @@ body {
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     max-width: 0;
-    max-height: 90vh;
+    max-height: 70vh;
+    height: 100%;
 
     &.show {
       max-width: 100vw;
@@ -126,11 +129,12 @@ body {
 
 
       &.navbarUnder {
-        max-height: 90vh;
+        max-height: 70vh;
         z-index: 2;
         order: -1;
         max-width: 0;
         transition: 0.3s;
+        height: 100%;
 
         &.show {
           max-width: 300px;
@@ -153,11 +157,9 @@ body {
     }
 
 
-
     .visible {
       max-width: 100%;
     }
-
 
 
   }
@@ -186,7 +188,7 @@ body {
     flex-shrink: 0;
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
-    align-self:flex-end;
+    align-self: flex-end;
 
 
     i, a {
@@ -197,10 +199,9 @@ body {
       white-space: nowrap;
       transition: 0.3s;
 
-      &.angleUp{
+      &.angleUp {
         transform: rotate(180deg);
       }
-
 
 
       &:hover, &:active {
@@ -217,7 +218,7 @@ body {
 
   .footerBottom {
 
-    align-self:flex-end;
+    align-self: flex-end;
     flex-direction: column;
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
@@ -228,8 +229,6 @@ body {
     &.show {
       max-height: 50vh;
     }
-
-
 
 
     .navbar {
@@ -243,9 +242,6 @@ body {
         transition: 0.3s;
         z-index: 2;
         max-height: 0;
-
-
-
 
 
         &.show {
@@ -290,7 +286,6 @@ body {
   flex-shrink: 0;
 
 
-
   i, a {
 
     color: #dee0e6;
@@ -323,7 +318,6 @@ body {
 }
 
 
-
 .navbarOn .closebtn {
   position: absolute;
   bottom: 0;
@@ -334,7 +328,6 @@ body {
 }
 
 
-
 .categotext {
   padding: 8px 0 0 0;
   font-family: Calibri, Trebuchet, sans-serif;
@@ -342,23 +335,22 @@ body {
 
 .toggle {
 
-  i{
-    color : #12a5d4;
+  i {
+    color: #12a5d4;
     padding: 5px;
   }
 }
 
-.leaflet-control-container{
+.leaflet-control-container {
 
   i {
     transition: 0.3s;
   }
-  .angleUp{
+
+  .angleUp {
     transform: rotate(-90deg);
   }
 }
-
-
 
 
 body .material-tooltip {
@@ -372,17 +364,17 @@ body .material-tooltip {
 
 
 .footerL.dropperStyle {
-   width: 15vw;
-   height: 70vh;
+  width: 15vw;
+  height: 70vh;
   border: 3px #12a5d4;
   border-style: solid dashed;
- }
+}
 
 .footerB.dropperStyle {
   width: 70vw;
   height: 15vh;
   border: 3px #12a5d4;
-  border-style: dashed solid ;
+  border-style: dashed solid;
 
 }
 
@@ -405,147 +397,152 @@ body .material-tooltip {
 }
 
 
+.leaflet-control-attribution{
+  white-space: nowrap;
+
+
+}
 
 
 
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    //font-size: 18px;
+  }
+}
 
-  @media screen and (max-height: 450px) {
-    .sidenav {
-      padding-top: 15px;
-    }
-    .sidenav a {
-      //font-size: 18px;
+
+@media screen and (max-width: 640px) {
+
+  .containNavbar {
+    max-width: 90vw;
+  }
+  .navbarOn {
+    max-width: 90vw;
+  }
+
+
+}
+
+
+@media screen and (min-width: 640px) {
+
+  .footerBottom {
+    .navbarUnder {
+      justify-content: space-evenly;
+      min-width: 100%;
     }
   }
 
 
-  @media screen and (max-width: 640px) {
+}
 
-    .containNavbar {
-      max-width: 90vw;
+
+@media screen and (min-height: 500px) {
+
+  .footerLeft {
+    .navbarUnder {
+      justify-content: space-evenly;
     }
-    .navbarOn {
-      max-width: 90vw;
-    }
-
-
   }
 
 
-  @media screen and (min-width: 640px) {
+}
 
-    .footerBottom{
-      .navbarUnder {
-        justify-content: space-evenly;
-        min-width: 100%;
+
+@media screen and (max-height: 640px) {
+
+  .containNavbar {
+    max-height: 100vh;
+  }
+  .navbarOn {
+    max-height: 100vh;
+  }
+}
+
+
+/*  ********* FONT - SIZE *********** */
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
       }
     }
+  }
+}
 
-    .footerLeft{
-      .navbarUnder {
-        justify-content: space-evenly;
-        min-height: 100%;
-      }
-    }
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 16px;
+$min_font_catego: 13px;
+$min_font_title: 60px;
+$max_font_title: 70px;
+$max_font: 17px;
+
+html body {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+.categotext {
+  @include fluid-type($min_width, $max_width, $min_font_catego, $max_font);
+}
+
+.nav-wrapper {
+  .brand-logo {
+    @include fluid-type($min_width, $max_width, $min_font_title, $max_font_title);
+  }
+}
 
 
+#containAbout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.checkBoxAll {
+  margin: 2px;
+  padding: 7px;
+
+
+}
+
+.critere {
+  transition: 0.3s;
+
+  &.filterHide {
+    display: none;
+    max-width: 0;
+    max-height: 0;
 
   }
 
-
-
-  @media screen and (max-height: 640px) {
-
-    .containNavbar {
-      max-height: 100vh;
-    }
-    .navbarOn {
-      max-height: 100vh;
-    }
+  &.filterShow {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
   }
 
+}
 
 
-  /*  ********* FONT - SIZE *********** */
-
-  @function strip-unit($value) {
-    @return $value / ($value * 0 + 1);
-  }
-
-  @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-    $u1: unit($min-vw);
-    $u2: unit($max-vw);
-    $u3: unit($min-font-size);
-    $u4: unit($max-font-size);
-
-    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-      & {
-        font-size: $min-font-size;
-        @media screen and (min-width: $min-vw) {
-          font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-        }
-        @media screen and (min-width: $max-vw) {
-          font-size: $max-font-size;
-        }
-      }
-    }
-  }
-
-  $min_width: 320px;
-  $max_width: 1200px;
-  $min_font: 16px;
-  $min_font_catego: 13px;
-  $min_font_title: 60px;
-  $max_font_title: 70px;
-  $max_font: 17px;
-
-  html  body {
-    @include fluid-type($min_width, $max_width, $min_font, $max_font);
-  }
-
-  .categotext {
-    @include fluid-type($min_width, $max_width, $min_font_catego, $max_font);
-  }
-
-  .nav-wrapper {
-    .brand-logo {
-      @include fluid-type($min_width, $max_width, $min_font_title, $max_font_title);
-    }
-  }
-
-
-
-  #containAbout{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .checkBoxAll {
-    margin: 2px;
-    padding:7px;
-
-
-  }
-
-  .critere{
-    transition: 0.3s;
-
-    &.filterHide {
-      display: none;
-      max-width: 0;
-      max-height: 0;
-
-    }
-
-    &.filterShow {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-    }
-
-  }
-
-
-  @import "materialize";
+@import "materialize";
 
