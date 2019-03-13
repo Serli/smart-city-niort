@@ -187,7 +187,6 @@ function clickCritere() {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
 
-
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
             markerArret = [];
