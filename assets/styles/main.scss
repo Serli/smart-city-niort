@@ -405,7 +405,10 @@ body .material-tooltip {
 }
 
 
-.leaflet-control-container .leaflet-control-zoom {margin-top: 16px}
+.leaflet-control-container .leaflet-control-zoom {
+  margin-top: 16px;
+  margin-left: 50px;
+}
 
 
 
