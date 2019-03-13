@@ -302,6 +302,9 @@ const hospital = {
             "properties": {
                 "@id": "relation/8859234",
                 "building": "hospital",
+                "eemail": "pedopsy@ch-niort.fr",
+                "name": "Centre Hospitalier de Niort",
+                "phone": "+33 5 49 32 79 79",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2018",
                 "type": "multipolygon"
             },
@@ -2680,6 +2683,9 @@ const hospital = {
             "properties": {
                 "@id": "way/72362274",
                 "building": "hospital",
+                "name" : "Polyclinique Inkermann",
+                "phone":"0 826 30 28 28",
+                "email":"inkermann.groupe-elsan.com",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -2756,7 +2762,7 @@ const hospital = {
             "properties": {
                 "@id": "way/72362670",
                 "building": "hospital",
-                "email": "pedopsy@ch-niort.fr",
+                "eemail": "pedopsy@ch-niort.fr",
                 "fax": "+33 5 49 78 38 44",
                 "max_age": "11 years",
                 "min_age": "6 years",
@@ -3062,6 +3068,9 @@ const hospital = {
             "properties": {
                 "@id": "way/72363254",
                 "building": "hospital",
+                "name" : "Polyclinique Inkermann",
+                "phone":"0 826 30 28 28",
+                "email":"inkermann.groupe-elsan.com",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -3450,6 +3459,9 @@ const hospital = {
             "properties": {
                 "@id": "way/72363569",
                 "building": "hospital",
+                "name" : "Polyclinique Inkermann",
+                "phone":"0 826 30 28 28",
+                "email":"inkermann.groupe-elsan.com",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -3638,6 +3650,9 @@ const hospital = {
             "properties": {
                 "@id": "way/72365380",
                 "building": "hospital",
+                "name" : "Polyclinique Inkermann",
+                "phone":"0 826 30 28 28",
+                "email":"inkermann.groupe-elsan.com",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {

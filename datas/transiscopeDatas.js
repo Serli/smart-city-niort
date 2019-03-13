@@ -2215,7 +2215,7 @@ const transiscopeDatas = [
             "postalCode": "79000",
             "street": "30 Rue de Gutenberg"
         },
-        "title": "Le Baquet vert",
+        "title": "Biocoop Le Baquet vert",
         "summary": "Un magasin d'alimentation libre-service du réseau Biocoop."
     },
     {

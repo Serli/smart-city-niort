@@ -255,37 +255,161 @@ function layers() {
     );
 
 
-    var groupLayerData = L.layerGroup();
-    var groupLayerEntraide = L.layerGroup();
+    var MagasinBio = L.layerGroup();
 
     transiscopeDatas.map(data => {
         if (data.categories.length !== 0 &&
             ((data.location.lat >= 46.231153027822046 && data.location.lon >= -0.6389236450195312) &&
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
-                L.marker([data.location.lat, data.location.lon], {title: data.title}).addTo(groupLayerData);
-            }
-
-            if (data.categories[0].id === 21) {
-                L.marker([data.location.lat, data.location.lon], {title: data.title}).addTo(groupLayerEntraide);
+                let description = "inconnue";
+                let Marker = L.AwesomeMarkers.icon({
+                                prefix: 'fa',
+                                icon: 'utensils',
+                                iconColor: 'white',
+                                markerColor: 'lightred'
+                            });
+                            let markerBio = L.marker(
+                                [data.location.lat, data.location.lon],
+                                {
+                                    title: data.title,
+                                    icon: Marker
+                                }
+                            );
+                            if (data.description !== undefined){
+                                description = data.description;
+                            }
+                            markerBio.bindPopup(
+                                '<h6>' + data.title + '</h6>' +
+                                '<h8>Adresse : '+ data.address.street + '</h8><br>' +
+                                '<h8>Description : '+ description + '</h8>'
+                            ).addTo(MagasinBio);
             }
         }
     });
 
-    var defibrillateur = L.geoJSON(defibrillator, {attribution: '&copy; OpenStreetMap'});
+    var defibrillateur = L.geoJSON(defibrillator,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                if (feature.properties.emergency !== undefined) {
+                    let nom = "Défibrillateur";
+                    let repairMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'medkit',
+                        iconColor: 'white',
+                        markerColor: 'lightred'
+                    });
+
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: repairMarker,
+                            title: nom
+                        });
+                    marker.bindPopup(
+                        '<h6>' + nom + '</h6>'
+                    );
+                    return marker;
+                }
+            }
+        });
 
     var pharmacie = L.geoJSON(pharmacy, {
-        attribution: '&copy; OpenStreetMap', onEachFeature: function (feature, layer) {
+        attribution: '&copy; OpenStreetMap',
+        pointToLayer: function (feature, latlng) {
+            let pharmacieMarker = L.AwesomeMarkers.icon({
+                prefix: 'fa',
+                icon: 'comment-medical',
+                iconColor: 'white',
+                markerColor: 'lightred'
+            });
+
+            let marker = L.marker(
+                latlng,
+                {
+                    icon: pharmacieMarker,
+                });
+            return marker;
+        },
+        onEachFeature: function (feature, layer) {
             layer.bindPopup(
                 markerPopup(feature)
             );
         }
     });
 
-    var medecin = L.geoJSON(doctors, {attribution: '&copy; OpenStreetMap'});
+    var medecin = L.geoJSON(doctors,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                if (feature.properties.name !== undefined) {
+                    let nom = feature.properties.name;
+                    let telephone = "inconnue";
+                    let adresse = "inconnue";
 
-    var hopital = L.geoJSON(hospital, {attribution: '&copy; OpenStreetMap'});
+                    if (feature.properties.phone !== undefined){
+                        telephone = feature.properties.phone;
+                    }
+                    if (feature.properties.adresse !== undefined){
+                        adresse = feature.properties.adresse;
+                    }
+                    let doctorsMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'user-md',
+                        iconColor: 'white',
+                        markerColor: 'lightred'
+                    });
 
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: doctorsMarker,
+                            title: nom
+                        });
+                    marker.bindPopup(
+                        '<h6>' + nom + '</h6>' +
+                        '<h8>Téléphone : ' + telephone +'</h8><br>' +
+                        '<h8>Adresse : ' + adresse +'</h8>'
+                    );
+                    return marker;
+                }
+            }
+        });
+
+    var hopital = L.geoJSON(hospital, {
+        attribution: '&copy; OpenStreetMap',
+        onEachFeature: function (feature, layer) {
+            if (feature.properties.name !== undefined){
+                let nom = feature.properties.name;
+                let phone = "inconnue";
+                let mail = "inconnue";
+                if (feature.properties.phone !== undefined){
+                    phone = feature.properties.phone;
+                }
+                if (feature.properties.email !== undefined){
+                    mail = feature.properties.email;
+                }
+                layer.bindPopup(
+                    '<h6>' + nom + '</h6>'
+                    + '<h8>Téléphone : '+ phone +'</h8><br>'
+                    + '<h8>Mail : '+ mail +'</h8>'
+                );
+            }
+        }
+    });
+
+    var marcher = L.geoJSON(marketplace, {
+        attribution: '&copy; OpenStreetMap',
+        onEachFeature: function (feature, layer) {
+            if (feature.properties.name !== undefined){
+                let nom = feature.properties.name;
+                layer.bindPopup(
+                    '<h6>' + nom + '</h6>'
+                );
+            }
+        }
+    });
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
@@ -493,6 +617,12 @@ function layers() {
     tabLayer["ParkingGratuit"] = parkingVoitureGratuit;
     tabLayer["ParkingCouvert"] = parkingVoitureCouvert;
     tabLayer["ParkingVelo"] = cycleParking;
+    tabLayer["Defibrilateur"] = defibrillateur;
+    tabLayer["Pharmacie"] = pharmacie;
+    tabLayer["Médecin"] = medecin;
+    tabLayer["Hopital"] = hopital;
+    tabLayer["Marché"] = marcher;
+    tabLayer["Biocop"] = MagasinBio;
 
     mesLigne.forEach((ligne) => {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);

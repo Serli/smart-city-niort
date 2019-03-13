@@ -13,7 +13,7 @@ const marketplace = {
                 "heritage": "3",
                 "heritage:operator": "mhs",
                 "mhs:inscription_date": "1987",
-                "name": "Halles",
+                "name": "Les Halles de Niort",
                 "ref:mhs": "PA00101285",
                 "source": "data.gouv.fr:Ministère de la Culture - 08/2011",
                 "wikidata": "Q22952706",
