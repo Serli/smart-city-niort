@@ -187,7 +187,6 @@ function clickCritere() {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
 
-
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
             markerArret = [];
@@ -328,6 +327,17 @@ function clickTogglePosition() {
 
     }
 
+
+    // pour modifier le droptarget
+    let droptarget = document.getElementById("droptarget");
+    if (droptarget.className.includes("footerL")) {
+        droptarget.classList.add('footerB');
+        droptarget.classList.remove('footerL');
+    } else {
+        droptarget.classList.add('footerL');
+        droptarget.classList.remove('footerB');
+    }
+
 }
 
 
@@ -360,4 +370,50 @@ function clickToggleFooter() {
 
 
 }
+
+
+/* *************  Drag And Drop  ************  */
+
+
+let draggableElement = document.querySelector('*[draggable="true"]');
+let droptarget = document.getElementById("droptarget");
+
+
+draggableElement.addEventListener('dragstart', function (e) {
+    e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
+    // console.log(droptarget.className)
+    droptarget.classList.add("dropperStyle");
+});
+
+draggableElement.addEventListener('dragend', function () {
+    droptarget.classList.remove("dropperStyle");
+    droptarget.classList.remove("dropperEnter");
+    droptarget.classList.remove("dropperLeave");
+});
+
+
+droptarget.addEventListener('dragover', function (e) {
+    e.preventDefault(); // Annule l'interdiction de drop
+});
+
+droptarget.addEventListener('drop', function (e) {
+    e.preventDefault(); // Cette méthode est toujours nécessaire pour éviter une éventuelle redirection inattendue
+    droptarget.classList.remove("dropperStyle");
+    droptarget.classList.remove("dropperEnter");
+    droptarget.classList.remove("dropperLeave");
+    clickTogglePosition();
+
+
+});
+
+
+droptarget.addEventListener('dragenter', function () {
+    droptarget.classList.add("dropperEnter");
+    droptarget.classList.remove("dropperLeave");
+});
+
+droptarget.addEventListener('dragleave', function () {
+    droptarget.classList.remove("dropperEnter");
+    droptarget.classList.add("dropperLeave");
+});
 
