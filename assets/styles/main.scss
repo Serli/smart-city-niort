@@ -397,11 +397,15 @@ body .material-tooltip {
 }
 
 
-.leaflet-control-attribution{
+.leaflet-container .leaflet-control-attribution{
   white-space: nowrap;
+  background: rgba(255, 255, 255, 0.3);
 
 
 }
+
+
+.leaflet-control-container .leaflet-control-zoom {margin-top: 16px}
 
 
 

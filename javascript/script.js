@@ -59,7 +59,7 @@ function init() {
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
-
+        attributionControl:false
     });
     L.control.attribution({position: 'topright'}).addTo(map);
     // map.zoomControl.setPosition('topright');
