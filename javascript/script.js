@@ -802,7 +802,7 @@ function logo(arret) {
         lignesDeBus.push('<img src="./assets/images/ligne1.png" class="logoLigne"/>');
     }
     if (arret.includes("2")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.url }}/assets/images/ligne/ligne2.png" class="logoLigne"/>');
     }
     if (arret.includes("3")) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>');
