@@ -97,11 +97,8 @@ function init() {
     ).addTo(map);
 
 
-    layers();
-
-
+    // fleche control - toggle position navbar
     var customControlToggle = L.Control.extend({
-
         options: {
             position: 'topright'
         },
@@ -117,12 +114,13 @@ function init() {
             container.onclick = function () {
                 clickTogglePosition();
             }
-
             return container;
         }
     });
-
     map.addControl(new customControlToggle());
+
+    layers();
+
 
     var markersLayer = L.featureGroup().addTo(map);
 
@@ -427,8 +425,6 @@ function layers() {
         }
     });
 
-    //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
@@ -436,7 +432,6 @@ function layers() {
 
 
     const coord = [];
-    // var mcg = L.markerClusterGroup().addTo(map);
 
     let mesLigne = ligne.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
@@ -596,17 +591,13 @@ function layers() {
             }
         });
 
-    // map.addLayer(mcg);
-
-    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-
-    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
-
     let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
+
+    // Tableau contenant  tout les layers
     tabLayer = [];
     tabLayer["Velo"] = cycle;
     tabLayer["RepairCafe"] = testRepairCafe;
@@ -633,20 +624,28 @@ function layers() {
 
 
     /* **********$  mobile or desktop *******$ */
-
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        //mobile
         // on cache la navbar si on clicl sur n'importe quel marker
         Object.keys(tabLayer).forEach(function (key) {
-            tabLayer[key].on('click', L.bind(clickToggleFooter, null, true))
 
-        });
+                // si c'est un groupLayer d'une ligne de bus
+                if (key.startsWith("Ligne")) {
+                    tabLayer[key].getLayers().forEach(function (elementLayer) {
+                        console.log(elementLayer)
+                        elementLayer.on('click', L.bind(clickToggleFooter, null, true))
+                    });
+                } else {
+                    tabLayer[key].on('click', L.bind(clickToggleFooter, null, true))
+                }
+            }
+        );
     } else {
-        console.log(" 3 pc ")
+        //desktop
     }
 
 
 }
-
 
 function parkingVoitu(param) {
 
@@ -655,7 +654,6 @@ function parkingVoitu(param) {
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
 
-                layer.on('click', L.bind(clickToggleFooter, null, true));
 
                 let nameParking = "";
                 let capacityParking = "";
@@ -739,7 +737,6 @@ function parkingVoitu(param) {
 
         }
     );
-
 
     return parkingVoiture;
 }
