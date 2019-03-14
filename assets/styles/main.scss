@@ -333,6 +333,11 @@ body {
   font-family: Calibri, Trebuchet, sans-serif;
 }
 
+.leaflet-popup-content {
+  font-family: Calibri, Trebuchet, sans-serif;
+  color: #a8a9ae;
+}
+
 .toggle {
 
   i {
@@ -501,7 +506,7 @@ $max_width: 1200px;
 $min_font: 16px;
 $min_font_catego: 13px;
 $min_font_title: 60px;
-$max_font_title: 70px;
+$max_font_title: 100px;
 $max_font: 17px;
 
 html body {

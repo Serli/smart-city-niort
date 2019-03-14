@@ -252,7 +252,7 @@ function layers() {
                     prefix: 'fa',
                     icon: 'bicycle ',
                     iconColor: 'white',
-                    markerColor: "lightred"
+                    markerColor: "purple"
                 });
                 let marker = L.marker(latlng, {icon: cycleMarker});
                 return marker;
@@ -304,7 +304,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'medkit',
                         iconColor: 'white',
-                        markerColor: 'lightred'
+                        markerColor: 'cadetblue'
                     });
 
                     let marker = L.marker(
@@ -328,7 +328,7 @@ function layers() {
                 prefix: 'fa',
                 icon: 'comment-medical',
                 iconColor: 'white',
-                markerColor: 'beige'
+                markerColor: 'orange'
             });
 
             let marker = L.marker(
@@ -486,7 +486,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'tools',
                         iconColor: 'white',
-                        markerColor: 'lightred'
+                        markerColor: 'orange'
                     });
 
                     let marker = L.marker(
@@ -573,7 +573,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'shopping-basket',
                         iconColor: 'white',
-                        markerColor: 'beige'
+                        markerColor: 'lightgreen'
                     });
 
                     let marker = L.marker(
@@ -695,7 +695,7 @@ function parkingVoitu(param) {
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: "beige"
+                        markerColor: "orange"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
@@ -717,7 +717,7 @@ function parkingVoitu(param) {
                         prefix: 'fa',
                         icon: 'copyright',
                         iconColor: 'white',
-                        markerColor: "purple"
+                        markerColor: "lightgreen"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
@@ -744,10 +744,10 @@ function parkingVoitu(param) {
 function polystyle(param) {
     if (param === "gratuit") {
         return {
-            fillColor: '#12d9c9',
+            fillColor: '#f69730',
             weight: 3,
             opacity: 1,
-            color: '#12d9c9',  //Outline color
+            color: '#f69730',  //Outline color
             fillOpacity: 0.4
         };
     } else {

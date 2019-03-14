@@ -172,7 +172,12 @@ function clickCritere() {
                     map.addLayer(tabLayer["ParkingVoiture"])
                 }
 
+            } else if (nameCritere.startsWith("Ligne")) {
+                if (document.getElementsByClassName("filtreShow active").length === 0 && document.getElementById("Bus").className.includes("active")) {
+                    map.addLayer(tabLayer["Bus"])
+                }
             }
+
         }
 
 
@@ -187,6 +192,9 @@ function clickCritere() {
             if (document.getElementById("ParkingVoiture").className.includes("active")) {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
+
+        } else if (nameCritere.startsWith("Ligne")) {
+            map.removeLayer(tabLayer["Bus"])
 
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
