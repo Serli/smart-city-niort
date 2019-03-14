@@ -123,7 +123,6 @@ function verifCategoActive() {
 let markerArret = [];
 
 function clickCritere() {
-
     var nameCritere = this.id;
 
     // critere actuellement actif
@@ -349,9 +348,10 @@ document.getElementsByTagName("main")[0].onclick = closeAllNav;
 // cacher ou afficher la navbarUnder = navbar principal des categories
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
-function clickToggleFooter() {
+function clickToggleFooter(clickMarker) {
 
     verifCategoActive()
+
 
     if (document.getElementsByClassName("containNavbar")[0].className.includes("show")) {
 
@@ -362,7 +362,7 @@ function clickToggleFooter() {
         document.getElementsByClassName("fa-angle-double-down")[0].classList.add("angleUp");
 
 
-    } else {
+    } else if (clickMarker !== true) {
         document.getElementsByClassName("containNavbar")[0].classList.add("show");
         document.getElementsByClassName("navbarUnder")[0].classList.add("show");
         document.getElementsByClassName("fa-angle-double-down")[0].classList.remove("angleUp");

@@ -59,7 +59,7 @@ function init() {
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
-        attributionControl:false
+        attributionControl: false
     });
     L.control.attribution({position: 'topright'}).addTo(map);
     // map.zoomControl.setPosition('topright');
@@ -123,6 +123,15 @@ function init() {
     });
 
     map.addControl(new customControlToggle());
+
+    var markersLayer = L.featureGroup().addTo(map);
+
+// populate map from stops…
+
+    markersLayer.on("click", function (event) {
+        // var clickedMarker = event.layer;
+        console.log("click marker")
+    });
 
 
 }
@@ -216,6 +225,7 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
+
                 let nameParking = "";
                 let capacityParking = "";
                 let couvert = ""
@@ -281,7 +291,6 @@ function layers() {
                     '<h6>' + data.title + '</h6>' +
                     '<h8>Adresse : ' + data.address.street + '</h8><br>' +
                     description
-
                 ).addTo(MagasinBio);
             }
         }
@@ -344,14 +353,18 @@ function layers() {
             pointToLayer: function (feature, latlng) {
                 if (feature.properties.name !== undefined) {
                     let nom = feature.properties.name;
-                    let telephone = "inconnue";
-                    let adresse = "inconnue";
+                    let telephone = "";
+                    let adresse = "";
+
+                    if (feature.properties.name !== undefined) {
+                        nom = '<h6>' + feature.properties.name + '</h6>';
+                    }
 
                     if (feature.properties.phone !== undefined) {
-                        telephone = feature.properties.phone;
+                        telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
                     }
                     if (feature.properties.adresse !== undefined) {
-                        adresse = feature.properties.adresse;
+                        adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
                     }
                     let doctorsMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
@@ -367,9 +380,9 @@ function layers() {
                             title: nom
                         });
                     marker.bindPopup(
-                        '<h6>' + nom + '</h6>' +
-                        '<h8>Téléphone : ' + telephone + '</h8><br>' +
-                        '<h8>Adresse : ' + adresse + '</h8>'
+                        nom +
+                        telephone +
+                        adresse
                     );
                     return marker;
                 }
@@ -594,7 +607,7 @@ function layers() {
 
     let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
-    tabLayer = new Array();
+    tabLayer = [];
     tabLayer["Velo"] = cycle;
     tabLayer["RepairCafe"] = testRepairCafe;
     tabLayer["Coworking"] = espaceCoworking;
@@ -617,6 +630,21 @@ function layers() {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
         tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
     });
+
+
+    /* **********$  mobile or desktop *******$ */
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // on cache la navbar si on clicl sur n'importe quel marker
+        Object.keys(tabLayer).forEach(function (key) {
+            tabLayer[key].on('click', L.bind(clickToggleFooter, null, true))
+
+        });
+    } else {
+        console.log(" 3 pc ")
+    }
+
+
 }
 
 
@@ -626,6 +654,9 @@ function parkingVoitu(param) {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
+
+                layer.on('click', L.bind(clickToggleFooter, null, true));
+
                 let nameParking = "";
                 let capacityParking = "";
                 if (feature.properties.name !== undefined) {
@@ -662,8 +693,6 @@ function parkingVoitu(param) {
 
 
                 if (param === "gratuit") {
-                    //console.log("feature.properties.fee :", feature.properties.fee)
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
@@ -686,7 +715,6 @@ function parkingVoitu(param) {
                     return marker;
                 } else if (param === "covoit") {
 
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'copyright',
@@ -698,8 +726,6 @@ function parkingVoitu(param) {
 
 
                 } else {
-
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
