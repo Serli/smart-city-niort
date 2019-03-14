@@ -799,31 +799,31 @@ function colorMarker(ligne) {
 function logo(arret) {
     let lignesDeBus = [];
     if (arret.includes("1")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne1.png" class="logoLigne"/>');
     }
     if (arret.includes("2")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne2.png" class="logoLigne"/>');
     }
     if (arret.includes("3")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne3.png" class="logoLigne"/>');
     }
     if (arret.includes("4")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne4.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne4.png" class="logoLigne"/>');
     }
     if (arret.includes("5")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne5.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne5.png" class="logoLigne"/>');
     }
     if (arret.includes("6")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne6.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne6.png" class="logoLigne"/>');
     }
     if (arret.includes("7")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne7.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne7.png" class="logoLigne"/>');
     }
     if (arret.includes("8")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne8.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne8.png" class="logoLigne"/>');
     }
     if (arret.includes("9")) {
-        lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
+        lignesDeBus.push('<img src="{{ site.baseurl }}/assets/images/ligne/ligne9.png" class="logoLigne"/>');
     }
     return lignesDeBus;
 }

@@ -132,14 +132,13 @@ function clickCritere() {
 
         if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
 
-            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active")
+            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active");
 
             if (filtreShowActives.length > 0) {
 
                 while (filtreShowActives.length > 0) {
 
-                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0]
-                    console.log("index :", index.id);
+                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0];
                     map.removeLayer(tabLayer[index.id]);
                     index.classList.remove("active");
                     markerArret = [];
