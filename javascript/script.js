@@ -156,6 +156,7 @@ function init() {
     map.addControl(new customControlToggle());
     map.addControl(new recenterLocation());
 
+
     layers();
 
 
@@ -609,11 +610,11 @@ function parkingVoitu(param) {
                     nameParking = '<h6>' + feature.properties.name + '</h6>'
                 }
                 if (feature.properties.capacity !== undefined) {
-                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8>'
+                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8><br>'
                 }
                 if (nameParking != "" || capacityParking != "")
                     layer.bindPopup(
-                        nameParking + capacityParking
+                        nameParking + capacityParking + '<ahref="http://maps.google.fr/maps?q= 50.57337, 1.64882"> <i class="fas fa-location-arrow" ></i></a>'
                     );
             },
             filter: function (feature, layer) {
