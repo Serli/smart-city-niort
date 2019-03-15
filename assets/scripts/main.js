@@ -131,14 +131,13 @@ function clickCritere() {
 
         if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
 
-            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active")
+            let filtreShowActives = this.parentNode.getElementsByClassName("filtreShow active");
 
             if (filtreShowActives.length > 0) {
 
                 while (filtreShowActives.length > 0) {
 
-                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0]
-                    console.log("index :", index.id);
+                    var index = this.parentNode.getElementsByClassName("filtreShow active")[0];
                     map.removeLayer(tabLayer[index.id]);
                     index.classList.remove("active");
                     markerArret = [];
@@ -425,4 +424,11 @@ droptarget.addEventListener('dragleave', function () {
     droptarget.classList.remove("dropperEnter");
     droptarget.classList.add("dropperLeave");
 });
+
+function recenter(){
+    let lat = 46.3239455;
+    let lng = -0.4645212;
+    var zoomLevel = 13;
+    map.setView([lat, lng], zoomLevel);
+}
 
