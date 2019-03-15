@@ -1,8 +1,8 @@
 const ligne = [{
-        id: "1",
-        trajet: [TrajetLine1()],
-        name: "Ligne 1"
-    },
+    id: "1",
+    trajet: [TrajetLine1()],
+    name: "Ligne 1"
+},
     {
         id: "2",
         trajet: [TrajetLine2()],
@@ -298,7 +298,7 @@ function layers() {
                     prefix: 'fa',
                     icon: 'apple-alt',
                     iconColor: 'white',
-                    markerColor: 'lightred'
+                    markerColor: 'cadetblue'
                 });
                 let markerBio = L.marker(
                     [data.location.lat, data.location.lon],
@@ -446,7 +446,7 @@ function layers() {
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
-  
+
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
@@ -507,7 +507,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'medkit',
                         iconColor: 'white',
-                        markerColor: 'orange'
+                        markerColor: 'lightgreen'
                     });
 
                     let marker = L.marker(
@@ -526,14 +526,14 @@ function layers() {
 
     var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
 
-    var RepairCafe = createMarker(repairCafe, 'tools', 'lightred');
+    var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
 
     var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
-  
+
     var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
 
 
-    var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'beige');
+    var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
 
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
@@ -710,7 +710,7 @@ function polystyle(param) {
     }
 }
 
-function createMarker(fichier, icon, color){
+function createMarker(fichier, icon, color) {
     return L.geoJSON(fichier,
         {
             attribution: '&copy; OpenStreetMap',
