@@ -9,15 +9,13 @@ const recyclings = {
       "properties": {
         "@id": "way/190816266",
         "amenity": "recycling",
-        "recycling_type": "Déchetterie"
+        "recycling_type": "Dechetterie"
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
             -0.626747,
             46.374603,
-          ]
         ]
       },
       "id": "way/190816266"
@@ -28,7 +26,7 @@ const recyclings = {
         "@id": "way/231551023",
         "amenity": "recycling",
         "collection_times": "Mo-Sa 09:00-12:00,13:00-17:00; Tu off; Th off; Fr 13:00-17:00",
-        "name": "Déchetterie de Vouillé",
+        "name": "Dechetterie de Vouillé",
         "adresse":"83 Rue de Fend le Vent",
         "operator": "Grand Poitiers /Veolia",
         "recycling": {
@@ -42,16 +40,14 @@ const recyclings = {
           "light_bulbs": "yes",
           "scrap_metal": "yes",
           "waste_oil": "yes",
-          "type": "Déchetterie"
+          "type": "Dechetterie"
         }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
             -0.334492,
-            46.309510,
-          ]
+            46.309510
         ]
       },
       "id": "way/231551023"
@@ -61,18 +57,16 @@ const recyclings = {
       "properties": {
         "@id": "way/397608312",
         "amenity": "recycling",
-        "name": "Déchetterie de La Crèche",
+        "name": "Dechetterie de La Crèche",
         "recycling": {
-          "type": "Déchetterie"
+          "type": "Dechetterie"
         }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
             -0.339039,
             46.348627,
-          ]
         ]
       },
       "id": "way/397608312"
@@ -84,18 +78,20 @@ const recyclings = {
         "amenity": "recycling",
         "barrier": "fence",
         "landuse": "industrial",
-        "name": "Déchetterie municipale",
+        "name": "Dechetterie municipale",
         "recycling": {
-          "type": "Déchetterie"
+          "glass": "yes",
+          "green_waste": "yes",
+          "cardboard": "yes",
+          "waste": "yes",
+          "type": "Dechetterie"
         }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
             -0.429320,
             46.286563,
-          ]
         ]
       },
       "id": "way/484406638"
@@ -529,7 +525,7 @@ const recyclings = {
           "scrap_metal": "yes",
           "small_appliances": "yes",
           "waste": "yes",
-          "type": "Déchetterie"
+          "type": "Dechetterie"
         }
       },
       "geometry": {

@@ -207,13 +207,13 @@ function markerPopup(feature) {
 
     if (dateDebut !== "" && dateFin !== "") {
         return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
             '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div>'
         );
     } else {
         return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
             '<label>Horaires Inconnues</label></div>'
         );
@@ -239,7 +239,7 @@ function layers() {
 
                 let nameParking = "";
                 let capacityParking = "";
-                let couvert = ""
+                let couvert = "";
                 if (feature.properties.name !== undefined) {
                     nameParking = '<h6>' + feature.properties.name + '</h6>'
                 }
@@ -433,7 +433,6 @@ function layers() {
     });
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
@@ -512,7 +511,9 @@ function layers() {
             }
         });
 
-    var recyclage = L.geoJSON(recyclings,
+    let decheterie = L.layerGroup();
+    let conteneur = L.layerGroup();
+    L.geoJSON(recyclings,
         {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
@@ -522,29 +523,48 @@ function layers() {
                 if (feature.properties.name !== undefined) {
                     nom = '<h6>' + feature.properties.name + '</h6>'
                 }
-                if (feature.properties.phone !== undefined) {
-                    adresse = '<h8>Téléphone : ' + feature.properties.adresse + '</h8>'
-                }
                 if (feature.properties.adresse !== undefined) {
-                    recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>'
+                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>'
                 }
-                let repairMarker = L.AwesomeMarkers.icon({
-                    prefix: 'fa',
-                    icon: 'dumpster',
-                    iconColor: 'white',
-                    markerColor: 'red'
-                });
+                if (feature.properties.recycling !== undefined) {
+                    if (feature.properties.recycling.type === "container"){
+                        let repairMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'trash-alt',
+                            iconColor: 'white',
+                            markerColor: 'blue'
+                        });
 
-                let marker = L.marker(
-                    latlng,
-                    {
-                        icon: repairMarker,
-                        title: nom
-                    });
-                marker.bindPopup(
-                    nom + adresse + recycling
-                );
-                return marker;
+                        let marker = L.marker(
+                            latlng,
+                            {
+                                icon: repairMarker,
+                                title: nom
+                            });
+                        marker.bindPopup(
+                            nom + adresse + dechetRecyclage(feature).join(" ")
+                        );
+                        conteneur.addLayer(marker);
+                    } else {
+                        let repairMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'dumpster',
+                            iconColor: 'white',
+                            markerColor: 'red'
+                        });
+
+                        let marker = L.marker(
+                            latlng,
+                            {
+                                icon: repairMarker,
+                                title: nom
+                            });
+                        marker.bindPopup(
+                            nom + adresse + dechetRecyclage(feature).join(" ")
+                        );
+                        decheterie.addLayer(marker);
+                    }
+                }
             }
         });
 
@@ -561,8 +581,6 @@ function layers() {
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
-
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
@@ -588,6 +606,8 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
+    tabLayer["Decheterrie"] = decheterie;
+    tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
@@ -850,4 +870,56 @@ function logo(arret) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
     }
     return lignesDeBus;
+}
+
+function dechetRecyclage(feature){
+    let tabRecyclage = [];
+    tabRecyclage.push('<h7>Matériaux accepter : </h7><br>');
+    // recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>';
+    if (feature.properties.recycling.batteries !== undefined){
+        tabRecyclage.push('<h8>Batterie</h8><br>');
+    }
+    if (feature.properties.recycling.cans !== undefined){
+        tabRecyclage.push('<h8>Canettes</h8><br>');
+    }
+    if (feature.properties.recycling.car_batteries !== undefined){
+        tabRecyclage.push('<h8>Batterie de Voiture</h8><br>');
+    }
+    if (feature.properties.recycling.garden_waste !== undefined){
+        tabRecyclage.push('<h8>Déchets de jardin</h8><br>');
+    }
+    if (feature.properties.recycling.glass !== undefined){
+        tabRecyclage.push('<h8>Verre</h8><br>');
+    }
+    if (feature.properties.recycling.paper !== undefined){
+        tabRecyclage.push('<h8>Papier, Bois</h8><br>');
+    }
+    if (feature.properties.recycling.green_waste !== undefined){
+        tabRecyclage.push('<h8>Végétaux</h8><br>');
+    }
+    if (feature.properties.recycling.light_bulbs !== undefined){
+        tabRecyclage.push('<h8>Ampoules</h8><br>');
+    }
+    if (feature.properties.recycling.scrap_metal !== undefined){
+        tabRecyclage.push('<h8>Métaux, ferraille</h8><br>');
+    }
+    if (feature.properties.recycling.waste_oil !== undefined){
+        tabRecyclage.push('<h8>Huile</h8><br>');
+    }
+    if (feature.properties.recycling.cardboard !== undefined){
+        tabRecyclage.push('<h8>Carton</h8><br>');
+    }
+    if (feature.properties.recycling.electrical_appliances !== undefined){
+        tabRecyclage.push('<h8>Appareils électriques</h8><br>');
+    }
+    if (feature.properties.recycling.plastic !== undefined){
+        tabRecyclage.push('<h8>Plastique</h8><br>');
+    }
+    if (feature.properties.recycling.small_appliances !== undefined){
+        tabRecyclage.push('<h8>Petit appareils électroménager</h8><br>');
+    }
+    if (feature.properties.recycling.waste !== undefined){
+        tabRecyclage.push('<h8>Tout venant</h8><br>');
+    }
+    return tabRecyclage;
 }
