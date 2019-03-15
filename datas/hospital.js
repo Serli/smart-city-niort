@@ -302,7 +302,6 @@ const hospital = {
             "properties": {
                 "@id": "relation/8859234",
                 "building": "hospital",
-                "eemail": "pedopsy@ch-niort.fr",
                 "name": "Centre Hospitalier de Niort",
                 "phone": "+33 5 49 32 79 79",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2018",

@@ -417,3 +417,10 @@ droptarget.addEventListener('dragleave', function () {
     droptarget.classList.add("dropperLeave");
 });
 
+function recenter(){
+    let lat = 46.3239455;
+    let lng = -0.4645212;
+    var zoomLevel = 13;
+    map.setView([lat, lng], zoomLevel);
+}
+
