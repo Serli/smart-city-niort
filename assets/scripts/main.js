@@ -41,7 +41,6 @@ function clickCatego() {
         criteresActive = document.getElementsByClassName("navbarOn")[i].getElementsByClassName("active");
     }
 
-    //criteresActive = document.getElementsByClassName("navbarOn")[0].getElementsByClassName("active");
 
     // toute les catégorie activé
     categosActive = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("active");
@@ -123,7 +122,6 @@ function verifCategoActive() {
 let markerArret = [];
 
 function clickCritere() {
-
     var nameCritere = this.id;
 
     // critere actuellement actif
@@ -172,12 +170,16 @@ function clickCritere() {
                     map.addLayer(tabLayer["ParkingVoiture"])
                 }
 
+            } else if (nameCritere.startsWith("Ligne")) {
+                if (document.getElementsByClassName("filtreShow active").length === 0 && document.getElementById("Bus").className.includes("active")) {
+                    map.addLayer(tabLayer["Bus"])
+                }
             }
+
         }
 
 
-        // critere actuellement non - actif
-
+        // else : critere actuellement non - actif
     } else {
 
 
@@ -187,6 +189,9 @@ function clickCritere() {
             if (document.getElementById("ParkingVoiture").className.includes("active")) {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
+
+        } else if (nameCritere.startsWith("Ligne")) {
+            map.removeLayer(tabLayer["Bus"])
 
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
@@ -201,7 +206,6 @@ function clickCritere() {
         if (nameCritere != null) {
             map.addLayer(tabLayer[nameCritere]);
         }
-
 
         // categorie transport
         if (this.parentElement.className.includes("transport")) {
@@ -342,15 +346,16 @@ function clickTogglePosition() {
 
 
 // on cliquez sur la map ça ferme les critere mais pas les categories
-document.getElementsByTagName("main")[0].onclick = closeAllNav;
+document.getElementsByTagName("main")[0].onmousedown = closeAllNav;
 
 
 // cacher ou afficher la navbarUnder = navbar principal des categories
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
-function clickToggleFooter() {
+function clickToggleFooter(clickMarker) {
 
     verifCategoActive()
+
 
     if (document.getElementsByClassName("containNavbar")[0].className.includes("show")) {
 
@@ -361,7 +366,7 @@ function clickToggleFooter() {
         document.getElementsByClassName("fa-angle-double-down")[0].classList.add("angleUp");
 
 
-    } else {
+    } else if (clickMarker !== true) {
         document.getElementsByClassName("containNavbar")[0].classList.add("show");
         document.getElementsByClassName("navbarUnder")[0].classList.add("show");
         document.getElementsByClassName("fa-angle-double-down")[0].classList.remove("angleUp");
@@ -374,14 +379,13 @@ function clickToggleFooter() {
 
 /* *************  Drag And Drop  ************  */
 
-
 let draggableElement = document.querySelector('*[draggable="true"]');
 let droptarget = document.getElementById("droptarget");
 
 
 draggableElement.addEventListener('dragstart', function (e) {
     e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
-    // console.log(droptarget.className)
+
     droptarget.classList.add("dropperStyle");
 });
 
@@ -417,7 +421,9 @@ droptarget.addEventListener('dragleave', function () {
     droptarget.classList.add("dropperLeave");
 });
 
-function recenter(){
+/* *************  COntroller recenter   ************  */
+
+function recenter() {
     let lat = 46.3239455;
     let lng = -0.4645212;
     var zoomLevel = 13;
