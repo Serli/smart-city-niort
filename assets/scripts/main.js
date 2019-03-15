@@ -350,7 +350,7 @@ function clickTogglePosition() {
 
 
 // on cliquez sur la map ça ferme les critere mais pas les categories
-document.getElementsByTagName("main")[0].onclick = closeAllNav;
+document.getElementsByTagName("main")[0].onmousedown = closeAllNav;
 
 
 // cacher ou afficher la navbarUnder = navbar principal des categories

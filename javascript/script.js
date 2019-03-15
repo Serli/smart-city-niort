@@ -633,10 +633,10 @@ function layers() {
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         console.log(elementLayer)
-                        elementLayer.on('click', L.bind(clickToggleFooter, null, true))
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
                     });
                 } else {
-                    tabLayer[key].on('click', L.bind(clickToggleFooter, null, true))
+                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
                 }
             }
         );
