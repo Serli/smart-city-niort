@@ -59,7 +59,7 @@ function init() {
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
-        attributionControl:false
+        attributionControl: false
     });
     L.control.attribution({position: 'topright'}).addTo(map);
     // map.zoomControl.setPosition('topright');
@@ -97,11 +97,8 @@ function init() {
     ).addTo(map);
 
 
-    layers();
-
-
+    // fleche control - toggle position navbar
     var customControlToggle = L.Control.extend({
-
         options: {
             position: 'topright'
         },
@@ -117,10 +114,10 @@ function init() {
             container.onclick = function () {
                 clickTogglePosition();
             }
-
             return container;
         }
     });
+
 
     var recenterLocation = L.Control.extend({
 
@@ -146,6 +143,18 @@ function init() {
 
     map.addControl(new customControlToggle());
     map.addControl(new recenterLocation());
+
+    layers();
+
+
+    var markersLayer = L.featureGroup().addTo(map);
+
+// populate map from stops…
+
+    markersLayer.on("click", function (event) {
+        // var clickedMarker = event.layer;
+        console.log("click marker")
+    });
 
 
 }
@@ -239,6 +248,7 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
+
                 let nameParking = "";
                 let capacityParking = "";
                 let couvert = ""
@@ -267,7 +277,7 @@ function layers() {
                     prefix: 'fa',
                     icon: 'bicycle ',
                     iconColor: 'white',
-                    markerColor: "lightred"
+                    markerColor: "purple"
                 });
                 let marker = L.marker(latlng, {icon: cycleMarker});
                 return marker;
@@ -304,7 +314,6 @@ function layers() {
                     '<h6>' + data.title + '</h6>' +
                     '<h8>Adresse : ' + data.address.street + '</h8><br>' +
                     description
-
                 ).addTo(MagasinBio);
             }
         }
@@ -318,7 +327,7 @@ function layers() {
                 prefix: 'fa',
                 icon: 'comment-medical',
                 iconColor: 'white',
-                markerColor: 'beige'
+                markerColor: 'orange'
             });
 
             let marker = L.marker(
@@ -376,14 +385,17 @@ function layers() {
                     let nom = feature.properties.name;
                     let telephone = "";
                     let adresse = "";
+
                     if (feature.properties.name !== undefined) {
-                        nom = '<h6>' + feature.properties.name + '</h6>'
+                        nom = '<h6>' + feature.properties.name + '</h6>';
                     }
+
                     if (feature.properties.phone !== undefined) {
-                        telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8>'
+                        telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
                     }
                     if (feature.properties.adresse !== undefined) {
-                        adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+                        adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
+
                     }
 
                     let doctorsMarker = L.AwesomeMarkers.icon({
@@ -434,6 +446,7 @@ function layers() {
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
     var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
+  
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
@@ -441,7 +454,6 @@ function layers() {
 
 
     const coord = [];
-    // var mcg = L.markerClusterGroup().addTo(map);
 
     let mesLigne = ligne.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
@@ -495,7 +507,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'medkit',
                         iconColor: 'white',
-                        markerColor: 'lightred'
+                        markerColor: 'orange'
                     });
 
                     let marker = L.marker(
@@ -517,8 +529,9 @@ function layers() {
     var RepairCafe = createMarker(repairCafe, 'tools', 'lightred');
 
     var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
-
+  
     var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
+
 
     var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'beige');
 
@@ -532,7 +545,9 @@ function layers() {
 
     let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
 
-    tabLayer = new Array();
+
+    // Tableau contenant  tout les layers
+    tabLayer = [];
     tabLayer["Velo"] = cycle;
     tabLayer["RepairCafe"] = RepairCafe;
     tabLayer["Coworking"] = espaceCoworking;
@@ -555,8 +570,31 @@ function layers() {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
         tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
     });
-}
 
+
+    /* **********$  mobile or desktop *******$ */
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        //mobile
+        // on cache la navbar si on clicl sur n'importe quel marker
+        Object.keys(tabLayer).forEach(function (key) {
+
+                // si c'est un groupLayer d'une ligne de bus
+                if (key.startsWith("Ligne")) {
+                    tabLayer[key].getLayers().forEach(function (elementLayer) {
+                        console.log(elementLayer)
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
+                    });
+                } else {
+                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+                }
+            }
+        );
+    } else {
+        //desktop
+    }
+
+
+}
 
 function parkingVoitu(param) {
 
@@ -564,6 +602,8 @@ function parkingVoitu(param) {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
+
+
                 let nameParking = "";
                 let capacityParking = "";
                 if (feature.properties.name !== undefined) {
@@ -600,13 +640,11 @@ function parkingVoitu(param) {
 
 
                 if (param === "gratuit") {
-                    //console.log("feature.properties.fee :", feature.properties.fee)
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
-                        markerColor: "beige"
+                        markerColor: "orange"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
@@ -624,20 +662,17 @@ function parkingVoitu(param) {
                     return marker;
                 } else if (param === "covoit") {
 
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'copyright',
                         iconColor: 'white',
-                        markerColor: "purple"
+                        markerColor: "lightgreen"
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
 
 
                 } else {
-
-                    var name = feature.properties.name;
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
@@ -652,17 +687,16 @@ function parkingVoitu(param) {
         }
     );
 
-
     return parkingVoiture;
 }
 
 function polystyle(param) {
     if (param === "gratuit") {
         return {
-            fillColor: '#12d9c9',
+            fillColor: '#f69730',
             weight: 3,
             opacity: 1,
-            color: '#12d9c9',  //Outline color
+            color: '#f69730',  //Outline color
             fillOpacity: 0.4
         };
     } else {

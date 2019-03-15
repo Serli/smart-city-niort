@@ -123,7 +123,6 @@ function verifCategoActive() {
 let markerArret = [];
 
 function clickCritere() {
-
     var nameCritere = this.id;
 
     // critere actuellement actif
@@ -172,7 +171,12 @@ function clickCritere() {
                     map.addLayer(tabLayer["ParkingVoiture"])
                 }
 
+            } else if (nameCritere.startsWith("Ligne")) {
+                if (document.getElementsByClassName("filtreShow active").length === 0 && document.getElementById("Bus").className.includes("active")) {
+                    map.addLayer(tabLayer["Bus"])
+                }
             }
+
         }
 
 
@@ -187,6 +191,9 @@ function clickCritere() {
             if (document.getElementById("ParkingVoiture").className.includes("active")) {
                 map.removeLayer(tabLayer["ParkingVoiture"])
             }
+
+        } else if (nameCritere.startsWith("Ligne")) {
+            map.removeLayer(tabLayer["Bus"])
 
         } else if (nameCritere === "ParkingVoiture" || nameCritere === "Bus") {
             showFilter(this)
@@ -342,15 +349,16 @@ function clickTogglePosition() {
 
 
 // on cliquez sur la map ça ferme les critere mais pas les categories
-document.getElementsByTagName("main")[0].onclick = closeAllNav;
+document.getElementsByTagName("main")[0].onmousedown = closeAllNav;
 
 
 // cacher ou afficher la navbarUnder = navbar principal des categories
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
-function clickToggleFooter() {
+function clickToggleFooter(clickMarker) {
 
     verifCategoActive()
+
 
     if (document.getElementsByClassName("containNavbar")[0].className.includes("show")) {
 
@@ -361,7 +369,7 @@ function clickToggleFooter() {
         document.getElementsByClassName("fa-angle-double-down")[0].classList.add("angleUp");
 
 
-    } else {
+    } else if (clickMarker !== true) {
         document.getElementsByClassName("containNavbar")[0].classList.add("show");
         document.getElementsByClassName("navbarUnder")[0].classList.add("show");
         document.getElementsByClassName("fa-angle-double-down")[0].classList.remove("angleUp");

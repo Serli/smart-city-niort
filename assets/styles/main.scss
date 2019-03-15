@@ -39,7 +39,7 @@ body {
     -webkit-text-fill-color: transparent;
     font-weight: bold;
     font-family: "LEIXO";
-    margin: 10px 0;
+    margin: 14px 0 5px 0;
   }
 
 }
@@ -224,7 +224,7 @@ body {
     border-top-left-radius: 2px;
     max-height: 0;
     max-width: 90vw;
-    min-width: 0;
+    min-width: 60vw;
 
     &.show {
       max-height: 50vh;
@@ -331,6 +331,11 @@ body {
 .categotext {
   padding: 8px 0 0 0;
   font-family: Calibri, Trebuchet, sans-serif;
+}
+
+.leaflet-popup-content {
+  font-family: Calibri, Trebuchet, sans-serif;
+  color: #a8a9ae;
 }
 
 .toggle {
@@ -501,7 +506,7 @@ $max_width: 1200px;
 $min_font: 16px;
 $min_font_catego: 13px;
 $min_font_title: 60px;
-$max_font_title: 70px;
+$max_font_title: 100px;
 $max_font: 17px;
 
 html body {
