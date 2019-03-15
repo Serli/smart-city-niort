@@ -495,7 +495,7 @@ function layers() {
                         prefix: 'fa',
                         icon: 'medkit',
                         iconColor: 'white',
-                        markerColor: 'lightred'
+                        markerColor: 'orange'
                     });
 
                     let marker = L.marker(
@@ -512,21 +512,51 @@ function layers() {
             }
         });
 
+    var recyclage = L.geoJSON(recyclings,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                let nom = "";
+                let adresse = "";
+                let recycling = "";
+                if (feature.properties.name !== undefined) {
+                    nom = '<h6>' + feature.properties.name + '</h6>'
+                }
+                if (feature.properties.phone !== undefined) {
+                    adresse = '<h8>Téléphone : ' + feature.properties.adresse + '</h8>'
+                }
+                if (feature.properties.adresse !== undefined) {
+                    recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>'
+                }
+                let repairMarker = L.AwesomeMarkers.icon({
+                    prefix: 'fa',
+                    icon: 'dumpster',
+                    iconColor: 'white',
+                    markerColor: 'red'
+                });
+
+                let marker = L.marker(
+                    latlng,
+                    {
+                        icon: repairMarker,
+                        title: nom
+                    });
+                marker.bindPopup(
+                    nom + adresse + recycling
+                );
+                return marker;
+            }
+        });
+
     var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
 
-    var RepairCafe = createMarker(repairCafe, 'tools', 'lightred');
+    var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
 
     var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
 
     var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
 
     var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'beige');
-
-    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-
-    var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
-
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
