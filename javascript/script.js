@@ -107,9 +107,15 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.backgroundSize = "30px 30px";
+            container.style.width = "48px";
+            container.style.height = "48px";
 
-            container.innerHTML = '<i class="fa fa-arrow-left fa-2x"></i>';
+            container.style.display = "flex";
+            container.style.alignContent = "centrer";
+            container.style.justifyContent = "center";
+
+
+            container.innerHTML = '<i class="fa fa-arrow-left "></i>';
 
             container.onclick = function () {
                 clickTogglePosition();
@@ -129,9 +135,15 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.backgroundSize = "30px 30px";
+            container.style.width = "48px";
+            container.style.height = "48px";
 
-            container.innerHTML = '<i class="fas fa-compass fa-2x"></i>';
+
+            container.style.display = "flex";
+            container.style.alignItems = "centrer";
+            container.style.justifyContent = "center";
+
+            container.innerHTML = '<i class="far fa-compass "></i>';
 
             container.onclick = function () {
                 recenter();

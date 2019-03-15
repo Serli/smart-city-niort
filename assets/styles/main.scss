@@ -339,17 +339,15 @@ body {
 }
 
 .toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   i {
-    color: #12a5d4;
+    color: #a8a9ae;
     padding: 5px;
-  }
-}
-
-.leaflet-control-container {
-
-  i {
     transition: 0.3s;
+    font-size: 27px;
   }
 
   .angleUp {
@@ -406,13 +404,16 @@ body .material-tooltip {
   white-space: nowrap;
   background: rgba(255, 255, 255, 0.3);
 
-
 }
 
 
 .leaflet-control-container .leaflet-control-zoom {
   margin-top: 16px;
   margin-left: 50px;
+
+  a{
+    color : #a8a9ae;
+  }
 }
 
 
