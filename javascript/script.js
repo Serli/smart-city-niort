@@ -118,7 +118,7 @@ function init() {
         }
     });
 
-
+    // recenter control - toggle position navbar
     var recenterLocation = L.Control.extend({
 
         options: {
@@ -147,16 +147,6 @@ function init() {
     layers();
 
 
-    var markersLayer = L.featureGroup().addTo(map);
-
-// populate map from stops…
-
-    markersLayer.on("click", function (event) {
-        // var clickedMarker = event.layer;
-        console.log("click marker")
-    });
-
-
 }
 
 function markerPopup(feature) {
@@ -182,8 +172,6 @@ function markerPopup(feature) {
             let dateDay = days.split("-");
             let horaire = plage.substring(number, plage.length);
             let plageHoraire = horaire.split("/");
-
-            //console.log(days.trim().startsWith(day[today.getDay()-1])+"/"+ days.trim().startsWith(day[today.getDay()-1], 3)+"/" +(dateDay[1] && today.getDay()-1 >= day.indexOf(dateDay[0].trim()) && today.getDay()-1 <= day.indexOf(dateDay[1].trim())));
 
             if (days.trim().startsWith(day[today.getDay() - 1]) ||
                 days.trim().startsWith(day[today.getDay() - 1], 3) ||
@@ -581,7 +569,6 @@ function layers() {
                 // si c'est un groupLayer d'une ligne de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        console.log(elementLayer)
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
                     });
                 } else {

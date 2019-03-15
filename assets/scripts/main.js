@@ -41,7 +41,6 @@ function clickCatego() {
         criteresActive = document.getElementsByClassName("navbarOn")[i].getElementsByClassName("active");
     }
 
-    //criteresActive = document.getElementsByClassName("navbarOn")[0].getElementsByClassName("active");
 
     // toute les catégorie activé
     categosActive = document.getElementsByClassName("navbarUnder")[0].getElementsByClassName("active");
@@ -180,8 +179,7 @@ function clickCritere() {
         }
 
 
-        // critere actuellement non - actif
-
+        // else : critere actuellement non - actif
     } else {
 
 
@@ -208,7 +206,6 @@ function clickCritere() {
         if (nameCritere != null) {
             map.addLayer(tabLayer[nameCritere]);
         }
-
 
         // categorie transport
         if (this.parentElement.className.includes("transport")) {
@@ -382,14 +379,13 @@ function clickToggleFooter(clickMarker) {
 
 /* *************  Drag And Drop  ************  */
 
-
 let draggableElement = document.querySelector('*[draggable="true"]');
 let droptarget = document.getElementById("droptarget");
 
 
 draggableElement.addEventListener('dragstart', function (e) {
     e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
-    // console.log(droptarget.className)
+
     droptarget.classList.add("dropperStyle");
 });
 
@@ -425,7 +421,9 @@ droptarget.addEventListener('dragleave', function () {
     droptarget.classList.add("dropperLeave");
 });
 
-function recenter(){
+/* *************  COntroller recenter   ************  */
+
+function recenter() {
     let lat = 46.3239455;
     let lng = -0.4645212;
     var zoomLevel = 13;
