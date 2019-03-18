@@ -341,6 +341,7 @@ function layers() {
             let nom = "";
             let phone = "";
             let mail = "";
+            let horaire = "";
             let pharmacieMarker = L.AwesomeMarkers.icon({
                 prefix: 'fa',
                 icon: 'clinic-medical',
@@ -356,13 +357,16 @@ function layers() {
             if (feature.properties.email !== undefined) {
                 mail = '<h8>Mail : ' + feature.properties.email + '</h8>'
             }
+            if (feature.properties.horaire !== undefined) {
+                mail = '<h8>horaire : ' + feature.properties.horaire + '</h8>'
+            }
             let marker = L.marker(
                 latlng,
                 {
                     icon: pharmacieMarker,
                 });
             marker.bindPopup(
-                nom + phone + mail
+                nom + phone + mail + horaire
             );
             return marker;
         },
