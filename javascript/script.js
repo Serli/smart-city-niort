@@ -156,7 +156,12 @@ function markerPopup(feature) {
     let ouverture = "";
     let today = new Date();
     const {opening_hours, amenity, name} = feature.properties;
-    if (opening_hours && amenity === 'pharmacy') {
+    if (opening_hours && amenity === 'pharmacy'
+        || amenity === "recycling"
+        || amenity === "economie"
+        || amenity === "coworking"
+        || amenity === "repair_cafe"
+        || amenity === "marcher") {
 
         let split = [];
         if (opening_hours.indexOf(';') > 0) {
@@ -167,7 +172,7 @@ function markerPopup(feature) {
             split = [opening_hours];
         }
         split.forEach(plage => {
-            let number = plage.search(/ ([0_9]+)/);
+            let number = plage.search(/ ([0_1]+)/);
             let days = plage.substring(0, number);
             let dateDay = days.split("-");
             let horaire = plage.substring(number, plage.length);
@@ -208,14 +213,12 @@ function markerPopup(feature) {
     if (dateDebut !== "" && dateFin !== "") {
         return (
             '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div>'
+            + '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div><br>'
         );
     } else {
         return (
             '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>Horaires Inconnues</label></div>'
+            + '<label>Horaires Inconnues</label></div><br>'
         );
     }
 }
@@ -513,6 +516,44 @@ function layers() {
 
     let decheterie = L.layerGroup();
     let conteneur = L.layerGroup();
+
+    let decheterie2 = L.geoJSON(recyclings, {
+        attribution: '&copy; OpenStreetMap',
+        pointToLayer: function (feature, latlng) {
+            let nom = "";
+            let adresse = "";
+            if (feature.properties.name !== undefined) {
+                nom = '<h6>' + feature.properties.name + '</h6>'
+            }
+            if (feature.properties.adresse !== undefined) {
+                adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+            }
+            if (feature.properties.recycling !== undefined) {
+                if (feature.properties.recycling.type === "Dechetterie"){
+                    let repairMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'dumpster',
+                        iconColor: 'white',
+                        markerColor: 'red'
+                    });
+
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: repairMarker,
+                            title: nom
+                        });
+                    return marker;
+                }
+            }
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(
+                markerPopup(feature) + dechetRecyclage(feature).join(" ")
+            );
+        }
+    });
+
     L.geoJSON(recyclings,
         {
             attribution: '&copy; OpenStreetMap',
@@ -524,7 +565,7 @@ function layers() {
                     nom = '<h6>' + feature.properties.name + '</h6>'
                 }
                 if (feature.properties.adresse !== undefined) {
-                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>'
+                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
                 }
                 if (feature.properties.recycling !== undefined) {
                     if (feature.properties.recycling.type === "container"){
@@ -565,7 +606,7 @@ function layers() {
                         decheterie.addLayer(marker);
                     }
                 }
-            }
+            },
         });
 
     var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
@@ -606,7 +647,7 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
-    tabLayer["Decheterrie"] = decheterie;
+    tabLayer["Decheterrie"] = decheterie2;
     tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
@@ -753,13 +794,14 @@ function polystyle(param) {
 }
 
 function createMarker(fichier, icon, color) {
+    let adresse;
     return L.geoJSON(fichier,
         {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
                 if (feature.properties.name !== undefined) {
                     let nom = feature.properties.name;
-                    let adresse = feature.properties.adresse;
+                    adresse = feature.properties.adresse;
                     let Marker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: icon,
@@ -773,12 +815,18 @@ function createMarker(fichier, icon, color) {
                             icon: Marker,
                             title: nom
                         });
-                    marker.bindPopup(
-                        '<h6>' + nom + '</h6>'
-                        + '<h8>' + adresse + '</h8>'
-                    );
+                    // marker.bindPopup(
+                    //     '<h6>' + nom + '</h6>'
+                    //     + '<h8>' + adresse + '</h8>'
+                    // );
                     return marker;
                 }
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(
+                    markerPopup(feature)
+                    + '<h8>' + adresse + '</h8>'
+                );
             }
         });
 }
