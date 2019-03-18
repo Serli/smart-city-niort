@@ -558,6 +558,9 @@ function layers() {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
                             let color = colorMarker(ligne);
+                            let type = " TanLib, le transport de l'agglo Niortaise";
+                            let coordonnee = getCoordonnées(feature)
+                            let val1 = logo(ligne).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -571,11 +574,8 @@ function layers() {
                                     icon: busMarker,
                                     title: arret
                                 });
-                            marker.bindPopup(
-                                '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                                + '<h6>' + arret + '</h6>'
-                                + logo(ligne).join(" ")
-                            );
+
+                            createPopup(marker, coordonnee, arret, type, val1, null)
                             return marker;
                         }
                     }
