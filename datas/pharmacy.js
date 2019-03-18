@@ -241,7 +241,7 @@ const pharmacy = {
                 "amenity": "pharmacy",
                 "dispensing": "yes",
                 "name": "Pharmacie du Pontreau",
-                "opening_hours": "Mo-Fr 09:00-12:30, 14:00-19:30, Sa 09:00-12:30, 14:00-19:00",
+                "opening_hours": "Mo-Fr 09:00-12:30 / 14:00-19:30, Sa 09:00-12:30 / 14:00-19:00",
                 "phone": "+33 5 49 24 04 08",
                 "ref:FR:FINESS": "790010623",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010;Celtipharm - 10/2014",
@@ -268,7 +268,7 @@ const pharmacy = {
                 "amenity": "pharmacy",
                 "dispensing": "yes",
                 "name": "Pharmacie Duhaud",
-                "opening_hours": "Mo-Fr 09:00-12:30, 14:00-19:30, Sa 09:00-12:30",
+                "opening_hours": "Mo-Fr 09:00-12:30 / 14:00-19:30, Sa 09:00-12:30",
                 "phone": "+33 5 49 73 32 83",
                 "ref:FR:FINESS": "790010839",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010;Celtipharm - 10/2014"
