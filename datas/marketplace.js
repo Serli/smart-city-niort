@@ -7,7 +7,9 @@ const marketplace = {
             "properties": {
                 "@id": "node/6019535859",
                 "name": "Les Halles de Niort",
+                "amenity": "marcher",
                 "adresse": "18 Rue Brisson",
+                "opening_hours": "Mo-Su 07:00-20:30",
             },
             "geometry": {
                 "type": "Point",
