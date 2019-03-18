@@ -8,6 +8,8 @@ const repairCafe = {
                 "@id": "node/6019535859",
                 "name": "Centre SocioCulturel de Souche",
                 "adresse": "3 Rue de l'Aérodrome",
+                "amenity": "repair_cafe",
+                "opening_hours": "Mo 14:00-18:00, Tu 09:00-12:00 / 14:00-18:00, We 09:00-12:00 / 13:30-18:00, Th 14:00-18:00, Fr 09:00-12:00 / 14:00-18:00",
                 "network": "Association",
             },
             "geometry": {
@@ -24,8 +26,10 @@ const repairCafe = {
             "properties": {
                 "@id": "node/6019535859",
                 "name": "Centre SocioCulturel du Parc",
+                "amenity": "repair_cafe",
                 "adresse": "Rue de la Tour Chabot",
                 "network": "Association",
+                "opening_hours": "Mo 13:30-18:00, Tu 09:00-12:00 / 13:30-18:00, We 13:30-18:00, Th 13:30-18:00, Fr 09:00-12:00 / 14:00-18:00",
             },
             "geometry": {
                 "type": "Point",

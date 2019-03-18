@@ -7,7 +7,9 @@ const coworking = {
             "properties": {
                 "@id": "node/6019535859",
                 "name": "Kaptain Coworking",
+                "amenity": "coworking",
                 "adresse": "6 Rue des Grands Champs",
+                "opening_hours": "Mo-Su 08:30-20:30",
                 "network": "Coworking",
             },
             "geometry": {
