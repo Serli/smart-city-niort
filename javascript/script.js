@@ -810,6 +810,7 @@ function parkingVoitu(param) {
                     nameParking = feature.properties.name
                 }
                 if (feature.properties.capacity !== undefined) {
+
                     capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
                 }
 
