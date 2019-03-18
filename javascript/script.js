@@ -55,11 +55,13 @@ function init() {
     var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
     var maxBounds = L.latLngBounds(corner1, corner2);
     map = L.map('map', {
+        closeButton: false,
         center: [lat, lng],
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
-        attributionControl: false
+        attributionControl: false,
+
     });
     L.control.attribution({position: 'topright'}).addTo(map);
     // map.zoomControl.setPosition('topright');
@@ -270,14 +272,17 @@ function markerPopup(feature) {
 
     if (dateDebutM !== null && dateFinM !== null) {
         return (
+
             '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
             + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
         );
     }
     else if(dateDebutA !== null && dateFinA !== null) {
         return (
-            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<label>Horaires Inconnues</label></div><br>'
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'+
+              + '<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
+          
+         
         );
     }
     else {
@@ -306,23 +311,24 @@ function layers() {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
 
-                let nameParking = "";
-                let capacityParking = "";
-                let couvert = "";
+                let nameParking = null;
+                let capacityParking = null;
+                let couvert = null
+                let coordonnee = getCoordonnées(feature)
+                let type = "Parking à vélo"
+
                 if (feature.properties.name !== undefined) {
-                    nameParking = '<h6>' + feature.properties.name + '</h6>'
+                    nameParking = feature.properties.name
                 }
                 if (feature.properties.capacity !== undefined) {
-                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8> <br>'
+                    capacityParking = 'Capacité : ' + feature.properties.capacity + ' place(s)'
                 }
                 if (feature.properties.building === 'yes' || feature.properties.covered === 'yes') {
 
-                    couvert = "<h8> Parking couvert </h8>"
+                    couvert = "Couvert"
                 }
-                if (nameParking != "" || capacityParking != "" || couvert != "")
-                    layer.bindPopup(
-                        nameParking + capacityParking + couvert
-                    );
+
+                createPopup(layer, coordonnee, nameParking, type, capacityParking, couvert)
 
             },
 
@@ -350,7 +356,13 @@ function layers() {
             ((data.location.lat >= 46.231153027822046 && data.location.lon >= -0.6389236450195312) &&
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
-                let description = "";
+
+                let coordonnee = data.location.lat + ',' + data.location.lon
+                let description = null;
+                let titre = null;
+                titre = data.title
+                let adresse = data.address.street;
+
                 let Marker = L.AwesomeMarkers.icon({
                     prefix: 'fa',
                     icon: 'apple-alt',
@@ -365,13 +377,11 @@ function layers() {
                     }
                 );
                 if (data.description !== undefined) {
-                    description = '<h8>Description : ' + data.description + '</h8>'
+                    description = data.description
                 }
-                markerBio.bindPopup(
-                    '<h6>' + data.title + '</h6>' +
-                    '<h8>Adresse : ' + data.address.street + '</h8><br>' +
-                    description
-                ).addTo(MagasinBio);
+
+
+                createPopup(markerBio, coordonnee, titre, adresse, description, null).addTo(MagasinBio)
             }
         }
     });
@@ -404,10 +414,13 @@ function layers() {
     var hopital2 = L.geoJSON(hospital2, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
-            let nom = "";
-            let phone = "";
-            let mail = "";
-            let horaire = "";
+
+            let nom = null;
+            let phone = null;
+            let mail = null;
+            let type = "Hôpital";
+            let coordonnee = getCoordonnées(feature)
+
             let pharmacieMarker = L.AwesomeMarkers.icon({
                 prefix: 'fa',
                 icon: 'clinic-medical',
@@ -415,13 +428,13 @@ function layers() {
                 markerColor: 'cadetblue'
             });
             if (feature.properties.name !== undefined) {
-                nom = '<h6>' + feature.properties.name + '</h6>'
+                nom = feature.properties.name
             }
             if (feature.properties.phone !== undefined) {
-                phone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>'
+                phone = feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail = '<h8>Mail : ' + feature.properties.email + '</h8>'
+                mail = feature.properties.email
             }
             if (feature.properties.horaire !== undefined) {
                 mail = '<h8>horaire : ' + feature.properties.horaire + '</h8>'
@@ -431,9 +444,9 @@ function layers() {
                 {
                     icon: pharmacieMarker,
                 });
-            marker.bindPopup(
-                nom + phone + mail + horaire
-            );
+
+            createPopup(marker, coordonnee, nom, type, phone, null);
+
             return marker;
         },
     });
@@ -443,19 +456,21 @@ function layers() {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
                 if (feature.properties.name !== undefined) {
-                    let nom = feature.properties.name;
-                    let telephone = "";
-                    let adresse = "";
+                    let nom = null;
+                    let telephone = null;
+                    let adresse = null;
+                    let type = "Médecin";
+                    let coordonnee = getCoordonnées(feature)
 
                     if (feature.properties.name !== undefined) {
-                        nom = '<h6>' + feature.properties.name + '</h6>';
+                        nom = feature.properties.name
                     }
 
                     if (feature.properties.phone !== undefined) {
-                        telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
+                        telephone = feature.properties.phone
                     }
                     if (feature.properties.adresse !== undefined) {
-                        adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
+                        adresse = feature.properties.adresse
 
                     }
 
@@ -472,9 +487,9 @@ function layers() {
                             icon: doctorsMarker,
                             title: nom
                         });
-                    // marker.bindPopup(
-                    //     nom + adresse + telephone
-                    // );
+
+                    createPopup(marker, coordonnee, nom, type, telephone, adresse)
+
                     return marker;
                 }
             },
@@ -499,23 +514,23 @@ function layers() {
         style: polystyle(),
 
         onEachFeature: function (feature, layer) {
-            let nom = "";
-            let phone = "";
-            let mail = "";
+            let nom = null;
+            let phone = null;
+            let mail = null;
+            let type = "Hopital"
+            let coordonnee = getCoordonnées(feature)
             if (feature.properties.name !== undefined) {
-                nom = '<h6>' + feature.properties.name + '</h6>'
+                nom = feature.properties.name
             }
             if (feature.properties.phone !== undefined) {
-                phone = '<h8>Téléphone : ' + feature.properties.phone + '</h8> <br>'
+                phone = 'Téléphone : ' + feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail = '<h8>Mail : ' + feature.properties.email + '</h8>'
+                mail = 'Mail : ' + feature.properties.email
             }
 
-            if (nom != "" || phone != "" || mail != "")
-                layer.bindPopup(
-                    nom + phone + mail
-                );
+            createPopup(layer, coordonnee, nom, type, phone, mail)
+
         }
     });
 
@@ -576,7 +591,21 @@ function layers() {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
                 if (feature.properties.emergency !== undefined) {
-                    let nom = "Défibrillateur";
+                    let type = "Défibrillateur";
+                    let soustitre = null;
+                    let phone = null;
+                    let coordonnee = getCoordonnées(feature)
+
+                    if (feature.properties.name !== undefined) {
+                        soustitre = feature.properties.name;
+                    }else if (feature.properties.access === "public") {
+                        soustitre = "en libre accés";
+                    }
+
+
+                    if (feature.properties.phone !== undefined) {
+                        phone = 'Téléphone : ' + feature.properties.phone
+                    }
                     let repairMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'medkit',
@@ -588,11 +617,11 @@ function layers() {
                         latlng,
                         {
                             icon: repairMarker,
-                            title: nom
+                            title: type
                         });
-                    marker.bindPopup(
-                        '<h6>' + nom + '</h6>'
-                    );
+
+                    createPopup(marker, coordonnee, type, soustitre, phone, null)
+
                     return marker;
                 }
             }
@@ -771,21 +800,24 @@ function parkingVoitu(param) {
             onEachFeature: function (feature, layer) {
 
 
-                let nameParking = "";
-                let capacityParking = "";
+                let nameParking = null;
+                let capacityParking = null;
+                let coordonnee = getCoordonnées(feature)
+
+                let type = feature.properties.amenity
+
                 if (feature.properties.name !== undefined) {
-                    nameParking = '<h6>' + feature.properties.name + '</h6>'
+                    nameParking = feature.properties.name
                 }
                 if (feature.properties.capacity !== undefined) {
-                    capacityParking = '<h8> Capacité : ' + feature.properties.capacity + '</h8><br>'
+
+                    capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
                 }
-                if (nameParking != "" || capacityParking != "")
-                    layer.bindPopup(
-                        nameParking + capacityParking + '<ahref="http://maps.google.fr/maps?q= 50.57337, 1.64882"> <i class="fas fa-location-arrow" ></i></a>'
-                    );
+
+                createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
+
             },
             filter: function (feature, layer) {
-
 
                 if (param === "gratuit") {
                     if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
@@ -883,37 +915,107 @@ function createMarker(fichier, icon, color) {
         {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
+                let nom = null;
+                let adresse = null;
+                let coordonnee = getCoordonnées(feature)
+
                 if (feature.properties.name !== undefined) {
-                    let nom = feature.properties.name;
+
+                    nom = feature.properties.name;
+                }
+
+                if (feature.properties.adresse !== undefined) {
                     adresse = feature.properties.adresse;
-                    let Marker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: icon,
-                        iconColor: 'white',
-                        markerColor: color
+                }
+
+                let Marker = L.AwesomeMarkers.icon({
+                    prefix: 'fa',
+                    icon: icon,
+                    iconColor: 'white',
+                    markerColor: color
+                });
+
+                let marker = L.marker(
+                    latlng,
+                    {
+                        icon: Marker,
+                        title: nom
                     });
 
-                    let marker = L.marker(
-                        latlng,
-                        {
-                            icon: Marker,
-                            title: nom
-                        });
-                    // marker.bindPopup(
-                    //     '<h6>' + nom + '</h6>'
-                    //     + '<h8>' + adresse + '</h8>'
-                    // );
-                    return marker;
-                }
-            },
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup(
-                    markerPopup(feature)
-                    + '<h8>' + adresse + '</h8>'
-                );
+                createPopup(marker, coordonnee, nom, adresse, null, null)
+
+
+                return marker;
             }
         });
 }
+
+function getCoordonnées(feature) {
+
+    let lat = ""
+    let long = ""
+    let coordonnees = feature.geometry.coordinates;
+    if (coordonnees.length === 1) {
+        long = coordonnees[0][0][0]
+        lat = coordonnees[0][0][1]
+    } else {
+        long = coordonnees[0]
+        lat = coordonnees[1]
+    }
+    coordonnees = lat + ',' + long;
+
+    return coordonnees
+}
+
+function createPopup(layer, coordonnee, titre, type, val1, val2) {
+
+
+    let lien = "http://maps.google.fr/maps?q=" + coordonnee;
+    let itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
+
+
+    let top = '';
+    if (titre != null && type != null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
+
+    } else if (titre === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
+    }
+
+    let icon1 = "";
+    let icon2 = "";
+
+    switch (type) {
+        case "Médecin" :
+            icon1 = "fa-phone";
+            icon2 = "fa-map-marker";
+            break;
+        case "Hôpital" :
+            icon1 = "fa-phone";
+            break;
+        default:
+            break
+    }
+
+
+    let bottom = '';
+    if (val1 != null && val2 != null) {
+        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div> <div class="barre"> </div> <div> <i class="fas ' + icon2 + ' fa-lg"></i> <div class="popupRight">  ' + val2 + '  </div></div> </div> '
+    } else if (val1 != null && val2 === null) {
+        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div></div> '
+    }
+
+    return layer.bindPopup(
+        '<div class="popup">'
+        +
+        top
+        +
+        bottom
+        +
+        '</div>'
+    );
+}
+
 
 function colorMarker(ligne) {
     let color = "";

@@ -33,29 +33,10 @@ const defibrillator = {
         {
             "type": "Feature",
             "properties": {
-                "@id": "node/1406343607",
-                "addr:housenumber": "71",
-                "emergency": "defibrillator",
-                "indoor": "yes",
-                "opening_hours": "\"limited\"",
-                "operator": "inconnu",
-                "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -0.4574476,
-                    46.3202898
-                ]
-            },
-            "id": "node/1406343607"
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "@id": "node/2571468011",
                 "emergency": "defibrillator",
-                "source": "knowledge"
+                "source": "knowledge",
+                "access": "public",
             },
             "geometry": {
                 "type": "Point",
@@ -73,7 +54,6 @@ const defibrillator = {
                 "access": "public",
                 "amenity": "emergency_service",
                 "emergency": "defibrillator",
-                "name": "Défibrilateur en libre accès"
             },
             "geometry": {
                 "type": "Point",
@@ -88,6 +68,7 @@ const defibrillator = {
             "type": "Feature",
             "properties": {
                 "@id": "node/4382961848",
+                "access": "public",
                 "emergency": "defibrillator"
             },
             "geometry": {
@@ -103,6 +84,7 @@ const defibrillator = {
             "type": "Feature",
             "properties": {
                 "@id": "node/4382962412",
+                "access": "public",
                 "description": "dans le marché",
                 "emergency": "defibrillator"
             },
