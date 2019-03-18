@@ -161,7 +161,8 @@ function markerPopup(feature) {
         || amenity === "economie"
         || amenity === "coworking"
         || amenity === "repair_cafe"
-        || amenity === "marcher") {
+        || amenity === "marcher"
+        || amenity === "doctors") {
 
         let split = [];
         if (opening_hours.indexOf(';') > 0) {
@@ -406,11 +407,25 @@ function layers() {
                             icon: doctorsMarker,
                             title: nom
                         });
-                    marker.bindPopup(
-                        nom + adresse + telephone
-                    );
+                    // marker.bindPopup(
+                    //     nom + adresse + telephone
+                    // );
                     return marker;
                 }
+            },
+            onEachFeature: function (feature, layer) {
+                let telephone = "";
+                let adresse = "";
+                if (feature.properties.phone !== undefined) {
+                    telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
+                }
+                if (feature.properties.adresse !== undefined) {
+                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
+
+                }
+                layer.bindPopup(
+                    markerPopup(feature) + telephone + adresse
+                );
             }
         });
 
