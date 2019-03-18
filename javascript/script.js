@@ -271,7 +271,7 @@ function markerPopup(feature) {
     if (dateDebutM !== null && dateFinM !== null) {
         return (
             '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div><br>'
+            + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
         );
     }
     else if(dateDebutA !== null && dateFinA !== null) {
