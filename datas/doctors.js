@@ -8,8 +8,8 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/610928395",
-                "amenity": "doctors",
                 "name": "Dr Grellet",
+                "opening_hours": "",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -25,10 +25,11 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/610928395",
-                "amenity": "doctors",
+
                 "name": "Parrat Jean-Claude",
                 "phone": "+33 5 49 32 08 00",
                 "adresse":"121 Rue de la Pierrière",
+                "opening_hours": "",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -44,10 +45,11 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/610928395",
-                "amenity": "doctors",
+
                 "name": "Cabinet médical",
                 "phone": "+33 5 49 79 49 14",
                 "adresse":"91 Rue de Goise",
+                "opening_hours": "",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -67,6 +69,7 @@ const doctors = {
                 "name": "Nasser Ibrahim",
                 "phone": "+33 5 49 77 01 10",
                 "adresse":"Maison de Santé du 110, 110 Avenue de Limoges",
+                "opening_hours": "Mo-Fr 09:00-13:00 / 14:00-18:00",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -85,6 +88,7 @@ const doctors = {
                 "amenity": "doctors",
                 "name": "Gelot Philippe",
                 "adresse":"Maison de Santé du 110, 110 Avenue de Limoges",
+                "opening_hours": "Mo-Fr 09:00-13:00 / 14:00-18:00",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -104,6 +108,7 @@ const doctors = {
                 "name": "Barreau Vincent",
                 "phone": "+33 5 49 77 01 10",
                 "adresse":"Maison de Santé du 110, 110 Avenue de Limoges",
+                "opening_hours": "Mo-Fr 09:00-13:00 / 14:00-18:00",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -119,10 +124,11 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/610928395",
-                "amenity": "doctors",
+
                 "name": "Jeanneau François-Laurent, Berthouin Thierry et Sulpis Daniel SCM",
                 "phone": "+33 5 49 24 02 12",
                 "adresse":"6 Place des la Comédie",
+                "opening_hours": "",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
             },
             "geometry": {
@@ -138,8 +144,9 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/1406301695",
-                "amenity": "doctors",
+
                 "name": "Audition Santé",
+                "opening_hours": "",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
             },
             "geometry": {
@@ -155,7 +162,6 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/1406301719",
-                "amenity": "doctors",
                 "name": "Laboratoires d'Analyses Médicales",
                 "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
             },
@@ -205,6 +211,7 @@ const doctors = {
                 "healthcare:speciality": "general",
                 "name": "Lamouroux Michel",
                 "adresse":"55 Avenue de Paris",
+                "opening_hours": "Mo-Fr 09:00-12:30 / 15:00-19:30, Sa 09:30-12:30",
                 "phone": "+33 5 49 28 38 76"
             },
             "geometry": {
@@ -220,9 +227,10 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6276838614",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "adresse":"7 Impasse la Bruyère",
+                "opening_hours": "",
                 "name": "Cabinet Paramédical du Pontreau",
                 "phone": "+33 5 49 24 83 19"
             },
@@ -243,7 +251,8 @@ const doctors = {
                 "healthcare": "doctor",
                 "adresse":"89 Route de Coulonges",
                 "name": "Fabri Philippe",
-                "phone": "+33 5 49 73 36 78"
+                "phone": "+33 5 49 73 36 78",
+                "opening_hours": "Mo-Fr 09:00-18:00",
             },
             "geometry": {
                 "type": "Point",
@@ -258,10 +267,11 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6276838614",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "adresse":"24 Rue des Piots",
                 "name": "Onnée Jean",
+                "opening_hours": "",
                 "phone": "+33 5 49 75 64 82"
             },
             "geometry": {
@@ -277,9 +287,10 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6276838614",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "adresse":"370 Avenue du Marais Poitevin",
+                "opening_hours": "",
                 "name": "Jacques Gaignes SCM",
                 "phone": "+33 5 49 35 72 51"
             },
@@ -296,10 +307,11 @@ const doctors = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6276838614",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "adresse":"26 Rue Montaigne",
                 "name": "Dupont Jean-François",
+                "opening_hours": "",
                 "phone": "+33 5 49 24 70 36"
             },
             "geometry": {
@@ -323,6 +335,7 @@ const doctors = {
                 "amenity": "doctors",
                 "healthcare": "doctor",
                 "name": "Cabinet Médical Paul Gauguin",
+                "opening_hours": "Mo-Fr 07:30-12:30 / 13:30-19:00, Sa 08:00-12:00",
                 "phone": "+33 5 49 09 99 55"
             },
             "geometry": {
@@ -339,9 +352,10 @@ const doctors = {
             "properties": {
                 "@id": "node/6278128187",
                 "adresse":"146 Avenue Saint-Jean d'Angély",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "name": "Eychenne Jean",
+                "opening_hours": "",
                 "phone": "+33 5 49 79 21 54"
             },
             "geometry": {
@@ -358,9 +372,10 @@ const doctors = {
             "properties": {
                 "@id": "node/6278128187",
                 "adresse":"189 Avenue de la Rochelle",
-                "amenity": "doctors",
+
                 "healthcare": "doctor",
                 "name": "Etchegaray Gilles",
+                "opening_hours": "",
                 "phone": "+33 5 49 79 60 42"
             },
             "geometry": {
@@ -381,9 +396,9 @@ const doctors = {
                 "addr:postcode": "79000",
                 "addr:street": "Rue des Justices",
                 "adresse":"30 Rue des Justices",
-                "amenity": "doctors",
                 "healthcare": "doctor",
                 "name": "Cabinet Infirmier Forun Des Brizeaux",
+                "opening_hours": "",
                 "phone": "+33 5 49 33 23 85"
             },
             "geometry": {
@@ -407,6 +422,7 @@ const doctors = {
                 "adresse":"9 Espace Angélique",
                 "healthcare": "doctor",
                 "name": "Medi Groupe",
+                "opening_hours": "Mo-Fr 08:00-12:00 / 14:00-17:00",
                 "phone": "+33 9 62 59 49 69"
             },
             "geometry": {

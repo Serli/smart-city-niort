@@ -1,8 +1,8 @@
 const ligne = [{
-    id: "1",
-    trajet: [TrajetLine1()],
-    name: "Ligne 1"
-},
+        id: "1",
+        trajet: [TrajetLine1()],
+        name: "Ligne 1"
+    },
     {
         id: "2",
         trajet: [TrajetLine2()],
@@ -166,12 +166,20 @@ function init() {
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    let dateDebut = "";
-    let dateFin = "";
-    let ouverture = "";
+    let dateDebutM = null;
+    let dateFinM = null;
+    let dateDebutA = null;
+    let dateFinA = null;
+    let ouverture = null;
     let today = new Date();
     const {opening_hours, amenity, name} = feature.properties;
-    if (opening_hours && amenity === 'pharmacy') {
+    if (opening_hours && amenity === 'pharmacy'
+        || amenity === "recycling"
+        || amenity === "economie"
+        || amenity === "coworking"
+        || amenity === "repair_cafe"
+        || amenity === "marcher"
+        || amenity === "doctors") {
 
         let split = [];
         if (opening_hours.indexOf(';') > 0) {
@@ -182,7 +190,7 @@ function markerPopup(feature) {
             split = [opening_hours];
         }
         split.forEach(plage => {
-            let number = plage.search(/ ([0_9]+)/);
+            let number = plage.search(/ ([0-9]+)/);
             let days = plage.substring(0, number);
             let dateDay = days.split("-");
             let horaire = plage.substring(number, plage.length);
@@ -191,47 +199,97 @@ function markerPopup(feature) {
             if (days.trim().startsWith(day[today.getDay() - 1]) ||
                 days.trim().startsWith(day[today.getDay() - 1], 3) ||
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
-
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
-                    dateDebut = strings[0];
-                    dateFin = strings[1];
                     let dateD = new Date();
-                    let hours = Number(dateDebut.split(":")[0]);
-                    let minutes = Number(dateDebut.split(":")[1]);
+                    let dateF = new Date();
+                    let hours, minutes, hoursF, minutesF;
+
+                    if(today.getHours() >= Number(strings[0].split(":")[0])) {
+
+                        if (h === plageHoraire[0]
+                            && (today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                            hours = Number(dateDebutM.split(":")[0]);
+                            minutes = Number(dateDebutM.split(":")[1]);
+
+                            hoursF = Number(dateFinM.split(":")[0]);
+                            minutesF = Number(dateFinM.split(":")[1]);
+
+                        } else if (h === plageHoraire[1]
+                            && (today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                            hours = Number(dateDebutA.split(":")[0]);
+                            minutes = Number(dateDebutA.split(":")[1]);
+
+                            hoursF = Number(dateFinA.split(":")[0]);
+                            minutesF = Number(dateFinA.split(":")[1]);
+                        }
+                    }
+                    else {
+                        if (h === plageHoraire[1] && today.getHours() >= 12) {
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                        } else {
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                        }
+                    }
+
                     dateD.setHours(hours);
                     dateD.setMinutes(minutes);
 
-
-                    let dateF = new Date();
-                    let hoursF = Number(dateFin.split(":")[0]);
-                    let minutesF = Number(dateFin.split(":")[1]);
                     dateF.setHours(hoursF);
                     dateF.setMinutes(minutesF);
-
-
                     if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
                         ouverture = "Ouvert";
                     } else {
                         ouverture = "Fermé";
                     }
+
                 });
             }
         });
     }
 
-    if (dateDebut !== "" && dateFin !== "") {
+    if (dateDebutM !== null && dateFinM !== null) {
         return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div>'
 
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
+            + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
         );
-    } else {
+    }
+    else if(dateDebutA !== null && dateFinA !== null) {
         return (
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'+
+              + '<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
+          
+         
+        );
+    }
+    else {
+            return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>Horaires Inconnues</label></div>'
+                + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
+                '<label>Horaires Inconnues</label></div>'
         );
     }
 }
@@ -258,6 +316,7 @@ function layers() {
                 let couvert = null
                 let coordonnee = getCoordonnées(feature)
                 let type = "Parking à vélo"
+
                 if (feature.properties.name !== undefined) {
                     nameParking = feature.properties.name
                 }
@@ -355,11 +414,13 @@ function layers() {
     var hopital2 = L.geoJSON(hospital2, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
+
             let nom = null;
             let phone = null;
             let mail = null;
             let type = "Hôpital";
             let coordonnee = getCoordonnées(feature)
+
             let pharmacieMarker = L.AwesomeMarkers.icon({
                 prefix: 'fa',
                 icon: 'clinic-medical',
@@ -375,6 +436,9 @@ function layers() {
             if (feature.properties.email !== undefined) {
                 mail = feature.properties.email
             }
+            if (feature.properties.horaire !== undefined) {
+                mail = '<h8>horaire : ' + feature.properties.horaire + '</h8>'
+            }
             let marker = L.marker(
                 latlng,
                 {
@@ -382,6 +446,7 @@ function layers() {
                 });
 
             createPopup(marker, coordonnee, nom, type, phone, null);
+
             return marker;
         },
     });
@@ -427,6 +492,20 @@ function layers() {
 
                     return marker;
                 }
+            },
+            onEachFeature: function (feature, layer) {
+                let telephone = "";
+                let adresse = "";
+                if (feature.properties.phone !== undefined) {
+                    telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
+                }
+                if (feature.properties.adresse !== undefined) {
+                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
+
+                }
+                layer.bindPopup(
+                    markerPopup(feature) + telephone + adresse
+                );
             }
         });
 
@@ -456,7 +535,6 @@ function layers() {
     });
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
@@ -549,6 +627,101 @@ function layers() {
             }
         });
 
+    let decheterie = L.layerGroup();
+    let conteneur = L.layerGroup();
+
+    let decheterie2 = L.geoJSON(recyclings, {
+        attribution: '&copy; OpenStreetMap',
+        pointToLayer: function (feature, latlng) {
+            let nom = "";
+            let adresse = "";
+            if (feature.properties.name !== undefined) {
+                nom = '<h6>' + feature.properties.name + '</h6>'
+            }
+            if (feature.properties.adresse !== undefined) {
+                adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+            }
+            if (feature.properties.recycling !== undefined) {
+                if (feature.properties.recycling.type === "Dechetterie"){
+                    let repairMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'dumpster',
+                        iconColor: 'white',
+                        markerColor: 'red'
+                    });
+
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: repairMarker,
+                            title: nom
+                        });
+                    return marker;
+                }
+            }
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(
+                markerPopup(feature) + dechetRecyclage(feature).join(" ")
+            );
+        }
+    });
+
+    L.geoJSON(recyclings,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                let nom = "";
+                let adresse = "";
+                let recycling = "";
+                if (feature.properties.name !== undefined) {
+                    nom = '<h6>' + feature.properties.name + '</h6>'
+                }
+                if (feature.properties.adresse !== undefined) {
+                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+                }
+                if (feature.properties.recycling !== undefined) {
+                    if (feature.properties.recycling.type === "container"){
+                        let repairMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'trash-alt',
+                            iconColor: 'white',
+                            markerColor: 'blue'
+                        });
+
+                        let marker = L.marker(
+                            latlng,
+                            {
+                                icon: repairMarker,
+                                title: nom
+                            });
+                        marker.bindPopup(
+                            nom + adresse + dechetRecyclage(feature).join(" ")
+                        );
+                        conteneur.addLayer(marker);
+                    } else {
+                        let repairMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'dumpster',
+                            iconColor: 'white',
+                            markerColor: 'red'
+                        });
+
+                        let marker = L.marker(
+                            latlng,
+                            {
+                                icon: repairMarker,
+                                title: nom
+                            });
+                        marker.bindPopup(
+                            nom + adresse + dechetRecyclage(feature).join(" ")
+                        );
+                        decheterie.addLayer(marker);
+                    }
+                }
+            },
+        });
+
     var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
 
     var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
@@ -557,14 +730,11 @@ function layers() {
 
     var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
 
-
     var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
 
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     var parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
-
-    var recyclage = L.geoJSON(recyclings, {attribution: '&copy; OpenStreetMap'});
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
@@ -590,6 +760,8 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
+    tabLayer["Decheterrie"] = decheterie2;
+    tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
@@ -737,6 +909,7 @@ function polystyle(param) {
 }
 
 function createMarker(fichier, icon, color) {
+    let adresse;
     return L.geoJSON(fichier,
         {
             attribution: '&copy; OpenStreetMap',
@@ -746,6 +919,7 @@ function createMarker(fichier, icon, color) {
                 let coordonnee = getCoordonnées(feature)
 
                 if (feature.properties.name !== undefined) {
+
                     nom = feature.properties.name;
                 }
 
@@ -771,7 +945,6 @@ function createMarker(fichier, icon, color) {
 
 
                 return marker;
-
             }
         });
 }
@@ -930,4 +1103,56 @@ function logo(arret) {
         lignesDeBus.push('<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>');
     }
     return lignesDeBus;
+}
+
+function dechetRecyclage(feature){
+    let tabRecyclage = [];
+    tabRecyclage.push('<h7>Matériaux accepter : </h7><br>');
+    // recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>';
+    if (feature.properties.recycling.batteries !== undefined){
+        tabRecyclage.push('<h8>Batterie</h8><br>');
+    }
+    if (feature.properties.recycling.cans !== undefined){
+        tabRecyclage.push('<h8>Canettes</h8><br>');
+    }
+    if (feature.properties.recycling.car_batteries !== undefined){
+        tabRecyclage.push('<h8>Batterie de Voiture</h8><br>');
+    }
+    if (feature.properties.recycling.garden_waste !== undefined){
+        tabRecyclage.push('<h8>Déchets de jardin</h8><br>');
+    }
+    if (feature.properties.recycling.glass !== undefined){
+        tabRecyclage.push('<h8>Verre</h8><br>');
+    }
+    if (feature.properties.recycling.paper !== undefined){
+        tabRecyclage.push('<h8>Papier, Bois</h8><br>');
+    }
+    if (feature.properties.recycling.green_waste !== undefined){
+        tabRecyclage.push('<h8>Végétaux</h8><br>');
+    }
+    if (feature.properties.recycling.light_bulbs !== undefined){
+        tabRecyclage.push('<h8>Ampoules</h8><br>');
+    }
+    if (feature.properties.recycling.scrap_metal !== undefined){
+        tabRecyclage.push('<h8>Métaux, ferraille</h8><br>');
+    }
+    if (feature.properties.recycling.waste_oil !== undefined){
+        tabRecyclage.push('<h8>Huile</h8><br>');
+    }
+    if (feature.properties.recycling.cardboard !== undefined){
+        tabRecyclage.push('<h8>Carton</h8><br>');
+    }
+    if (feature.properties.recycling.electrical_appliances !== undefined){
+        tabRecyclage.push('<h8>Appareils électriques</h8><br>');
+    }
+    if (feature.properties.recycling.plastic !== undefined){
+        tabRecyclage.push('<h8>Plastique</h8><br>');
+    }
+    if (feature.properties.recycling.small_appliances !== undefined){
+        tabRecyclage.push('<h8>Petit appareils électroménager</h8><br>');
+    }
+    if (feature.properties.recycling.waste !== undefined){
+        tabRecyclage.push('<h8>Tout venant</h8><br>');
+    }
+    return tabRecyclage;
 }
