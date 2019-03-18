@@ -164,9 +164,11 @@ function init() {
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    let dateDebut = "";
-    let dateFin = "";
-    let ouverture = "";
+    let dateDebutM = null;
+    let dateFinM = null;
+    let dateDebutA = null;
+    let dateFinA = null;
+    let ouverture = null;
     let today = new Date();
     const {opening_hours, amenity, name} = feature.properties;
     if (opening_hours && amenity === 'pharmacy') {
@@ -180,7 +182,7 @@ function markerPopup(feature) {
             split = [opening_hours];
         }
         split.forEach(plage => {
-            let number = plage.search(/ ([0_9]+)/);
+            let number = plage.search(/ ([0-9]+)/);
             let days = plage.substring(0, number);
             let dateDay = days.split("-");
             let horaire = plage.substring(number, plage.length);
@@ -189,46 +191,96 @@ function markerPopup(feature) {
             if (days.trim().startsWith(day[today.getDay() - 1]) ||
                 days.trim().startsWith(day[today.getDay() - 1], 3) ||
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
-
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
-                    dateDebut = strings[0];
-                    dateFin = strings[1];
                     let dateD = new Date();
-                    let hours = Number(dateDebut.split(":")[0]);
-                    let minutes = Number(dateDebut.split(":")[1]);
+                    let dateF = new Date();
+                    let hours, minutes, hoursF, minutesF;
+
+                    if(today.getHours() >= Number(strings[0].split(":")[0])) {
+
+                        if (h === plageHoraire[0]
+                            && (today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                            hours = Number(dateDebutM.split(":")[0]);
+                            minutes = Number(dateDebutM.split(":")[1]);
+
+                            hoursF = Number(dateFinM.split(":")[0]);
+                            minutesF = Number(dateFinM.split(":")[1]);
+
+                        } else if (h === plageHoraire[1]
+                            && (today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                            hours = Number(dateDebutA.split(":")[0]);
+                            minutes = Number(dateDebutA.split(":")[1]);
+
+                            hoursF = Number(dateFinA.split(":")[0]);
+                            minutesF = Number(dateFinA.split(":")[1]);
+                        }
+                    }
+                    else {
+                        if (h === plageHoraire[1] && today.getHours() >= 12) {
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                        } else {
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                        }
+                    }
+
                     dateD.setHours(hours);
                     dateD.setMinutes(minutes);
 
-
-                    let dateF = new Date();
-                    let hoursF = Number(dateFin.split(":")[0]);
-                    let minutesF = Number(dateFin.split(":")[1]);
                     dateF.setHours(hoursF);
                     dateF.setMinutes(minutesF);
-
-
                     if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
                         ouverture = "Ouvert";
                     } else {
                         ouverture = "Fermé";
                     }
+
                 });
             }
         });
     }
 
-    if (dateDebut !== "" && dateFin !== "") {
+    if (dateDebutM !== null && dateFinM !== null) {
         return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>' + ouverture + dateDebut + "-" + dateFin + '</label></div>'
+            '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div>'
         );
-    } else {
+    }
+    else if(dateDebutA !== null && dateFinA !== null) {
         return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>Horaires Inconnues</label></div>'
+            '<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div>'
+        );
+    }
+    else {
+            return (
+            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
+                + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
+                '<label>Horaires Inconnues</label></div>'
         );
     }
 }
