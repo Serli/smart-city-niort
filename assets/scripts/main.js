@@ -21,10 +21,56 @@ for (var i = 0; i < categos.length; i++) {
 // tout les criteres
 let criteres = document.getElementsByTagName("a")
 
+
+var timer = 0;
+var delay = 200;
+var prevent = false;
+
+
 // onclcik sur tout les criteres
 for (var i = 0; i < criteres.length; i++) {
-    criteres[i].onclick = clickCritere;
+
+
+    criteres[i].onclick = function () {
+        timer = setTimeout(function () {
+            if (!prevent) {
+                var oneClick = clickCritere.bind(this);
+                oneClick();
+            }
+            prevent = false;
+        }.bind(this), delay);
+    };
+
+    criteres[i].ondblclick = function () {
+        clearTimeout(timer);
+        prevent = true;
+        var doubleClick = doubleClickCritere.bind(this);
+        doubleClick();
+        // doubleClickCritere();
+    };
+
+
 }
+
+
+//
+// var myObject = {
+//
+//     crazyMessage: 'gouzigouza',
+//
+//     doSomethingCrazy: function () {
+//         alert(this.crazyMessage);
+//     },
+//
+//     doSomeAsyncCrazyness: function () {
+//         setTimeout(function () {
+//             this.doSomethingCrazy();
+//         }.bind(this), 1000);
+//     }
+// };
+//
+// myObject.doSomeAsyncCrazyness();
+
 
 // 4 navbarCriteres navbarOn
 navbarCriteres = document.getElementsByClassName("navbarOn")
@@ -64,12 +110,26 @@ function clickCatego() {
             if (navbaronVisible.length === 0) {
                 openNav(this.id)
             } else {
+
+
                 for (var i = 0; i < navbaronVisible.length; i++) {
                     //si il y a + d'une categorie activé et la navbarCritere en question comporte des critères activé
                     // et que la navbarCritere ouverte actuellement correspond a la catégorie actuelle
 
                     if (navbaronVisible[i].className.includes(this.id)) {
                         closeNav(this.id);
+
+                        while (document.getElementsByClassName(this.id)[0].getElementsByClassName("critere active").length > 0) {
+
+                            var index = document.getElementsByClassName(this.id)[0].getElementsByClassName("critere active")[0];
+                            map.removeLayer(tabLayer[index.id]);
+                            index.classList.remove("active");
+                            this.className = this.className.replace(" active", "");
+
+                            markerArret = [];
+
+                        }
+
                     } else if (navbaronVisible.length > 0)
                     // if il y a plusieurs navBarOn de visible
                     {
@@ -121,7 +181,33 @@ function verifCategoActive() {
 
 let markerArret = [];
 
+
+function doubleClickCritere() {
+
+    if (this.className.includes("active")) {
+
+        // on supprimer et desactive tout les tabLayer de la navBarOn, puis on remet celui actuellement double cliqué
+        while (this.parentNode.getElementsByClassName("critere active").length > 0) {
+
+            var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
+            console.log(index.id)
+            index.classList.remove("active");
+            map.removeLayer(tabLayer[index.id]);
+            // markerArret = [];
+        }
+
+        map.addLayer(tabLayer[this.id]);
+        this.classList.add("active");
+
+
+    }
+
+
+}
+
+
 function clickCritere() {
+
     var nameCritere = this.id;
 
     // critere actuellement actif
