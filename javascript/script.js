@@ -185,6 +185,7 @@ function markerPopup(feature) {
     let dateFinA = null;
     let ouverture = null;
     let today = new Date();
+    let horairesAfficher = null;
     const {opening_hours, amenity, name} = feature.properties;
     if (opening_hours && amenity === 'pharmacy'
         || amenity === "recycling"
@@ -228,6 +229,7 @@ function markerPopup(feature) {
                             && today.getMinutes() >= Number(strings[0].split(":")[1])
                             && today.getMinutes() < Number(strings[1].split(":")[1])) {
 
+                            horairesAfficher = plageHoraire;
                             dateDebutM = strings[0];
                             dateFinM = strings[1];
                             hours = Number(dateDebutM.split(":")[0]);
@@ -243,6 +245,8 @@ function markerPopup(feature) {
                             && today.getHours() === Number(strings[1].split(":")[0])
                             && today.getMinutes() >= Number(strings[0].split(":")[1])
                             && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            horairesAfficher = horaire;
 
                             dateDebutM = null;
                             dateFinM = null;
@@ -282,6 +286,7 @@ function markerPopup(feature) {
         });
     }
 
+
     if (dateDebutM !== null && dateFinM !== null) {
         return (
 
@@ -292,6 +297,7 @@ function markerPopup(feature) {
         return (
             '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>' +
             +'<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
+
 
         );
     } else {
