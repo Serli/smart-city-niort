@@ -184,23 +184,19 @@ let markerArret = [];
 
 function doubleClickCritere() {
 
-    if (this.className.includes("active")) {
 
-        // on supprimer et desactive tout les tabLayer de la navBarOn, puis on remet celui actuellement double cliqué
-        while (this.parentNode.getElementsByClassName("critere active").length > 0) {
+    // on supprimer et desactive tout les tabLayer de la navBarOn, puis on remet celui actuellement double cliqué
+    while (this.parentNode.getElementsByClassName("critere active").length > 0) {
 
-            var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
-            console.log(index.id)
-            index.classList.remove("active");
-            map.removeLayer(tabLayer[index.id]);
-            // markerArret = [];
-        }
-
-        map.addLayer(tabLayer[this.id]);
-        this.classList.add("active");
-
-
+        var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
+        console.log(index.id)
+        index.classList.remove("active");
+        map.removeLayer(tabLayer[index.id]);
+        // markerArret = [];
     }
+
+    map.addLayer(tabLayer[this.id]);
+    this.classList.add("active");
 
 
 }
