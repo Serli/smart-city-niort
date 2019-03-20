@@ -179,7 +179,10 @@ function init() {
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-
+    let dateDebutM = null;
+    let dateFinM = null;
+    let dateDebutA = null;
+    let dateFinA = null;
     let ouverture = null;
     let today = new Date();
     let horairesAfficher = null;
@@ -213,6 +216,9 @@ function markerPopup(feature) {
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
+                    let dateD = new Date();
+                    let dateF = new Date();
+                    let hours, minutes, hoursF, minutesF;
 
                     if (today.getHours() >= Number(strings[0].split(":")[0])) {
 
@@ -220,28 +226,59 @@ function markerPopup(feature) {
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
 
+                            horairesAfficher = plage;
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                            hours = Number(dateDebutM.split(":")[0]);
+                            minutes = Number(dateDebutM.split(":")[1]);
 
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])) {
-
-                            horairesAfficher = horaire;
-                            ouverture = "Ouvert";
+                            hoursF = Number(dateFinM.split(":")[0]);
+                            minutesF = Number(dateFinM.split(":")[1]);
 
                         } else if (h === plageHoraire[1]
-                            && ((today.getHours() > Number(strings[0].split(":")[0])
+                            && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
-                                || (today.getHours() === Number(strings[0].split(":")[0]))
-                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getHours() === Number(strings[1].split(":")[0])
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])
+                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
 
                             horairesAfficher = horaire;
-                            ouverture = "Ouvert";
-                        } else {
-                            horairesAfficher = horaire;
-                            ouverture = "Fermé";
 
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                            hours = Number(dateDebutA.split(":")[0]);
+                            minutes = Number(dateDebutA.split(":")[1]);
+
+                            hoursF = Number(dateFinA.split(":")[0]);
+                            minutesF = Number(dateFinA.split(":")[1]);
                         }
                     } else {
-                        horairesAfficher = horaire;
+                        if (h === plageHoraire[1] && today.getHours() >= 12) {
+                            dateDebutM = null;
+                            dateFinM = null;
+                            dateDebutA = strings[0];
+                            dateFinA = strings[1];
+                        } else {
+                            dateDebutM = strings[0];
+                            dateFinM = strings[1];
+                        }
+                    }
+
+                    dateD.setHours(hours);
+                    dateD.setMinutes(minutes);
+
+                    dateF.setHours(hoursF);
+                    dateF.setMinutes(minutesF);
+                    if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
+                        ouverture = "Ouvert";
+                    } else {
                         ouverture = "Fermé";
                     }
 
@@ -249,50 +286,24 @@ function markerPopup(feature) {
             }
         });
 
-        let horaire = new Array()
-
-        if (horairesAfficher !== null) {
-            horaire["ouverture"] = ouverture;
-            horaire["horairesAfficher"] = horairesAfficher;
-            console.log(horaire["horairesAfficher"])
-            return (horaire);
-        } else {
-            return horaire;
-        }
-
 
     }
-}
+
+    let horaire = new Array()
+    if (horairesAfficher !== null) {
+        horaire["ouverture"] = ouverture;
+        horaire["horairesAfficher"] = horairesAfficher;
+        // console.log(horaire["horairesAfficher"])
+        return (horaire);
+    } else {
+        return horaire;
+    }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("containMap").innerHTML +=
-        '<div id="lieux">' +
-        '<div>' +
-        '<h5><strong>' + layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
-        '<button onclick="removeDivLieux()">x</button></div></div>';
-
-    setTimeout(function () {
-        document.getElementById("lieux").style.opacity = "1";
-    }, 100);
-
-    setTimeout(function () {
-        document.getElementById("lieux").style.opacity = "0";
-        setTimeout(function () {
-            document.getElementById("containMap").removeChild(document.getElementById("lieux"));
-        }, 200)
-    }, 5000);
-});
-
-
-function removeDivLieux() {
-    document.getElementById("lieux").style.opacity = "0";
-    setTimeout(function () {
-        document.getElementById("containMap").removeChild(document.getElementById("lieux"));
-    }, 200)
 }
 
 function layers() {
+
 
     // Public Transport carte
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
@@ -311,6 +322,7 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
+
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -524,7 +536,6 @@ function layers() {
                     return marker;
                 }
             },
-
         });
 
     var hopital = L.geoJSON(hospital, {
@@ -544,7 +555,7 @@ function layers() {
                 phone = feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail = feature.properties.email
+                mail =  feature.properties.email
             }
 
             createPopup(layer, coordonnee, nom, type, phone, mail, null)
@@ -640,7 +651,6 @@ function layers() {
 
                     createPopup(marker, coordonnee, type, soustitre, phone, null, null)
 
-
                     return marker;
                 }
             }
@@ -687,6 +697,7 @@ function layers() {
                     return marker;
                 }
             }
+
         }
     });
 
@@ -716,7 +727,6 @@ function layers() {
                             });
 
                         createPopup(marker, coordonnee, nom, typeDechet, null, null, null)
-
 
                         conteneur.addLayer(marker);
                     }
@@ -762,7 +772,7 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
-    tabLayer["Decheterrie"] = decheterie2;
+    tabLayer["Déchetterie"] = decheterie2;
     tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
@@ -780,32 +790,19 @@ function layers() {
                 // si c'est un groupLayer d'une ligne de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
+
                     });
                 } else {
-                    tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
-                        nombreLieux++;
-                    });
+                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
 
                 }
             }
         );
     } else {
-        Object.keys(tabLayer).forEach(function (key) {
-
-            // si c'est un groupLayer d'une ligne de bus
-            if (key.startsWith("Ligne")) {
-                tabLayer[key].getLayers().forEach(function (elementLayer) {
-                    nombreLieux++;
-                });
-            } else {
-                tabLayer[key].getLayers().forEach(function (elementLayer) {
-                    nombreLieux++;
-                });
-            }
-        });
+        //desktop
     }
+
 
 }
 
@@ -815,6 +812,7 @@ function parkingVoitu(param) {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
+
 
                 let nameParking = null;
                 let capacityParking = null;
@@ -831,7 +829,6 @@ function parkingVoitu(param) {
                 }
 
                 createPopup(layer, coordonnee, nameParking, type, capacityParking, null, null)
-
 
             },
             filter: function (feature, layer) {
@@ -878,7 +875,6 @@ function parkingVoitu(param) {
                     return marker;
                 } else if (param === "covoit") {
 
-
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'copyright',
@@ -887,6 +883,8 @@ function parkingVoitu(param) {
                     });
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
+
+
                 } else {
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
@@ -951,7 +949,6 @@ function createMarker(fichier, icon, color) {
                     markerColor: color
                 });
 
-
                 let marker = L.marker(
                     latlng,
                     {
@@ -959,8 +956,8 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-
                 createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
+
 
                 return marker;
             }
