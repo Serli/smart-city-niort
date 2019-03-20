@@ -226,15 +226,10 @@ function markerPopup(feature) {
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+                         
 
-                            horairesAfficher = plage;
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
-                            hours = Number(dateDebutM.split(":")[0]);
-                            minutes = Number(dateDebutM.split(":")[1]);
+
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
                             hoursF = Number(dateFinM.split(":")[0]);
                             minutesF = Number(dateFinM.split(":")[1]);
@@ -242,19 +237,15 @@ function markerPopup(feature) {
                         } else if (h === plageHoraire[1]
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
-                            || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+                                || (today.getHours() === Number(strings[0].split(":")[0]))
+                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
                             horairesAfficher = horaire;
+                            ouverture = "Ouvert";
+                        } else {
+                            horairesAfficher = horaire;
+                            ouverture = "Fermé";
 
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
-                            hours = Number(dateDebutA.split(":")[0]);
-                            minutes = Number(dateDebutA.split(":")[1]);
 
                             hoursF = Number(dateFinA.split(":")[0]);
                             minutesF = Number(dateFinA.split(":")[1]);
@@ -269,16 +260,9 @@ function markerPopup(feature) {
                             dateDebutM = strings[0];
                             dateFinM = strings[1];
                         }
-                    }
-
-                    dateD.setHours(hours);
-                    dateD.setMinutes(minutes);
-
-                    dateF.setHours(hoursF);
-                    dateF.setMinutes(minutesF);
-                    if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
-                        ouverture = "Ouvert";
                     } else {
+                        horairesAfficher = horaire;
+
                         ouverture = "Fermé";
                     }
 
@@ -287,19 +271,46 @@ function markerPopup(feature) {
         });
 
 
+        let horaire = new Array()
+        if (horairesAfficher !== null) {
+            horaire["ouverture"] = ouverture;
+            horaire["horairesAfficher"] = horairesAfficher;
+            // console.log(horaire["horairesAfficher"])
+            return (horaire);
+        } else {
+            return horaire;
+        }
+
+
     }
-
-    let horaire = new Array()
-    if (horairesAfficher !== null) {
-        horaire["ouverture"] = ouverture;
-        horaire["horairesAfficher"] = horairesAfficher;
-        // console.log(horaire["horairesAfficher"])
-        return (horaire);
-    } else {
-        return horaire;
-    }
+}
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("containMap").innerHTML +=
+        '<div id="lieux">' +
+        '<div>' +
+        '<h5><strong>' + layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
+        '<button onclick="removeDivLieux()">x</button></div></div>';
+
+    setTimeout(function () {
+        document.getElementById("lieux").style.opacity = "1";
+    }, 100);
+
+    setTimeout(function () {
+        document.getElementById("lieux").style.opacity = "0";
+        setTimeout(function () {
+            document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+        }, 200)
+    }, 5000);
+});
+
+
+function removeDivLieux() {
+    document.getElementById("lieux").style.opacity = "0";
+    setTimeout(function () {
+        document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+    }, 200)
 }
 
 function layers() {
@@ -322,7 +333,6 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
-
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -536,6 +546,7 @@ function layers() {
                     return marker;
                 }
             },
+
         });
 
     var hopital = L.geoJSON(hospital, {
@@ -651,6 +662,7 @@ function layers() {
 
                     createPopup(marker, coordonnee, type, soustitre, phone, null, null)
 
+
                     return marker;
                 }
             }
@@ -697,7 +709,6 @@ function layers() {
                     return marker;
                 }
             }
-
         }
     });
 
@@ -727,6 +738,7 @@ function layers() {
                             });
 
                         createPopup(marker, coordonnee, nom, typeDechet, null, null, null)
+
 
                         conteneur.addLayer(marker);
                     }
@@ -790,29 +802,42 @@ function layers() {
                 // si c'est un groupLayer d'une ligne de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
-
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
                     });
                 } else {
-                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+                    tabLayer[key].getLayers().forEach(function (elementLayer) {
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
+                        nombreLieux++;
+                    });
 
                 }
             }
         );
     } else {
-        //desktop
+        Object.keys(tabLayer).forEach(function (key) {
+
+            // si c'est un groupLayer d'une ligne de bus
+            if (key.startsWith("Ligne")) {
+                tabLayer[key].getLayers().forEach(function (elementLayer) {
+                    nombreLieux++;
+                });
+            } else {
+                tabLayer[key].getLayers().forEach(function (elementLayer) {
+                    nombreLieux++;
+                });
+            }
+        });
     }
 
 
 }
 
 function parkingVoitu(param) {
-
+  
     var parkingVoiture = L.geoJSON(parkings, {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
-
 
                 let nameParking = null;
                 let capacityParking = null;
@@ -829,6 +854,7 @@ function parkingVoitu(param) {
                 }
 
                 createPopup(layer, coordonnee, nameParking, type, capacityParking, null, null)
+
 
             },
             filter: function (feature, layer) {
@@ -875,6 +901,7 @@ function parkingVoitu(param) {
                     return marker;
                 } else if (param === "covoit") {
 
+
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'copyright',
@@ -884,7 +911,14 @@ function parkingVoitu(param) {
                     let marker = L.marker(latlng, {icon: busMarker});
                     return marker;
 
-
+                    let busMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'copyright',
+                        iconColor: 'white',
+                        markerColor: "lightgreen"
+                    });
+                    let marker = L.marker(latlng, {icon: busMarker});
+                    return marker;
                 } else {
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
@@ -949,6 +983,7 @@ function createMarker(fichier, icon, color) {
                     markerColor: color
                 });
 
+
                 let marker = L.marker(
                     latlng,
                     {
@@ -956,10 +991,8 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-                createPopup(marker, coordonnee, nom, adresse, null, null, null)
-
+             
                 createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
-
 
                 return marker;
             }
