@@ -8,6 +8,7 @@ const hospital2 = {
                 "@id": "node/6019535859",
                 "name": "Centre Hospitalier de Niort",
                 "phone": "+33 5 49 32 79 79",
+                "horaire":"Ouvert 24h/24"
             },
             "geometry": {
                 "type": "Point",
@@ -25,6 +26,7 @@ const hospital2 = {
                 "name" : "Polyclinique Inkermann",
                 "phone":"0 826 30 28 28",
                 "email":"inkermann.groupe-elsan.com",
+                "horaire":"Ouvert 24h/24"
             },
             "geometry": {
                 "type": "Point",
