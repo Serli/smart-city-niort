@@ -216,9 +216,6 @@ function markerPopup(feature) {
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
-                    let dateD = new Date();
-                    let dateF = new Date();
-                    let hours, minutes, hoursF, minutesF;
 
                     if (today.getHours() >= Number(strings[0].split(":")[0])) {
 
@@ -226,59 +223,26 @@ function markerPopup(feature) {
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
-
-                            horairesAfficher = plage;
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
-                            hours = Number(dateDebutM.split(":")[0]);
-                            minutes = Number(dateDebutM.split(":")[1]);
-
-                            hoursF = Number(dateFinM.split(":")[0]);
-                            minutesF = Number(dateFinM.split(":")[1]);
-
-                        } else if (h === plageHoraire[1]
-                            && (today.getHours() > Number(strings[0].split(":")[0])
-                                && today.getHours() < Number(strings[1].split(":")[0]))
-                            || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
                             horairesAfficher = horaire;
+                            ouverture = "Ouvert";
 
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
-                            hours = Number(dateDebutA.split(":")[0]);
-                            minutes = Number(dateDebutA.split(":")[1]);
+                        } else if (h === plageHoraire[1]
+                            && ((today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                                || (today.getHours() === Number(strings[0].split(":")[0]))
+                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
-                            hoursF = Number(dateFinA.split(":")[0]);
-                            minutesF = Number(dateFinA.split(":")[1]);
-                        }
-                    } else {
-                        if (h === plageHoraire[1] && today.getHours() >= 12) {
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
+                            horairesAfficher = horaire;
+                            ouverture = "Ouvert";
                         } else {
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
+                            horairesAfficher = horaire;
+                            ouverture = "Fermé";
+
                         }
-                    }
-
-                    dateD.setHours(hours);
-                    dateD.setMinutes(minutes);
-
-                    dateF.setHours(hoursF);
-                    dateF.setMinutes(minutesF);
-                    if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
-                        ouverture = "Ouvert";
                     } else {
+                        horairesAfficher = horaire;
                         ouverture = "Fermé";
                     }
 
@@ -298,8 +262,33 @@ function markerPopup(feature) {
     } else {
         return horaire;
     }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("containMap").innerHTML +=
+        '<div id="lieux">' +
+        '<div>' +
+        '<h5><strong>' + layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
+        '<button onclick="removeDivLieux()">x</button></div></div>';
+
+    setTimeout(function () {
+        document.getElementById("lieux").style.opacity = "1";
+    }, 100);
+
+    setTimeout(function () {
+        document.getElementById("lieux").style.opacity = "0";
+        setTimeout(function () {
+            document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+        }, 200)
+    }, 5000);
+});
 
 
+function removeDivLieux() {
+    document.getElementById("lieux").style.opacity = "0";
+    setTimeout(function () {
+        document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+    }, 200)
 }
 
 function layers() {
@@ -310,6 +299,7 @@ function layers() {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
         maxZoom: 19,
     });
+    let nombreLieux = 0;
 
 
     var cycle = L.geoJSON(cycleways, {
@@ -322,7 +312,6 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
-
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -417,7 +406,6 @@ function layers() {
             } else {
                 nom = null;
             }
-            console.log(feature.properties.city)
 
 
             if (feature.properties["addr:housenumber"] !== undefined) {
@@ -555,7 +543,7 @@ function layers() {
                 phone = feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail =  feature.properties.email
+                mail = feature.properties.email
             }
 
             createPopup(layer, coordonnee, nom, type, phone, mail, null)
@@ -790,20 +778,33 @@ function layers() {
                 // si c'est un groupLayer d'une ligne de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
-
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
                     });
                 } else {
-                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+                    tabLayer[key].on('mousedown', L.bind(function (elementLayer) {
+                        nombreLieux++;
+                        console.log(elementLayer)
+                    }, null, true))
 
                 }
             }
         );
     } else {
-        //desktop
+        Object.keys(tabLayer).forEach(function (key) {
+
+            //console.log(Object.keys(tabLayer).length)
+            // console.log(tabLayer[key])
+
+            // si c'est un groupLayer d'une ligne de bus
+            if (key.startsWith("Ligne") === false) {
+                tabLayer[key].getLayers().forEach(function (elementLayer) {
+                    nombreLieux++;
+                });
+            }
+        });
     }
 
-
+    return nombreLieux;
 }
 
 function parkingVoitu(param) {
@@ -899,7 +900,6 @@ function parkingVoitu(param) {
 
         }
     );
-
     return parkingVoiture;
 }
 
