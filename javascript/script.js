@@ -340,7 +340,7 @@ function layers() {
                     couvert = "Couvert"
                 }
 
-                createPopup(layer, coordonnee, nameParking, type, capacityParking, couvert)
+                createPopup(layer, coordonnee, nameParking, type, capacityParking, couvert, null)
 
             },
 
@@ -393,7 +393,7 @@ function layers() {
                 }
 
 
-                createPopup(markerBio, coordonnee, titre, adresse, null, description).addTo(MagasinBio)
+                createPopup(markerBio, coordonnee, titre, adresse, null, description, null).addTo(MagasinBio)
             }
         }
     });
@@ -449,7 +449,7 @@ function layers() {
                     icon: pharmacieMarker,
                 });
 
-            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone)
+            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, "Pharma")
 
             return marker;
         },
@@ -480,16 +480,13 @@ function layers() {
             if (feature.properties.email !== undefined) {
                 mail = feature.properties.email
             }
-            if (feature.properties.horaire !== undefined) {
-                mail = '<h8>horaire : ' + feature.properties.horaire + '</h8>'
-            }
             let marker = L.marker(
                 latlng,
                 {
                     icon: pharmacieMarker,
                 });
 
-            createPopup(marker, coordonnee, nom, type, phone, null);
+            createPopup(marker, coordonnee, nom, type, phone, mail, null);
 
             return marker;
         },
@@ -503,7 +500,7 @@ function layers() {
                     let nom = null;
                     let telephone = null;
                     let adresse = null;
-                    let type = "Médecin";
+                    let distinction = "Médecin";
                     let coordonnee = getCoordonnées(feature)
 
                     if (feature.properties.name !== undefined) {
@@ -515,7 +512,8 @@ function layers() {
                     }
                     if (feature.properties.adresse !== undefined) {
                         adresse = feature.properties.adresse
-
+                    } else {
+                        adresse = "Médecin";
                     }
 
                     let doctorsMarker = L.AwesomeMarkers.icon({
@@ -532,25 +530,12 @@ function layers() {
                             title: nom
                         });
 
-                    createPopup(marker, coordonnee, nom, type, telephone, adresse)
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], telephone, distinction)
+
 
                     return marker;
                 }
             },
-            onEachFeature: function (feature, layer) {
-                let telephone = "";
-                let adresse = "";
-                if (feature.properties.phone !== undefined) {
-                    telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
-                }
-                if (feature.properties.adresse !== undefined) {
-                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
-
-                }
-                // layer.bindPopup(
-                //     markerPopup(feature) + telephone + adresse
-                // );
-            }
         });
 
     var hopital = L.geoJSON(hospital, {
@@ -561,19 +546,19 @@ function layers() {
             let nom = null;
             let phone = null;
             let mail = null;
-            let type = "Hopital"
+            let type = "Hôpital";
             let coordonnee = getCoordonnées(feature)
             if (feature.properties.name !== undefined) {
                 nom = feature.properties.name
             }
             if (feature.properties.phone !== undefined) {
-                phone = 'Téléphone : ' + feature.properties.phone
+                phone = feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail = 'Mail : ' + feature.properties.email
+                mail =  feature.properties.email
             }
 
-            createPopup(layer, coordonnee, nom, type, phone, mail)
+            createPopup(layer, coordonnee, nom, type, phone, mail, null)
 
         }
     });
@@ -602,9 +587,9 @@ function layers() {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
                             let color = colorMarker(ligne);
-                            let type = " TanLib, le transport de l'agglo Niortaise";
+                            let type = "TanLib, le transport de l'agglo Niortaise";
                             let coordonnee = getCoordonnées(feature)
-                            let val1 = logo(ligne).join(" ")
+                            let val3 = logo(ligne).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -619,7 +604,7 @@ function layers() {
                                     title: arret
                                 });
 
-                            createPopup(marker, coordonnee, arret, type, val1, null)
+                            createPopup(marker, coordonnee, arret, type, null, null, val3, true)
                             return marker;
                         }
                     }
@@ -664,7 +649,7 @@ function layers() {
                             title: type
                         });
 
-                    createPopup(marker, coordonnee, type, soustitre, phone, null)
+                    createPopup(marker, coordonnee, type, soustitre, phone, null, null)
 
                     return marker;
                 }
@@ -708,7 +693,7 @@ function layers() {
                             title: nom
                         });
 
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null)
                     return marker;
                 }
             }
@@ -741,7 +726,7 @@ function layers() {
                                 title: nom
                             });
 
-                        createPopup(marker, coordonnee, nom, typeDechet, null, null)
+                        createPopup(marker, coordonnee, nom, typeDechet, null, null, null)
 
                         conteneur.addLayer(marker);
                     }
@@ -843,7 +828,7 @@ function parkingVoitu(param) {
                     capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
                 }
 
-                createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
+                createPopup(layer, coordonnee, nameParking, type, capacityParking, null, null)
 
             },
             filter: function (feature, layer) {
@@ -971,7 +956,9 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-                createPopup(marker, coordonnee, nom, adresse, null, null)
+                createPopup(marker, coordonnee, nom, adresse, null, null, null)
+
+                createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
 
 
                 return marker;
@@ -996,7 +983,7 @@ function getCoordonnées(feature) {
     return coordonnees
 }
 
-function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
+function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distinction) {
 
     let itineraire = null;
     if (coordonnee != null) {
@@ -1015,47 +1002,54 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
     }
 
-    let icon1 = "";
-    let icon2 = "";
-    let icon3 = "";
+    let icon1 = '';
+    let icon2 = '';
+    let icon3 = '';
 
     switch (type) {
-        case "Médecin" :
-            icon1 = "fa-phone";
-            icon2 = "fa-map-marker";
-            break;
         case "Hôpital" :
-            icon1 = "fa-phone";
+            icon1 = '<i class="fas fa-phone fa-lg"></i>';
+            icon2 = '<i class="fas fa-envelope fa-lg"></i>';
+            break;
+        default:
+            break
+    }
+
+    switch (distinction) {
+        case "Médecin" :
+            icon2 = '<i class="fas fa-map-marker fa-lg"></i>';
+            icon3 = '<i class="fas fa-phone fa-lg"></i>';
+            break;
+        case "Pharma" :
+            icon3 = '<i class="fas fa-phone fa-lg"></i>';
             break;
         default:
             break
     }
 
     if (val1 === "Fermé" || val1 === "Ouvert") {
-        icon2 = "fa-clock";
-        icon3 = "fa-phone";
+        icon2 = '<i class="fas fa-clock fa-lg"></i>';
+        icon3 = '<i class="fas fa-phone fa-lg"></i>';
     }
 
 
     let bottom = '';
     if (val1 != null && val2 != null) {
-        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div> <div class="barre"> </div> <div> <i class="fas ' + icon2 + ' fa-lg"></i> <div class="popupRight">  ' + val2 + '  </div></div> </div> '
+        bottom = '<div class="bottom"> <div>' + icon1 + '<div class="popupLeft"> ' + val1 + ' </div> </div> <div class="barre"> </div> <div>' + icon2 + '<div class="popupRight">  ' + val2 + '  </div></div> </div> '
     } else if (val1 != null && val2 === null) {
-        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div></div> '
+        bottom = '<div class="bottom"> <div> ' + icon1 + '<div class="popupLeft"> ' + val1 + ' </div> </div></div> '
     } else if (val1 === null && val2 != null) {
-        bottom = '<div class="bottom"> <div> <i class="fas ' + icon2 + ' fa-lg"></i>  <div class="popupRight"> ' + val2 + ' </div> </div></div> '
+        bottom = '<div class="bottom"> <div>' + icon2 + '<div class="popupRight"> ' + val2 + ' </div> </div></div> '
     }
 
 
     let bottomBonus = '';
-    if (val3 != null && itineraire != null) {
-        bottomBonus = '<div class="bottom"> <div> <i class="fas ' + icon3 + ' fa-lg"></i>  <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
-    } else {
-        val3 != null && itineraire === null
-    }
-    {
+    if (val3 != null && (itineraire === null || type.startsWith("TanLib"))) {
         bottomBonus = '<div class="bottom"> <div> <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+    } else if (val3 != null && itineraire != null) {
+        bottomBonus = '<div class="bottom"> <div>' + icon3 + '<div class="popupLeft"> ' + val3 + ' </div> </div></div> '
     }
+
 
     return layer.bindPopup(
         '<div class="popup">'
