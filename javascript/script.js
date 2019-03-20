@@ -179,10 +179,7 @@ function init() {
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    let dateDebutM = null;
-    let dateFinM = null;
-    let dateDebutA = null;
-    let dateFinA = null;
+
     let ouverture = null;
     let today = new Date();
     let horairesAfficher = null;
@@ -216,9 +213,6 @@ function markerPopup(feature) {
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
-                    let dateD = new Date();
-                    let dateF = new Date();
-                    let hours, minutes, hoursF, minutesF;
 
                     if (today.getHours() >= Number(strings[0].split(":")[0])) {
 
@@ -226,16 +220,15 @@ function markerPopup(feature) {
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
-                         
 
 
                             && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
-                            hoursF = Number(dateFinM.split(":")[0]);
-                            minutesF = Number(dateFinM.split(":")[1]);
+                            horairesAfficher = horaire;
+                            ouverture = "Ouvert";
 
                         } else if (h === plageHoraire[1]
-                            && (today.getHours() > Number(strings[0].split(":")[0])
+                            && ((today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                                 || (today.getHours() === Number(strings[0].split(":")[0]))
                                 && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
@@ -246,23 +239,9 @@ function markerPopup(feature) {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
 
-
-                            hoursF = Number(dateFinA.split(":")[0]);
-                            minutesF = Number(dateFinA.split(":")[1]);
-                        }
-                    } else {
-                        if (h === plageHoraire[1] && today.getHours() >= 12) {
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
-                        } else {
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
                         }
                     } else {
                         horairesAfficher = horaire;
-
                         ouverture = "Fermé";
                     }
 
@@ -270,12 +249,12 @@ function markerPopup(feature) {
             }
         });
 
-
         let horaire = new Array()
+
         if (horairesAfficher !== null) {
             horaire["ouverture"] = ouverture;
             horaire["horairesAfficher"] = horairesAfficher;
-            // console.log(horaire["horairesAfficher"])
+            console.log(horaire["horairesAfficher"])
             return (horaire);
         } else {
             return horaire;
@@ -314,7 +293,6 @@ function removeDivLieux() {
 }
 
 function layers() {
-
 
     // Public Transport carte
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
@@ -566,7 +544,7 @@ function layers() {
                 phone = feature.properties.phone
             }
             if (feature.properties.email !== undefined) {
-                mail =  feature.properties.email
+                mail = feature.properties.email
             }
 
             createPopup(layer, coordonnee, nom, type, phone, mail, null)
@@ -829,11 +807,10 @@ function layers() {
         });
     }
 
-
 }
 
 function parkingVoitu(param) {
-  
+
     var parkingVoiture = L.geoJSON(parkings, {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
@@ -901,15 +878,6 @@ function parkingVoitu(param) {
                     return marker;
                 } else if (param === "covoit") {
 
-
-                    let busMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'copyright',
-                        iconColor: 'white',
-                        markerColor: "lightgreen"
-                    });
-                    let marker = L.marker(latlng, {icon: busMarker});
-                    return marker;
 
                     let busMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
@@ -991,7 +959,7 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-             
+
                 createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
 
                 return marker;
