@@ -112,7 +112,7 @@ const recyclings = {
         "barrier": "fence",
         "landuse": "industrial",
         "name": "Dechetterie municipale",
-        "opening_hours": "Mo 00:00-00:01 / 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 09:00-09:01 / 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
+        "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
         // "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
         "recycling": {
           "glass": "yes",
