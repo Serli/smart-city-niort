@@ -251,26 +251,6 @@ function markerPopup(feature) {
     }
 
 
-    if (dateDebutM !== null && dateFinM !== null) {
-        return (
-
-            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
-        );
-    } else if (dateDebutA !== null && dateFinA !== null) {
-        return (
-            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>' +
-            +'<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
-
-
-        );
-    } else {
-        return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>Horaires Inconnues</label></div>'
-        );
-    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
