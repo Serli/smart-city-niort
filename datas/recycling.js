@@ -8,46 +8,14 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "way/190816266",
-        "amenity": "recycling",
-        "recycling_type": "centre"
+        // "amenity": "recycling",
+        "recycling_type": "Dechetterie"
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -0.6273214,
-              46.3749825
-            ],
-            [
-              -0.6275759,
-              46.3742933
-            ],
-            [
-              -0.6274315,
-              46.3742566
-            ],
-            [
-              -0.6271771,
-              46.3745475
-            ],
-            [
-              -0.626315,
-              46.3742095
-            ],
-            [
-              -0.6257529,
-              46.374744
-            ],
-            [
-              -0.6261972,
-              46.3749353
-            ],
-            [
-              -0.6273214,
-              46.3749825
-            ]
-          ]
+            -0.626747,
+            46.374603,
         ]
       },
       "id": "way/190816266"
@@ -58,69 +26,60 @@ const recyclings = {
         "@id": "way/231551023",
         "amenity": "recycling",
         "collection_times": "Mo-Sa 09:00-12:00,13:00-17:00; Tu off; Th off; Fr 13:00-17:00",
-        "name": "Déchetterie de Vouillé",
+        "opening_hours": "Mo 09:00-12:00 / 13:00-17:00, We 09:00-12:00 / 13:00-17:00, Fr-Sa 09:00-12:00 / 13:00-17:00",
+        "name": "Dechetterie de Vouillé",
+        "adresse":"83 Rue de Fend le Vent",
         "operator": "Grand Poitiers /Veolia",
-        "recycling:batteries": "yes",
-        "recycling:cans": "yes",
-        "recycling:car_batteries": "yes",
-        "recycling:garden_waste": "yes",
-        "recycling:glass": "yes",
-        "recycling:green_waste": "yes",
-        "recycling:light_bulbs": "yes",
-        "recycling:paper": "yes",
-        "recycling:scrap_metal": "yes",
-        "recycling:waste_oil": "yes",
-        "recycling_type": "centre"
+        "recycling": {
+          "batteries": "yes",
+          "cans": "yes",
+          "car_batteries": "yes",
+          "garden_waste": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "green_waste": "yes",
+          "light_bulbs": "yes",
+          "scrap_metal": "yes",
+          "waste_oil": "yes",
+          "type": "Dechetterie"
+        }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -0.3348856,
-              46.3095571
-            ],
-            [
-              -0.3345877,
-              46.3094862
-            ],
-            [
-              -0.3343842,
-              46.3094322
-            ],
-            [
-              -0.3340905,
-              46.3093541
-            ],
-            [
-              -0.3340387,
-              46.3095128
-            ],
-            [
-              -0.3340955,
-              46.3096185
-            ],
-            [
-              -0.3342288,
-              46.3097464
-            ],
-            [
-              -0.3343128,
-              46.3098317
-            ],
-            [
-              -0.3347177,
-              46.3099016
-            ],
-            [
-              -0.3347449,
-              46.3098402
-            ],
-            [
-              -0.3348856,
-              46.3095571
-            ]
-          ]
+            -0.334492,
+            46.309510
+        ]
+      },
+      "id": "way/231551023"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/231551023",
+        "amenity": "recycling",
+        "opening_hours": "Mo 09:00-12:00 / 14:00-18:00, Tu 14:00-18:00, We 09:00-12:00 / 14:00-18:00, Th-Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00, Su 09:00-12:00",
+        "name": "Dechetterie d'Échiré",
+        "adresse":"49 Rue du Grand Ravard",
+        "recycling": {
+          "batteries": "yes",
+          "cans": "yes",
+          "car_batteries": "yes",
+          "garden_waste": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "green_waste": "yes",
+          "light_bulbs": "yes",
+          "scrap_metal": "yes",
+          "waste_oil": "yes",
+          "type": "Dechetterie"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.424232,
+          46.361812
         ]
       },
       "id": "way/231551023"
@@ -130,70 +89,17 @@ const recyclings = {
       "properties": {
         "@id": "way/397608312",
         "amenity": "recycling",
-        "name": "Déchetterie de La Crèche",
-        "recycling_type": "centre"
+        "name": "Dechetterie de La Crèche",
+        "opening_hours": "Mo-Sa 09:00-12:00 / 14:00-18:00",
+        "recycling": {
+          "type": "Dechetterie"
+        }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -0.3381195,
-              46.3487293
-            ],
-            [
-              -0.3381805,
-              46.3488091
-            ],
-            [
-              -0.3387244,
-              46.3487183
-            ],
-            [
-              -0.338865,
-              46.348733
-            ],
-            [
-              -0.3388725,
-              46.3487138
-            ],
-            [
-              -0.3388911,
-              46.3486661
-            ],
-            [
-              -0.338944,
-              46.3485902
-            ],
-            [
-              -0.3390106,
-              46.3485537
-            ],
-            [
-              -0.3390809,
-              46.3485412
-            ],
-            [
-              -0.3394217,
-              46.3484821
-            ],
-            [
-              -0.3393723,
-              46.3484228
-            ],
-            [
-              -0.3382236,
-              46.3478532
-            ],
-            [
-              -0.3378523,
-              46.3479893
-            ],
-            [
-              -0.3381195,
-              46.3487293
-            ]
-          ]
+            -0.339039,
+            46.348627,
         ]
       },
       "id": "way/397608312"
@@ -205,50 +111,22 @@ const recyclings = {
         "amenity": "recycling",
         "barrier": "fence",
         "landuse": "industrial",
-        "name": "Déchetterie municipale",
-        "recycling_type": "centre"
+        "name": "Dechetterie municipale",
+        "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
+        // "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
+        "recycling": {
+          "glass": "yes",
+          "green_waste": "yes",
+          "cardboard": "yes",
+          "waste": "yes",
+          "type": "Dechetterie"
+        }
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -0.4296833,
-              46.2869568
-            ],
-            [
-              -0.4296573,
-              46.2868385
-            ],
-            [
-              -0.4296683,
-              46.286793
-            ],
-            [
-              -0.4295247,
-              46.2861914
-            ],
-            [
-              -0.4291515,
-              46.2862326
-            ],
-            [
-              -0.4290548,
-              46.2865241
-            ],
-            [
-              -0.4289684,
-              46.2867757
-            ],
-            [
-              -0.4294728,
-              46.2868297
-            ],
-            [
-              -0.4296833,
-              46.2869568
-            ]
-          ]
+            -0.429320,
+            46.286563,
         ]
       },
       "id": "way/484406638"
@@ -257,9 +135,11 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/842292294",
-        "amenity": "recycling",
         "recycling:glass": "yes",
-        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -274,9 +154,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/842292320",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -291,9 +172,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/842292385",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -308,7 +190,6 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1194328489",
-        "amenity": "recycling"
       },
       "geometry": {
         "type": "Point",
@@ -323,9 +204,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1339070858",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -340,10 +222,11 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1355112484",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "recycling:paper": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -358,11 +241,12 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1361933803",
-        "amenity": "recycling",
-        "recycling:clothes": "yes",
-        "recycling:glass": "yes",
-        "recycling:paper": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "paper": "yes",
+          "clothes": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -377,9 +261,11 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1446911347",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "recycling:paper": "yes"
+        "recycling": {
+          "glass": "yes",
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -394,7 +280,6 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/1554593527",
-        "amenity": "recycling",
         "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
       },
       "geometry": {
@@ -425,11 +310,12 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/2212133324",
-        "amenity": "recycling",
-        "recycling:clothes": "yes",
-        "recycling:glass": "yes",
-        "recycling:paper": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "clothes": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -444,14 +330,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/2398810802",
-        "amenity": "recycling",
-        "recycling:batteries": "no",
-        "recycling:cans": "no",
-        "recycling:clothes": "no",
-        "recycling:glass": "yes",
-        "recycling:paper": "no",
-        "recycling:scrap_metal": "no",
-        "recycling_type": "container"
+        "recycling": {
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -466,10 +348,11 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/2535723632",
-        "amenity": "recycling",
-        "recycling:clothes": "yes",
-        "recycling:glass": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "clothes": "yes",
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -484,14 +367,12 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/3778487638",
-        "amenity": "recycling",
-        "recycling:cans": "no",
-        "recycling:clothes": "no",
-        "recycling:glass": "yes",
-        "recycling:glass_bottles": "yes",
-        "recycling:paper": "yes",
-        "recycling:plastic": "no",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "paper": "yes",
+          "plastic": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -506,10 +387,12 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/4334105005",
-        "amenity": "recycling",
-        "recycling:glass_bottles": "yes",
-        "recycling:paper": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "batteries": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -524,14 +407,14 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/4408855040",
-        "amenity": "recycling",
-        "recycling:cans": "yes",
-        "recycling:cardboard": "yes",
-        "recycling:glass": "yes",
-        "recycling:paper": "yes",
-        "recycling:plastic_bottles": "yes",
-        "recycling_type": "container",
-        "source": "Observations personnelles"
+        "recycling": {
+          "cans": "yes",
+          "cardboard": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "plastic": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -546,9 +429,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/4771570353",
-        "amenity": "recycling",
-        "recycling:glass": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -564,14 +448,14 @@ const recyclings = {
       "properties": {
         "@id": "node/4796185401",
         "access": "customers",
-        "amenity": "recycling",
-        "recycling:cans": "yes",
-        "recycling:glass_bottles": "yes",
-        "recycling:paper": "yes",
-        "recycling:plastic_bottles": "yes",
-        "recycling:plastic_packaging": "yes",
-        "recycling:waste": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "cans": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "plastic": "yes",
+          "waste": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -586,9 +470,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/4799559636",
-        "amenity": "recycling",
-        "recycling:glass_bottles": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -603,9 +488,10 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/5016348938",
-        "amenity": "recycling",
-        "recycling:paper": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "paper": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -620,10 +506,11 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/5016348939",
-        "amenity": "recycling",
-        "recycling:clothes": "yes",
-        "recycling:glass": "yes",
-        "recycling_type": "container"
+        "recycling": {
+          "glass": "yes",
+          "clothes": "yes",
+          "type": "container"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -640,22 +527,21 @@ const recyclings = {
         "@id": "node/5038602798",
         "amenity": "recycling",
         "name": "Déchèterie La Chaume aux Bêtes (Magné)",
+        "opening_hours": "Mo 09:00-12:00 / 14:00-18:00, Tu 14:00-18:00, We-Fr 09:00-12:00 / 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
         "operator": "CAN",
-        "recycling:batteries": "yes",
-        "recycling:cans": "yes",
-        "recycling:cardboard": "yes",
-        "recycling:electrical_appliances": "yes",
-        "recycling:glass": "yes",
-        "recycling:glass_bottles": "yes",
-        "recycling:green_waste": "yes",
-        "recycling:paper": "yes",
-        "recycling:plastic": "yes",
-        "recycling:plastic_bottles": "yes",
-        "recycling:plastic_packaging": "yes",
-        "recycling:scrap_metal": "yes",
-        "recycling:small_appliances": "yes",
-        "recycling:waste": "yes",
-        "recycling_type": "centre"
+        "recycling": {
+          "batteries": "yes",
+          "cans": "yes",
+          "cardboard": "yes",
+          "electrical_appliances": "yes",
+          "glass": "yes",
+          "paper": "yes",
+          "plastic": "yes",
+          "scrap_metal": "yes",
+          "small_appliances": "yes",
+          "waste": "yes",
+          "type": "Dechetterie"
+        }
       },
       "geometry": {
         "type": "Point",
@@ -670,7 +556,6 @@ const recyclings = {
       "type": "Feature",
       "properties": {
         "@id": "node/6221258690",
-        "amenity": "recycling",
         "recycling_type": "container"
       },
       "geometry": {
@@ -683,4 +568,4 @@ const recyclings = {
       "id": "node/6221258690"
     }
   ]
-}
+};
