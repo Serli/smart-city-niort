@@ -109,15 +109,21 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.width = "48px";
-            container.style.height = "48px";
+            container.style.width = "5vw";
+            container.style.maxWidth = "7vh";
+            container.style.minWidth = "5vh";
+
+
+            container.style.height = "5vw";
+            container.style.maxHeight = "7vh";
+            container.style.minHeight = "5vh";
 
             container.style.display = "flex";
             container.style.alignContent = "centrer";
             container.style.justifyContent = "center";
 
 
-            container.innerHTML = '<i class="fa fa-arrow-left "></i>';
+            container.innerHTML = '<i class="fa fa-arrow-left fa-lg"></i>';
 
             container.onclick = function () {
                 clickTogglePosition();
@@ -137,15 +143,22 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.width = "48px";
-            container.style.height = "48px";
+
+            container.style.width = "5vw";
+            container.style.maxWidth = "7vh";
+            container.style.minWidth = "5vh";
+
+
+            container.style.height = "5vw";
+            container.style.maxHeight = "7vh";
+            container.style.minHeight = "5vh";
 
 
             container.style.display = "flex";
             container.style.alignItems = "centrer";
             container.style.justifyContent = "center";
 
-            container.innerHTML = '<i class="far fa-compass "></i>';
+            container.innerHTML = '<i class="far fa-compass fa-lg" ></i>';
 
             container.onclick = function () {
                 recenter();
@@ -166,14 +179,12 @@ function init() {
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    let dateDebutM = null;
-    let dateFinM = null;
-    let dateDebutA = null;
-    let dateFinA = null;
+
     let ouverture = null;
     let today = new Date();
     let horairesAfficher = null;
     const {opening_hours, amenity, name} = feature.properties;
+
     if (opening_hours && (amenity === 'pharmacy'
         || amenity === "recycling"
         || amenity === "economie"
@@ -202,92 +213,89 @@ function markerPopup(feature) {
                 (dateDay[1] && (today.getDay() - 1 >= day.indexOf(dateDay[0].trim()) && today.getDay() - 1 <= day.indexOf(dateDay[1].trim())))) {
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
-                    let dateD = new Date();
-                    let dateF = new Date();
-                    let hours, minutes, hoursF, minutesF;
 
-                    if(today.getHours() >= Number(strings[0].split(":")[0])) {
+                    if (today.getHours() >= Number(strings[0].split(":")[0])) {
 
                         if (h === plageHoraire[0]
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
 
-                            horairesAfficher = plageHoraire;
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
-                            hours = Number(dateDebutM.split(":")[0]);
-                            minutes = Number(dateDebutM.split(":")[1]);
 
-                            hoursF = Number(dateFinM.split(":")[0]);
-                            minutesF = Number(dateFinM.split(":")[1]);
 
-                        } else if (h === plageHoraire[1]
-                            && (today.getHours() > Number(strings[0].split(":")[0])
-                                && today.getHours() < Number(strings[1].split(":")[0]))
-                            || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getHours() === Number(strings[1].split(":")[0])
-                            && today.getMinutes() >= Number(strings[0].split(":")[1])
-                            && today.getMinutes() < Number(strings[1].split(":")[1])) {
+
+                            && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
                             horairesAfficher = horaire;
+                            ouverture = "Ouvert";
 
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
-                            hours = Number(dateDebutA.split(":")[0]);
-                            minutes = Number(dateDebutA.split(":")[1]);
+                        } else if (h === plageHoraire[1]
+                            && ((today.getHours() > Number(strings[0].split(":")[0])
+                                && today.getHours() < Number(strings[1].split(":")[0]))
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
-                            hoursF = Number(dateFinA.split(":")[0]);
-                            minutesF = Number(dateFinA.split(":")[1]);
+                            horairesAfficher = horaire;
+                            ouverture = "Ouvert";
+                        }
+
+                        else {
+                            horairesAfficher = horaire;
+                            ouverture = "Fermé";
+
                         }
                     }
                     else {
-                        if (h === plageHoraire[1] && today.getHours() >= 12) {
-                            dateDebutM = null;
-                            dateFinM = null;
-                            dateDebutA = strings[0];
-                            dateFinA = strings[1];
-                        } else {
-                            dateDebutM = strings[0];
-                            dateFinM = strings[1];
-                        }
-                    }
-
-                    dateD.setHours(hours);
-                    dateD.setMinutes(minutes);
-
-                    dateF.setHours(hoursF);
-                    dateF.setMinutes(minutesF);
-                    if (dateD.getTime() < today.getTime() && dateF.getTime() > today.getTime()) {
-                        ouverture = "Ouvert";
-                    } else {
+                        horairesAfficher = horaire;
                         ouverture = "Fermé";
                     }
 
                 });
             }
         });
+
+
     }
 
-    if (horairesAfficher != null) {
-        return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>' +
-            '<label>' + ouverture + horairesAfficher + '</label></div>'
-        );
+    let horaire = new Array()
+    if (horairesAfficher !== null) {
+        horaire["ouverture"] = ouverture;
+        horaire["horairesAfficher"] = horairesAfficher;
+        // console.log(horaire["horairesAfficher"])
+        return (horaire);
+    } else {
+        return horaire;
     }
-    else {
-            return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-                + '<label>Horaires Inconnues</label></div>'
-        );
-    }
+
+
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("containMap").innerHTML +=
+        '<div id="lieux">' +
+        '<div>' +
+        '<h5><strong>'+ layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
+        '<button onclick="removeDivLieux()">x</button></div></div>';
+
+    setTimeout(function() {
+        document.getElementById("lieux").style.opacity = "1";
+    }, 100);
+
+    setTimeout(function() {
+        document.getElementById("lieux").style.opacity = "0";
+        setTimeout(function() {
+            document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+        }, 200)
+    }, 5000);
+});
+
+
+function removeDivLieux() {
+    document.getElementById("lieux").style.opacity = "0";
+    setTimeout(function() {
+        document.getElementById("containMap").removeChild(document.getElementById("lieux"));
+    }, 200)
+}
 function layers() {
 
 
@@ -298,13 +306,17 @@ function layers() {
     });
 
 
-    var cycle = L.geoJSON(cycleways, {id: 'cycleways', attribution: '&copy; OpenStreetMap', style: polystyle()});
+    var cycle = L.geoJSON(cycleways, {
+        id: 'cycleways',
+        attribution: '&copy; OpenStreetMap',
+        style: polystyle(),
+    });
 
     var cycleParking = L.geoJSON(bicycleParkings,
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
-
+                nombreLieux += 1;
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -351,6 +363,7 @@ function layers() {
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
 
+                nombreLieux += 1;
                 let coordonnee = data.location.lat + ',' + data.location.lon
                 let description = null;
                 let titre = null;
@@ -375,7 +388,8 @@ function layers() {
                 }
 
 
-                createPopup(markerBio, coordonnee, titre, adresse, description, null).addTo(MagasinBio)
+                createPopup(markerBio, coordonnee, titre, adresse, null, description).addTo(MagasinBio)
+
             }
         }
     });
@@ -384,6 +398,40 @@ function layers() {
     var pharmacie = L.geoJSON(pharmacy, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
+            let nom = null;
+            let adresse = "";
+            let coordonnee = getCoordonnées(feature)
+            let phone = null;
+
+            if (feature.properties.phone !== undefined) {
+                phone = feature.properties.phone
+            }
+
+
+            if (feature.properties.name !== undefined) {
+                nom = feature.properties.name
+            } else {
+                nom = null;
+            }
+            console.log(feature.properties.city)
+
+
+            if (feature.properties["addr:housenumber"] !== undefined) {
+                adresse = feature.properties["addr:housenumber"] + " "
+            }
+            if (feature.properties["addr:street"] !== undefined) {
+                adresse += feature.properties["addr:street"] + " "
+            }
+            if (feature.properties["addr:postcode"] !== undefined) {
+                adresse += feature.properties["addr:postcode"] + " "
+            }
+            if (feature.properties["addr:city"] !== undefined) {
+                adresse += feature.properties["addr:city"];
+            } else {
+                adresse = "Pharmacie"
+            }
+
+
             let pharmacieMarker = L.AwesomeMarkers.icon({
                 prefix: 'fa',
                 icon: 'comment-medical',
@@ -396,13 +444,12 @@ function layers() {
                 {
                     icon: pharmacieMarker,
                 });
+
+            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone)
+
             return marker;
         },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(
-                markerPopup(feature)
-            );
-        }
+
     });
 
     var medecin = L.geoJSON(doctors,
@@ -448,6 +495,7 @@ function layers() {
                 }
             },
             onEachFeature: function (feature, layer) {
+                nombreLieux += 1;
                 let telephone = "";
                 let adresse = "";
                 if (feature.properties.phone !== undefined) {
@@ -457,9 +505,9 @@ function layers() {
                     adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
 
                 }
-                layer.bindPopup(
-                    markerPopup(feature) + telephone + adresse
-                );
+                // layer.bindPopup(
+                //     markerPopup(feature) + telephone + adresse
+                // );
             }
         });
 
@@ -468,6 +516,7 @@ function layers() {
         style: polystyle(),
 
         onEachFeature: function (feature, layer) {
+            nombreLieux += 1;
             let nom = null;
             let phone = null;
             let mail = null;
@@ -490,10 +539,11 @@ function layers() {
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
+    nombreLieux = parkingVoitu(null, nombreLieux);
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
-    var parkingCovoit = parkingVoitu("covoit")
+    var parkingCovoit = parkingVoitu("covoit");
 
 
     const coord = [];
@@ -512,6 +562,9 @@ function layers() {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
                             let color = colorMarker(ligne);
+                            let type = " TanLib, le transport de l'agglo Niortaise";
+                            let coordonnee = getCoordonnées(feature)
+                            let val1 = logo(ligne).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -525,11 +578,8 @@ function layers() {
                                     icon: busMarker,
                                     title: arret
                                 });
-                            marker.bindPopup(
-                                '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                                + '<h6>' + arret + '</h6>'
-                                + logo(ligne).join(" ")
-                            );
+
+                            createPopup(marker, coordonnee, arret, type, val1, null)
                             return marker;
                         }
                     }
@@ -543,16 +593,24 @@ function layers() {
     let decheterie2 = L.geoJSON(recyclings, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
-            let nom = "";
-            let adresse = "";
+
+            let nom = null;
+            let adresse = null;
+            let coordonnee = getCoordonnées(feature)
+
+
             if (feature.properties.name !== undefined) {
-                nom = '<h6>' + feature.properties.name + '</h6>'
+                nom = feature.properties.name
+            } else {
+                nom = null;
             }
             if (feature.properties.adresse !== undefined) {
-                adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+                adresse = feature.properties.adresse
+            } else {
+                adresse = "Déchetterie"
             }
             if (feature.properties.recycling !== undefined) {
-                if (feature.properties.recycling.type === "Dechetterie"){
+                if (feature.properties.recycling.type === "Dechetterie") {
                     let repairMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'dumpster',
@@ -566,14 +624,12 @@ function layers() {
                             icon: repairMarker,
                             title: nom
                         });
+
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
                     return marker;
                 }
             }
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(
-                markerPopup(feature) + dechetRecyclage(feature).join(" ")
-            );
+
         }
     });
 
@@ -581,15 +637,10 @@ function layers() {
         {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
-                let nom = "";
-                let adresse = "";
-                let recycling = "";
-                if (feature.properties.name !== undefined) {
-                    nom = '<h6>' + feature.properties.name + '</h6>'
-                }
-                if (feature.properties.adresse !== undefined) {
-                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
-                }
+                let nom = "Conteneur";
+                let coordonnee = getCoordonnées(feature)
+                let typeDechet = null;
+
                 if (feature.properties.recycling !== undefined) {
                     if (feature.properties.recycling.type === "container"){
                         let repairMarker = L.AwesomeMarkers.icon({
@@ -605,25 +656,35 @@ function layers() {
                                 icon: repairMarker,
                                 title: nom
                             });
-                        marker.bindPopup(
-                            nom + adresse + dechetRecyclage(feature).join(" ")
-                        );
-                        return marker;
+
+                        createPopup(marker, coordonnee, nom, typeDechet, null, null)
+
+                        conteneur.addLayer(marker);
                     }
                 }
             },
         });
 
+    var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
+    nombreLieux = createMarker(marketplace, null, null, nombreLieux);
     // let conteneur = createMarker(recyclings, "trash-alt", "blue");
 
     let hopital2 = createMarker(hospital2, "clinic-medical", "cadetblue");
 
+    var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
+    nombreLieux = createMarker(repairCafe, null, null, nombreLieux);
     let defibrillateur = createMarker(defibrillator, "medkit", "lightgreen");
 
+    var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
+    nombreLieux = createMarker(coworking, null, null, nombreLieux);
     let marcher = createMarker(marketplace, 'shopping-cart', 'orange');
 
+    var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
+    nombreLieux = createMarker(cooperative, null, null, nombreLieux);
     let RepairCafe = createMarker(repairCafe, 'tools', 'orange');
 
+    var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
+    nombreLieux = createMarker(economie_solidaire, null, null, nombreLieux);
     let espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
 
     let cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
@@ -658,7 +719,7 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
-    tabLayer["Decheterrie"] = decheterie2;
+    tabLayer["Déchetterie"] = decheterie2;
     tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
@@ -667,7 +728,7 @@ function layers() {
     });
 
 
-    /* **********$  mobile or desktop *******$ */
+    /* **********  mobile or desktop ******* */
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         //mobile
         // on cache la navbar si on clic sur n'importe quel marker
@@ -677,9 +738,11 @@ function layers() {
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
+
                     });
                 } else {
                     tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+
                 }
             }
         );
@@ -687,104 +750,115 @@ function layers() {
         //desktop
     }
 
+    return nombreLieux;
+    //alert("Nombre de lieux trouvés : " + nombreLieux);
 
 }
 
-function parkingVoitu(param) {
-
-    var parkingVoiture = L.geoJSON(parkings, {
+function parkingVoitu(param, nombreLieux) {
+    if (nombreLieux != null) {
+        L.geoJSON(parkings, {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
+                nombreLieux += 1;
+            }
+        });
+        return nombreLieux;
+    }
+    else {
+        var parkingVoiture = L.geoJSON(parkings, {
+                attribution: '&copy; OpenStreetMap',
+                style: polystyle(param),
+                onEachFeature: function (feature, layer) {
 
+                    let nameParking = null;
+                    let capacityParking = null;
+                    let coordonnee = getCoordonnées(feature)
 
-                let nameParking = null;
-                let capacityParking = null;
-                let coordonnee = getCoordonnées(feature)
+                    let type = feature.properties.amenity
 
-                let type = feature.properties.amenity
+                    if (feature.properties.name !== undefined) {
+                        nameParking = feature.properties.name
+                    }
+                    if (feature.properties.capacity !== undefined) {
 
-                if (feature.properties.name !== undefined) {
-                    nameParking = feature.properties.name
-                }
-                if (feature.properties.capacity !== undefined) {
+                        capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
+                    }
 
-                    capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
-                }
+                    createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
 
-                createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
+                },
+                filter: function (feature, layer) {
 
-            },
-            filter: function (feature, layer) {
+                    if (param === "gratuit") {
+                        if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
+                            return true;
+                        }
 
-                if (param === "gratuit") {
-                    if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
+                    } else if (param === "couvert") {
+                        return feature.properties.building !== undefined;
+                    } else if (param === "covoit") {
+                        return feature.properties.covoiturage !== undefined;
+                    } else {
                         return true;
                     }
 
-                } else if (param === "couvert") {
-                    return feature.properties.building !== undefined;
-                } else if (param === "covoit") {
-                    return feature.properties.covoiturage !== undefined;
-                } else {
-                    return true;
+
+                },
+
+                pointToLayer: function (feature, latlng) {
+
+
+                    if (param === "gratuit") {
+                        let busMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'car',
+                            iconColor: 'white',
+                            markerColor: "orange"
+                        });
+                        let marker = L.marker(latlng, {icon: busMarker});
+                        return marker;
+
+                    } else if (param === "couvert") {
+
+                        let busMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'car',
+                            iconColor: 'white',
+                            markerColor: "cadetblue"
+                        });
+                        let marker = L.marker(latlng, {icon: busMarker});
+
+                        return marker;
+                    } else if (param === "covoit") {
+
+                        let busMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'copyright',
+                            iconColor: 'white',
+                            markerColor: "lightgreen"
+                        });
+                        let marker = L.marker(latlng, {icon: busMarker});
+                        return marker;
+
+
+                    } else {
+                        let busMarker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: 'car',
+                            iconColor: 'white',
+                            markerColor: "cadetblue"
+                        });
+                        let marker = L.marker(latlng, {icon: busMarker});
+                        return marker;
+                    }
                 }
 
-
-            },
-
-            pointToLayer: function (feature, latlng) {
-
-
-                if (param === "gratuit") {
-                    let busMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'car',
-                        iconColor: 'white',
-                        markerColor: "orange"
-                    });
-                    let marker = L.marker(latlng, {icon: busMarker});
-                    return marker;
-
-                } else if (param === "couvert") {
-
-                    let busMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'car',
-                        iconColor: 'white',
-                        markerColor: "cadetblue"
-                    });
-                    let marker = L.marker(latlng, {icon: busMarker});
-
-                    return marker;
-                } else if (param === "covoit") {
-
-                    let busMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'copyright',
-                        iconColor: 'white',
-                        markerColor: "lightgreen"
-                    });
-                    let marker = L.marker(latlng, {icon: busMarker});
-                    return marker;
-
-
-                } else {
-                    let busMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'car',
-                        iconColor: 'white',
-                        markerColor: "cadetblue"
-                    });
-                    let marker = L.marker(latlng, {icon: busMarker});
-                    return marker;
-                }
             }
-
-        }
-    );
-
-    return parkingVoiture;
+        );
+        return parkingVoiture;
+    }
 }
 
 function polystyle(param) {
@@ -807,25 +881,35 @@ function polystyle(param) {
     }
 }
 
-function createMarker(fichier, icon, color) {
+function createMarker(fichier, icon, color, nombreLieux) {
     let adresse;
-    return L.geoJSON(fichier,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function (feature, latlng) {
-                let nom = null;
-                let adresse = null;
-                let phone = null;
-                let coordonnee = getCoordonnées(feature)
-
-                if (feature.properties.name !== undefined) {
-
-                    nom = feature.properties.name;
+    if(nombreLieux != null) {
+        L.geoJSON(fichier,
+            {
+                attribution: '&copy; OpenStreetMap',
+                pointToLayer: function (feature, latlng) {
+                    nombreLieux += 1;
                 }
+            });
+        return nombreLieux;
+    }
+    else {
+        return L.geoJSON(fichier,
+            {
+                attribution: '&copy; OpenStreetMap',
+                pointToLayer: function (feature, latlng) {
+                    let nom = null;
+                    let adresse = null;
+                    let coordonnee = getCoordonnées(feature)
 
-                if (feature.properties.adresse !== undefined) {
-                    adresse = feature.properties.adresse;
-                }
+                    if (feature.properties.name !== undefined) {
+
+                        nom = feature.properties.name;
+                    }
+
+                    if (feature.properties.adresse !== undefined) {
+                        adresse = feature.properties.adresse;
+                    }
 
                 if (feature.properties.phone !== undefined) {
                     phone = "Téléphone : " + feature.properties.phone;
@@ -838,13 +922,14 @@ function createMarker(fichier, icon, color) {
                     markerColor: color
                 });
 
-                let marker = L.marker(
-                    latlng,
-                    {
-                        icon: Marker,
-                        title: nom
-                    });
+                    let marker = L.marker(
+                        latlng,
+                        {
+                            icon: Marker,
+                            title: nom
+                        });
 
+                    createPopup(marker, coordonnee, nom, adresse, null, null)
                 // if(feature.properties.amenity === "recycling"){
                 //     if (feature.properties.recycling.type === "container"){
                 //         createPopup(marker, coordonnee, nom, adresse, dechetRecyclage(feature).join(" "), null)
@@ -853,24 +938,25 @@ function createMarker(fichier, icon, color) {
                 //     }
                 // }
 
-                if (feature.properties.emergency === "defibrillator"){
-                    let type = "Défibrillateur";
-                    let soustitre = null;
-                    if (feature.properties.name !== undefined) {
-                        soustitre = feature.properties.name;
-                    } else if (feature.properties.access === "public") {
-                        soustitre = "en libre accés";
+                    if (feature.properties.emergency === "defibrillator"){
+                        let type = "Défibrillateur";
+                        let soustitre = null;
+                        if (feature.properties.name !== undefined) {
+                            soustitre = feature.properties.name;
+                        } else if (feature.properties.access === "public") {
+                            soustitre = "en libre accés";
+                        }
+                        createPopup(marker, coordonnee, type, soustitre, phone, null)
+                    } else if (feature.properties.amenity === "hospital"){
+                        let type = "Hôpital";
+                        phone = feature.properties.phone;
+                        createPopup(marker, coordonnee, nom, type, phone, null);
+                    } else {
+                        createPopup(marker, coordonnee, nom, adresse, null, null);
                     }
-                    createPopup(marker, coordonnee, type, soustitre, phone, null)
-                } else if (feature.properties.amenity === "hospital"){
-                    let type = "Hôpital";
-                    phone = feature.properties.phone;
-                    createPopup(marker, coordonnee, nom, type, phone, null);
-                } else {
-                    createPopup(marker, coordonnee, nom, adresse, null, null);
-                }
 
-                return marker;
+                    return marker;
+                }
             },
         });
 }
@@ -892,23 +978,28 @@ function getCoordonnées(feature) {
     return coordonnees
 }
 
-function createPopup(layer, coordonnee, titre, type, val1, val2) {
+function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
 
+    let itineraire = null;
+    if (coordonnee != null) {
+        let lien = "http://maps.google.fr/maps?q=" + coordonnee;
+        itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
 
-    let lien = "http://maps.google.fr/maps?q=" + coordonnee;
-    let itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
-
+    }
 
     let top = '';
-    if (titre != null && type != null) {
+    if (titre != null && type != null && itineraire != null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
     } else if (titre === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
+    } else if (titre != null && type === null && itineraire === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
     }
 
     let icon1 = "";
     let icon2 = "";
+    let icon3 = "";
 
     switch (type) {
         case "Médecin" :
@@ -922,26 +1013,30 @@ function createPopup(layer, coordonnee, titre, type, val1, val2) {
             break
     }
 
+    if (val1 === "Fermé" || val1 === "Ouvert") {
+        icon2 = "fa-clock";
+        icon3 = "fa-phone";
+    }
+
 
     let bottom = '';
     if (val1 != null && val2 != null) {
         bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div> <div class="barre"> </div> <div> <i class="fas ' + icon2 + ' fa-lg"></i> <div class="popupRight">  ' + val2 + '  </div></div> </div> '
     } else if (val1 != null && val2 === null) {
-        text_truncate = function(str, length, ending) {
-            if (length == null) {
-                length = 40;
-            }
-            if (ending == null) {
-                ending = '...';
-            }
-            if (str.length > length) {
-                return str.substring(0, length - ending.length) + ending;
-            } else {
-                return str;
-            }
-        };
-        let texte = val1.replace("'", " ").replace("\n", "").replace("-", " ");
-        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft" style=""><h8 onmouseover="ellipsis_onMouseOver(\''+texte+'\')">' + text_truncate(val1)+ ' </h8> </div> </div></div> ';
+        bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div></div> '
+    } else if (val1 === null && val2 != null) {
+        bottom = '<div class="bottom"> <div> <i class="fas ' + icon2 + ' fa-lg"></i>  <div class="popupRight"> ' + val2 + ' </div> </div></div> '
+    }
+
+
+    let bottomBonus = '';
+    if (val3 != null && itineraire != null) {
+        bottomBonus = '<div class="bottom"> <div> <i class="fas ' + icon3 + ' fa-lg"></i>  <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+    } else {
+        val3 != null && itineraire === null
+    }
+    {
+        bottomBonus = '<div class="bottom"> <div> <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
     }
 
     return layer.bindPopup(
@@ -950,6 +1045,8 @@ function createPopup(layer, coordonnee, titre, type, val1, val2) {
         top
         +
         bottom
+        +
+        bottomBonus
         +
         '</div>'
     );
@@ -1045,59 +1142,52 @@ function logo(arret) {
     return lignesDeBus;
 }
 
-function dechetRecyclage(feature){
+function dechetRecyclage(feature) {
     let tabRecyclage = [];
-    tabRecyclage.push('<h7>Matériaux accepter : </h7><br>');
-    // recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>';
-    if (feature.properties.recycling.batteries !== undefined){
-        tabRecyclage.push('<h8>Batterie</h8><br>');
+    if (feature.properties.recycling.batteries !== undefined) {
+        tabRecyclage.push('Batterie');
     }
-    if (feature.properties.recycling.cans !== undefined){
-        tabRecyclage.push('<h8>Canettes</h8><br>');
+    if (feature.properties.recycling.cans !== undefined) {
+        tabRecyclage.push('Canettes');
     }
-    if (feature.properties.recycling.car_batteries !== undefined){
-        tabRecyclage.push('<h8>Batterie de Voiture</h8><br>');
+    if (feature.properties.recycling.car_batteries !== undefined) {
+        tabRecyclage.push('Batterie de Voiture');
     }
-    if (feature.properties.recycling.garden_waste !== undefined){
-        tabRecyclage.push('<h8>Déchets de jardin</h8><br>');
+    if (feature.properties.recycling.garden_waste !== undefined) {
+        tabRecyclage.push('Déchets de jardin');
     }
-    if (feature.properties.recycling.glass !== undefined){
-        tabRecyclage.push('<h8>Verre</h8><br>');
+    if (feature.properties.recycling.glass !== undefined) {
+        tabRecyclage.push('Verre');
     }
-    if (feature.properties.recycling.paper !== undefined){
-        tabRecyclage.push('<h8>Papier, Bois</h8><br>');
+    if (feature.properties.recycling.paper !== undefined) {
+        tabRecyclage.push('Papier, Bois');
     }
-    if (feature.properties.recycling.green_waste !== undefined){
-        tabRecyclage.push('<h8>Végétaux</h8><br>');
+    if (feature.properties.recycling.green_waste !== undefined) {
+        tabRecyclage.push('Végétaux');
     }
-    if (feature.properties.recycling.light_bulbs !== undefined){
-        tabRecyclage.push('<h8>Ampoules</h8><br>');
+    if (feature.properties.recycling.light_bulbs !== undefined) {
+        tabRecyclage.push('Ampoules');
     }
-    if (feature.properties.recycling.scrap_metal !== undefined){
-        tabRecyclage.push('<h8>Métaux, ferraille</h8><br>');
+    if (feature.properties.recycling.scrap_metal !== undefined) {
+        tabRecyclage.push('Métaux, ferraille');
     }
-    if (feature.properties.recycling.waste_oil !== undefined){
-        tabRecyclage.push('<h8>Huile</h8><br>');
+    if (feature.properties.recycling.waste_oil !== undefined) {
+        tabRecyclage.push('Huile');
     }
-    if (feature.properties.recycling.cardboard !== undefined){
-        tabRecyclage.push('<h8>Carton</h8><br>');
+    if (feature.properties.recycling.cardboard !== undefined) {
+        tabRecyclage.push('Carton');
     }
-    if (feature.properties.recycling.electrical_appliances !== undefined){
-        tabRecyclage.push('<h8>Appareils électriques</h8><br>');
+    if (feature.properties.recycling.electrical_appliances !== undefined) {
+        tabRecyclage.push('Appareils électriques');
     }
-    if (feature.properties.recycling.plastic !== undefined){
-        tabRecyclage.push('<h8>Plastique</h8><br>');
+    if (feature.properties.recycling.plastic !== undefined) {
+        tabRecyclage.push('Plastique');
     }
-    if (feature.properties.recycling.small_appliances !== undefined){
-        tabRecyclage.push('<h8>Petit appareils électroménager</h8><br>');
+    if (feature.properties.recycling.small_appliances !== undefined) {
+        tabRecyclage.push('Petit appareils électroménager');
     }
-    if (feature.properties.recycling.waste !== undefined){
-        tabRecyclage.push('<h8>Tout venant</h8><br>');
+    if (feature.properties.recycling.waste !== undefined) {
+        tabRecyclage.push('Tout venant');
     }
     return tabRecyclage;
-}
-
-function ellipsis_onMouseOver(texte)
-{
-    console.log(texte);
 }
