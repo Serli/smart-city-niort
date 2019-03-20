@@ -6,6 +6,7 @@ const hospital2 = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6019535859",
+                "amenity": "hospital",
                 "name": "Centre Hospitalier de Niort",
                 "phone": "+33 5 49 32 79 79",
                 "horaire":"Ouvert 24h/24"
@@ -23,6 +24,7 @@ const hospital2 = {
             "type": "Feature",
             "properties": {
                 "@id": "node/6019535859",
+                "amenity": "hospital",
                 "name" : "Polyclinique Inkermann",
                 "phone":"0 826 30 28 28",
                 "email":"inkermann.groupe-elsan.com",

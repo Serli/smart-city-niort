@@ -215,7 +215,6 @@ function clickCritere() {
                 if (layer.options && layer.options.pane === "markerPane") {
                     map.removeLayer(layer);
                     if (markerArret.length === 0) {
-
                         markerArret.push(layer);
                     } else {
                         let found = markerArret.findIndex((coordonnees) => {
