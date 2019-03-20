@@ -186,7 +186,7 @@ function markerPopup(feature) {
     const {opening_hours, amenity, name} = feature.properties;
 
     if (opening_hours && (amenity === 'pharmacy'
-        || amenity === "recycling"
+        || amenity === "recycling"
         || amenity === "economie"
         || amenity === "coworking"
         || amenity === "repair_cafe"
@@ -221,9 +221,7 @@ function markerPopup(feature) {
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
 
-                           
-                          
-           
+
                             && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
                             horairesAfficher = horaire;
@@ -232,20 +230,17 @@ function markerPopup(feature) {
                         } else if (h === plageHoraire[1]
                             && ((today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
-                            || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
+                                || (today.getHours() === Number(strings[0].split(":")[0]))
+                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
                             horairesAfficher = horaire;
                             ouverture = "Ouvert";
-                        }
-
-                        else {
+                        } else {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
 
                         }
-                    }
-                    else {
+                    } else {
                         horairesAfficher = horaire;
                         ouverture = "Fermé";
                     }
@@ -255,35 +250,34 @@ function markerPopup(feature) {
         });
 
 
+        let horaire = new Array()
+        if (horairesAfficher !== null) {
+            horaire["ouverture"] = ouverture;
+            horaire["horairesAfficher"] = horairesAfficher;
+            // console.log(horaire["horairesAfficher"])
+            return (horaire);
+        } else {
+            return horaire;
+        }
 
 
-    let horaire = new Array()
-    if (horairesAfficher !== null) {
-        horaire["ouverture"] = ouverture;
-        horaire["horairesAfficher"] = horairesAfficher;
-        // console.log(horaire["horairesAfficher"])
-        return (horaire);
-    } else {
-        return horaire;
     }
-
-
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("containMap").innerHTML +=
         '<div id="lieux">' +
         '<div>' +
-        '<h5><strong>'+ layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
+        '<h5><strong>' + layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
         '<button onclick="removeDivLieux()">x</button></div></div>';
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("lieux").style.opacity = "1";
     }, 100);
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("lieux").style.opacity = "0";
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("containMap").removeChild(document.getElementById("lieux"));
         }, 200)
     }, 5000);
@@ -292,10 +286,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function removeDivLieux() {
     document.getElementById("lieux").style.opacity = "0";
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("containMap").removeChild(document.getElementById("lieux"));
     }, 200)
 }
+
 function layers() {
 
 
@@ -733,7 +728,7 @@ function layers() {
                                 icon: repairMarker,
                                 title: nom
                             });
-        
+
                         createPopup(marker, coordonnee, nom, typeDechet, null, null)
 
                         conteneur.addLayer(marker);
@@ -848,7 +843,7 @@ function parkingVoitu(param) {
                     capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
                 }
 
-                createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
+                (layer, coordonnee, nameParking, type, capacityParking, null)
 
             },
             filter: function (feature, layer) {
