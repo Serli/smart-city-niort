@@ -27,7 +27,7 @@ const recyclings = {
         "amenity": "recycling",
         "collection_times": "Mo-Sa 09:00-12:00,13:00-17:00; Tu off; Th off; Fr 13:00-17:00",
         "opening_hours": "Mo 09:00-12:00 / 13:00-17:00, We 09:00-12:00 / 13:00-17:00, Fr-Sa 09:00-12:00 / 13:00-17:00",
-        "name": "Dechetterie de Vouillé",
+        "name": "Déchetterie de Vouillé",
         "adresse":"83 Rue de Fend le Vent",
         "operator": "Grand Poitiers /Veolia",
         "recycling": {
@@ -59,7 +59,7 @@ const recyclings = {
         "@id": "way/231551023",
         "amenity": "recycling",
         "opening_hours": "Mo 09:00-12:00 / 14:00-18:00, Tu 14:00-18:00, We 09:00-12:00 / 14:00-18:00, Th-Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00, Su 09:00-12:00",
-        "name": "Dechetterie d'Échiré",
+        "name": "Déchetterie d'Échiré",
         "adresse":"49 Rue du Grand Ravard",
         "recycling": {
           "batteries": "yes",
@@ -111,6 +111,7 @@ const recyclings = {
         "amenity": "recycling",
         "barrier": "fence",
         "landuse": "industrial",
+
         "name": "Dechetterie municipale",
         "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",
         // "opening_hours": "Mo 14:00-18:00, We 14:00-18:00, Th 14:00-18:00, Fr 14:00-18:00, Sa 09:00-12:00 / 14:00-18:00",

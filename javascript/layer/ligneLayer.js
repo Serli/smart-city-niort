@@ -1,19 +1,19 @@
-function tracer(Color, T, ligneDeBus){
+function tracer(Color, T, ligneDeBus) {
     var latlngs = T.geometry.coordinates.map(coord => {
         return [coord[1], coord[0]];
     });
 
-    if (T.properties.name.includes("Alt")){
+    if (T.properties.name.includes("Alt")) {
         var line = L.polyline(latlngs, {
             opacity: 1,
             dashArray: "2 12",
             color: Color,
             weight: 3,
         });
-        line.bindPopup(
-            '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-            + ligneDeBus
-        );
+
+        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
+
+
         return line;
     } else {
         var line = L.polyline(latlngs, {
@@ -21,10 +21,8 @@ function tracer(Color, T, ligneDeBus){
             color: Color,
             weight: 3,
         });
-        line.bindPopup(
-            '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-            + ligneDeBus
-        );
+
+        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
         return line;
     }
 }
