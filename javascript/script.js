@@ -781,11 +781,8 @@ function layers() {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
                     });
                 } else {
-                    tabLayer[key].on('mousedown', L.bind(function (elementLayer) {
-                        nombreLieux++;
-                        console.log(elementLayer)
-                    }, null, true))
-
+                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+                    nombreLieux++;
                 }
             }
         );
