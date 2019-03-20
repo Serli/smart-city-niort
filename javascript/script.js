@@ -277,12 +277,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("lieux").style.opacity = "1";
     }, 100);
 
-    /*setTimeout(function() {
+    setTimeout(function() {
         document.getElementById("lieux").style.opacity = "0";
         setTimeout(function() {
             document.getElementById("containMap").removeChild(document.getElementById("lieux"));
         }, 200)
-    }, 5000);*/
+    }, 5000);
 });
 
 
