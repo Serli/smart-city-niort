@@ -1,8 +1,8 @@
 const ligne = [{
-        id: "1",
-        trajet: [TrajetLine1()],
-        name: "Ligne 1"
-    },
+    id: "1",
+    trajet: [TrajetLine1()],
+    name: "Ligne 1"
+},
     {
         id: "2",
         trajet: [TrajetLine2()],
@@ -109,15 +109,21 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.width = "48px";
-            container.style.height = "48px";
+            container.style.width = "5vw";
+            container.style.maxWidth = "7vh";
+            container.style.minWidth = "5vh";
+
+
+            container.style.height = "5vw";
+            container.style.maxHeight = "7vh";
+            container.style.minHeight = "5vh";
 
             container.style.display = "flex";
             container.style.alignContent = "centrer";
             container.style.justifyContent = "center";
 
 
-            container.innerHTML = '<i class="fa fa-arrow-left "></i>';
+            container.innerHTML = '<i class="fa fa-arrow-left fa-lg"></i>';
 
             container.onclick = function () {
                 clickTogglePosition();
@@ -137,15 +143,22 @@ function init() {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
 
             container.style.backgroundColor = 'white';
-            container.style.width = "48px";
-            container.style.height = "48px";
+
+            container.style.width = "5vw";
+            container.style.maxWidth = "7vh";
+            container.style.minWidth = "5vh";
+
+
+            container.style.height = "5vw";
+            container.style.maxHeight = "7vh";
+            container.style.minHeight = "5vh";
 
 
             container.style.display = "flex";
             container.style.alignItems = "centrer";
             container.style.justifyContent = "center";
 
-            container.innerHTML = '<i class="far fa-compass "></i>';
+            container.innerHTML = '<i class="far fa-compass fa-lg" ></i>';
 
             container.onclick = function () {
                 recenter();
@@ -200,7 +213,7 @@ function markerPopup(feature) {
                 plageHoraire.forEach((h) => {
                     let strings = h.split("-");
 
-                    if(today.getHours() >= Number(strings[0].split(":")[0])) {
+                    if (today.getHours() >= Number(strings[0].split(":")[0])) {
 
                         if (h === plageHoraire[0]
                             && (today.getHours() > Number(strings[0].split(":")[0])
@@ -220,9 +233,11 @@ function markerPopup(feature) {
                             horairesAfficher = horaire;
                             ouverture = "Ouvert";
                         }
+
                         else {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
+
                         }
                     }
                     else {
@@ -235,18 +250,25 @@ function markerPopup(feature) {
         });
     }
 
-    if (horairesAfficher != null) {
+
+    if (dateDebutM !== null && dateFinM !== null) {
+        return (
+
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
+            + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
+        );
+    } else if (dateDebutA !== null && dateFinA !== null) {
+        return (
+            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>' +
+            +'<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
+
+
+        );
+    } else {
         return (
             '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
             + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>' + ouverture + horairesAfficher + '</label></div>'
-        );
-    }
-    else {
-            return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-                + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-                '<label>Horaires Inconnues</label></div>'
+            '<label>Horaires Inconnues</label></div>'
         );
     }
 }
@@ -548,6 +570,9 @@ function layers() {
                             arret = feature.properties.name;
                             let ligne = feature.properties.route_ref;
                             let color = colorMarker(ligne);
+                            let type = " TanLib, le transport de l'agglo Niortaise";
+                            let coordonnee = getCoordonnées(feature)
+                            let val1 = logo(ligne).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -561,11 +586,8 @@ function layers() {
                                     icon: busMarker,
                                     title: arret
                                 });
-                            marker.bindPopup(
-                                '<div><img src="./assets/images/tanlib.png" class="markerTan"/></div>'
-                                + '<h6>' + arret + '</h6>'
-                                + logo(ligne).join(" ")
-                            );
+
+                            createPopup(marker, coordonnee, arret, type, val1, null)
                             return marker;
                         }
                     }
@@ -588,7 +610,7 @@ function layers() {
 
                     if (feature.properties.name !== undefined) {
                         soustitre = feature.properties.name;
-                    }else if (feature.properties.access === "public") {
+                    } else if (feature.properties.access === "public") {
                         soustitre = "en libre accés";
                     }
 
@@ -632,7 +654,7 @@ function layers() {
                 adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
             }
             if (feature.properties.recycling !== undefined) {
-                if (feature.properties.recycling.type === "Dechetterie"){
+                if (feature.properties.recycling.type === "Dechetterie") {
                     let repairMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'dumpster',
@@ -672,7 +694,7 @@ function layers() {
                     adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
                 }
                 if (feature.properties.recycling !== undefined) {
-                    if (feature.properties.recycling.type === "container"){
+                    if (feature.properties.recycling.type === "container") {
                         let repairMarker = L.AwesomeMarkers.icon({
                             prefix: 'fa',
                             icon: 'trash-alt',
@@ -1125,53 +1147,53 @@ function logo(arret) {
     return lignesDeBus;
 }
 
-function dechetRecyclage(feature){
+function dechetRecyclage(feature) {
     let tabRecyclage = [];
     tabRecyclage.push('<h7>Matériaux accepter : </h7><br>');
     // recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>';
-    if (feature.properties.recycling.batteries !== undefined){
+    if (feature.properties.recycling.batteries !== undefined) {
         tabRecyclage.push('<h8>Batterie</h8><br>');
     }
-    if (feature.properties.recycling.cans !== undefined){
+    if (feature.properties.recycling.cans !== undefined) {
         tabRecyclage.push('<h8>Canettes</h8><br>');
     }
-    if (feature.properties.recycling.car_batteries !== undefined){
+    if (feature.properties.recycling.car_batteries !== undefined) {
         tabRecyclage.push('<h8>Batterie de Voiture</h8><br>');
     }
-    if (feature.properties.recycling.garden_waste !== undefined){
+    if (feature.properties.recycling.garden_waste !== undefined) {
         tabRecyclage.push('<h8>Déchets de jardin</h8><br>');
     }
-    if (feature.properties.recycling.glass !== undefined){
+    if (feature.properties.recycling.glass !== undefined) {
         tabRecyclage.push('<h8>Verre</h8><br>');
     }
-    if (feature.properties.recycling.paper !== undefined){
+    if (feature.properties.recycling.paper !== undefined) {
         tabRecyclage.push('<h8>Papier, Bois</h8><br>');
     }
-    if (feature.properties.recycling.green_waste !== undefined){
+    if (feature.properties.recycling.green_waste !== undefined) {
         tabRecyclage.push('<h8>Végétaux</h8><br>');
     }
-    if (feature.properties.recycling.light_bulbs !== undefined){
+    if (feature.properties.recycling.light_bulbs !== undefined) {
         tabRecyclage.push('<h8>Ampoules</h8><br>');
     }
-    if (feature.properties.recycling.scrap_metal !== undefined){
+    if (feature.properties.recycling.scrap_metal !== undefined) {
         tabRecyclage.push('<h8>Métaux, ferraille</h8><br>');
     }
-    if (feature.properties.recycling.waste_oil !== undefined){
+    if (feature.properties.recycling.waste_oil !== undefined) {
         tabRecyclage.push('<h8>Huile</h8><br>');
     }
-    if (feature.properties.recycling.cardboard !== undefined){
+    if (feature.properties.recycling.cardboard !== undefined) {
         tabRecyclage.push('<h8>Carton</h8><br>');
     }
-    if (feature.properties.recycling.electrical_appliances !== undefined){
+    if (feature.properties.recycling.electrical_appliances !== undefined) {
         tabRecyclage.push('<h8>Appareils électriques</h8><br>');
     }
-    if (feature.properties.recycling.plastic !== undefined){
+    if (feature.properties.recycling.plastic !== undefined) {
         tabRecyclage.push('<h8>Plastique</h8><br>');
     }
-    if (feature.properties.recycling.small_appliances !== undefined){
+    if (feature.properties.recycling.small_appliances !== undefined) {
         tabRecyclage.push('<h8>Petit appareils électroménager</h8><br>');
     }
-    if (feature.properties.recycling.waste !== undefined){
+    if (feature.properties.recycling.waste !== undefined) {
         tabRecyclage.push('<h8>Tout venant</h8><br>');
     }
     return tabRecyclage;
