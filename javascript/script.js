@@ -262,12 +262,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("lieux").style.opacity = "1";
     }, 100);
 
-    setTimeout(function() {
+    /*setTimeout(function() {
         document.getElementById("lieux").style.opacity = "0";
         setTimeout(function() {
             document.getElementById("containMap").removeChild(document.getElementById("lieux"));
         }, 200)
-    }, 5000);
+    }, 5000);*/
 });
 
 
@@ -294,7 +294,6 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
-                nombreLieux += 1;
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -341,7 +340,6 @@ function layers() {
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
 
-                nombreLieux += 1;
                 let coordonnee = data.location.lat + ',' + data.location.lon
                 let description = null;
                 let titre = null;
@@ -390,7 +388,6 @@ function layers() {
             return marker;
         },
         onEachFeature: function (feature, layer) {
-            nombreLieux += 1;
             layer.bindPopup(
                 markerPopup(feature)
             );
@@ -401,7 +398,6 @@ function layers() {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
 
-            nombreLieux += 1;
             let nom = null;
             let phone = null;
             let mail = null;
@@ -481,7 +477,6 @@ function layers() {
                 }
             },
             onEachFeature: function (feature, layer) {
-                nombreLieux += 1;
                 let telephone = "";
                 let adresse = "";
                 if (feature.properties.phone !== undefined) {
@@ -502,7 +497,6 @@ function layers() {
         style: polystyle(),
 
         onEachFeature: function (feature, layer) {
-            nombreLieux += 1;
             let nom = null;
             let phone = null;
             let mail = null;
@@ -525,7 +519,6 @@ function layers() {
 
     //var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
-    nombreLieux = parkingVoitu(null, nombreLieux);
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
@@ -609,7 +602,6 @@ function layers() {
                             icon: repairMarker,
                             title: type
                         });
-                    nombreLieux += 1;
                     createPopup(marker, coordonnee, type, soustitre, phone, null)
 
                     return marker;
@@ -651,7 +643,6 @@ function layers() {
             }
         },
         onEachFeature: function (feature, layer) {
-            nombreLieux += 1;
             layer.bindPopup(
                 markerPopup(feature) + dechetRecyclage(feature).join(" ")
             );
@@ -686,7 +677,6 @@ function layers() {
                                 icon: repairMarker,
                                 title: nom
                             });
-                        nombreLieux += 1;
                         marker.bindPopup(
                             nom + adresse + dechetRecyclage(feature).join(" ")
                         );
@@ -715,19 +705,14 @@ function layers() {
         });
 
     var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
-    nombreLieux = createMarker(marketplace, null, null, nombreLieux);
 
     var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
-    nombreLieux = createMarker(repairCafe, null, null, nombreLieux);
 
     var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
-    nombreLieux = createMarker(coworking, null, null, nombreLieux);
 
     var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
-    nombreLieux = createMarker(cooperative, null, null, nombreLieux);
 
     var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
-    nombreLieux = createMarker(economie_solidaire, null, null, nombreLieux);
 
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
@@ -775,126 +760,128 @@ function layers() {
                 // si c'est un groupLayer d'une ligne de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
-                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
+                        nombreLieux++;
                     });
                 } else {
-                    tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+                    tabLayer[key].getLayers().forEach(function (elementLayer) {
+                        elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
+                        nombreLieux++;
+                    });
                 }
             }
         );
     } else {
-        //desktop
+        Object.keys(tabLayer).forEach(function (key) {
+
+            // si c'est un groupLayer d'une ligne de bus
+            if (key.startsWith("Ligne")) {
+                tabLayer[key].getLayers().forEach(function (elementLayer) {
+                    nombreLieux++;
+                });
+            } else {
+                tabLayer[key].getLayers().forEach(function (elementLayer) {
+                    nombreLieux++;
+                });
+            }
+        });
     }
 
     return nombreLieux;
-    //alert("Nombre de lieux trouvés : " + nombreLieux);
-
 }
 
-function parkingVoitu(param, nombreLieux) {
-    if (nombreLieux != null) {
-        L.geoJSON(parkings, {
+function parkingVoitu(param) {
+    var parkingVoiture = L.geoJSON(parkings, {
             attribution: '&copy; OpenStreetMap',
             style: polystyle(param),
             onEachFeature: function (feature, layer) {
-                nombreLieux += 1;
-            }
-        });
-        return nombreLieux;
-    }
-    else {
-        var parkingVoiture = L.geoJSON(parkings, {
-                attribution: '&copy; OpenStreetMap',
-                style: polystyle(param),
-                onEachFeature: function (feature, layer) {
 
-                    let nameParking = null;
-                    let capacityParking = null;
-                    let coordonnee = getCoordonnées(feature)
+                let nameParking = null;
+                let capacityParking = null;
+                let coordonnee = getCoordonnées(feature)
 
-                    let type = feature.properties.amenity
+                let type = feature.properties.amenity
 
-                    if (feature.properties.name !== undefined) {
-                        nameParking = feature.properties.name
-                    }
-                    if (feature.properties.capacity !== undefined) {
+                if (feature.properties.name !== undefined) {
+                    nameParking = feature.properties.name
+                }
+                if (feature.properties.capacity !== undefined) {
 
-                        capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
-                    }
+                    capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
+                }
 
-                    createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
+                createPopup(layer, coordonnee, nameParking, type, capacityParking, null)
 
-                },
-                filter: function (feature, layer) {
+            },
+            filter: function (feature, layer) {
 
-                    if (param === "gratuit") {
-                        if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
-                            return true;
-                        }
-
-                    } else if (param === "couvert") {
-                        return feature.properties.building !== undefined;
-                    } else if (param === "covoit") {
-                        return feature.properties.covoiturage !== undefined;
-                    } else {
+                if (param === "gratuit") {
+                    if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
                         return true;
                     }
 
-
-                },
-
-                pointToLayer: function (feature, latlng) {
-
-
-                    if (param === "gratuit") {
-                        let busMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'car',
-                            iconColor: 'white',
-                            markerColor: "orange"
-                        });
-                        let marker = L.marker(latlng, {icon: busMarker});
-                        return marker;
-
-                    } else if (param === "couvert") {
-
-                        let busMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'car',
-                            iconColor: 'white',
-                            markerColor: "cadetblue"
-                        });
-                        let marker = L.marker(latlng, {icon: busMarker});
-
-                        return marker;
-                    } else if (param === "covoit") {
-
-                        let busMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'copyright',
-                            iconColor: 'white',
-                            markerColor: "lightgreen"
-                        });
-                        let marker = L.marker(latlng, {icon: busMarker});
-                        return marker;
-
-
-                    } else {
-                        let busMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'car',
-                            iconColor: 'white',
-                            markerColor: "cadetblue"
-                        });
-                        let marker = L.marker(latlng, {icon: busMarker});
-                        return marker;
-                    }
+                } else if (param === "couvert") {
+                    return feature.properties.building !== undefined;
+                } else if (param === "covoit") {
+                    return feature.properties.covoiturage !== undefined;
+                } else {
+                    return true;
                 }
 
+
+            },
+
+            pointToLayer: function (feature, latlng) {
+
+
+                if (param === "gratuit") {
+                    let busMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'car',
+                        iconColor: 'white',
+                        markerColor: "orange"
+                    });
+                    let marker = L.marker(latlng, {icon: busMarker});
+                    return marker;
+
+                } else if (param === "couvert") {
+
+                    let busMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'car',
+                        iconColor: 'white',
+                        markerColor: "cadetblue"
+                    });
+                    let marker = L.marker(latlng, {icon: busMarker});
+
+                    return marker;
+                } else if (param === "covoit") {
+
+                    let busMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'copyright',
+                        iconColor: 'white',
+                        markerColor: "lightgreen"
+                    });
+                    let marker = L.marker(latlng, {icon: busMarker});
+                    return marker;
+
+
+                } else {
+                    let busMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'car',
+                        iconColor: 'white',
+                        markerColor: "cadetblue"
+                    });
+                    let marker = L.marker(latlng, {icon: busMarker});
+                    return marker;
+                }
             }
-        );
-        return parkingVoiture;
-    }
+
+        }
+    );
+    return parkingVoiture;
 }
 
 function polystyle(param) {
@@ -917,56 +904,44 @@ function polystyle(param) {
     }
 }
 
-function createMarker(fichier, icon, color, nombreLieux) {
+function createMarker(fichier, icon, color) {
     let adresse;
-    if(nombreLieux != null) {
-        L.geoJSON(fichier,
-            {
-                attribution: '&copy; OpenStreetMap',
-                pointToLayer: function (feature, latlng) {
-                    nombreLieux += 1;
+    return L.geoJSON(fichier,
+        {
+            attribution: '&copy; OpenStreetMap',
+            pointToLayer: function (feature, latlng) {
+                let nom = null;
+                let adresse = null;
+                let coordonnee = getCoordonnées(feature)
+
+                if (feature.properties.name !== undefined) {
+
+                    nom = feature.properties.name;
                 }
-            });
-        return nombreLieux;
-    }
-    else {
-        return L.geoJSON(fichier,
-            {
-                attribution: '&copy; OpenStreetMap',
-                pointToLayer: function (feature, latlng) {
-                    let nom = null;
-                    let adresse = null;
-                    let coordonnee = getCoordonnées(feature)
 
-                    if (feature.properties.name !== undefined) {
+                if (feature.properties.adresse !== undefined) {
+                    adresse = feature.properties.adresse;
+                }
 
-                        nom = feature.properties.name;
-                    }
+                let Marker = L.AwesomeMarkers.icon({
+                    prefix: 'fa',
+                    icon: icon,
+                    iconColor: 'white',
+                    markerColor: color
+                });
 
-                    if (feature.properties.adresse !== undefined) {
-                        adresse = feature.properties.adresse;
-                    }
-
-                    let Marker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: icon,
-                        iconColor: 'white',
-                        markerColor: color
+                let marker = L.marker(
+                    latlng,
+                    {
+                        icon: Marker,
+                        title: nom
                     });
 
-                    let marker = L.marker(
-                        latlng,
-                        {
-                            icon: Marker,
-                            title: nom
-                        });
+                createPopup(marker, coordonnee, nom, adresse, null, null)
 
-                    createPopup(marker, coordonnee, nom, adresse, null, null)
-
-                    return marker;
-                }
-            });
-    }
+                return marker;
+            }
+        });
 }
 
 function getCoordonnées(feature) {
