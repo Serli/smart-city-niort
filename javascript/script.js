@@ -184,6 +184,7 @@ function markerPopup(feature) {
     let today = new Date();
     let horairesAfficher = null;
     const {opening_hours, amenity, name} = feature.properties;
+
     if (opening_hours && (amenity === 'pharmacy'
         || amenity === "recycling"
         || amenity === "economie"
@@ -219,6 +220,10 @@ function markerPopup(feature) {
                             && (today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
                             || (today.getHours() === Number(strings[0].split(":")[0]))
+
+                           
+                          
+           
                             && today.getMinutes() >= Number(strings[0].split(":")[1])) {
 
                             horairesAfficher = horaire;
@@ -248,29 +253,21 @@ function markerPopup(feature) {
                 });
             }
         });
+
+
     }
 
-
-    if (dateDebutM !== null && dateFinM !== null) {
-        return (
-
-            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>'
-            + '<label>' + ouverture + dateDebutM + "-" + dateFinM + '</label></div><br>'
-        );
-    } else if (dateDebutA !== null && dateFinA !== null) {
-        return (
-            '<div class="titre"><h6 class="markerPopup">' + feature.properties.name + '</h6></div>' +
-            +'<label>' + ouverture + dateDebutA + "-" + dateFinA + '</label></div><br>'
-
-
-        );
+    let horaire = new Array()
+    if (horairesAfficher !== null) {
+        horaire["ouverture"] = ouverture;
+        horaire["horairesAfficher"] = horairesAfficher;
+        // console.log(horaire["horairesAfficher"])
+        return (horaire);
     } else {
-        return (
-            '<div class="titre"><span class="markerPopup">' + feature.properties.name + '</span></div>'
-            + '<div class="infos"><label>' + feature.properties.amenity + '</label><br/>' +
-            '<label>Horaires Inconnues</label></div>'
-        );
+        return horaire;
     }
+
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -310,7 +307,11 @@ function layers() {
     let nombreLieux = 0;
 
 
-    var cycle = L.geoJSON(cycleways, {id: 'cycleways', attribution: '&copy; OpenStreetMap', style: polystyle()});
+    var cycle = L.geoJSON(cycleways, {
+        id: 'cycleways',
+        attribution: '&copy; OpenStreetMap',
+        style: polystyle(),
+    });
 
     var cycleParking = L.geoJSON(bicycleParkings,
         {
@@ -388,7 +389,8 @@ function layers() {
                 }
 
 
-                createPopup(markerBio, coordonnee, titre, adresse, description, null).addTo(MagasinBio);
+                createPopup(markerBio, coordonnee, titre, adresse, null, description).addTo(MagasinBio)
+
             }
         }
     });
@@ -397,6 +399,40 @@ function layers() {
     var pharmacie = L.geoJSON(pharmacy, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
+            let nom = null;
+            let adresse = "";
+            let coordonnee = getCoordonnées(feature)
+            let phone = null;
+
+            if (feature.properties.phone !== undefined) {
+                phone = feature.properties.phone
+            }
+
+
+            if (feature.properties.name !== undefined) {
+                nom = feature.properties.name
+            } else {
+                nom = null;
+            }
+            console.log(feature.properties.city)
+
+
+            if (feature.properties["addr:housenumber"] !== undefined) {
+                adresse = feature.properties["addr:housenumber"] + " "
+            }
+            if (feature.properties["addr:street"] !== undefined) {
+                adresse += feature.properties["addr:street"] + " "
+            }
+            if (feature.properties["addr:postcode"] !== undefined) {
+                adresse += feature.properties["addr:postcode"] + " "
+            }
+            if (feature.properties["addr:city"] !== undefined) {
+                adresse += feature.properties["addr:city"];
+            } else {
+                adresse = "Pharmacie"
+            }
+
+
             let pharmacieMarker = L.AwesomeMarkers.icon({
                 prefix: 'fa',
                 icon: 'comment-medical',
@@ -409,14 +445,12 @@ function layers() {
                 {
                     icon: pharmacieMarker,
                 });
+
+            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone)
+
             return marker;
         },
-        onEachFeature: function (feature, layer) {
-            nombreLieux += 1;
-            layer.bindPopup(
-                markerPopup(feature)
-            );
-        }
+
     });
 
     var hopital2 = L.geoJSON(hospital2, {
@@ -513,9 +547,9 @@ function layers() {
                     adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
 
                 }
-                layer.bindPopup(
-                    markerPopup(feature) + telephone + adresse
-                );
+                // layer.bindPopup(
+                //     markerPopup(feature) + telephone + adresse
+                // );
             }
         });
 
@@ -639,19 +673,26 @@ function layers() {
             }
         });
 
-    let decheterie = L.layerGroup();
     let conteneur = L.layerGroup();
 
     let decheterie2 = L.geoJSON(recyclings, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
-            let nom = "";
-            let adresse = "";
+
+            let nom = null;
+            let adresse = null;
+            let coordonnee = getCoordonnées(feature)
+
+
             if (feature.properties.name !== undefined) {
-                nom = '<h6>' + feature.properties.name + '</h6>'
+                nom = feature.properties.name
+            } else {
+                nom = null;
             }
             if (feature.properties.adresse !== undefined) {
-                adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
+                adresse = feature.properties.adresse
+            } else {
+                adresse = "Déchetterie"
             }
             if (feature.properties.recycling !== undefined) {
                 if (feature.properties.recycling.type === "Dechetterie") {
@@ -668,15 +709,12 @@ function layers() {
                             icon: repairMarker,
                             title: nom
                         });
+
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
                     return marker;
                 }
             }
-        },
-        onEachFeature: function (feature, layer) {
-            nombreLieux += 1;
-            layer.bindPopup(
-                markerPopup(feature) + dechetRecyclage(feature).join(" ")
-            );
+
         }
     });
 
@@ -684,17 +722,13 @@ function layers() {
         {
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
-                let nom = "";
-                let adresse = "";
-                let recycling = "";
-                if (feature.properties.name !== undefined) {
-                    nom = '<h6>' + feature.properties.name + '</h6>'
-                }
-                if (feature.properties.adresse !== undefined) {
-                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8><br>'
-                }
+                let nom = "Conteneur";
+                let coordonnee = getCoordonnées(feature)
+                let typeDechet = null;
+
                 if (feature.properties.recycling !== undefined) {
                     if (feature.properties.recycling.type === "container") {
+                        typeDechet = dechetRecyclage(feature).join(", ")
                         let repairMarker = L.AwesomeMarkers.icon({
                             prefix: 'fa',
                             icon: 'trash-alt',
@@ -708,29 +742,10 @@ function layers() {
                                 icon: repairMarker,
                                 title: nom
                             });
-                        nombreLieux += 1;
-                        marker.bindPopup(
-                            nom + adresse + dechetRecyclage(feature).join(" ")
-                        );
-                        conteneur.addLayer(marker);
-                    } else {
-                        let repairMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'dumpster',
-                            iconColor: 'white',
-                            markerColor: 'red'
-                        });
+                      
+                        createPopup(marker, coordonnee, nom, typeDechet, null, null)
 
-                        let marker = L.marker(
-                            latlng,
-                            {
-                                icon: repairMarker,
-                                title: nom
-                            });
-                        marker.bindPopup(
-                            nom + adresse + dechetRecyclage(feature).join(" ")
-                        );
-                        decheterie.addLayer(marker);
+                        conteneur.addLayer(marker);
                     }
                 }
             },
@@ -788,7 +803,7 @@ function layers() {
     });
 
 
-    /* **********$  mobile or desktop *******$ */
+    /* **********  mobile or desktop ******* */
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         //mobile
         // on cache la navbar si on clicl sur n'importe quel marker
@@ -798,9 +813,11 @@ function layers() {
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true))
+
                     });
                 } else {
                     tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
+
                 }
             }
         );
@@ -1008,23 +1025,28 @@ function getCoordonnées(feature) {
     return coordonnees
 }
 
-function createPopup(layer, coordonnee, titre, type, val1, val2) {
+function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
 
+    let itineraire = null;
+    if (coordonnee != null) {
+        let lien = "http://maps.google.fr/maps?q=" + coordonnee;
+        itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
 
-    let lien = "http://maps.google.fr/maps?q=" + coordonnee;
-    let itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
-
+    }
 
     let top = '';
-    if (titre != null && type != null) {
+    if (titre != null && type != null && itineraire != null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
     } else if (titre === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
+    } else if (titre != null && type === null && itineraire === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
     }
 
     let icon1 = "";
     let icon2 = "";
+    let icon3 = "";
 
     switch (type) {
         case "Médecin" :
@@ -1038,12 +1060,30 @@ function createPopup(layer, coordonnee, titre, type, val1, val2) {
             break
     }
 
+    if (val1 === "Fermé" || val1 === "Ouvert") {
+        icon2 = "fa-clock";
+        icon3 = "fa-phone";
+    }
+
 
     let bottom = '';
     if (val1 != null && val2 != null) {
         bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div> <div class="barre"> </div> <div> <i class="fas ' + icon2 + ' fa-lg"></i> <div class="popupRight">  ' + val2 + '  </div></div> </div> '
     } else if (val1 != null && val2 === null) {
         bottom = '<div class="bottom"> <div> <i class="fas ' + icon1 + ' fa-lg"></i>  <div class="popupLeft"> ' + val1 + ' </div> </div></div> '
+    } else if (val1 === null && val2 != null) {
+        bottom = '<div class="bottom"> <div> <i class="fas ' + icon2 + ' fa-lg"></i>  <div class="popupRight"> ' + val2 + ' </div> </div></div> '
+    }
+
+
+    let bottomBonus = '';
+    if (val3 != null && itineraire != null) {
+        bottomBonus = '<div class="bottom"> <div> <i class="fas ' + icon3 + ' fa-lg"></i>  <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+    } else {
+        val3 != null && itineraire === null
+    }
+    {
+        bottomBonus = '<div class="bottom"> <div> <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
     }
 
     return layer.bindPopup(
@@ -1052,6 +1092,8 @@ function createPopup(layer, coordonnee, titre, type, val1, val2) {
         top
         +
         bottom
+        +
+        bottomBonus
         +
         '</div>'
     );
@@ -1149,52 +1191,50 @@ function logo(arret) {
 
 function dechetRecyclage(feature) {
     let tabRecyclage = [];
-    tabRecyclage.push('<h7>Matériaux accepter : </h7><br>');
-    // recycling = '<h8>Type : ' + feature.properties.recycling.type + '</h8><br>';
     if (feature.properties.recycling.batteries !== undefined) {
-        tabRecyclage.push('<h8>Batterie</h8><br>');
+        tabRecyclage.push('Batterie');
     }
     if (feature.properties.recycling.cans !== undefined) {
-        tabRecyclage.push('<h8>Canettes</h8><br>');
+        tabRecyclage.push('Canettes');
     }
     if (feature.properties.recycling.car_batteries !== undefined) {
-        tabRecyclage.push('<h8>Batterie de Voiture</h8><br>');
+        tabRecyclage.push('Batterie de Voiture');
     }
     if (feature.properties.recycling.garden_waste !== undefined) {
-        tabRecyclage.push('<h8>Déchets de jardin</h8><br>');
+        tabRecyclage.push('Déchets de jardin');
     }
     if (feature.properties.recycling.glass !== undefined) {
-        tabRecyclage.push('<h8>Verre</h8><br>');
+        tabRecyclage.push('Verre');
     }
     if (feature.properties.recycling.paper !== undefined) {
-        tabRecyclage.push('<h8>Papier, Bois</h8><br>');
+        tabRecyclage.push('Papier, Bois');
     }
     if (feature.properties.recycling.green_waste !== undefined) {
-        tabRecyclage.push('<h8>Végétaux</h8><br>');
+        tabRecyclage.push('Végétaux');
     }
     if (feature.properties.recycling.light_bulbs !== undefined) {
-        tabRecyclage.push('<h8>Ampoules</h8><br>');
+        tabRecyclage.push('Ampoules');
     }
     if (feature.properties.recycling.scrap_metal !== undefined) {
-        tabRecyclage.push('<h8>Métaux, ferraille</h8><br>');
+        tabRecyclage.push('Métaux, ferraille');
     }
     if (feature.properties.recycling.waste_oil !== undefined) {
-        tabRecyclage.push('<h8>Huile</h8><br>');
+        tabRecyclage.push('Huile');
     }
     if (feature.properties.recycling.cardboard !== undefined) {
-        tabRecyclage.push('<h8>Carton</h8><br>');
+        tabRecyclage.push('Carton');
     }
     if (feature.properties.recycling.electrical_appliances !== undefined) {
-        tabRecyclage.push('<h8>Appareils électriques</h8><br>');
+        tabRecyclage.push('Appareils électriques');
     }
     if (feature.properties.recycling.plastic !== undefined) {
-        tabRecyclage.push('<h8>Plastique</h8><br>');
+        tabRecyclage.push('Plastique');
     }
     if (feature.properties.recycling.small_appliances !== undefined) {
-        tabRecyclage.push('<h8>Petit appareils électroménager</h8><br>');
+        tabRecyclage.push('Petit appareils électroménager');
     }
     if (feature.properties.recycling.waste !== undefined) {
-        tabRecyclage.push('<h8>Tout venant</h8><br>');
+        tabRecyclage.push('Tout venant');
     }
     return tabRecyclage;
 }
