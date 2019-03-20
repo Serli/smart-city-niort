@@ -776,7 +776,6 @@ function layers() {
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
-                        nombreLieux++;
                     });
                 } else {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
@@ -792,7 +791,6 @@ function layers() {
             // si c'est un groupLayer d'une ligne de bus
             if (key.startsWith("Ligne")) {
                 tabLayer[key].getLayers().forEach(function (elementLayer) {
-                    nombreLieux++;
                 });
             } else {
                 tabLayer[key].getLayers().forEach(function (elementLayer) {
