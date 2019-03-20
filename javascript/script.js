@@ -298,7 +298,7 @@ function removeDivLieux() {
 }
 function layers() {
 
-
+    let nombreLieux = 0;
     // Public Transport carte
     var transportLayer = L.tileLayer('http://openptmap.org/tiles/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://openptmap.org/" target="_blank" rel="noopener noreferrer">OpenPTMap</a> / <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OSM Contributors</a>',
@@ -413,8 +413,6 @@ function layers() {
             } else {
                 nom = null;
             }
-            console.log(feature.properties.city)
-
 
             if (feature.properties["addr:housenumber"] !== undefined) {
                 adresse = feature.properties["addr:housenumber"] + " "
@@ -659,37 +657,31 @@ function layers() {
 
                         createPopup(marker, coordonnee, nom, typeDechet, null, null)
 
-                        conteneur.addLayer(marker);
                     }
                 }
             },
         });
 
-    var marcher = createMarker(marketplace, 'shopping-cart', 'orange');
-    nombreLieux = createMarker(marketplace, null, null, nombreLieux);
     // let conteneur = createMarker(recyclings, "trash-alt", "blue");
 
     let hopital2 = createMarker(hospital2, "clinic-medical", "cadetblue");
 
-    var RepairCafe = createMarker(repairCafe, 'tools', 'orange');
-    nombreLieux = createMarker(repairCafe, null, null, nombreLieux);
     let defibrillateur = createMarker(defibrillator, "medkit", "lightgreen");
 
-    var espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
-    nombreLieux = createMarker(coworking, null, null, nombreLieux);
     let marcher = createMarker(marketplace, 'shopping-cart', 'orange');
+    nombreLieux = createMarker(marketplace, null, null, nombreLieux);
 
-    var cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
-    nombreLieux = createMarker(cooperative, null, null, nombreLieux);
     let RepairCafe = createMarker(repairCafe, 'tools', 'orange');
+    nombreLieux = createMarker(repairCafe, null, null, nombreLieux);
 
-    var economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
-    nombreLieux = createMarker(economie_solidaire, null, null, nombreLieux);
     let espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
+    nombreLieux = createMarker(coworking, null, null, nombreLieux);
 
     let cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
+    nombreLieux = createMarker(cooperative, null, null, nombreLieux);
 
     let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
+    nombreLieux = createMarker(economie_solidaire, null, null, nombreLieux);
 
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
@@ -900,6 +892,7 @@ function createMarker(fichier, icon, color, nombreLieux) {
                 pointToLayer: function (feature, latlng) {
                     let nom = null;
                     let adresse = null;
+                    let phone = null;
                     let coordonnee = getCoordonnées(feature)
 
                     if (feature.properties.name !== undefined) {
@@ -911,16 +904,17 @@ function createMarker(fichier, icon, color, nombreLieux) {
                         adresse = feature.properties.adresse;
                     }
 
-                if (feature.properties.phone !== undefined) {
-                    phone = "Téléphone : " + feature.properties.phone;
-                }
 
-                let Marker = L.AwesomeMarkers.icon({
-                    prefix: 'fa',
-                    icon: icon,
-                    iconColor: 'white',
-                    markerColor: color
-                });
+                    if (feature.properties.phone !== undefined) {
+                        phone = "Téléphone : " + feature.properties.phone;
+                    }
+
+                    let Marker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: icon,
+                        iconColor: 'white',
+                        markerColor: color
+                    });
 
                     let marker = L.marker(
                         latlng,
@@ -930,13 +924,13 @@ function createMarker(fichier, icon, color, nombreLieux) {
                         });
 
                     createPopup(marker, coordonnee, nom, adresse, null, null)
-                // if(feature.properties.amenity === "recycling"){
-                //     if (feature.properties.recycling.type === "container"){
-                //         createPopup(marker, coordonnee, nom, adresse, dechetRecyclage(feature).join(" "), null)
-                //     } else if (feature.properties.recycling.type === "Dechetterie"){
-                //         createPopup(marker, coordonnee, nom, adresse,markerPopup(feature) + dechetRecyclage(feature).join(" "));
-                //     }
-                // }
+                    // if(feature.properties.amenity === "recycling"){
+                    //     if (feature.properties.recycling.type === "container"){
+                    //         createPopup(marker, coordonnee, nom, adresse, dechetRecyclage(feature).join(" "), null)
+                    //     } else if (feature.properties.recycling.type === "Dechetterie"){
+                    //         createPopup(marker, coordonnee, nom, adresse,markerPopup(feature) + dechetRecyclage(feature).join(" "));
+                    //     }
+                    // }
 
                     if (feature.properties.emergency === "defibrillator"){
                         let type = "Défibrillateur";
@@ -957,8 +951,8 @@ function createMarker(fichier, icon, color, nombreLieux) {
 
                     return marker;
                 }
-            },
-        });
+            })
+        };
 }
 
 function getCoordonnées(feature) {
@@ -992,6 +986,7 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
     } else if (titre === null) {
+        console.log(type);
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
     } else if (titre != null && type === null && itineraire === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
