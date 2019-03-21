@@ -3,37 +3,96 @@ function tracer(Color, T, ligneDeBus) {
         return [coord[1], coord[0]];
     });
 
+    let line
     if (T.properties.name.includes("Alt")) {
-        var line = L.polyline(latlngs, {
-            opacity: 1,
-            dashArray: "2 12",
-            color: Color,
-            weight: 3,
-        });
+        line = L.polyline(latlngs, {
 
-        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
+                style: {
+                    opacity: 1,
+                    dashArray: "2 12",
+                    color: Color,
+                    weight: 3
+                },
+            },
+        );
+
+        // createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
 
 
-        return line;
     } else {
-        var line = L.polyline(latlngs, {
-            opacity: 1,
-            color: Color,
-            weight: 3,
+        line = L.polyline(latlngs, {
+            style: {
+                opacity: 1,
+                color: Color,
+                weight: 3,
+            },
         });
 
-        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
-        return line;
+        // createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
+
     }
+
+
+    return line;
+
 }
+
 
 function TrajetLine1() {
     let ligneDeBus = '<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>';
-    var Ligne1Trajet = TrajetLigne1.features.map(T => {
-        return tracer('#e40613', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne1Trajet)
+    // var Ligne1Trajet = TrajetLigne1.features.map(T => {
+    //     return tracer('#e40613', T, ligneDeBus);
+    // });
+    let Color = '#e40613';
+
+    var Ligne1Trajet = L.geoJSON(TrajetLigne1,
+        {
+            style: function () {
+                return {
+                    opacity: 1,
+                    color: Color,
+                    weight: 3,
+                }
+            },
+            // onEachFeature: onEachFeature
+        });
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+
+        });
+        createPopup(layer, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
+
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+
+        layer.setStyle({
+            weight: 5,
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+    }
+
+    function resetHighlight(e) {
+        line.resetStyle(e.target);
+    }
+
+    function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+    }
+
+
+
+    return Ligne1Trajet;
 }
+
 
 function TrajetLine2() {
     let ligneDeBus = '<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>';

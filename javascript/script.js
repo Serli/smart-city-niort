@@ -738,7 +738,7 @@ function layers() {
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
-    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
+    let Tracer = L.layerGroup([TrajetLine1() ])
 
 
     // Tableau contenant  tout les layers
