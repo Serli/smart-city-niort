@@ -242,12 +242,13 @@ function markerPopup(feature) {
                         else {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
-
                         }
                     }
                     else {
-                        horairesAfficher = horaire;
-                        ouverture = "Fermé";
+                        if(ouverture === null){
+                            horairesAfficher = horaire;
+                            ouverture = "Fermé";
+                        }
                     }
 
                 });
@@ -450,65 +451,6 @@ function layers() {
 
     });
 
-    var medecin = L.geoJSON(doctors,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function (feature, latlng) {
-                if (feature.properties.name !== undefined) {
-                    let nom = null;
-                    let telephone = null;
-                    let adresse = null;
-                    let type = "Médecin";
-                    let coordonnee = getCoordonnées(feature)
-
-                    if (feature.properties.name !== undefined) {
-                        nom = feature.properties.name
-                    }
-
-                    if (feature.properties.phone !== undefined) {
-                        telephone = feature.properties.phone
-                    }
-                    if (feature.properties.adresse !== undefined) {
-                        adresse = feature.properties.adresse
-
-                    }
-
-                    let doctorsMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'user-md',
-                        iconColor: 'white',
-                        markerColor: 'purple'
-                    });
-
-                    let marker = L.marker(
-                        latlng,
-                        {
-                            icon: doctorsMarker,
-                            title: nom
-                        });
-
-                    createPopup(marker, coordonnee, nom, type, telephone, adresse)
-
-                    return marker;
-                }
-            },
-            onEachFeature: function (feature, layer) {
-                nombreLieux += 1;
-                let telephone = "";
-                let adresse = "";
-                if (feature.properties.phone !== undefined) {
-                    telephone = '<h8>Téléphone : ' + feature.properties.phone + '</h8><br>';
-                }
-                if (feature.properties.adresse !== undefined) {
-                    adresse = '<h8>Adresse : ' + feature.properties.adresse + '</h8>';
-
-                }
-                // layer.bindPopup(
-                //     markerPopup(feature) + telephone + adresse
-                // );
-            }
-        });
-
     var hopital = L.geoJSON(hospital, {
         attribution: '&copy; OpenStreetMap',
         style: polystyle(),
@@ -588,12 +530,15 @@ function layers() {
         }
     });
 
-    let decheterie2 = L.geoJSON(recyclings, {
+    // let decheterie2 = createMarker(recyclings, "dumpster", "red")
+
+    let decheterie = L.geoJSON(recyclings, {
         attribution: '&copy; OpenStreetMap',
         pointToLayer: function (feature, latlng) {
 
             let nom = null;
             let adresse = null;
+            let typeDechet = null;
             let coordonnee = getCoordonnées(feature)
 
 
@@ -609,6 +554,7 @@ function layers() {
             }
             if (feature.properties.recycling !== undefined) {
                 if (feature.properties.recycling.type === "Dechetterie") {
+                    typeDechet = dechetRecyclage(feature).join(", ")
                     let repairMarker = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'dumpster',
@@ -623,7 +569,7 @@ function layers() {
                             title: nom
                         });
 
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet)
                     return marker;
                 }
             }
@@ -638,9 +584,9 @@ function layers() {
                 let nom = "Conteneur";
                 let coordonnee = getCoordonnées(feature)
                 let typeDechet = null;
-
                 if (feature.properties.recycling !== undefined) {
                     if (feature.properties.recycling.type === "container"){
+                        typeDechet = dechetRecyclage(feature).join(", ")
                         let repairMarker = L.AwesomeMarkers.icon({
                             prefix: 'fa',
                             icon: 'trash-alt',
@@ -657,12 +603,13 @@ function layers() {
 
                         createPopup(marker, coordonnee, nom, typeDechet, null, null)
 
+                        return marker;
                     }
                 }
             },
         });
 
-    // let conteneur = createMarker(recyclings, "trash-alt", "blue");
+    let medecin = createMarker(doctors, "user-md", "purple");
 
     let hopital2 = createMarker(hospital2, "clinic-medical", "cadetblue");
 
@@ -711,7 +658,7 @@ function layers() {
     tabLayer["Marché"] = marcher;
     tabLayer["Biocop"] = MagasinBio;
     tabLayer["Bus"] = Tracer;
-    tabLayer["Déchetterie"] = decheterie2;
+    tabLayer["Déchetterie"] = decheterie;
     tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
@@ -896,7 +843,6 @@ function createMarker(fichier, icon, color, nombreLieux) {
                     let coordonnee = getCoordonnées(feature)
 
                     if (feature.properties.name !== undefined) {
-
                         nom = feature.properties.name;
                     }
 
@@ -906,7 +852,7 @@ function createMarker(fichier, icon, color, nombreLieux) {
 
 
                     if (feature.properties.phone !== undefined) {
-                        phone = "Téléphone : " + feature.properties.phone;
+                        phone = feature.properties.phone;
                     }
 
                     let Marker = L.AwesomeMarkers.icon({
@@ -923,29 +869,42 @@ function createMarker(fichier, icon, color, nombreLieux) {
                             title: nom
                         });
 
-                    createPopup(marker, coordonnee, nom, adresse, null, null)
-                    // if(feature.properties.amenity === "recycling"){
-                    //     if (feature.properties.recycling.type === "container"){
-                    //         createPopup(marker, coordonnee, nom, adresse, dechetRecyclage(feature).join(" "), null)
-                    //     } else if (feature.properties.recycling.type === "Dechetterie"){
-                    //         createPopup(marker, coordonnee, nom, adresse,markerPopup(feature) + dechetRecyclage(feature).join(" "));
-                    //     }
-                    // }
-
                     if (feature.properties.emergency === "defibrillator"){
                         let type = "Défibrillateur";
                         let soustitre = null;
                         if (feature.properties.name !== undefined) {
                             soustitre = feature.properties.name;
                         } else if (feature.properties.access === "public") {
-                            soustitre = "en libre accés";
+                            soustitre = "En libre accés";
                         }
-                        createPopup(marker, coordonnee, type, soustitre, phone, null)
+
+                        if (phone === null){
+                            createPopup(marker, coordonnee, type, soustitre, soustitre, null)
+                        } else {
+                            createPopup(marker, coordonnee, type, soustitre, phone, null)
+                        }
                     } else if (feature.properties.amenity === "hospital"){
                         let type = "Hôpital";
                         phone = feature.properties.phone;
                         createPopup(marker, coordonnee, nom, type, phone, null);
-                    } else {
+                    } else if (feature.properties.amenity === "doctors"){
+                        let type = "Médecin";
+                        createPopup(marker, coordonnee, nom, type, phone, adresse)
+                    }
+                    // else if(feature.properties.recycling !== undefined){
+                    //     console.log("recyclage")
+                    //     if (feature.properties.recycling.type === "container"){
+                    //         nom = "Conteneur";
+                    //         console.log("container")
+                    //         let typeDechet = dechetRecyclage(feature).join(", ")
+                    //         createPopup(marker, coordonnee, nom, typeDechet, null, null)
+                    //     } else if (feature.properties.recycling.type === "Dechetterie"){
+                    //         console.log("Dechetterie")
+                    //         let typeDechet = dechetRecyclage(feature).join(", ")
+                    //         createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
+                    //     }
+                    // }
+                    else {
                         createPopup(marker, coordonnee, nom, adresse, null, null);
                     }
 
@@ -986,7 +945,6 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
     } else if (titre === null) {
-        console.log(type);
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
     } else if (titre != null && type === null && itineraire === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
@@ -1026,12 +984,12 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3) {
 
     let bottomBonus = '';
     if (val3 != null && itineraire != null) {
-        bottomBonus = '<div class="bottom"> <div> <i class="fas ' + icon3 + ' fa-lg"></i>  <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+        bottomBonus = '<div class="bottom"> <div> <i class="fas ' + icon3 + ' fa-lg"></i>  <div class="popupRight"> ' + val3 + ' </div> </div></div> '
     } else {
         val3 != null && itineraire === null
     }
     {
-        bottomBonus = '<div class="bottom"> <div> <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+        bottomBonus = '<div class="bottom"> <div> <div class="popupRight"> ' + val3 + ' </div> </div></div> '
     }
 
     return layer.bindPopup(

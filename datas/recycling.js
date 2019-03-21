@@ -4,22 +4,22 @@ const recyclings = {
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
   "timestamp": "2019-02-01T15:38:02Z",
   "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "way/190816266",
-        // "amenity": "recycling",
-        "recycling_type": "Dechetterie"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -0.626747,
-            46.374603,
-        ]
-      },
-      "id": "way/190816266"
-    },
+    // {
+    //   "type": "Feature",
+    //   "properties": {
+    //     "@id": "way/190816266",
+    //     // "amenity": "recycling",
+    //     "recycling_type": "Dechetterie"
+    //   },
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //         -0.626747,
+    //         46.374603,
+    //     ]
+    //   },
+    //   "id": "way/190816266"
+    // },
     {
       "type": "Feature",
       "properties": {
@@ -187,20 +187,20 @@ const recyclings = {
       },
       "id": "node/842292385"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/1194328489",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.5458401,
-          46.3069094
-        ]
-      },
-      "id": "node/1194328489"
-    },
+    // {
+    //   "type": "Feature",
+    //   "properties": {
+    //     "@id": "node/1194328489",
+    //   },
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //       -0.5458401,
+    //       46.3069094
+    //     ]
+    //   },
+    //   "id": "node/1194328489"
+    // },
     {
       "type": "Feature",
       "properties": {
@@ -277,36 +277,36 @@ const recyclings = {
       },
       "id": "node/1446911347"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/1554593527",
-        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.5211657,
-          46.3012928
-        ]
-      },
-      "id": "node/1554593527"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/1710547917",
-        "amenity": "recycling"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4759188,
-          46.3168115
-        ]
-      },
-      "id": "node/1710547917"
-    },
+    // {
+    //   "type": "Feature",
+    //   "properties": {
+    //     "@id": "node/1554593527",
+    //     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+    //   },
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //       -0.5211657,
+    //       46.3012928
+    //     ]
+    //   },
+    //   "id": "node/1554593527"
+    // },
+    // {
+    //   "type": "Feature",
+    //   "properties": {
+    //     "@id": "node/1710547917",
+    //     "amenity": "recycling"
+    //   },
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //       -0.4759188,
+    //       46.3168115
+    //     ]
+    //   },
+    //   "id": "node/1710547917"
+    // },
     {
       "type": "Feature",
       "properties": {
@@ -553,20 +553,20 @@ const recyclings = {
       },
       "id": "node/5038602798"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/6221258690",
-        "recycling_type": "container"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -0.4849182,
-          46.397504
-        ]
-      },
-      "id": "node/6221258690"
-    }
+    // {
+    //   "type": "Feature",
+    //   "properties": {
+    //     "@id": "node/6221258690",
+    //     "recycling_type": "container"
+    //   },
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //       -0.4849182,
+    //       46.397504
+    //     ]
+    //   },
+    //   "id": "node/6221258690"
+    // }
   ]
 };
