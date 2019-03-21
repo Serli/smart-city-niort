@@ -865,10 +865,14 @@ function createMarker(fichier, icon, color) {
                 } else if (feature.properties.amenity === "hospital"){
                     let type = "Hôpital";
                     phone = feature.properties.phone;
-                    createPopup(marker, coordonnee, nom, type, phone, null);
+                    let mail = null;
+                    if (feature.properties.email !== undefined) {
+                        mail = feature.properties.email
+                    }
+                    createPopup(marker, coordonnee, nom, type, phone, mail, null);
                 } else if (feature.properties.amenity === "doctors"){
-                    let type = "Médecin";
-                    createPopup(marker, coordonnee, nom, type, phone, adresse)
+                    let distinction = "Médecin";
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
                 } else {
                     createPopup(marker, coordonnee, nom, adresse, null, null);
                 }
