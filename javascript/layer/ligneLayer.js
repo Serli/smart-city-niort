@@ -1,100 +1,57 @@
-function tracer(Color, T, ligneDeBus) {
-    var latlngs = T.geometry.coordinates.map(coord => {
-        return [coord[1], coord[0]];
-    });
+function tracer(Color, data, ligneDeBus) {
 
-    if (T.properties.name.includes("Alt")) {
-        var line = L.polyline(latlngs, {
-            opacity: 1,
-            dashArray: "2 12",
-            color: Color,
-            weight: 3,
+    let line = L.geoJSON(data,
+        {
+            style: {
+                opacity: 1,
+                color: Color,
+                weight: 3
+            },
+            onEachFeature: onEachFeature
         });
 
-        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
-
-
-        return line;
-    } else {
-        var line = L.polyline(latlngs, {
-            opacity: 1,
-            color: Color,
-            weight: 3,
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
         });
 
-        createPopup(line, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
-        return line;
+        if (feature.properties.name.includes("Alt")) {
+            layer.setStyle({
+                opacity: 1,
+                dashArray: "2 12",
+                color: Color,
+                weight: 3
+            });
+        }
+
+        createPopup(layer, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
+
     }
+
+
+
+
+
+    return line;
+
+
 }
 
-function TrajetLine1() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne1.png" class="logoLigne"/>';
-    var Ligne1Trajet = TrajetLigne1.features.map(T => {
-        return tracer('#e40613', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne1Trajet)
+function Trajet(idLigne) {
+    let ligneObject = lignes[idLigne - 1]
+    let ligneDeBus = '<img src="./assets/images/ligne/ligne' + idLigne + '.png" class="logoLigne"/>';
+    let Color = ligneObject.colorLigne;
+    let data = ligneObject.data;
+    var lineBus = tracer(Color, data, ligneDeBus);
+    return lineBus;
 }
 
-function TrajetLine2() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne2.png" class="logoLigne"/>';
-    var Ligne2Trajet = TrajetLigne2.features.map(T => {
-        return tracer('#007a3d', T, ligneDeBus);
+function Trajets() {
+    let tableauDeLAYER = []
+    lignes.map((ligne) => {
+        tableauDeLAYER.push(Trajet(ligne.id));
     });
-    return L.layerGroup(Ligne2Trajet)
+    return tableauDeLAYER;
 }
 
-function TrajetLine3() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne3.png" class="logoLigne"/>';
-    var Ligne3Trajet = TrajetLigne3.features.map(T => {
-        return tracer('#69c0ad', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne3Trajet)
-}
-
-function TrajetLine4() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne4.png" class="logoLigne"/>';
-    var Ligne4Trajet = TrajetLigne4.features.map(T => {
-        return tracer('#f286a0', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne4Trajet)
-}
-
-function TrajetLine5() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne5.png" class="logoLigne"/>';
-    var Ligne5Trajet = TrajetLigne5.features.map(T => {
-        return tracer('#3874ba', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne5Trajet)
-}
-
-function TrajetLine6() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne6.png" class="logoLigne"/>';
-    var Ligne6Trajet = TrajetLigne6.features.map(T => {
-        return tracer('#93c21e', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne6Trajet)
-}
-
-function TrajetLine7() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne7.png" class="logoLigne"/>';
-    var Ligne7Trajet = TrajetLigne7.features.map(T => {
-        return tracer('#a94c85', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne7Trajet)
-}
-
-function TrajetLine8() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne8.png" class="logoLigne"/>';
-    var Ligne8Trajet = TrajetLigne8.features.map(T => {
-        return tracer('#e72b75', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne8Trajet)
-}
-
-function TrajetLine9() {
-    let ligneDeBus = '<img src="./assets/images/ligne/ligne9.png" class="logoLigne"/>';
-    var Ligne9 = TrajetLigne9.features.map(T => {
-        return tracer('#f19200', T, ligneDeBus);
-    });
-    return L.layerGroup(Ligne9)
-}

@@ -356,7 +356,7 @@ const TrajetLigne2 = {
                         -0.478872,
                         46.311962,
                     ],
-                    // Partie en commun ligne 7
+                    // Partie en commun lignes 7
                     [
                         -0.478825,
                         46.312093,
@@ -393,7 +393,7 @@ const TrajetLigne2 = {
                         -0.481076,
                         46.315694,
                     ],
-                    // Fin de la partie en commun ligne 7
+                    // Fin de la partie en commun lignes 7
                     [
                         -0.481254,
                         46.315612,
@@ -426,7 +426,7 @@ const TrajetLigne2 = {
                         -0.484956,
                         46.317653,
                     ],
-                    // Partie en commun ligne 6
+                    // Partie en commun lignes 6
                     [
                         -0.484819,
                         46.317676,
@@ -567,7 +567,7 @@ const TrajetLigne2 = {
                         -0.465711,
                         46.320929,
                     ],
-                    // Début partie commune ligne 7
+                    // Début partie commune lignes 7
                     [
                         -0.465596,
                         46.320919,
@@ -664,7 +664,7 @@ const TrajetLigne2 = {
                         -0.458530,
                         46.324114,
                     ],
-                    // Fin partie commune ligne 7
+                    // Fin partie commune lignes 7
                     [
                         -0.458257,
                         46.324348,
@@ -681,7 +681,7 @@ const TrajetLigne2 = {
                         -0.458061,
                         46.329624,
                     ],
-                    // Fin partie en commun ligne 6
+                    // Fin partie en commun lignes 6
                     [
                         -0.456547,
                         46.331477,

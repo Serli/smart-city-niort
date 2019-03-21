@@ -1,47 +1,72 @@
-const ligne = [{
-        id: "1",
-        trajet: [TrajetLine1()],
-        name: "Ligne 1"
-    },
+const lignes = [{
+    id: "1",
+
+    name: "Ligne 1",
+    color: "red",
+    colorLigne: "#E30613",
+    data: TrajetLigne1
+},
     {
         id: "2",
-        trajet: [TrajetLine2()],
-        name: "Ligne 2"
+
+        name: "Ligne 2",
+        color: "darkgreen",
+        colorLigne: "#007B3D",
+        data: TrajetLigne2
     },
     {
         id: "3",
-        trajet: [TrajetLine3()],
-        name: "Ligne 3"
+
+        name: "Ligne 3",
+        color: "cadetblue",
+        colorLigne: "#68BFAC",
+        data: TrajetLigne3
     },
     {
         id: "4",
-        trajet: [TrajetLine4()],
-        name: "Ligne 4"
+
+        name: "Ligne 4",
+        color: "purple",
+        colorLigne: "#F0869D",
+        data: TrajetLigne4
     },
     {
         id: "5",
-        trajet: [TrajetLine5()],
-        name: "Ligne 5"
+
+        name: "Ligne 5",
+        color: "blue",
+        colorLigne: "#2E73B9",
+        data: TrajetLigne5
     },
     {
         id: "6",
-        trajet: [TrajetLine6()],
-        name: "Ligne 6"
+
+        name: "Ligne 6",
+        color: "green",
+        colorLigne: "#94C11F",
+        data: TrajetLigne6
     },
     {
         id: "7",
-        trajet: [TrajetLine7()],
-        name: "Ligne 7"
+        name: "Ligne 7",
+        color: "darkpurple",
+        colorLigne: "#A84E85",
+        data: TrajetLigne7
     },
     {
         id: "8",
-        trajet: [TrajetLine8()],
-        name: "Ligne 8"
+
+        name: "Ligne 8",
+        color: "purple",
+        colorLigne: "#E72475",
+        data: TrajetLigne8
     },
     {
         id: "9",
-        trajet: [TrajetLine9()],
-        name: "Ligne 9"
+        name: "Ligne 9",
+        color: "orange",
+        colorLigne: "#F49719",
+        data: TrajetLigne9
     },
 ];
 
@@ -106,7 +131,7 @@ function init() {
         },
 
         onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
+            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
 
             container.style.backgroundColor = 'white';
             container.style.width = "5vw";
@@ -123,7 +148,7 @@ function init() {
             container.style.justifyContent = "center";
 
 
-            container.innerHTML = '<i class="fa fa-arrow-left fa-lg"></i>';
+            container.innerHTML = '<i class="fa fa-arrow-left fa-lg " ></i>';
 
             container.onclick = function () {
                 clickTogglePosition();
@@ -140,7 +165,7 @@ function init() {
         },
 
         onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle');
+            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
 
             container.style.backgroundColor = 'white';
 
@@ -177,6 +202,15 @@ function init() {
 
 }
 
+document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-position', 'bottom')
+document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-tooltip', 'Recentrer')
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, options);
+});
+
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
@@ -186,7 +220,7 @@ function markerPopup(feature) {
     const {opening_hours, amenity, name} = feature.properties;
 
     if (opening_hours && (amenity === 'pharmacy'
-        || amenity === "recycling"
+        || amenity === "recycling"
         || amenity === "economie"
         || amenity === "coworking"
         || amenity === "repair_cafe"
@@ -228,21 +262,18 @@ function markerPopup(feature) {
                         } else if (h === plageHoraire[1]
                             && ((today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
-                            || (today.getHours() === Number(strings[0].split(":")[0]))
-                            && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
+                                || (today.getHours() === Number(strings[0].split(":")[0]))
+                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
                             horairesAfficher = horaire;
                             ouverture = "Ouvert";
-                        }
-
-                        else {
+                        } else {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
 
                         }
-                    }
-                    else {
-                        if(ouverture === null) {
+                    } else {
+                        if (ouverture === null) {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
                         }
@@ -275,17 +306,17 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         document.getElementById("lieux").style.opacity = "1";
     }, 100);
-        setTimeout(function () {
-            if(document.getElementById("lieux") !== null) {
-                removeDivLieux();
-            }
-        }, 5000);
+    setTimeout(function () {
+        if (document.getElementById("lieux") !== null) {
+            removeDivLieux();
+        }
+    }, 5000);
 });
 
 
 function removeDivLieux() {
     document.getElementById("lieux").style.opacity = "0";
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("containMap").removeChild(document.getElementById("lieux"));
     }, 200)
 }
@@ -305,21 +336,30 @@ function layers() {
         id: 'cycleways',
         attribution: '&copy; OpenStreetMap',
         style: polystyle(),
-        onEachFeature(feature, layer) {
-          let nameCycleway = null;
-          let typeCycleway = null;
-          let coordonee = getCoordonnées(feature);
-
-            if (feature.properties.name !== undefined) {
-                nameCycleway = feature.properties.name;
-            }
-            if (feature.properties.type !== undefined) {
-                typeCycleway = feature.properties.type
-            }
-
-                createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
-        },
+        onEachFeature: onEachFeature
     });
+
+    function onEachFeature(feature, layer) {
+        let nameCycleway = null;
+        let typeCycleway = null;
+        let coordonee = getCoordonnées(feature);
+
+        if (feature.properties.name !== undefined) {
+            nameCycleway = feature.properties.name;
+        }
+        if (feature.properties.type !== undefined) {
+            typeCycleway = feature.properties.type
+        }
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+
+        });
+
+
+        createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
+    }
+
 
     var cycleParking = L.geoJSON(bicycleParkings,
         {
@@ -491,23 +531,30 @@ function layers() {
 
     const coord = [];
 
-    let mesLigne = ligne.map((ligne) => {
+    let mesLigne = lignes.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
             return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
         });
         return {
-            trace: L.geoJSON(busStopLigne,
+            markerArret: L.geoJSON(busStopLigne,
                 {
                     attribution: '&copy; OpenStreetMap',
                     pointToLayer: function (feature, latlng) {
                         var arret;
                         if (feature.properties.name !== undefined) {
                             arret = feature.properties.name;
-                            let ligne = feature.properties.route_ref;
-                            let color = colorMarker(ligne);
+
+                            var routeRef = feature.properties.route_ref;
+                            let color;
+                            if (routeRef.includes(",")) {
+                                color = "black";
+                            } else {
+                                color = ligne.color;
+                            }
+
                             let type = "TanLib, le transport de l'agglo Niortaise";
                             let coordonnee = getCoordonnées(feature)
-                            let val3 = logo(ligne).join(" ")
+                            let val3 = logo(routeRef).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -529,11 +576,10 @@ function layers() {
                 }
             ),
             name: ligne.name,
-            trajet: ligne.trajet
+            trajet: Trajet(ligne.id)
         }
     });
 
-    // let decheterie2 = createMarker(recyclings, "dumpster", "red")
 
     let decheterie = L.geoJSON(recyclings, {
         attribution: '&copy; OpenStreetMap',
@@ -589,7 +635,7 @@ function layers() {
                 let typeDechet = null;
 
                 if (feature.properties.recycling !== undefined) {
-                    if (feature.properties.recycling.type === "container"){
+                    if (feature.properties.recycling.type === "container") {
                         typeDechet = dechetRecyclage(feature).join(", ")
                         let repairMarker = L.AwesomeMarkers.icon({
                             prefix: 'fa',
@@ -637,7 +683,10 @@ function layers() {
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
-    let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
+    // let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
+
+
+    let Tracer = L.layerGroup(Trajets());
 
 
     // Tableau contenant  tout les layers
@@ -664,8 +713,8 @@ function layers() {
     tabLayer["Defi"] = eliot;
 
     mesLigne.forEach((ligne) => {
-        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+        // mesTrace[lignes.name] = L.layerGroup([lignes.markerArret, ...lignes.trajet]);
+        tabLayer[ligne.name] = L.layerGroup([ligne.markerArret, ligne.trajet]);
     });
 
 
@@ -675,7 +724,7 @@ function layers() {
         // on cache la navbar si on clic sur n'importe quel marker
         Object.keys(tabLayer).forEach(function (key) {
 
-                // si c'est un groupLayer d'une ligne de bus
+                // si c'est un groupLayer d'une lignes de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
@@ -689,7 +738,7 @@ function layers() {
     Object.keys(tabLayer).forEach(function (key) {
 
         tabLayer[key].getLayers().forEach(function (elementLayer) {
-            elementLayer.on('click', function(e){
+            elementLayer.on('click', function (e) {
                 map.setView(e.latlng, 15);
             });
         });
@@ -857,7 +906,7 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-                if (feature.properties.emergency === "defibrillator"){
+                if (feature.properties.emergency === "defibrillator") {
                     let type = "Défibrillateur";
                     let soustitre = null;
                     if (feature.properties.name !== undefined) {
@@ -866,12 +915,12 @@ function createMarker(fichier, icon, color) {
                         soustitre = "En libre accés";
                     }
 
-                    if (phone === null){
+                    if (phone === null) {
                         createPopup(marker, coordonnee, type, soustitre, soustitre, null)
                     } else {
                         createPopup(marker, coordonnee, type, soustitre, phone, null)
                     }
-                } else if (feature.properties.amenity === "hospital"){
+                } else if (feature.properties.amenity === "hospital") {
                     let type = "Hôpital";
                     phone = feature.properties.phone;
                     let mail = null;
@@ -879,16 +928,15 @@ function createMarker(fichier, icon, color) {
                         mail = feature.properties.email
                     }
                     createPopup(marker, coordonnee, nom, type, phone, mail, null);
-                } else if (feature.properties.amenity === "doctors"){
+                } else if (feature.properties.amenity === "doctors") {
                     let distinction = "Médecin";
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
-                } else if (feature.properties.amenity === "eliot"){
-                    if (feature.properties.indice !== undefined){
+                } else if (feature.properties.amenity === "eliot") {
+                    if (feature.properties.indice !== undefined) {
                         let indice = feature.properties.indice;
                         let adresse = "Acclameur"
                         createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
-                    }
-                    else {
+                    } else {
                         createPopup(marker, coordonnee, "Cherche encore !", null, null, null, null, null)
                     }
                 } else {
@@ -930,20 +978,17 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     if (titre != null && type != null && itineraire != null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
-    }else if (titre === null && type === null) {
-        top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu </div>  </di> </div> ' + itineraire + ' </div>'
-    }
-    else if (titre === null) {
+    } else if (titre === null && type === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information</div>  </di> </div> ' + itineraire + ' </div>'
+    } else if (titre === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
     } else if (titre != null && type === null && itineraire === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
-    }
-    else {
-        if(titre === "Cherche encore !") {
-            top = '<div class="top"> <div class="titre"><div class="titrePopup">'+ titre + '</div></di> </div>'+ itineraire +' </div>'
-        }
-        else {
-            top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu</div></di> </div>'+ itineraire +' </div>'
+    } else {
+        if (titre === "Cherche encore !") {
+            top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + '</div></di> </div>' + itineraire + ' </div>'
+        } else {
+            top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu</div></di> </div>' + itineraire + ' </div>'
         }
     }
 
@@ -1010,61 +1055,31 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
 }
 
 
-function colorMarker(ligne) {
-    let color = "";
-    switch (ligne) {
-        case "1":
-            color = 'red';
-            return color;
-        case "1Bis":
-            color = 'red';
-            return color;
-        case "2":
-            color = 'darkgreen';
-            return color;
-        case "2 Alt":
-            color = 'darkgreen';
-            return color;
-        case "2Bis":
-            color = 'darkgreen';
-            return color;
-        case "3":
-            color = 'cadetblue';
-            return color;
-        case "4":
-            color = 'purple';
-            return color;
-        case "4Bis":
-            color = 'purple';
-            return color;
-        case "5":
-            color = 'blue';
-            return color;
-        case "5Bis":
-            color = 'blue';
-            return color;
-        case "6":
-            color = 'green';
-            return color;
-        case "6Bis":
-            color = 'green';
-            return color;
-        case "7":
-            color = 'darkpurple';
-            return color;
-        case "8":
-            color = 'purple';
-            return color;
-        case "8Bis":
-            color = 'purple';
-            return color;
-        case "9":
-            color = "orange";
-            return color;
-        default:
-            color = 'black';
-            return color;
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
     }
+    if (this.getPopup().isOpen() === false) {
+        this.openPopup();
+    }
+
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 3,
+    });
+    setTimeout(function () {
+        this.closePopup();
+    }.bind(this), 1800);
 }
 
 function logo(arret) {
