@@ -682,21 +682,24 @@ function layers() {
                     });
                 } else {
                     tabLayer[key].on('mousedown', L.bind(clickToggleFooter, null, true))
-                    nombreLieux++;
                 }
             }
         );
-    } else {
-        Object.keys(tabLayer).forEach(function (key) {
-
-            // si c'est un groupLayer d'une ligne de bus
-            if (key.startsWith("Ligne") === false) {
-                tabLayer[key].getLayers().forEach(function (elementLayer) {
-                    nombreLieux++;
-                });
-            }
-        });
     }
+    Object.keys(tabLayer).forEach(function (key) {
+
+        tabLayer[key].getLayers().forEach(function (elementLayer) {
+            elementLayer.on('click', function(e){
+                map.setView(e.latlng, 15);
+            });
+        });
+        // si c'est un groupLayer d'une ligne de bus
+        if (key.startsWith("Ligne") === false) {
+            tabLayer[key].getLayers().forEach(function (elementLayer) {
+                nombreLieux++;
+            });
+        }
+    });
 
     return nombreLieux;
 }
