@@ -103,7 +103,7 @@ const TrajetLigne4 = {
                         -0.477446,
                         46.343877,
                     ],
-                    // Début partie commune ligne 5
+                    // Début partie commune lignes 5
                     [
                         -0.476762,
                         46.342075,
@@ -132,7 +132,7 @@ const TrajetLigne4 = {
                         -0.485511,
                         46.343983,
                     ],
-                    // fin partie commune ligne 5
+                    // fin partie commune lignes 5
                     [
                         -0.486569,
                         46.342938,
@@ -428,7 +428,7 @@ const TrajetLigne4 = {
                         -0.461010,
                         46.321256,
                     ],
-                    // Début partie commune ligne 7
+                    // Début partie commune lignes 7
                     [
                         -0.461034,
                         46.321196,
@@ -601,7 +601,7 @@ const TrajetLigne4 = {
                         -0.458247,
                         46.313903,
                     ],
-                    // Fin partie commune ligne 7
+                    // Fin partie commune lignes 7
                     [
                         -0.458065,
                         46.313929,

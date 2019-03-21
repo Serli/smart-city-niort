@@ -1,49 +1,75 @@
-const ligne = [{
+const lignes = [{
     id: "1",
-    trajet: [TrajetLine1()],
-    name: "Ligne 1"
+
+    name: "Ligne 1",
+    color: "red",
+    colorLigne: "#E30613",
+    data: TrajetLigne1
 },
     {
         id: "2",
-        trajet: [TrajetLine2()],
-        name: "Ligne 2"
+
+        name: "Ligne 2",
+        color: "darkgreen",
+        colorLigne: "#007B3D",
+        data: TrajetLigne2
     },
     {
         id: "3",
-        trajet: [TrajetLine3()],
-        name: "Ligne 3"
+
+        name: "Ligne 3",
+        color: "cadetblue",
+        colorLigne: "#68BFAC",
+        data: TrajetLigne3
     },
     {
         id: "4",
-        trajet: [TrajetLine4()],
-        name: "Ligne 4"
+
+        name: "Ligne 4",
+        color: "purple",
+        colorLigne: "#F0869D",
+        data: TrajetLigne4
     },
     {
         id: "5",
-        trajet: [TrajetLine5()],
-        name: "Ligne 5"
+
+        name: "Ligne 5",
+        color: "blue",
+        colorLigne: "#2E73B9",
+        data: TrajetLigne5
     },
     {
         id: "6",
-        trajet: [TrajetLine6()],
-        name: "Ligne 6"
+
+        name: "Ligne 6",
+        color: "green",
+        colorLigne: "#94C11F",
+        data: TrajetLigne6
     },
     {
         id: "7",
-        trajet: [TrajetLine7()],
-        name: "Ligne 7"
+        name: "Ligne 7",
+        color: "darkpurple",
+        colorLigne: "#A84E85",
+        data: TrajetLigne7
     },
     {
         id: "8",
-        trajet: [TrajetLine8()],
-        name: "Ligne 8"
+
+        name: "Ligne 8",
+        color: "purple",
+        colorLigne: "#E72475",
+        data: TrajetLigne8
     },
     {
         id: "9",
-        trajet: [TrajetLine9()],
-        name: "Ligne 9"
+        name: "Ligne 9",
+        color: "orange",
+        colorLigne: "#F49719",
+        data: TrajetLigne9
     },
 ];
+
 
 function init() {
 
@@ -482,6 +508,7 @@ function layers() {
 
     var medecin = L.geoJSON(doctors,
         {
+
             attribution: '&copy; OpenStreetMap',
             pointToLayer: function (feature, latlng) {
                 if (feature.properties.name !== undefined) {
@@ -561,23 +588,30 @@ function layers() {
 
     const coord = [];
 
-    let mesLigne = ligne.map((ligne) => {
+    let mesLigne = lignes.map((ligne) => {
         let busStopLigne = busStops.features.filter((arret) => {
             return arret.properties.route_ref && arret.properties.route_ref.indexOf(ligne.id) > -1
         });
         return {
-            trace: L.geoJSON(busStopLigne,
+            markerArret: L.geoJSON(busStopLigne,
                 {
                     attribution: '&copy; OpenStreetMap',
                     pointToLayer: function (feature, latlng) {
                         var arret;
                         if (feature.properties.name !== undefined) {
                             arret = feature.properties.name;
-                            let ligne = feature.properties.route_ref;
-                            let color = colorMarker(ligne);
+
+                            var routeRef = feature.properties.route_ref;
+                            let color;
+                            if (routeRef.includes(",")) {
+                                color = "black";
+                            } else {
+                                color = ligne.color;
+                            }
+
                             let type = "TanLib, le transport de l'agglo Niortaise";
                             let coordonnee = getCoordonnées(feature)
-                            let val3 = logo(ligne).join(" ")
+                            let val3 = logo(routeRef).join(" ")
                             let busMarker = L.AwesomeMarkers.icon({
                                 prefix: 'fa',
                                 icon: 'bus',
@@ -599,7 +633,7 @@ function layers() {
                 }
             ),
             name: ligne.name,
-            trajet: ligne.trajet
+            trajet: Trajet(ligne.id)
         }
     });
 
@@ -738,7 +772,12 @@ function layers() {
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
 
-    let Tracer = L.layerGroup([TrajetLine1() ])
+    // let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
+
+
+    let Tracer = L.layerGroup(Trajets());
+
+
 
 
     // Tableau contenant  tout les layers
@@ -764,8 +803,8 @@ function layers() {
     tabLayer["conteneur"] = conteneur;
 
     mesLigne.forEach((ligne) => {
-        // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
-        tabLayer[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
+        // mesTrace[lignes.name] = L.layerGroup([lignes.markerArret, ...lignes.trajet]);
+        tabLayer[ligne.name] = L.layerGroup([ligne.markerArret, ligne.trajet]);
     });
 
 
@@ -775,7 +814,7 @@ function layers() {
         // on cache la navbar si on clicl sur n'importe quel marker
         Object.keys(tabLayer).forEach(function (key) {
 
-                // si c'est un groupLayer d'une ligne de bus
+                // si c'est un groupLayer d'une lignes de bus
                 if (key.startsWith("Ligne")) {
                     tabLayer[key].getLayers().forEach(function (elementLayer) {
                         elementLayer.on('mousedown', L.bind(clickToggleFooter, null, true));
@@ -786,23 +825,25 @@ function layers() {
                 }
             }
         );
-    } else {
-        Object.keys(tabLayer).forEach(function (key) {
-
-            //console.log(Object.keys(tabLayer).length)
-            // console.log(tabLayer[key])
-
-            // si c'est un groupLayer d'une ligne de bus
-            if (key.startsWith("Ligne") === false) {
-                tabLayer[key].getLayers().forEach(function (elementLayer) {
-                    nombreLieux++;
-                });
-            }
-        });
     }
+
+    // je recupere tout les markers
+    Object.keys(tabLayer).forEach(function (key) {
+        //console.log(Object.keys(tabLayer).length)
+        // console.log(tabLayer[key])
+
+        // si c'est un groupLayer d'une lignes de bus
+        if (key.startsWith("Ligne") === false) {
+            tabLayer[key].getLayers().forEach(function (marker) {
+                nombreLieux++;
+
+            });
+        }
+    });
 
     return nombreLieux;
 }
+
 
 function parkingVoitu(param) {
 
@@ -1059,63 +1100,6 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     );
 }
 
-
-function colorMarker(ligne) {
-    let color = "";
-    switch (ligne) {
-        case "1":
-            color = 'red';
-            return color;
-        case "1Bis":
-            color = 'red';
-            return color;
-        case "2":
-            color = 'darkgreen';
-            return color;
-        case "2 Alt":
-            color = 'darkgreen';
-            return color;
-        case "2Bis":
-            color = 'darkgreen';
-            return color;
-        case "3":
-            color = 'cadetblue';
-            return color;
-        case "4":
-            color = 'purple';
-            return color;
-        case "4Bis":
-            color = 'purple';
-            return color;
-        case "5":
-            color = 'blue';
-            return color;
-        case "5Bis":
-            color = 'blue';
-            return color;
-        case "6":
-            color = 'green';
-            return color;
-        case "6Bis":
-            color = 'green';
-            return color;
-        case "7":
-            color = 'darkpurple';
-            return color;
-        case "8":
-            color = 'purple';
-            return color;
-        case "8Bis":
-            color = 'purple';
-            return color;
-        case "9":
-            color = "orange";
-            return color;
-        default:
-            color = 'black';
-            return color;
-    }
-}
 
 function logo(arret) {
     let lignesDeBus = [];

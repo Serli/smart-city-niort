@@ -37,7 +37,7 @@ nav ul a span.badge {
   -webkit-font-smoothing: auto;
 }
 
-// ligne height centering
+// lignes height centering
 .collection-item span.badge {
   margin-top: calc(#{$collection-line-height / 2} - #{$badge-height / 2});
 }
