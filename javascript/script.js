@@ -236,7 +236,6 @@ function markerPopup(feature) {
                         }
 
                         else {
-                            console.log("ok");
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
 
@@ -789,9 +788,6 @@ function layers() {
         );
     } else {
         Object.keys(tabLayer).forEach(function (key) {
-
-            //console.log(Object.keys(tabLayer).length)
-            // console.log(tabLayer[key])
 
             // si c'est un groupLayer d'une ligne de bus
             if (key.startsWith("Ligne") === false) {
