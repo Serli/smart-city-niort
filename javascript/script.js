@@ -822,25 +822,24 @@ function createMarker(fichier, icon, color) {
                 let phone = null;
                 let coordonnee = getCoordonnées(feature)
 
-                    if (feature.properties.name !== undefined) {
-                        nom = feature.properties.name;
-                    }
+                if (feature.properties.name !== undefined) {
+                    nom = feature.properties.name;
+                }
 
                 if (feature.properties.adresse !== undefined) {
                     adresse = feature.properties.adresse;
                 }
 
+                if (feature.properties.phone !== undefined) {
+                    phone = feature.properties.phone;
+                }
 
-                    if (feature.properties.phone !== undefined) {
-                        phone = feature.properties.phone;
-                    }
-
-                    let Marker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: icon,
-                        iconColor: 'white',
-                        markerColor: color
-                    });
+                let Marker = L.AwesomeMarkers.icon({
+                    prefix: 'fa',
+                    icon: icon,
+                    iconColor: 'white',
+                    markerColor: color
+                });
 
                 let marker = L.marker(
                     latlng,
@@ -849,49 +848,34 @@ function createMarker(fichier, icon, color) {
                         title: nom
                     });
 
-                    if (feature.properties.emergency === "defibrillator"){
-                        let type = "Défibrillateur";
-                        let soustitre = null;
-                        if (feature.properties.name !== undefined) {
-                            soustitre = feature.properties.name;
-                        } else if (feature.properties.access === "public") {
-                            soustitre = "En libre accés";
-                        }
-
-                        if (phone === null){
-                            createPopup(marker, coordonnee, type, soustitre, soustitre, null)
-                        } else {
-                            createPopup(marker, coordonnee, type, soustitre, phone, null)
-                        }
-                    } else if (feature.properties.amenity === "hospital"){
-                        let type = "Hôpital";
-                        phone = feature.properties.phone;
-                        createPopup(marker, coordonnee, nom, type, phone, null);
-                    } else if (feature.properties.amenity === "doctors"){
-                        let type = "Médecin";
-                        createPopup(marker, coordonnee, nom, type, phone, adresse)
-                    }
-                    // else if(feature.properties.recycling !== undefined){
-                    //     console.log("recyclage")
-                    //     if (feature.properties.recycling.type === "container"){
-                    //         nom = "Conteneur";
-                    //         console.log("container")
-                    //         let typeDechet = dechetRecyclage(feature).join(", ")
-                    //         createPopup(marker, coordonnee, nom, typeDechet, null, null)
-                    //     } else if (feature.properties.recycling.type === "Dechetterie"){
-                    //         console.log("Dechetterie")
-                    //         let typeDechet = dechetRecyclage(feature).join(", ")
-                    //         createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"])
-                    //     }
-                    // }
-                    else {
-                        createPopup(marker, coordonnee, nom, adresse, null, null);
+                if (feature.properties.emergency === "defibrillator"){
+                    let type = "Défibrillateur";
+                    let soustitre = null;
+                    if (feature.properties.name !== undefined) {
+                        soustitre = feature.properties.name;
+                    } else if (feature.properties.access === "public") {
+                        soustitre = "En libre accés";
                     }
 
-                    return marker;
+                    if (phone === null){
+                        createPopup(marker, coordonnee, type, soustitre, soustitre, null)
+                    } else {
+                        createPopup(marker, coordonnee, type, soustitre, phone, null)
+                    }
+                } else if (feature.properties.amenity === "hospital"){
+                    let type = "Hôpital";
+                    phone = feature.properties.phone;
+                    createPopup(marker, coordonnee, nom, type, phone, null);
+                } else if (feature.properties.amenity === "doctors"){
+                    let type = "Médecin";
+                    createPopup(marker, coordonnee, nom, type, phone, adresse)
+                } else {
+                    createPopup(marker, coordonnee, nom, adresse, null, null);
                 }
-            })
-        };
+
+                return marker;
+            }
+        })
 }
 
 function getCoordonnées(feature) {
