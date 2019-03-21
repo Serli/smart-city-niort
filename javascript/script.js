@@ -318,7 +318,6 @@ function layers() {
                 typeCycleway = feature.properties.type
             }
 
-            console.log(nameCycleway,typeCycleway, coordonee);
             if(nameCycleway !== null && typeCycleway !== null) {
                 createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
             }
