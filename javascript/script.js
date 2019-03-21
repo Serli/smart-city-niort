@@ -186,7 +186,7 @@ function markerPopup(feature) {
     const {opening_hours, amenity, name} = feature.properties;
 
     if (opening_hours && (amenity === 'pharmacy'
-        || amenity === "recycling"
+        || amenity === "recycling"
         || amenity === "economie"
         || amenity === "coworking"
         || amenity === "repair_cafe"
@@ -228,19 +228,21 @@ function markerPopup(feature) {
                         } else if (h === plageHoraire[1]
                             && ((today.getHours() > Number(strings[0].split(":")[0])
                                 && today.getHours() < Number(strings[1].split(":")[0]))
-                                || (today.getHours() === Number(strings[0].split(":")[0]))
-                                && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
+                            || (today.getHours() === Number(strings[0].split(":")[0]))
+                            && today.getMinutes() >= Number(strings[0].split(":")[1]))) {
 
                             horairesAfficher = horaire;
                             ouverture = "Ouvert";
-                        } else {
+                        }
+
+                        else {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
 
                         }
                     }
                     else {
-                        if(ouverture === null){
+                        if(ouverture === null) {
                             horairesAfficher = horaire;
                             ouverture = "Fermé";
                         }
@@ -257,7 +259,6 @@ function markerPopup(feature) {
     if (horairesAfficher !== null) {
         horaire["ouverture"] = ouverture;
         horaire["horairesAfficher"] = horairesAfficher;
-        // console.log(horaire["horairesAfficher"])
         return (horaire);
     } else {
         return horaire;
@@ -274,18 +275,17 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         document.getElementById("lieux").style.opacity = "1";
     }, 100);
-
-    setTimeout(function () {
-        if(document.getElementById("lieux") !== null) {
-            removeDivLieux();
-        }
-    }, 5000);
+        setTimeout(function () {
+            if(document.getElementById("lieux") !== null) {
+                removeDivLieux();
+            }
+        }, 5000);
 });
 
 
 function removeDivLieux() {
     document.getElementById("lieux").style.opacity = "0";
-    setTimeout(function () {
+    setTimeout(function() {
         document.getElementById("containMap").removeChild(document.getElementById("lieux"));
     }, 200)
 }
