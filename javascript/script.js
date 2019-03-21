@@ -306,6 +306,26 @@ function layers() {
         id: 'cycleways',
         attribution: '&copy; OpenStreetMap',
         style: polystyle(),
+        onEachFeature(feature, layer) {
+          let nameCycleway = null;
+          let typeCycleway = null;
+          let coordonee = getCoordonnées(feature);
+
+            if (feature.properties.name !== undefined) {
+                nameCycleway = feature.properties.name;
+            }
+            if (feature.properties.type !== undefined) {
+                typeCycleway = feature.properties.type
+            }
+
+            console.log(nameCycleway,typeCycleway, coordonee);
+            if(nameCycleway !== null && typeCycleway !== null) {
+                createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
+            }
+            else if(nameCycleway !== null && typeCycleway === null){
+                createPopup(layer, null, nameCycleway, null, null, null, null, null);
+            }
+        },
     });
 
     var cycleParking = L.geoJSON(bicycleParkings,
