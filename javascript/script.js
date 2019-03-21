@@ -317,12 +317,7 @@ function layers() {
                 typeCycleway = feature.properties.type
             }
 
-            if(nameCycleway !== null && typeCycleway !== null) {
                 createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
-            }
-            else if(nameCycleway !== null && typeCycleway === null){
-                createPopup(layer, null, nameCycleway, null, null, null, null, null);
-            }
         },
     });
 
@@ -890,6 +885,9 @@ function createMarker(fichier, icon, color) {
                         let adresse = "Acclameur"
                         createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
                     }
+                    else {
+                        createPopup(marker, coordonnee, "Cherche encore !", null, null, null, null, null)
+                    }
                 } else {
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
                 }
@@ -929,10 +927,21 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     if (titre != null && type != null && itineraire != null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
-    } else if (titre === null) {
+    }else if (titre === null && type === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu </div>  </di> </div> ' + itineraire + ' </div>'
+    }
+    else if (titre === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + type.charAt(0).toUpperCase() + type.substring(1).toLowerCase() + ' </div>  </di> </div> ' + itineraire + ' </div>'
     } else if (titre != null && type === null && itineraire === null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div>  </di> </div> </div>'
+    }
+    else {
+        if(titre === "Cherche encore !") {
+            top = '<div class="top"> <div class="titre"><div class="titrePopup">'+ titre + '</div></di> </div>'+ itineraire +' </div>'
+        }
+        else {
+            top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu</div></di> </div>'+ itineraire +' </div>'
+        }
     }
 
     let icon1 = '';
