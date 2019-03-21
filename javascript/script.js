@@ -327,9 +327,9 @@ function layers() {
             onEachFeature: function (feature, layer) {
                 let nameParking = null;
                 let capacityParking = null;
-                let couvert = null
-                let coordonnee = getCoordonnées(feature)
-                let type = "Parking à vélo"
+                let couvert = null;
+                let coordonnee = getCoordonnées(feature);
+                let type = "Parking à vélo";
 
                 if (feature.properties.name !== undefined) {
                     nameParking = feature.properties.name
