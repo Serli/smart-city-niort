@@ -48,7 +48,7 @@ body {
     color: #fff;
 
     @media screen and (max-width: 991px) {
-      padding: 35px;
+      padding: 32px;
       max-width: 195px;
       border-radius: 90px;
     }
@@ -76,16 +76,16 @@ body {
       border: none;
       border-radius: 20px;
       position: absolute;
-      margin-top: -250px;
-      margin-left: 180px;
+      margin-top: -280px;
+      margin-left: 190px;
       cursor: pointer;
       font-size: 20px;
       padding: 0 10px 4px 10px;
 
       @media screen and (max-width: 991px) {
         padding: 0 7px 2px 7px;
-        margin-top: -155px;
-        margin-left: 120px;
+        margin-top: -180px;
+        margin-left: 125px;
         font-size: 17px;
       }
     }
@@ -778,7 +778,7 @@ html body {
 
       .barre {
         border-right: #dee0e6 solid 1px;
-        padding: 3px 8px;
+        margin: 3px 8px;
       }
 
 

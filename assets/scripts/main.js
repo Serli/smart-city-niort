@@ -433,9 +433,11 @@ document.getElementsByTagName("main")[0].onmousedown = closeAllNav;
 // cacher ou afficher la navbarUnder = navbar principal des categories
 document.getElementsByClassName("btnHide")[0].onclick = clickToggleFooter;
 
+
 function clickToggleFooter(clickMarker) {
 
     verifCategoActive()
+
 
 
     if (document.getElementsByClassName("containNavbar")[0].className.includes("show")) {
