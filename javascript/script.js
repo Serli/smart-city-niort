@@ -201,15 +201,15 @@ function init() {
 
 
 }
+//
+// document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-position', 'bottom')
+// document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-tooltip', 'Recentrer')
 
-document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-position', 'bottom')
-document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-tooltip', 'Recentrer')
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.tooltipped');
-    var instances = M.Tooltip.init(elems, options);
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     var elems = document.querySelectorAll('.tooltipped');
+//     var instances = M.Tooltip.init(elems, options);
+// });
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
