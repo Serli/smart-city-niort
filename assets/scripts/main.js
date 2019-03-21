@@ -189,7 +189,6 @@ function doubleClickCritere() {
     while (this.parentNode.getElementsByClassName("critere active").length > 0) {
 
         var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
-        console.log(index.id)
         index.classList.remove("active");
         map.removeLayer(tabLayer[index.id]);
         // markerArret = [];
@@ -297,7 +296,6 @@ function clickCritere() {
                 if (layer.options && layer.options.pane === "markerPane") {
                     map.removeLayer(layer);
                     if (markerArret.length === 0) {
-
                         markerArret.push(layer);
                     } else {
                         let found = markerArret.findIndex((coordonnees) => {

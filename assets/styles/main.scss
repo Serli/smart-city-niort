@@ -76,16 +76,16 @@ body {
       border: none;
       border-radius: 20px;
       position: absolute;
-      margin-top: -280px;
-      margin-left: 190px;
+      margin-top: -260px;
+      margin-left: 175px;
       cursor: pointer;
       font-size: 20px;
       padding: 0 10px 4px 10px;
 
       @media screen and (max-width: 991px) {
         padding: 0 7px 2px 7px;
-        margin-top: -180px;
-        margin-left: 125px;
+        margin-top: -165px;
+        margin-left: 115px;
         font-size: 17px;
       }
     }
@@ -351,7 +351,7 @@ body {
   flex-shrink: 0;
 
 
-  i, a {
+  i, a{
 
     color: #dee0e6;
     padding: 8px 8px;
@@ -361,10 +361,34 @@ body {
 
 
     &:hover, &:active {
-
       background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      //&.repaircafe{
+      //  background-image: linear-gradient(to bottom right, #f69730, #f69730);
+      //  -webkit-background-clip: text;
+      //  -webkit-text-fill-color: transparent;
+      //}
+      //
+      //&.coworking{
+      //  background-image: linear-gradient(to bottom right, #d252b9, #d252b9);
+      //  -webkit-background-clip: text;
+      //  -webkit-text-fill-color: transparent;
+      //}
+      //
+      //&.coop{
+      //  background-image: linear-gradient(to bottom right, #38aadd, #38aadd);
+      //  -webkit-background-clip: text;
+      //  -webkit-text-fill-color: transparent;
+      //}
+      //
+      //&.economie{
+      //  background-image: linear-gradient(to bottom right, #e6007e, #e6007e);
+      //  -webkit-background-clip: text;
+      //  -webkit-text-fill-color: transparent;
+      //}
+
 
     }
 
@@ -379,6 +403,54 @@ body {
   background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  //&.repaircafe{
+  //  background-image: linear-gradient(to bottom right, #f69730, #f69730);
+  //  -webkit-background-clip: text;
+  //  -webkit-text-fill-color: transparent;
+  //}
+  //
+  //&.coworking{
+  //  background-image: linear-gradient(to bottom right, #d252b9, #d252b9);
+  //  -webkit-background-clip: text;
+  //  -webkit-text-fill-color: transparent;
+  //}
+  //
+  //&.coop{
+  //  background-image: linear-gradient(to bottom right, #38aadd, #38aadd);
+  //  -webkit-background-clip: text;
+  //  -webkit-text-fill-color: transparent;
+  //}
+  //
+  //&.economie{
+  //  background-image: linear-gradient(to bottom right, #e6007e, #e6007e);
+  //  -webkit-background-clip: text;
+  //  -webkit-text-fill-color: transparent;
+  //}
+
+}
+
+.navbarColorEntraide {
+  color: #dee0e6;
+  padding: 8px 8px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: default;
+
+
+  &:hover, &:active {
+
+    .repaircafe {
+      background-image: (#f69730);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+  }
 }
 
 

@@ -14,18 +14,15 @@ function tracer(Color, data, ligneDeBus) {
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
-
         });
 
         if (feature.properties.name.includes("Alt")) {
-
             layer.setStyle({
                 opacity: 1,
                 dashArray: "2 12",
                 color: Color,
                 weight: 3
             });
-
         }
 
         createPopup(layer, null, '<img src="./assets/images/tanlib.png" class="markerTan"/>', null, null, null, ligneDeBus)
@@ -33,28 +30,7 @@ function tracer(Color, data, ligneDeBus) {
     }
 
 
-    function highlightFeature(e) {
-        var layer = e.target;
 
-        layer.setStyle({
-            weight: 5,
-        });
-
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
-        if (this.getPopup().isOpen() === false) {
-            this.openPopup();
-        }
-
-    }
-
-    function resetHighlight(e) {
-        line.resetStyle(e.target);
-        setTimeout(function () {
-            this.closePopup();
-        }.bind(this), 1800);
-    }
 
 
     return line;
