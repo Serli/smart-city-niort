@@ -558,7 +558,7 @@ function layers() {
                             title: nom
                         });
 
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet)
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet);
                     return marker;
                 }
             }
@@ -952,7 +952,7 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     if (val3 != null && (itineraire === null || type.startsWith("TanLib"))) {
         bottomBonus = '<div class="bottom"> <div> <div class="popupLeft"> ' + val3 + ' </div> </div></div> '
     } else if (val3 != null && itineraire != null) {
-        bottomBonus = '<div class="bottom"> <div>' + icon3 + '<div class="popupLeft"> ' + val3 + ' </div> </div></div> '
+        bottomBonus = '<div class="bottom"> <div>' + icon3 + '<div class="popupRight"> ' + val3 + ' </div> </div></div> '
     }
 
 
