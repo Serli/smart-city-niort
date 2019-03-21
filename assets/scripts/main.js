@@ -189,7 +189,6 @@ function doubleClickCritere() {
     while (this.parentNode.getElementsByClassName("critere active").length > 0) {
 
         var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
-        console.log(index.id)
         index.classList.remove("active");
         map.removeLayer(tabLayer[index.id]);
         // markerArret = [];

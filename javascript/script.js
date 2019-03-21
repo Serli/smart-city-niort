@@ -615,6 +615,8 @@ function layers() {
 
     let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
 
+    let eliot = createMarker(defiEliot, "question", 'red');
+
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
     let parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
@@ -645,6 +647,7 @@ function layers() {
     tabLayer["Bus"] = Tracer;
     tabLayer["Déchetterie"] = decheterie;
     tabLayer["conteneur"] = conteneur;
+    tabLayer["Defi"] = eliot;
 
     mesLigne.forEach((ligne) => {
         // mesTrace[ligne.name] = L.layerGroup([ligne.trace, ...ligne.trajet]);
@@ -862,6 +865,12 @@ function createMarker(fichier, icon, color) {
                 } else if (feature.properties.amenity === "doctors"){
                     let distinction = "Médecin";
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
+                } else if (feature.properties.amenity === "eliot"){
+                    if (feature.properties.indice !== undefined){
+                        let indice = feature.properties.indice;
+                        let adresse = "Acclameur"
+                        createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
+                    }
                 } else {
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
                 }
