@@ -276,10 +276,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
 
     setTimeout(function () {
-        document.getElementById("lieux").style.opacity = "0";
-        setTimeout(function () {
-            document.getElementById("containMap").removeChild(document.getElementById("lieux"));
-        }, 200)
+        if(document.getElementById("lieux") !== null) {
+            removeDivLieux();
+        }
     }, 5000);
 });
 
@@ -312,7 +311,6 @@ function layers() {
         {
             style: polystyle(),
             onEachFeature: function (feature, layer) {
-                nombreLieux += 1;
                 let nameParking = null;
                 let capacityParking = null;
                 let couvert = null
@@ -359,7 +357,6 @@ function layers() {
                 (data.location.lat <= 46.417742374524046 && data.location.lon <= -0.27706146240234375))) {
             if (data.categories[0].id === 33) {
 
-                nombreLieux += 1;
                 let coordonnee = data.location.lat + ',' + data.location.lon
                 let description = null;
                 let titre = null;
@@ -609,19 +606,14 @@ function layers() {
     let defibrillateur = createMarker(defibrillator, "medkit", "lightgreen");
 
     let marcher = createMarker(marketplace, 'shopping-cart', 'orange');
-    nombreLieux = createMarker(marketplace, null, null, nombreLieux);
 
     let RepairCafe = createMarker(repairCafe, 'tools', 'orange');
-    nombreLieux = createMarker(repairCafe, null, null, nombreLieux);
 
     let espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
-    nombreLieux = createMarker(coworking, null, null, nombreLieux);
 
     let cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
-    nombreLieux = createMarker(cooperative, null, null, nombreLieux);
 
     let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
-    nombreLieux = createMarker(economie_solidaire, null, null, nombreLieux);
 
     // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
 
@@ -679,9 +671,6 @@ function layers() {
         );
     } else {
         Object.keys(tabLayer).forEach(function (key) {
-
-            //console.log(Object.keys(tabLayer).length)
-            // console.log(tabLayer[key])
 
             // si c'est un groupLayer d'une ligne de bus
             if (key.startsWith("Ligne") === false) {
@@ -874,7 +863,7 @@ function createMarker(fichier, icon, color) {
                     let distinction = "Médecin";
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
                 } else {
-                    createPopup(marker, coordonnee, nom, adresse, null, null);
+                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
                 }
 
                 return marker;
