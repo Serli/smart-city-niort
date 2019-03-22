@@ -218,10 +218,8 @@ function init() {
         let centerLat = map.getCenter().lat;
         let centerLng = map.getCenter().lng;
         if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng)){
-            console.log("Centre");
             document.getElementById("centrer").style.visibility = "hidden";
         } else {
-            console.log("Pas centrer");
             document.getElementById("centrer").style.visibility = "visible";
         }
     });
