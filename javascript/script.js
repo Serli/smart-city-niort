@@ -1045,12 +1045,13 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
         console.log(val3);
         if (val3 !== null){
             if (val3.includes("+33")){
-                console.log("test")
+                console.log("test");
                 icon3 = '<i class="fas fa-phone fa-lg"></i>';
+            } else {
+                icon3 = '';
             }
         }
         icon2 = '<i class="fas fa-clock fa-lg"></i>';
-        icon3 = '';
     }
 
 
