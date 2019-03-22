@@ -1,11 +1,11 @@
 const lignes = [{
-    id: "1",
+        id: "1",
 
-    name: "Ligne 1",
-    color: "red",
-    colorLigne: "#E30613",
-    data: TrajetLigne1
-},
+        name: "Ligne 1",
+        color: "red",
+        colorLigne: "#E30613",
+        data: TrajetLigne1
+    },
     {
         id: "2",
 
@@ -153,7 +153,13 @@ function init() {
 
             container.onclick = function () {
                 clickTogglePosition();
-            }
+            };
+            container.onmouseover = function(){
+                container.style.backgroundColor = '#e9e9e9';
+            };
+            container.onmouseout = function(){
+                container.style.backgroundColor = 'white';
+            };
             return container;
         }
     });
@@ -174,6 +180,7 @@ function init() {
             container.style.width = "5vw";
             container.style.maxWidth = "7vh";
             container.style.minWidth = "5vh";
+            container.style.visibility = "hidden";
 
 
             container.style.height = "5vw";
@@ -188,7 +195,14 @@ function init() {
             container.innerHTML = '<i class="far fa-compass fa-lg" ></i>';
 
             container.onclick = function () {
+                container.style.visibility = "hidden";
                 recenter();
+            };
+            container.onmouseover = function(){
+                container.style.backgroundColor = '#e9e9e9';
+            };
+            container.onmouseout = function(){
+                container.style.backgroundColor = 'white';
             };
 
             return container;
@@ -198,10 +212,24 @@ function init() {
     map.addControl(new customControlToggle());
     map.addControl(new recenterLocation());
 
+    map.on("moveend", function(){
+        let lat = 46.323;
+        let lng = -0.464;
+        let centerLat = map.getCenter().lat;
+        let centerLng = map.getCenter().lng;
+        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng)){
+            console.log("Centre");
+            document.getElementById("centrer").style.visibility = "hidden";
+        } else {
+            console.log("Pas centrer");
+            document.getElementById("centrer").style.visibility = "visible";
+        }
+    });
+
 
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems, {
-        position: 'bottom'
+        position: 'left'
     });
     document.getElementById("barre").setAttribute('data-tooltip', "Déplacer la barre");
     document.getElementById("centrer").setAttribute('data-tooltip', "Recentrer");
@@ -209,15 +237,6 @@ function init() {
 
 
 }
-//
-// document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-position', 'bottom')
-// document.getElementsByClassName("leaflet-control leaflet-control-custom")[0].setAttribute('data-tooltip', 'Recentrer')
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     var elems = document.querySelectorAll('.tooltipped');
-//     var instances = M.Tooltip.init(elems, options);
-// });
 
 function markerPopup(feature) {
     const day = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
@@ -690,9 +709,6 @@ function layers() {
     let parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
-
-    // let Tracer = L.layerGroup([TrajetLine1(), TrajetLine2(), TrajetLine3(), TrajetLine4(), TrajetLine5(), TrajetLine6(), TrajetLine7(), TrajetLine8(), TrajetLine9()])
-
 
     let Tracer = L.layerGroup(Trajets());
 
