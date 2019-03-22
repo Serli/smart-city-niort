@@ -1,11 +1,11 @@
 const lignes = [{
-        id: "1",
+    id: "1",
 
-        name: "Ligne 1",
-        color: "red",
-        colorLigne: "#E30613",
-        data: TrajetLigne1
-    },
+    name: "Ligne 1",
+    color: "red",
+    colorLigne: "#E30613",
+    data: TrajetLigne1
+},
     {
         id: "2",
 
@@ -605,84 +605,9 @@ function layers() {
         }
     });
 
+    let conteneur = createMarker(recyclings, 'trash-alt', 'blue');
 
-    let decheterie = L.geoJSON(recyclings, {
-        attribution: '&copy; OpenStreetMap',
-        pointToLayer: function (feature, latlng) {
-
-            let nom = null;
-            let adresse = null;
-            let typeDechet = null;
-            let coordonnee = getCoordonnées(feature)
-
-
-            if (feature.properties.name !== undefined) {
-                nom = feature.properties.name
-            } else {
-                nom = null;
-            }
-            if (feature.properties.adresse !== undefined) {
-                adresse = feature.properties.adresse
-            } else {
-                adresse = "Déchetterie"
-            }
-            if (feature.properties.recycling !== undefined) {
-                if (feature.properties.recycling.type === "Dechetterie") {
-                    typeDechet = dechetRecyclage(feature).join(", ")
-                    let repairMarker = L.AwesomeMarkers.icon({
-                        prefix: 'fa',
-                        icon: 'dumpster',
-                        iconColor: 'white',
-                        markerColor: 'red'
-                    });
-
-                    let marker = L.marker(
-                        latlng,
-                        {
-                            icon: repairMarker,
-                            title: nom
-                        });
-
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet);
-                    return marker;
-                }
-            }
-
-        }
-    });
-
-    let conteneur = L.geoJSON(recyclings,
-        {
-            attribution: '&copy; OpenStreetMap',
-            pointToLayer: function (feature, latlng) {
-                let nom = "Conteneur";
-                let coordonnee = getCoordonnées(feature)
-                let typeDechet = null;
-
-                if (feature.properties.recycling !== undefined) {
-                    if (feature.properties.recycling.type === "container") {
-                        typeDechet = dechetRecyclage(feature).join(", ")
-                        let repairMarker = L.AwesomeMarkers.icon({
-                            prefix: 'fa',
-                            icon: 'trash-alt',
-                            iconColor: 'white',
-                            markerColor: 'blue'
-                        });
-
-                        let marker = L.marker(
-                            latlng,
-                            {
-                                icon: repairMarker,
-                                title: nom
-                            });
-
-                        createPopup(marker, coordonnee, nom, typeDechet, null, null)
-
-                        return marker;
-                    }
-                }
-            },
-        });
+    let decheterie = createMarker(recyclings, 'dumpster', 'red');
 
     let medecin = createMarker(doctors, "user-md", "purple");
 
@@ -892,7 +817,6 @@ function polystyle(param) {
 }
 
 function createMarker(fichier, icon, color) {
-    let adresse;
     return L.geoJSON(fichier,
         {
             attribution: '&copy; OpenStreetMap',
@@ -960,6 +884,28 @@ function createMarker(fichier, icon, color) {
                         createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
                     } else {
                         createPopup(marker, coordonnee, "Cherche encore !", null, null, null, null, null)
+                    }
+                }
+                else if (feature.properties.recycling !== undefined) {
+                    if(icon === "trash-alt"){
+                        if (feature.properties.recycling.type === "container") {
+                            nom = "Conteneur";
+                            let typeDechet = dechetRecyclage(feature).join(", ")
+
+                            createPopup(marker, coordonnee, nom, typeDechet, null, null)
+
+                        } else {
+                            marker = null;
+                        }
+                    } else if (icon === "dumpster"){
+                        if (feature.properties.recycling.type === "Dechetterie") {
+                            let typeDechet = dechetRecyclage(feature).join(", ");
+                            adresse = "Déchetterie";
+
+                            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet);
+                        } else {
+                            marker = null;
+                        }
                     }
                 } else {
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
