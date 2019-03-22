@@ -133,6 +133,7 @@ function init() {
         onAdd: function (map) {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
 
+            container.id = "barre";
             container.style.backgroundColor = 'white';
             container.style.width = "5vw";
             container.style.maxWidth = "7vh";
@@ -167,6 +168,7 @@ function init() {
         onAdd: function (map) {
             var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
 
+            container.id = "centrer";
             container.style.backgroundColor = 'white';
 
             container.style.width = "5vw";
@@ -197,6 +199,12 @@ function init() {
     map.addControl(new recenterLocation());
 
 
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, {
+        position: 'bottom'
+    });
+    document.getElementById("barre").setAttribute('data-tooltip', "Déplacer la barre");
+    document.getElementById("centrer").setAttribute('data-tooltip', "Recentrer");
     layers();
 
 
