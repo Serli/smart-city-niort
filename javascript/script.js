@@ -890,7 +890,6 @@ function createMarker(fichier, icon, color) {
                     if(icon === "trash-alt"){
                         if (feature.properties.recycling.type === "container") {
                             nom = "Conteneur";
-                            console.log(icon)
                             let typeDechet = dechetRecyclage(feature).join(", ")
 
                             createPopup(marker, coordonnee, nom, typeDechet, null, null)
