@@ -1024,6 +1024,7 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
             icon2 = '<i class="fas fa-envelope fa-lg"></i>';
             break;
         default:
+            icon3 = '';
             break
     }
 
@@ -1036,12 +1037,20 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
             icon3 = '<i class="fas fa-phone fa-lg"></i>';
             break;
         default:
+            icon3 = '';
             break
     }
 
     if (val1 === "Fermé" || val1 === "Ouvert") {
+        console.log(val3);
+        if (val3 !== null){
+            if (val3.includes("+33")){
+                console.log("test")
+                icon3 = '<i class="fas fa-phone fa-lg"></i>';
+            }
+        }
         icon2 = '<i class="fas fa-clock fa-lg"></i>';
-        icon3 = '<i class="fas fa-phone fa-lg"></i>';
+        icon3 = '';
     }
 
 

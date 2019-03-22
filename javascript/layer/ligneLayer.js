@@ -29,17 +29,12 @@ function tracer(Color, data, ligneDeBus) {
 
     }
 
-
-
-
-
     return line;
-
 
 }
 
 function Trajet(idLigne) {
-    let ligneObject = lignes[idLigne - 1]
+    let ligneObject = lignes[idLigne - 1];
     let ligneDeBus = '<img src="./assets/images/ligne/ligne' + idLigne + '.png" class="logoLigne"/>';
     let Color = ligneObject.colorLigne;
     let data = ligneObject.data;
