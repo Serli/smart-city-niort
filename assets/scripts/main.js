@@ -167,6 +167,7 @@ let markerArret = [];
 function doubleClickCritere() {
 
 
+
     // on supprimer et desactive tout les tabLayer de la navBarOn, puis on remet celui actuellement double cliqué
     while (this.parentNode.getElementsByClassName("critere active").length > 0) {
 
@@ -175,6 +176,13 @@ function doubleClickCritere() {
         map.removeLayer(tabLayer[index.id]);
         markerArret = [];
     }
+    if (this.id.startsWith("Ligne") ) {
+        document.getElementById("Bus").classList.add("active")
+    } else if (this.id.startsWith("Parking") ) {
+        document.getElementById("ParkingVoiture").classList.add("active")
+    }
+
+
 
     map.addLayer(tabLayer[this.id]);
     this.classList.add("active");
