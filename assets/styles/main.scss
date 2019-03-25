@@ -353,7 +353,7 @@ body {
 
   i, a{
 
-    color: #dee0e6;
+    color: #d4d6dc;
     padding: 8px 8px;
     text-align: center;
     white-space: nowrap;
@@ -431,7 +431,7 @@ body {
 }
 
 .navbarColorEntraide {
-  color: #dee0e6;
+  color: #d4d6dc;
   padding: 8px 8px;
   text-align: center;
   white-space: nowrap;
@@ -474,7 +474,7 @@ body {
   color: #a8a9ae;
 }
 
-.toggle {
+.controlCustom {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -482,9 +482,19 @@ body {
   i {
     color: #a8a9ae;
     padding: 5px;
-    transition: 0.3s;
+
     font-size: 27px;
   }
+
+  .toggle{
+    i {
+      color: #a8a9ae;
+      padding: 5px;
+      transition: 0.3s;
+      font-size: 27px;
+    }
+  }
+
 
   .angleUp {
     transform: rotate(-90deg);
@@ -494,7 +504,7 @@ body {
 
 body .material-tooltip {
 
-  color: #dee0e6;
+  color: #d4d6dc;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0px #cfcfcf;
@@ -595,6 +605,10 @@ body .material-tooltip {
     max-width: 90vw;
   }
 
+  .brand-logo .logoMava {
+    height: 10vh;
+  }
+
 
 }
 
@@ -619,6 +633,9 @@ body .material-tooltip {
       justify-content: space-evenly;
     }
   }
+
+
+
 
 
 }
@@ -703,7 +720,6 @@ html body {
     display: none;
     max-width: 0;
     max-height: 0;
-
   }
 
   &.filterShow {
@@ -777,7 +793,7 @@ html body {
 
 
       .barre {
-        border-right: #dee0e6 solid 1px;
+        border-right: #d4d6dc solid 1px;
         margin: 3px 8px;
       }
 
@@ -817,7 +833,7 @@ html body {
 }
 
 .logoMava {
-  height: 10vh;
+  height: 15vh;
 }
 
 

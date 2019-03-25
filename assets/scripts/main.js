@@ -27,10 +27,11 @@ var delay = 200;
 var prevent = false;
 
 
-// onclcik sur tout les criteres
+// onclick sur tout les criteres
 for (var i = 0; i < criteres.length; i++) {
 
 
+    // on click
     criteres[i].onclick = function () {
         timer = setTimeout(function () {
             if (!prevent) {
@@ -41,12 +42,12 @@ for (var i = 0; i < criteres.length; i++) {
         }.bind(this), delay);
     };
 
+    // double click
     criteres[i].ondblclick = function () {
         clearTimeout(timer);
         prevent = true;
         var doubleClick = doubleClickCritere.bind(this);
         doubleClick();
-        // doubleClickCritere();
     };
 
 
@@ -191,7 +192,7 @@ function doubleClickCritere() {
         var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
         index.classList.remove("active");
         map.removeLayer(tabLayer[index.id]);
-        // markerArret = [];
+        markerArret = [];
     }
 
     map.addLayer(tabLayer[this.id]);

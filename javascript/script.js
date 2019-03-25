@@ -131,7 +131,7 @@ function init() {
         },
 
         onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
+            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom  controlCustom toggle tooltipped');
 
             container.id = "barre";
             container.style.backgroundColor = 'white';
@@ -154,17 +154,17 @@ function init() {
             container.onclick = function () {
                 clickTogglePosition();
             };
-            container.onmouseover = function(){
+            container.onmouseover = function () {
                 container.style.backgroundColor = '#e9e9e9';
             };
-            container.onmouseout = function(){
+            container.onmouseout = function () {
                 container.style.backgroundColor = 'white';
             };
             return container;
         }
     });
 
-    // recenter control - toggle position navbar
+    // recenter control
     var recenterLocation = L.Control.extend({
 
         options: {
@@ -172,7 +172,7 @@ function init() {
         },
 
         onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom toggle tooltipped');
+            var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom controlCustom recenter tooltipped');
 
             container.id = "centrer";
             container.style.backgroundColor = 'white';
@@ -198,10 +198,10 @@ function init() {
                 container.style.visibility = "hidden";
                 recenter();
             };
-            container.onmouseover = function(){
+            container.onmouseover = function () {
                 container.style.backgroundColor = '#e9e9e9';
             };
-            container.onmouseout = function(){
+            container.onmouseout = function () {
                 container.style.backgroundColor = 'white';
             };
 
@@ -209,18 +209,29 @@ function init() {
         }
     });
 
+
     map.addControl(new customControlToggle());
     map.addControl(new recenterLocation());
 
-    map.on("moveend", function(){
+    map.on("moveend", function () {
         let lat = 46.323;
         let lng = -0.464;
         let centerLat = map.getCenter().lat;
         let centerLng = map.getCenter().lng;
-        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng)){
-            document.getElementById("centrer").style.visibility = "hidden";
-        } else {
-            document.getElementById("centrer").style.visibility = "visible";
+        let buttonCenter = document.getElementById("centrer");
+        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng) && buttonCenter.style.visibility !== "hidden"  ) {
+            buttonCenter.style.visibility = "hidden";
+            //map.removeControl(recenterLocation);
+            // recenterLocation.remove()
+            //map.removeControl(recenterLocation);
+
+        } else if(buttonCenter.style.visibility !== "visible" ) {
+            //map.remove(recenterLocation());
+            //map.addControl(new recenterLocation());
+            //recenterLocation.addTo(map)
+
+            //map.addControl(recenterLocation);
+            buttonCenter.style.visibility = "visible";
         }
     });
 
@@ -335,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById("lieux") !== null) {
             removeDivLieux();
         }
-    }, 5000);
+    }, 3500);
 });
 
 
@@ -388,7 +399,7 @@ function layers() {
 
     var cycleParking = L.geoJSON(bicycleParkings,
         {
-            style: polystyle(),
+            style: polystyle("#d252b9"),
             onEachFeature: function (feature, layer) {
                 let nameParking = null;
                 let capacityParking = null;
@@ -403,7 +414,6 @@ function layers() {
                     capacityParking = 'Capacité : ' + feature.properties.capacity + ' place(s)'
                 }
                 if (feature.properties.building === 'yes' || feature.properties.covered === 'yes') {
-
                     couvert = "Couvert"
                 }
 
@@ -415,13 +425,13 @@ function layers() {
             pointToLayer: function (feature, latlng) {
 
                 //let color = "#f19200";
-                let cycleMarker = L.AwesomeMarkers.icon({
+                let Marker = L.AwesomeMarkers.icon({
                     prefix: 'fa',
                     icon: 'bicycle ',
                     iconColor: 'white',
                     markerColor: "purple"
                 });
-                let marker = L.marker(latlng, {icon: cycleMarker});
+                let marker = L.marker(latlng, {icon: Marker});
                 return marker;
 
             }
@@ -686,7 +696,7 @@ function layers() {
 
         tabLayer[key].getLayers().forEach(function (elementLayer) {
             elementLayer.on('click', function (e) {
-                map.setView(e.latlng, 15);
+                map.setView(e.latlng, 14);
             });
         });
         // si c'est un groupLayer d'une ligne de bus
@@ -701,12 +711,15 @@ function layers() {
 }
 
 function parkingVoitu(param) {
+    let color;
+    if (param === "gratuit") {
+        color = "#f69730"
+    }
 
     var parkingVoiture = L.geoJSON(parkings, {
             attribution: '&copy; OpenStreetMap',
-            style: polystyle(param),
+            style: polystyle(color),
             onEachFeature: function (feature, layer) {
-
 
                 let nameParking = null;
                 let capacityParking = null;
@@ -718,7 +731,6 @@ function parkingVoitu(param) {
                     nameParking = feature.properties.name
                 }
                 if (feature.properties.capacity !== undefined) {
-
                     capacityParking = ' Capacité : ' + feature.properties.capacity + ' places'
                 }
 
@@ -731,7 +743,6 @@ function parkingVoitu(param) {
                     if (feature.properties.fee === "no" && feature.properties.fee !== undefined) {
                         return true;
                     }
-
                 } else if (param === "couvert") {
                     return feature.properties.building !== undefined;
                 } else if (param === "covoit") {
@@ -743,50 +754,51 @@ function parkingVoitu(param) {
 
             },
 
-            pointToLayer: function (feature, latlng) {
+            pointToLayer: function (feature, layer) {
 
 
                 if (param === "gratuit") {
-                    let busMarker = L.AwesomeMarkers.icon({
+                    let markerParking = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
                         markerColor: "orange"
                     });
-                    let marker = L.marker(latlng, {icon: busMarker});
+
+                    let marker = L.marker(layer, {icon: markerParking});
                     return marker;
 
                 } else if (param === "couvert") {
 
-                    let busMarker = L.AwesomeMarkers.icon({
+                    let markerParking = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
                         markerColor: "cadetblue"
                     });
-                    let marker = L.marker(latlng, {icon: busMarker});
+                    let marker = L.marker(layer, {icon: markerParking});
 
                     return marker;
                 } else if (param === "covoit") {
 
-                    let busMarker = L.AwesomeMarkers.icon({
+                    let markerParking = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'copyright',
                         iconColor: 'white',
                         markerColor: "lightgreen"
                     });
-                    let marker = L.marker(latlng, {icon: busMarker});
+                    let marker = L.marker(layer, {icon: markerParking});
                     return marker;
 
 
                 } else {
-                    let busMarker = L.AwesomeMarkers.icon({
+                    let markerParking = L.AwesomeMarkers.icon({
                         prefix: 'fa',
                         icon: 'car',
                         iconColor: 'white',
                         markerColor: "cadetblue"
                     });
-                    let marker = L.marker(latlng, {icon: busMarker});
+                    let marker = L.marker(layer, {icon: markerParking});
                     return marker;
                 }
             }
@@ -796,13 +808,13 @@ function parkingVoitu(param) {
     return parkingVoiture;
 }
 
-function polystyle(param) {
-    if (param === "gratuit") {
+function polystyle(couleur) {
+    if (couleur !== undefined) {
         return {
-            fillColor: '#f69730',
+            fillColor: couleur,
             weight: 3,
             opacity: 1,
-            color: '#f69730',  //Outline color
+            color: couleur,  //Outline color
             fillOpacity: 0.4
         };
     } else {
@@ -880,14 +892,13 @@ function createMarker(fichier, icon, color) {
                 } else if (feature.properties.amenity === "eliot") {
                     if (feature.properties.indice !== undefined) {
                         let indice = feature.properties.indice;
-                        let adresse = "Acclameur"
+                        let adresse = "Acclameur";
                         createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
                     } else {
                         createPopup(marker, coordonnee, "Cherche encore !", null, null, null, null, null)
                     }
-                }
-                else if (feature.properties.recycling !== undefined) {
-                    if(icon === "trash-alt"){
+                } else if (feature.properties.recycling !== undefined) {
+                    if (icon === "trash-alt") {
                         if (feature.properties.recycling.type === "container") {
                             nom = "Conteneur";
                             let typeDechet = dechetRecyclage(feature).join(", ")
@@ -897,7 +908,7 @@ function createMarker(fichier, icon, color) {
                         } else {
                             marker = null;
                         }
-                    } else if (icon === "dumpster"){
+                    } else if (icon === "dumpster") {
                         if (feature.properties.recycling.type === "Dechetterie") {
                             let typeDechet = dechetRecyclage(feature).join(", ");
                             adresse = "Déchetterie";
@@ -988,8 +999,8 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     }
 
     if (val1 === "Fermé" || val1 === "Ouvert") {
-        if (val3 !== null){
-            if (val3.includes("+33")){
+        if (val3 !== null) {
+            if (val3.includes("+33")) {
                 icon3 = '<i class="fas fa-phone fa-lg"></i>';
             } else {
                 icon3 = '';
