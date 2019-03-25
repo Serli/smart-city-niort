@@ -1,5 +1,5 @@
 ---
-#  Only the main Sass file needs front matter  (  the dashes are enough  )
+# Only the main Sass file needs front matter  (  the dashes are enough  )
 ---
 
 
@@ -22,75 +22,8 @@ body {
   width: 100vw;
   height: 100vh;
 
-  .awesome-marker-icon-cadetblue {
-
-
-  }
 }
 
-#lieux {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  display: flex;
-  opacity: 0;
-  transition: opacity 0.2s linear;
-
-  div {
-    padding: 45px;
-    max-width: 280px;
-    margin: auto;
-    background-color: rgba(18, 165, 212, 0.6);
-    border-radius: 120px;
-    color: #fff;
-
-    @media screen and (max-width: 991px) {
-      padding: 32px;
-      max-width: 195px;
-      border-radius: 90px;
-    }
-
-    h5 {
-      margin: 0;
-      text-align: center;
-      font-size: 40px;
-      @media screen and (max-width: 991px) {
-        font-size: 25px;
-      }
-
-      strong {
-        font-weight: 800;
-        font-size: 50px;
-        @media screen and (max-width: 991px) {
-          font-size: 34px;
-        }
-      }
-    }
-
-    button {
-      background-color: rgba(18, 217, 201, 0.6);
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      position: absolute;
-      margin-top: -260px;
-      margin-left: 175px;
-      cursor: pointer;
-      font-size: 20px;
-      padding: 0 10px 4px 10px;
-
-      @media screen and (max-width: 991px) {
-        padding: 0 7px 2px 7px;
-        margin-top: -165px;
-        margin-left: 115px;
-        font-size: 17px;
-      }
-    }
-  }
-}
 
 .navTop {
 
@@ -351,7 +284,7 @@ body {
   flex-shrink: 0;
 
 
-  i, a{
+  i, a {
 
     color: #d4d6dc;
     padding: 8px 8px;
@@ -486,7 +419,7 @@ body {
     font-size: 27px;
   }
 
-  .toggle{
+  .toggle {
     i {
       color: #a8a9ae;
       padding: 5px;
@@ -504,7 +437,7 @@ body {
 
 body .material-tooltip {
 
-  color: #d4d6dc;
+  color: #a8a9ae;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 0px #cfcfcf;
@@ -512,15 +445,15 @@ body .material-tooltip {
 }
 
 
-.footerL.dropperStyle {
+.footerL .dropperStyle {
   width: 15vw;
-  height: 70vh;
+  height: 60vh;
   border: 3px #12a5d4;
   border-style: solid dashed;
 }
 
-.footerB.dropperStyle {
-  width: 70vw;
+.footerB .dropperStyle {
+  width: 60vw;
   height: 15vh;
   border: 3px #12a5d4;
   border-style: dashed solid;
@@ -564,7 +497,7 @@ body .material-tooltip {
 
 }
 
-.leaflet-touch .leaflet-control-layers{
+.leaflet-touch .leaflet-control-layers {
   transition: 0.3s;
 }
 
@@ -633,9 +566,6 @@ body .material-tooltip {
       justify-content: space-evenly;
     }
   }
-
-
-
 
 
 }
@@ -805,7 +735,6 @@ html body {
         align-items: center;
 
 
-
         .popupLeft {
           white-space: nowrap;
         }
@@ -834,6 +763,98 @@ html body {
 
 .logoMava {
   height: 15vh;
+}
+
+
+#intro {
+  @import url('https://fonts.googleapis.com/css?family=Roboto:700');
+  text-align:center;
+  color:white;
+  text-transform: uppercase;
+  font-size:30px;
+  font-weight:bold;
+  padding-top:200px;
+  position:fixed;
+  width:100%;
+  bottom:45%;
+  display:block;
+  z-index: 900;
+}
+
+#flip {
+  margin-top: 5px;
+  height:50px;
+  overflow:hidden;
+}
+
+#flip > div > div {
+  color:#fff;
+  padding:4px 12px;
+  height:45px;
+  margin-bottom:45px;
+  display:inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+#flip div div {
+  background:#42c58a;
+}
+#flip div:first-child div {
+  background:#E72475 ;
+}
+#flip div:last-child div {
+  background:#12a5d4;
+}
+
+@keyframes show {
+  0% {margin-top:-265px;}
+  5% {margin-top:-175px;}
+  33% {margin-top:-175px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:-5px;}
+  99.99% {margin-top:-5px;}
+  100% {margin-top:-265px;}
+}
+
+p {
+  position:fixed;
+  width:100%;
+  bottom:30px;
+  font-size:12px;
+  color:#999;
+  margin-top:200px;
+}
+
+
+
+
+#lieux {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+
+
+    button {
+      color: #fff;
+      border: none;
+      position: absolute;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 0 10px 4px 10px;
+      top:10px;
+      right:10px;
+      background-color: rgba(0, 0, 0, 0);
+    }
 }
 
 

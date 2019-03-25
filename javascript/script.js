@@ -219,18 +219,10 @@ function init() {
         let centerLat = map.getCenter().lat;
         let centerLng = map.getCenter().lng;
         let buttonCenter = document.getElementById("centrer");
-        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng) && buttonCenter.style.visibility !== "hidden"  ) {
+        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng) && buttonCenter.style.visibility === "visible") {
             buttonCenter.style.visibility = "hidden";
-            //map.removeControl(recenterLocation);
-            // recenterLocation.remove()
-            //map.removeControl(recenterLocation);
 
-        } else if(buttonCenter.style.visibility !== "visible" ) {
-            //map.remove(recenterLocation());
-            //map.addControl(new recenterLocation());
-            //recenterLocation.addTo(map)
-
-            //map.addControl(recenterLocation);
+        } else if (buttonCenter.style.visibility === "hidden") {
             buttonCenter.style.visibility = "visible";
         }
     });
@@ -333,11 +325,17 @@ function markerPopup(feature) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("containMap").innerHTML +=
-        '<div id="lieux">' +
-        '<div>' +
-        '<h5><strong>' + layers() + '</strong> lieux trouvés à <strong>NIORT</strong> et ses environs.</h5>' +
-        '<button onclick="removeDivLieux()">x</button></div></div>';
+    document.getElementById("containMap").innerHTML += ' <div id="lieux">  <div id="intro">\n' +
+        layers() +
+        ' lieux' +
+        '  <div id="flip">' +
+        '    <div><div>inteliggent</div></div>' +
+        '    <div><div>durable</div></div>' +
+        '    <div><div>pratique</div></div>' +
+        '  </div>' +
+        'trouvé à niort!' +
+        '</div>' +
+        ' <button onclick="removeDivLieux()">x</button></div>'
 
     setTimeout(function () {
         document.getElementById("lieux").style.opacity = "1";
@@ -346,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById("lieux") !== null) {
             removeDivLieux();
         }
-    }, 3500);
+    }, 5500);
 });
 
 

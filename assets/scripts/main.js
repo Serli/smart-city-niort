@@ -54,25 +54,6 @@ for (var i = 0; i < criteres.length; i++) {
 }
 
 
-//
-// var myObject = {
-//
-//     crazyMessage: 'gouzigouza',
-//
-//     doSomethingCrazy: function () {
-//         alert(this.crazyMessage);
-//     },
-//
-//     doSomeAsyncCrazyness: function () {
-//         setTimeout(function () {
-//             this.doSomethingCrazy();
-//         }.bind(this), 1000);
-//     }
-// };
-//
-// myObject.doSomeAsyncCrazyness();
-
-
 // 4 navbarCriteres navbarOn
 navbarCriteres = document.getElementsByClassName("navbarOn")
 // 1 navbarCategos navbarUnder
