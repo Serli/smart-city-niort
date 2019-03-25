@@ -183,7 +183,6 @@ function doubleClickCritere() {
     }
 
 
-
     map.addLayer(tabLayer[this.id]);
     this.classList.add("active");
 
