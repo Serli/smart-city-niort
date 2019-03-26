@@ -117,9 +117,9 @@ function init() {
 
     L.control.layers(
         {
-            'Main': mainLayer,
+            'Plan': mainLayer,
             'Satellite': Esri_WorldImagery,
-            'Gris': Esri_WorldGrayCanvas,
+            'Plan clair': Esri_WorldGrayCanvas,
         }
     ).addTo(map);
 
