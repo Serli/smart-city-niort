@@ -219,10 +219,9 @@ function init() {
         let centerLat = map.getCenter().lat;
         let centerLng = map.getCenter().lng;
         let buttonCenter = document.getElementById("centrer");
-        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng) && buttonCenter.style.visibility === "visible") {
+        if ((parseFloat(centerLat.toString().substring(0, 6)) === lat) && (parseFloat(centerLng.toString().substring(0, 6)) === lng)) {
             buttonCenter.style.visibility = "hidden";
-
-        } else if (buttonCenter.style.visibility === "hidden") {
+        } else {
             buttonCenter.style.visibility = "visible";
         }
     });
@@ -326,12 +325,11 @@ function markerPopup(feature) {
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("containMap").innerHTML += ' <div id="lieux">  <div id="intro">\n' +
-        layers() +
-        ' lieux' +
+        '1 106 lieux' +
         '  <div id="flip">' +
-        '    <div><div>inteliggent</div></div>' +
-        '    <div><div>durable</div></div>' +
-        '    <div><div>pratique</div></div>' +
+        '    <div><div>intelliggent</div></div>' +
+        '    <div><div>durables</div></div>' +
+        '    <div><div>pratiques</div></div>' +
         '  </div>' +
         'trouvé à niort!' +
         '</div>' +
@@ -344,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById("lieux") !== null) {
             removeDivLieux();
         }
-    }, 5500);
+    }, 6500);
 });
 
 
@@ -376,7 +374,6 @@ function layers() {
     function onEachFeature(feature, layer) {
         let nameCycleway = null;
         let typeCycleway = null;
-        let coordonee = getCoordonnées(feature);
 
         if (feature.properties.name !== undefined) {
             nameCycleway = feature.properties.name;
@@ -391,7 +388,7 @@ function layers() {
         });
 
 
-        createPopup(layer, coordonee, nameCycleway, typeCycleway, null, null, null, null);
+        createPopup(layer, null, nameCycleway, null, null, null, typeCycleway, null);
     }
 
 
@@ -948,11 +945,12 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     if (coordonnee != null) {
         let lien = "http://maps.google.fr/maps?q=" + coordonnee;
         itineraire = '<a href="' + lien + ' " target="_blank" > <i class="fas fa-location-arrow fa-2x" ></i></a>'
-
     }
 
     let top = '';
-    if (titre != null && type != null && itineraire != null) {
+    if (titre === null && type === null && itineraire === null) {
+        top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information</div></div> </div> </div>'
+    } else if (titre != null && type != null && itineraire != null) {
         top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + ' </div> <div class="sousTitrePopup"> ' + type + '  </div>   </di> </div> ' + itineraire + ' </div>'
 
     } else if (titre === null && type === null) {
@@ -964,8 +962,8 @@ function createPopup(layer, coordonnee, titre, type, val1, val2, val3, distincti
     } else {
         if (titre === "Cherche encore !") {
             top = '<div class="top"> <div class="titre"><div class="titrePopup">' + titre + '</div></di> </div>' + itineraire + ' </div>'
-        } else {
-            top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information pour ce lieu</div></di> </div>' + itineraire + ' </div>'
+        } else if (itineraire != null) {
+            top = '<div class="top"> <div class="titre"><div class="titrePopup">Pas d\'information</div></di> </div>' + itineraire + ' </div>'
         }
     }
 
