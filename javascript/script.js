@@ -70,18 +70,58 @@ const lignes = [{
     },
 ];
 
-function init() {
+function actuVille(name) {
+    if(name !== null && name !== "") {
+        document.getElementById("presentation").remove();
+        var ville = document.getElementById("ville");
+        var barFilter = document.getElementsByClassName("footerB");
+        ville.style.visibility = "visible";
+        barFilter[0].style.visibility = "visible";
 
-    var lat = 46.3239455;
-    var lng = -0.4645212;
+        document.getElementById("containMap").innerHTML += '<div id="lieux"><div id="intro">\n' +
+            '1 106 lieux' +
+            '<div id="flip">' +
+            '   <div><div>intelligent</div></div>' +
+            '   <div><div>durables</div></div>' +
+            '   <div><div>pratiques</div></div>' +
+            '</div>' +
+            'trouvé à '+ name + '!' +
+            '</div>' +
+            '<button onclick="removeDivLieux()">x</button></div>';
+
+        setTimeout(function () {
+            document.getElementById("lieux").style.opacity = "1";
+        }, 100);
+        setTimeout(function () {
+            if (document.getElementById("lieux") !== null) {
+                removeDivLieux();
+            }
+        }, 4800);
+        init(name);
+    }
+}
+
+function init(name) {
+    var lat;
+    var long;
+    var corner1;
+    var corner2;
+
+    villes.map(ville => {
+        if(ville.name === name) {
+            lat = ville.center.lat;
+            long = ville.center.long;
+            corner1 = L.latLng(ville.corner1.lat, ville.corner1.long);
+            corner2 = L.latLng(ville.corner2.lat, ville.corner2.long);
+        }
+    });
 
     var zoomLevel = 13;
-    var corner1 = L.latLng(46.231153027822046, -0.6389236450195312);
-    var corner2 = L.latLng(46.417742374524046, -0.27706146240234375);
+
     var maxBounds = L.latLngBounds(corner1, corner2);
     map = L.map('map', {
         closeButton: false,
-        center: [lat, lng],
+        center: [lat, long],
         zoom: zoomLevel,
         minZoom: zoomLevel,
         maxBounds,
@@ -92,6 +132,13 @@ function init() {
     // map.zoomControl.setPosition('topright');
 
 
+    var villesList = document.getElementsByClassName("villeButton");
+    for(let item of villesList) {
+        item.addEventListener('click', function() {
+            name = rechercheVille(item.textContent);
+        })
+    }
+
     //map.setMaxBounds(maxBounds);
     // Wikimedia
     var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
@@ -100,7 +147,7 @@ function init() {
         minZoom: 1,
         maxZoom: 19
     });
-    mainLayer.addTo(map)
+    mainLayer.addTo(map);
 
 
     // carte
@@ -196,7 +243,7 @@ function init() {
 
             container.onclick = function () {
                 container.style.visibility = "hidden";
-                recenter();
+                recenter(name);
             };
             container.onmouseover = function () {
                 container.style.backgroundColor = '#e9e9e9';
@@ -236,6 +283,34 @@ function init() {
     layers();
 
 
+}
+
+function rechercheVille(name) {
+    let equalsName = false;
+    var lat;
+    var lng;
+    var corner1;
+    var corner2;
+
+    villes.map(ville => {
+        if(ville.name === name) {
+            lat = ville.center.lat;
+            lng = ville.center.long;
+            corner1 = L.latLng(ville.corner1.lat, ville.corner1.long);
+            corner2 = L.latLng(ville.corner2.lat, ville.corner2.long);
+            var maxBounds = L.latLngBounds(corner1, corner2);
+            equalsName = true;
+
+            map.setMaxBounds(maxBounds);
+            map.setView({lat, lng}, 13);
+        }
+    });
+
+    if(equalsName === false) {
+        alert("Nous n'avons pas pu trouver cette ville !");
+    }
+
+    return name;
 }
 
 function markerPopup(feature) {
@@ -313,7 +388,7 @@ function markerPopup(feature) {
 
     }
 
-    let horaire = new Array()
+    let horaire = [];
     if (horairesAfficher !== null) {
         horaire["ouverture"] = ouverture;
         horaire["horairesAfficher"] = horairesAfficher;
@@ -322,29 +397,6 @@ function markerPopup(feature) {
         return horaire;
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("containMap").innerHTML += ' <div id="lieux">  <div id="intro">\n' +
-        '1 106 lieux' +
-        '  <div id="flip">' +
-        '    <div><div>intelliggent</div></div>' +
-        '    <div><div>durables</div></div>' +
-        '    <div><div>pratiques</div></div>' +
-        '  </div>' +
-        'trouvé à niort!' +
-        '</div>' +
-        ' <button onclick="removeDivLieux()">x</button></div>'
-
-    setTimeout(function () {
-        document.getElementById("lieux").style.opacity = "1";
-    }, 100);
-    setTimeout(function () {
-        if (document.getElementById("lieux") !== null) {
-            removeDivLieux();
-        }
-    }, 6500);
-});
-
 
 function removeDivLieux() {
     document.getElementById("lieux").style.opacity = "0";
@@ -545,7 +597,6 @@ function layers() {
             if (feature.properties.email !== undefined) {
                 mail = feature.properties.email
             }
-
             createPopup(layer, coordonnee, nom, type, phone, mail, null)
 
         }
@@ -630,10 +681,6 @@ function layers() {
 
     let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
 
-    let eliot = createMarker(defiEliot, "question", 'red');
-
-    // var cinemas = L.geoJSON(cinema, {attribution: '&copy; OpenStreetMap'});
-
     let parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
     let Hospitals = L.layerGroup([hopital, hopital2]);
@@ -662,7 +709,6 @@ function layers() {
     tabLayer["Bus"] = Tracer;
     tabLayer["Déchetterie"] = decheterie;
     tabLayer["conteneur"] = conteneur;
-    tabLayer["Defi"] = eliot;
 
     mesLigne.forEach((ligne) => {
         // mesTrace[lignes.name] = L.layerGroup([lignes.markerArret, ...lignes.trajet]);
@@ -884,14 +930,6 @@ function createMarker(fichier, icon, color) {
                 } else if (feature.properties.amenity === "doctors") {
                     let distinction = "Médecin";
                     createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
-                } else if (feature.properties.amenity === "eliot") {
-                    if (feature.properties.indice !== undefined) {
-                        let indice = feature.properties.indice;
-                        let adresse = "Acclameur";
-                        createPopup(marker, coordonnee, indice, adresse, null, null, null, null)
-                    } else {
-                        createPopup(marker, coordonnee, "Cherche encore !", null, null, null, null, null)
-                    }
                 } else if (feature.properties.recycling !== undefined) {
                     if (icon === "trash-alt") {
                         if (feature.properties.recycling.type === "container") {

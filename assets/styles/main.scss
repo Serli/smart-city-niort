@@ -149,7 +149,7 @@ body {
     }
 
     .navbarOn {
-      max-width: 0px;
+      max-width: 0;
       overflow-x: hidden;
       max-height: 90%;
     }
@@ -272,6 +272,66 @@ body {
 
   }
 
+}
+
+#ville {
+  position: absolute;
+  left: 100px;
+  top: 10px;
+  z-index: 9999;
+  line-height: 25px;
+  background-color: #fff;
+
+  input {
+    width: unset;
+    height: unset;
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+  }
+}
+
+#presentation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  #debut {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 30px;
+    color: #C4C6CC;
+
+    h2 {
+      margin-top: -50px;
+      margin-bottom: 100px;
+    }
+
+    h4 {
+      margin-top: 0
+    }
+  }
+}
+
+.buttonVille, .villeButton {
+  border: none;
+  box-shadow: 0 0 5px 0 #cfcfcf;
+  font-weight: bold;
+  cursor: pointer;
+    background-image: linear-gradient(to bottom right, #12a5d4, #12a5d4, #12d9c9, #12d9c9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+  &:first-child {
+    margin-right: 5px;
+  }
+
+  &:last-child {
+    margin-left: 5px;
+  }
 }
 
 
@@ -440,7 +500,7 @@ body .material-tooltip {
   color: #a8a9ae;
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0px 0px 5px 0px #cfcfcf;
+  box-shadow: 0 0 5px 0 #cfcfcf;
 
 }
 
@@ -665,7 +725,7 @@ html body {
 }
 
 .leaflet-popup-content {
-  margin: 0px;
+  margin: 0;
 
   .popup {
 
@@ -702,7 +762,7 @@ html body {
 
 
       a {
-        padding: 3px 0px 3px 8px;
+        padding: 3px 0 3px 8px;
 
         color: #12a5d4;
 

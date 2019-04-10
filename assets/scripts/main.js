@@ -55,9 +55,9 @@ for (var i = 0; i < criteres.length; i++) {
 
 
 // 4 navbarCriteres navbarOn
-navbarCriteres = document.getElementsByClassName("navbarOn")
+navbarCriteres = document.getElementsByClassName("navbarOn");
 // 1 navbarCategos navbarUnder
-navbarCategos = document.getElementsByClassName("navbarUnder")
+navbarCategos = document.getElementsByClassName("navbarUnder");
 
 
 function clickCatego() {
@@ -494,10 +494,14 @@ droptarget.addEventListener('dragleave', function () {
 
 /* *************  COntroller recenter   ************  */
 
-function recenter() {
-    let lat = 46.3239455;
-    let lng = -0.4645212;
-    var zoomLevel = 13;
-    map.setView([lat, lng], zoomLevel);
+function recenter(name) {
+    villes.map(ville => {
+        if(ville.name === name) {
+            let lat = ville.center.lat;
+            let lng = ville.center.long;
+            var zoomLevel = 13;
+            map.setView([lat, lng], zoomLevel);
+        }
+    })
 }
 
