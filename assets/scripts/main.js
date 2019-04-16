@@ -166,11 +166,8 @@ let markerArret = [];
 
 function doubleClickCritere() {
 
-
-
     // on supprimer et desactive tout les tabLayer de la navBarOn, puis on remet celui actuellement double cliqué
     while (this.parentNode.getElementsByClassName("critere active").length > 0) {
-
         var index = document.getElementsByClassName(this.parentNode.className)[0].getElementsByClassName("critere active")[0];
         index.classList.remove("active");
         map.removeLayer(tabLayer[index.id]);

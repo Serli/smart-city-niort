@@ -96,6 +96,289 @@ const defibrillator = {
                 ]
             },
             "id": "node/4382962412"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/907355164",
+                "emergency": "defibrillator",
+                "access": "public",
+                "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3427135,
+                    46.5808072
+                ]
+            },
+            "id": "node/907355164"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/1996998264",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3335997,
+                    46.5825961
+                ]
+            },
+            "id": "node/1996998264"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/1996998286",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.344722,
+                    46.5837726
+                ]
+            },
+            "id": "node/1996998286"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/1998943648",
+                "emergency": "defibrillator",
+                "indoor": "yes",
+                "access" :"public",
+                "source": "Observations sur Place"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3728054,
+                    46.5744713
+                ]
+            },
+            "id": "node/1998943648"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2246737797",
+                "emergency": "defibrillator",
+                "access": "public",
+                "source": "survey"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3330119,
+                    46.5821338
+                ]
+            },
+            "id": "node/2246737797"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2276177615",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3100435,
+                    46.620268
+                ]
+            },
+            "id": "node/2276177615"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2284862620",
+                "emergency": "defibrillator",
+                "indoor": "no",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.2761678,
+                    46.5782031
+                ]
+            },
+            "id": "node/2284862620"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2296297308",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.4197729,
+                    46.6214294
+                ]
+            },
+            "id": "node/2296297308"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2895109019",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3863403,
+                    46.5685966
+                ]
+            },
+            "id": "node/2895109019"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/3067979531",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.4689785,
+                    46.5998996
+                ]
+            },
+            "id": "node/3067979531"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/5653701540",
+                "emergency": "defibrillator",
+                "indoor": "yes",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3818633,
+                    46.5702714
+                ]
+            },
+            "id": "node/5653701540"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/5723200404",
+                "emergency": "defibrillator",
+                "indoor": "yes",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3373348,
+                    46.5800811
+                ]
+            },
+            "id": "node/5723200404"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/5801211854",
+                "emergency": "defibrillator",
+                "access": "public"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3352198,
+                    46.5760668
+                ]
+            },
+            "id": "node/5801211854"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/6046582317",
+                "emergency": "defibrillator",
+                "access": "public",
+                "indoor": "yes"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.2717126,
+                    46.5776738
+                ]
+            },
+            "id": "node/6046582317"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/6046584226",
+                "emergency": "defibrillator",
+                "access": "public",
+                "indoor": "no"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.2729196,
+                    46.572975
+                ]
+            },
+            "id": "node/6046584226"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/6049748981",
+                "emergency": "defibrillator",
+                "access": "public",
+                "indoor": "yes"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3481667,
+                    46.5802649
+                ]
+            },
+            "id": "node/6049748981"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/6321586812",
+                "emergency": "defibrillator",
+                "access": "public",
+                "indoor": "yes"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.3759504,
+                    46.5690274
+                ]
+            },
+            "id": "node/6321586812"
         }
     ]
 };

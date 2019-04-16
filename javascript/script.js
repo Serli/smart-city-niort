@@ -280,7 +280,7 @@ function init(name) {
     });
     document.getElementById("barre").setAttribute('data-tooltip', "Déplacer la barre");
     document.getElementById("centrer").setAttribute('data-tooltip', "Recentrer");
-    layers();
+    layers(name);
 
 
 }
@@ -291,6 +291,29 @@ function rechercheVille(name) {
     var lng;
     var corner1;
     var corner2;
+
+
+    var markers = document.getElementsByClassName("critere active");
+    var categories = document.getElementsByClassName("fa-2x active");
+    if(markers.length > 0) {
+        while(markers.length > 0) {
+            map.removeLayer(tabLayer[markers[0].id]);
+            markers[0].classList.remove('active');
+        }
+
+        if(document.getElementsByClassName("navbarOn visible").length === 0) {
+            while(categories.length > 0) {
+                categories[0].classList.remove("active");
+            }
+        }
+        else if(document.getElementsByClassName("navbarOn visible").length === 1) {
+            while(categories.length > 1) {
+                if(!document.getElementsByClassName("navbarOn visible")[0].classList.contains(categories[0].id)) {
+                    categories[0].classList.remove("active");
+                }
+            }
+        }
+    }
 
     villes.map(ville => {
         if(ville.name === name) {
@@ -305,10 +328,7 @@ function rechercheVille(name) {
             map.setView({lat, lng}, 13);
         }
     });
-
-    if(equalsName === false) {
-        alert("Nous n'avons pas pu trouver cette ville !");
-    }
+    layers(name);
 
     return name;
 }
@@ -405,7 +425,7 @@ function removeDivLieux() {
     }, 200)
 }
 
-function layers() {
+function layers(name) {
 
 
     // Public Transport carte
@@ -557,22 +577,32 @@ function layers() {
             } else {
                 adresse = "Pharmacie"
             }
+            let marker = null;
 
+            villes.map(ville => {
+                if(ville.name === name
+                    && feature.geometry.coordinates[0] > ville.corner1.long
+                    && feature.geometry.coordinates[0] < ville.corner2.long
+                    && feature.geometry.coordinates[1] > ville.corner1.lat
+                    && feature.geometry.coordinates[1] < ville.corner2.lat) {
+                    let pharmacieMarker = L.AwesomeMarkers.icon({
+                        prefix: 'fa',
+                        icon: 'comment-medical',
+                        iconColor: 'white',
+                        markerColor: 'orange'
+                    });
 
-            let pharmacieMarker = L.AwesomeMarkers.icon({
-                prefix: 'fa',
-                icon: 'comment-medical',
-                iconColor: 'white',
-                markerColor: 'orange'
+                    marker = L.marker(
+                        latlng,
+                        {
+                            icon: pharmacieMarker,
+                        });
+
+                }
             });
-
-            let marker = L.marker(
-                latlng,
-                {
-                    icon: pharmacieMarker,
-                });
-
-            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, "Pharma")
+            if(marker !== null) {
+                createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, "Pharma")
+            }
 
             return marker;
         },
@@ -607,7 +637,7 @@ function layers() {
     var parkingVoitureSimple = parkingVoitu();
     var parkingVoitureGratuit = parkingVoitu("gratuit");
     var parkingVoitureCouvert = parkingVoitu("couvert");
-    var parkingCovoit = parkingVoitu("covoit")
+    var parkingCovoit = parkingVoitu("covoit");
 
 
     const coord = [];
@@ -661,25 +691,25 @@ function layers() {
         }
     });
 
-    let conteneur = createMarker(recyclings, 'trash-alt', 'blue');
+    let conteneur = createMarker(recyclings, 'trash-alt', 'blue', name);
 
-    let decheterie = createMarker(recyclings, 'dumpster', 'red');
+    let decheterie = createMarker(recyclings, 'dumpster', 'red', name);
 
-    let medecin = createMarker(doctors, "user-md", "purple");
+    let medecin = createMarker(doctors, "user-md", "purple", name);
 
-    let hopital2 = createMarker(hospital2, "clinic-medical", "cadetblue");
+    let hopital2 = createMarker(hospital2, "clinic-medical", "cadetblue", name);
 
-    let defibrillateur = createMarker(defibrillator, "medkit", "lightgreen");
+    let defibrillateur = createMarker(defibrillator, "medkit", "lightgreen", name);
 
-    let marcher = createMarker(marketplace, 'shopping-cart', 'orange');
+    let marcher = createMarker(marketplace, 'shopping-cart', 'orange', name);
 
-    let RepairCafe = createMarker(repairCafe, 'tools', 'orange');
+    let RepairCafe = createMarker(repairCafe, 'tools', 'orange', name);
 
-    let espaceCoworking = createMarker(coworking, 'user-friends', 'purple');
+    let espaceCoworking = createMarker(coworking, 'user-friends', 'purple', name);
 
-    let cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue');
+    let cooperativeActiviter = createMarker(cooperative, 'graduation-cap', 'cadetblue', name);
 
-    let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen');
+    let economieSolidaire = createMarker(economie_solidaire, 'shopping-basket', 'lightgreen', name);
 
     let parking = L.geoJSON(parkings, {attribution: '&copy; OpenStreetMap'});
 
@@ -869,7 +899,7 @@ function polystyle(couleur) {
     }
 }
 
-function createMarker(fichier, icon, color) {
+function createMarker(fichier, icon, color, name) {
     return L.geoJSON(fichier,
         {
             attribution: '&copy; OpenStreetMap',
@@ -877,7 +907,8 @@ function createMarker(fichier, icon, color) {
                 let nom = null;
                 let adresse = null;
                 let phone = null;
-                let coordonnee = getCoordonnées(feature)
+                let coordonnee = getCoordonnées(feature);
+                let marker = null;
 
                 if (feature.properties.name !== undefined) {
                     nom = feature.properties.name;
@@ -891,68 +922,79 @@ function createMarker(fichier, icon, color) {
                     phone = feature.properties.phone;
                 }
 
-                let Marker = L.AwesomeMarkers.icon({
-                    prefix: 'fa',
-                    icon: icon,
-                    iconColor: 'white',
-                    markerColor: color
+                villes.map(ville => {
+                    if(ville.name === name
+                        && feature.geometry.coordinates[0] > ville.corner1.long
+                        && feature.geometry.coordinates[0] < ville.corner2.long
+                        && feature.geometry.coordinates[1] > ville.corner1.lat
+                        && feature.geometry.coordinates[1] < ville.corner2.lat) {
+
+                        let Marker = L.AwesomeMarkers.icon({
+                            prefix: 'fa',
+                            icon: icon,
+                            iconColor: 'white',
+                            markerColor: color
+                        });
+
+                        marker = L.marker(
+                            latlng,
+                            {
+                                icon: Marker,
+                                title: nom
+                            });
+                    }
                 });
 
-                let marker = L.marker(
-                    latlng,
-                    {
-                        icon: Marker,
-                        title: nom
-                    });
+                if(marker !== null) {
+                    if (feature.properties.emergency === "defibrillator") {
+                        let type = "Défibrillateur";
+                        let soustitre = null;
+                        if (feature.properties.name !== undefined) {
+                            soustitre = feature.properties.name;
+                        } else if (feature.properties.access === "public") {
+                            soustitre = "En libre accès";
+                        }
 
-                if (feature.properties.emergency === "defibrillator") {
-                    let type = "Défibrillateur";
-                    let soustitre = null;
-                    if (feature.properties.name !== undefined) {
-                        soustitre = feature.properties.name;
-                    } else if (feature.properties.access === "public") {
-                        soustitre = "En libre accés";
-                    }
+                        if (phone === null) {
+                            createPopup(marker, coordonnee, type, soustitre, soustitre, null)
+                        } else {
+                            createPopup(marker, coordonnee, type, soustitre, phone, null)
+                        }
+                    } else if (feature.properties.amenity === "hospital") {
+                        let type = "Hôpital";
+                        phone = feature.properties.phone;
+                        let mail = null;
+                        if (feature.properties.email !== undefined) {
+                            mail = feature.properties.email
+                        }
+                        createPopup(marker, coordonnee, nom, type, phone, mail, null);
+                    } else if (feature.properties.amenity === "doctors") {
+                        let distinction = "Médecin";
+                        createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
+                    } else if (feature.properties.recycling !== undefined) {
+                        if (icon === "trash-alt") {
+                            if (feature.properties.recycling.type === "container") {
+                                nom = "Conteneur";
+                                let typeDechet = dechetRecyclage(feature).join(", ")
 
-                    if (phone === null) {
-                        createPopup(marker, coordonnee, type, soustitre, soustitre, null)
+                                createPopup(marker, coordonnee, nom, typeDechet, null, null)
+
+                            } else {
+                                marker = null;
+                            }
+                        } else if (icon === "dumpster") {
+                            if (feature.properties.recycling.type === "Dechetterie") {
+                                let typeDechet = dechetRecyclage(feature).join(", ");
+                                adresse = "Déchetterie";
+
+                                createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet);
+                            } else {
+                                marker = null;
+                            }
+                        }
                     } else {
-                        createPopup(marker, coordonnee, type, soustitre, phone, null)
+                        createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
                     }
-                } else if (feature.properties.amenity === "hospital") {
-                    let type = "Hôpital";
-                    phone = feature.properties.phone;
-                    let mail = null;
-                    if (feature.properties.email !== undefined) {
-                        mail = feature.properties.email
-                    }
-                    createPopup(marker, coordonnee, nom, type, phone, mail, null);
-                } else if (feature.properties.amenity === "doctors") {
-                    let distinction = "Médecin";
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], phone, distinction)
-                } else if (feature.properties.recycling !== undefined) {
-                    if (icon === "trash-alt") {
-                        if (feature.properties.recycling.type === "container") {
-                            nom = "Conteneur";
-                            let typeDechet = dechetRecyclage(feature).join(", ")
-
-                            createPopup(marker, coordonnee, nom, typeDechet, null, null)
-
-                        } else {
-                            marker = null;
-                        }
-                    } else if (icon === "dumpster") {
-                        if (feature.properties.recycling.type === "Dechetterie") {
-                            let typeDechet = dechetRecyclage(feature).join(", ");
-                            adresse = "Déchetterie";
-
-                            createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], typeDechet);
-                        } else {
-                            marker = null;
-                        }
-                    }
-                } else {
-                    createPopup(marker, coordonnee, nom, adresse, markerPopup(feature)["ouverture"], markerPopup(feature)["horairesAfficher"], null, null)
                 }
 
                 return marker;
