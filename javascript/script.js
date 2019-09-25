@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("containMap").innerHTML += ' <div id="lieux">  <div id="intro">\n' +
         '1 106 lieux' +
         '  <div id="flip">' +
-        '    <div><div>intelliggent</div></div>' +
+        '    <div><div>intelligent</div></div>' +
         '    <div><div>durables</div></div>' +
         '    <div><div>pratiques</div></div>' +
         '  </div>' +
