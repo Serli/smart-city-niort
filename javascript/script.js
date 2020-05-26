@@ -93,15 +93,14 @@ function init() {
 
 
     //map.setMaxBounds(maxBounds);
-    // Wikimedia
-    var mainLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
-        name: "Wikimedia",
-        attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+    // OpenStreetMap
+    var mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        name: "OpenStreetMap",
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         minZoom: 1,
         maxZoom: 19
     });
     mainLayer.addTo(map)
-
 
     // carte
     var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
